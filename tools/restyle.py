@@ -22,9 +22,19 @@ ROOT = Path(__file__).resolve().parent.parent
 TEMPLATE = ROOT / "pdfquiz" / "templates" / "quiz.html"
 
 PAYLOAD = re.compile(r"window\.__QUIZ__\s*=\s*(\{.*?\});\s*</script>", re.S)
+HUB_LINK = re.compile(r'<a class="hub-link" href="[^"]*">.*?</a>', re.S)
 
 
-def restyle(src: Path, tpl: str) -> str:
+def _hub_link(href: str) -> str:
+    return (
+        '<a class="hub-link" href="' + html.escape(href) + '">'
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">'
+        '<path d="M19 12H5M12 19l-7-7 7-7"/></svg>'
+        "全部试卷</a>"
+    )
+
+
+def restyle(src: Path, tpl: str, hub: str | None = None) -> str:
     raw = src.read_text(encoding="utf-8")
     m = PAYLOAD.search(raw)
     if not m:
@@ -40,11 +50,19 @@ def restyle(src: Path, tpl: str) -> str:
     if meta.get("mock"):
         bits.insert(0, "离线模式产物")
 
+    # 重渲染不能丢掉「全部试卷」入口：优先用显式参数，否则沿用旧页面里的链接
+    if hub:
+        hublink = _hub_link(hub)
+    else:
+        old = HUB_LINK.search(raw)
+        hublink = old.group(0) if old else ""
+
     data = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
     return (
         tpl.replace("{{TITLE}}", html.escape(str(title)))
         .replace("{{SUBTITLE}}", html.escape(" · ".join(bits)))
         .replace("{{SOURCE}}", html.escape(str(meta.get("source", ""))))
+        .replace("{{HUPLINK}}", hublink)
         .replace("{{DATA}}", data)
     )
 
@@ -53,6 +71,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="用最新模板重渲染已有题库")
     ap.add_argument("files", nargs="+", type=Path)
     ap.add_argument("-o", "--out", type=Path, help="只处理一个文件时另存到此处")
+    ap.add_argument("--hub", help="侧栏「全部试卷」链接地址；默认沿用旧页面里的设置")
     args = ap.parse_args()
 
     if args.out and len(args.files) > 1:
@@ -60,7 +79,7 @@ def main() -> int:
 
     tpl = TEMPLATE.read_text(encoding="utf-8")
     for src in args.files:
-        out = restyle(src, tpl)
+        out = restyle(src, tpl, hub=args.hub)
         dst = args.out or src
         dst.write_text(out, encoding="utf-8")
         print(f"✓ {src} → {dst}（{len(out) / 1024:.0f} KB）")

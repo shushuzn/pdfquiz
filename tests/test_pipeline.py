@@ -13,7 +13,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from pdfquiz.chunk import chunk_markdown  # noqa: E402
 from pdfquiz.generate import offline_questions  # noqa: E402
-from pdfquiz.verify import check_structure, evidence_ok, verify  # noqa: E402
+from pdfquiz.render import render  # noqa: E402
+from pdfquiz.verify import Report, check_structure, evidence_ok, verify  # noqa: E402
 
 SRC = (
     "过拟合是指模型在训练数据上的误差持续下降，而在验证数据上的误差在某一轮之后"
@@ -96,9 +97,31 @@ class TestStructure(unittest.TestCase):
         self.assertFalse(ok)
         self.assertIn("只有一个", why)
 
+    def test_multiple_answer_as_string(self):
+        for ans in ("AB", "A、B", "A,B"):
+            ok, why = check_structure(self._q(type="multiple", answer=ans))
+            self.assertTrue(ok, f"{ans!r}: {why}")
+
     def test_truefalse_bad_answer(self):
         ok, _ = check_structure({"type": "truefalse", "question": "这是对的吗？", "answer": "yes"})
         self.assertFalse(ok)
+
+
+class TestRender(unittest.TestCase):
+    def test_option_labels_are_normalized(self):
+        q = {
+            "type": "single",
+            "question": "过拟合的可靠判别信号是什么？",
+            "options": ["A、训练损失", "B、差距扩大", "C、验证损失", "D、参数量"],
+            "answer": "B",
+            "evidence": SRC.split("。")[0] + "。",
+        }
+        md = render(
+            title="测试", engine="passthrough", source="x.md",
+            chunks=1, reports=[Report(accepted=[q])], mock=False,
+        )
+        self.assertIn("- A. 训练损失", md)
+        self.assertNotIn("A. A、训练损失", md)
 
 
 class TestVerify(unittest.TestCase):

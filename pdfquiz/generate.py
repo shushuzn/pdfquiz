@@ -90,6 +90,9 @@ def parse_questions(raw: str, chunk: Chunk) -> list[dict]:
         items = data
     elif isinstance(data, dict):
         items = data.get("questions") or data.get("items") or []
+        # 桥接模式下每块可能只产出一道题，允许直接给单个题目对象
+        if not items and "question" in data:
+            items = [data]
     else:
         items = []
     if not isinstance(items, list):

@@ -74,7 +74,18 @@ def check_structure(q: dict) -> tuple[bool, str]:
         if len({squash(_strip_label(o)) for o in options}) != len(options):
             return False, "存在重复选项"
         ans = q.get("answer")
-        letters = {str(a).strip().upper()[:1] for a in (ans if isinstance(ans, list) else [ans])}
+        # 多选答案既可能是 ["A","B"]，也可能是 "AB" / "A、B" 这样的字符串，
+        # 逐字母收齐后再校验，别把合法的 "AB" 当成单选题处理
+        letters: set[str] = set()
+        for item in ans if isinstance(ans, list) else [ans]:
+            s = str(item).strip().upper()
+            if not s:
+                continue
+            compact = re.sub(r"[\s,，、;；/|]+", "", s)
+            if compact and re.fullmatch(r"[A-H]+", compact):
+                letters.update(compact)
+            else:
+                letters.add(s[0])
         valid = {chr(ord("A") + i) for i in range(len(options))}
         if not letters or not letters <= valid:
             return False, f"答案 {ans!r} 不在选项范围内"

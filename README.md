@@ -195,7 +195,7 @@ pdfquiz/
 │   ├── build_exam.py           试卷 + 词汇表 → 题库（校验、去重、导出）
 │   └── restyle.py              用最新模板重渲染已有题库，不重跑解析
 ├── tests/
-│   ├── test_pipeline.py        15 项单测
+│   ├── test_pipeline.py        17 项单测
 │   ├── fake_mcp_server.py      假 MCP 服务器，内含 1 道伪造题
 │   └── web/
 │       ├── functional.mjs      前端功能测试（判分 / 自评 / 无异常）
@@ -210,13 +210,13 @@ pdfquiz/
 python -m unittest discover -s tests -v
 ```
 
-覆盖：章节切分、超长切分、碎片合并、逐字命中、空白容错、伪造拒绝、否定翻转拒绝、过短拒绝、重复选项、答案越界、多选单答、判断题非法答案、跨题去重、离线题 100% 可溯源。
+覆盖：章节切分、超长切分、碎片合并、逐字命中、空白容错、伪造拒绝、否定翻转拒绝、过短拒绝、重复选项、答案越界、多选单答、多选字符串答案、判断题非法答案、选项标号归一、跨题去重、离线题 100% 可溯源。
 
 前端测试直接驱动真实浏览器（本机 Edge / Chrome 以 `--remote-debugging-port=9222` 启动，用 Node 内置 WebSocket 走 CDP，无额外依赖）：
 
 ```bash
-node tests/web/functional.mjs "file:///$PWD/out_exam/exam_a.quiz.html" 69   # 判分链路 8 项
-node tests/web/mobile.mjs     "file:///$PWD/out_exam/exam_a.quiz.html"      # 移动端交互 13 项
+node tests/web/functional.mjs "file:///$PWD/docs/exam_a.html" 69   # 判分链路，按题库题型取舍
+node tests/web/mobile.mjs     "file:///$PWD/docs/exam_a.html"      # 移动端交互 13 项
 ```
 
 `functional.mjs` 按题库里实际存在的题型挑用例：教材卷覆盖术语精确比对与主观题自评，示例卷（`docs/demo.html`）覆盖客观题判分，缺哪类就跳过哪类，不会误报。

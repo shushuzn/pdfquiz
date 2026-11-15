@@ -58,6 +58,26 @@ const ok = (name, pass, detail) => {
   console.log((pass ? "✓ " : "✗ ") + name + (detail ? "  " + detail : ""));
 };
 
+// 输入框相关用例需要有作答框的题；优先跳到多行文本框，没有再到单行输入
+const FIELD = await evaluate(`(() => {
+  const qs = window.__QUIZ__.questions;
+  const MULTI = ['short', 'trans_en_cn', 'trans_cn_en', 'describe', 'qa'];
+  let idx = qs.findIndex((q) => MULTI.includes(q.t));
+  const grow = idx >= 0;
+  if (idx < 0) idx = qs.findIndex((q) => ['fill', 'term'].includes(q.t));
+  if (idx > 0) {
+    const k = 'pdfquiz:' + (window.__QUIZ__.meta.id || 'deck');
+    const s = JSON.parse(localStorage.getItem(k) || '{}');
+    s.cur = idx;
+    localStorage.setItem(k, JSON.stringify(s));
+  }
+  return { idx, grow };
+})()`);
+if (FIELD.idx > 0) {
+  await send("Page.reload");
+  await sleep(900);
+}
+
 // ---- 1. 底栏在手机上固定于视口底部
 const nav = await evaluate(`(() => {
   const n = document.querySelector('#navbar');
@@ -77,6 +97,10 @@ const pad = await evaluate(`(() => {
 })()`);
 ok("正文避开底栏", pad.pb >= 84, "padding-bottom=" + pad.pb + "px");
 
+if (FIELD.idx < 0) {
+  console.log("– 聚焦输入时收起底栏  跳过（题库无输入题）");
+  console.log("– 文本框自增高  跳过（题库无输入题）");
+} else {
 // ---- 3. 聚焦输入框时收起底栏（软键盘会盖住它）
 const kbd = await evaluate(`(async () => {
   const f = document.querySelector('.q.active .field');
@@ -91,6 +115,9 @@ const kbd = await evaluate(`(async () => {
 })()`);
 ok("聚焦输入时收起底栏", kbd.on && kbd.disp === "none" && kbd.off, JSON.stringify(kbd));
 
+if (!FIELD.grow) {
+  console.log("– 文本框自增高  跳过（题库只有单行输入题）");
+} else {
 // ---- 4. 文本框随内容长高
 const grow = await evaluate(`(async () => {
   const f = document.querySelector('.q.active .field');
@@ -102,26 +129,43 @@ const grow = await evaluate(`(async () => {
   return { h0: Math.round(h0), h1: Math.round(h1) };
 })()`);
 ok("文本框自增高", grow.h1 > grow.h0 + 60, grow.h0 + " → " + grow.h1 + "px");
+// 复原输入框，否则它撑高后会盖住下面的横滑测试触点
+await evaluate(`(async () => {
+  const f = document.querySelector('.q.active .field');
+  f.value = '';
+  f.dispatchEvent(new Event('input', { bubbles: true }));
+  f.blur();
+  await new Promise(r => setTimeout(r, 120));
+})()`);
+}
+}
 
 // ---- 5. 横滑翻页
 const swipeStart = await evaluate("document.querySelector('#posNow').textContent");
+// 触点放在题干区，避开输入框（输入框内的横向滑动是在选文字，不应翻页）
+const tapY = await evaluate(`(() => {
+  window.scrollTo(0, 0);
+  const r = document.querySelector('.q.active .stem').getBoundingClientRect();
+  return Math.round(Math.min(window.innerHeight - 80, Math.max(80, r.top + r.height / 2)));
+})()`);
+await sleep(120);
 const touch = (type, x, y) =>
   send("Input.dispatchTouchEvent", {
     type,
     touchPoints: type === "touchEnd" ? [] : [{ x, y, radiusX: 8, radiusY: 8, force: 1 }],
   });
-await touch("touchStart", 330, 190);
-await touch("touchMove", 250, 192);
-await touch("touchMove", 160, 194);
-await touch("touchEnd", 130, 194);
+await touch("touchStart", 330, tapY);
+await touch("touchMove", 250, tapY + 2);
+await touch("touchMove", 160, tapY + 4);
+await touch("touchEnd", 130, tapY + 4);
 await sleep(400);
 const swipeNext = await evaluate("document.querySelector('#posNow').textContent");
 ok("左滑进入下一题", swipeStart !== swipeNext, `第 ${swipeStart} 题 → 第 ${swipeNext} 题`);
 
-await touch("touchStart", 130, 190);
-await touch("touchMove", 230, 192);
-await touch("touchMove", 320, 194);
-await touch("touchEnd", 350, 194);
+await touch("touchStart", 130, tapY);
+await touch("touchMove", 230, tapY + 2);
+await touch("touchMove", 320, tapY + 4);
+await touch("touchEnd", 350, tapY + 4);
 await sleep(400);
 const swipeBack = await evaluate("document.querySelector('#posNow').textContent");
 ok("右滑退回上一题", swipeBack === swipeStart, `回到第 ${swipeBack} 题`);
@@ -142,19 +186,27 @@ ok("题号面板可打开且题号齐全", sheet1.open && sheet1.cells === sheet
 const jump = await evaluate(`(async () => {
   document.querySelector('[data-sheet-scope="type"]').click();
   await new Promise(r => setTimeout(r, 150));
-  const cells = [...document.querySelectorAll('.qcell')].map(n => n.textContent.trim());
-  const sorted = cells.every((v, i) => i === 0 || Number(v) > Number(cells[i - 1]));
-  document.querySelector('.qcell[data-goto="17"]').click();
+  const cells = [...document.querySelectorAll('.qcell')];
+  // 按题型分组后，组内题号应递增；跨组题号会回卷，这是分组本身的结构
+  const groups = [...document.querySelectorAll('#sheetBody .qgrid-grp')].map((g) =>
+    [...g.querySelectorAll('.qcell')].map((n) => Number(n.textContent.trim()))
+  );
+  const sorted = groups.every((g) => g.every((v, i) => i === 0 || v > g[i - 1]));
+  const total = window.__QUIZ__.questions.length;
+  document.querySelector('.qcell[data-goto="' + (total - 1) + '"]').click();
   await new Promise(r => setTimeout(r, 300));
   return {
     sorted,
+    cells: cells.length,
+    total,
     closed: !document.querySelector('#sheet').classList.contains('show'),
     now: document.querySelector('#posNow').textContent,
+    expect: String(total),
     sec: document.querySelector('#crumbSec').textContent,
   };
 })()`);
-ok("按题型分组时题号连续", jump.sorted, "");
-ok("点题号跳转并关闭面板", jump.closed && jump.now === "18", `跳到第 ${jump.now} 题 · ${jump.sec}`);
+ok("按题型分组后组内题号递增", jump.sorted && jump.cells === jump.total, "");
+ok("点题号跳转并关闭面板", jump.closed && jump.now === jump.expect, `跳到第 ${jump.now} 题 · ${jump.sec}`);
 
 // ---- 7. 字号三档
 const fs = await evaluate(`(async () => {

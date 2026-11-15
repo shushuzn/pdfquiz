@@ -2,11 +2,13 @@
 
 from __future__ import annotations
 
+import re
 from datetime import datetime
 
 from .verify import Report, stats
 
 LETTERS = "ABCDEFGH"
+_LABEL = re.compile(r"^\s*[A-Ha-h]\s*[\.\、\)．:：]\s*")
 
 TYPE_CN = {
     "single": "单选题",
@@ -142,11 +144,8 @@ def _render_question(i: int, q: dict) -> list[str]:
     if not options and qtype == "truefalse":
         options = ["正确", "错误"]
     for j, opt in enumerate(options):
-        text = str(opt).strip()
-        prefix = f"{LETTERS[j]}."
-        if not text.startswith(prefix):
-            text = f"{prefix} {text}"
-        out.append(f"- {text}")
+        text = _LABEL.sub("", str(opt).strip()).strip()
+        out.append(f"- {LETTERS[j]}. {text}")
     if options:
         out.append("")
     if qtype in SUBJECTIVE:

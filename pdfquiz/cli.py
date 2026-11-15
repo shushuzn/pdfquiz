@@ -103,7 +103,11 @@ def main(argv: list[str] | None = None) -> int:
     stem = src.stem
 
     print(f"[1/4] 解析 {src.name} …")
-    doc = extract(src)
+    try:
+        doc = extract(src)
+    except (FileNotFoundError, ValueError, RuntimeError) as exc:
+        print(f"[!] {exc}")
+        return 2
     print(f"      解析器 {doc.engine} · {doc.pages or '?'} 页 · {len(doc.markdown)} 字符")
     for w in doc.warnings:
         print(f"      ⚠ {w}")
@@ -147,10 +151,16 @@ def main(argv: list[str] | None = None) -> int:
 
     chat_fn = None
     label = "offline"
+    bridge_items: list | None = None
     if provider in {"openai", "mcp"}:
         chat_fn, label = _build_chat(args)
     elif provider == "bridge":
         label = "bridge · 外部答案文件"
+        try:
+            bridge_items = _load_answers(args.answers)
+        except RuntimeError as exc:
+            print(f"[!] {exc}")
+            return 4
     print(f"[3/4] 出题 + 溯源校验 · 来源 {label} …")
 
     reports: list[Report] = []
@@ -160,7 +170,7 @@ def main(argv: list[str] | None = None) -> int:
                 if provider == "offline":
                     raw_qs = offline_questions(c, args.num)
                 elif provider == "bridge":
-                    raw_qs = parse_questions(_bridge_answer(args.answers, pos), c)
+                    raw_qs = parse_questions(_bridge_answer(bridge_items, pos), c)
                 else:
                     raw_qs = generate_for_chunk(c, args.num, types, args.lang, chat_fn)
             except (LLMError, RuntimeError) as exc:
@@ -237,9 +247,24 @@ def _emit_prompts(chunks: list[Chunk], args, types: list[str], path: Path) -> in
     return 0
 
 
-def _bridge_answer(path: str, pos: int) -> str:
-    data = json.loads(Path(path).read_text(encoding="utf-8"))
+def _load_answers(path: str) -> list:
+    """读入外部答案文件，一次解析后复用；错误转成可读提示。"""
+    p = Path(path)
+    if not p.exists():
+        raise RuntimeError(f"找不到答案文件：{p}")
+    try:
+        data = json.loads(p.read_text(encoding="utf-8"))
+    except json.JSONDecodeError as exc:
+        raise RuntimeError(f"答案文件不是合法 JSON：{p}（{exc}）") from exc
     items = data.get("answers", data) if isinstance(data, dict) else data
+    if not isinstance(items, list):
+        raise RuntimeError(
+            f"答案文件格式不正确：{p}；应为数组，或包含 answers 数组的对象"
+        )
+    return items
+
+
+def _bridge_answer(items: list, pos: int) -> str:
     if pos >= len(items):
         raise RuntimeError(f"answers 只有 {len(items)} 条，缺少第 {pos + 1} 块")
     item = items[pos]
