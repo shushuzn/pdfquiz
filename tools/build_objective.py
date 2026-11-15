@@ -42,8 +42,22 @@ def load_units() -> dict[str, str]:
     return {p.stem: p.read_text(encoding="utf-8") for p in sorted(UNITS.glob("unit*.md"))}
 
 
+def _pos_key(pos: str) -> str:
+    """把词性归一成 n / v / adj / adv，用来挑同类干扰项。"""
+    p = (pos or "").lower()
+    if p.startswith("n"):
+        return "n"
+    if p.startswith("v"):
+        return "v"
+    if p.startswith("a") or p.startswith("adj"):
+        return "adj"
+    if p.startswith("ad") or p.startswith("adv"):
+        return "adv"
+    return "other"
+
+
 def vocab_all(units: dict[str, str]):
-    """[(term, meaning, unit_no)]，同词只留第一次出现。"""
+    """[(term, meaning, unit_no, pos_key)]，同词只留第一次出现。"""
     out, seen = [], set()
     for stem, md in units.items():
         num = int(stem[4:])
@@ -56,14 +70,14 @@ def vocab_all(units: dict[str, str]):
             if len(meaning) < 2:
                 continue
             seen.add(key)
-            out.append((term, meaning, num))
+            out.append((term, meaning, num, _pos_key(row.get("pos", ""))))
     return out
 
 
 def make_fill(units: dict[str, str], titles: dict[int, str], vocab) -> list[dict]:
     """挖空填词：原句里恰好出现一次的术语才挖，避免歧义。"""
     by_unit: dict[int, list[str]] = {}
-    for term, _meaning, num in vocab:
+    for term, _meaning, num, _pos in vocab:
         by_unit.setdefault(num, []).append(term)
 
     out, used_sent, per_term = [], set(), {}
@@ -118,7 +132,7 @@ def make_fill(units: dict[str, str], titles: dict[int, str], vocab) -> list[dict
 def make_single(units, titles, vocab, seed: int = 20261115) -> list[dict]:
     """中文释义 → 选英文术语，干扰项取自同一本书的其它术语。"""
     rnd = random.Random(seed)
-    pool = [(t, m, n) for t, m, n in vocab if 4 <= len(t) <= 28]
+    pool = [(t, m, n, p) for t, m, n, p in vocab if 4 <= len(t) <= 28]
 
     # 每题都必须挂一句教材原句做依据，否则「这个词在书里哪儿出现过」说不清
     sents_by_unit: dict[int, list[str]] = {}
@@ -135,12 +149,17 @@ def make_single(units, titles, vocab, seed: int = 20261115) -> list[dict]:
         return ""
 
     out = []
-    for term, meaning, num in pool:
+    for term, meaning, num, pos in pool:
         if len(out) >= SINGLE_TARGET:
             break
         want = len(term)
-        cands = [
-            t for t, m, _n in pool
+        # 干扰项优先同词性：名词题不该混进 imperfect / amorphous 这类形容词
+        same = [
+            t for t, m, _n, p in pool
+            if p == pos and t.lower() != term.lower() and m != meaning and abs(len(t) - want) <= 6
+        ]
+        cands = same if len(same) >= 12 else [
+            t for t, m, _n, p in pool
             if t.lower() != term.lower() and m != meaning and abs(len(t) - want) <= 6
         ]
         if len(cands) < 12:

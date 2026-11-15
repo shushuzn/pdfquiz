@@ -9,18 +9,18 @@
    "type": "fill",
    "chunk_path": "PART A 高分子化学与物理 > UNIT 1 What are Polymers?",
    "score": 2,
-   "question": "As against this well-defined behavior of a simple chemical compound, a polymer like ＿＿＿＿ does not melt sharply at one particular temperature into clean liquid.",
-   "answer": "polyethylene",
+   "question": "These ＿＿＿＿ molecules are incorporated into the chain with ester linkages at both ends of each.",
+   "answer": "difunctional",
    "keys": [
     {
-     "en": "polyethylene",
+     "en": "difunctional",
      "cn": ""
     }
    ],
    "ref": "UNIT 1 What are Polymers? · 原文填空",
-   "evidence": "As against this well-defined behavior of a simple chemical compound, a polymer like polyethylene does not melt sharply at one particular temperature into clean liquid.",
+   "evidence": "These difunctional molecules are incorporated into the chain with ester linkages at both ends of each.",
    "difficulty": "hard",
-   "explanation": "原句用 polyethylene；注意拼写与单复数。"
+   "explanation": "原句用 difunctional；注意拼写与单复数。"
   },
   {
    "type": "fill",
@@ -43,18 +43,18 @@
    "type": "fill",
    "chunk_path": "PART A 高分子化学与物理 > UNIT 1 What are Polymers?",
    "score": 2,
-   "question": "These ＿＿＿＿ molecules are incorporated into the chain with ester linkages at both ends of each.",
-   "answer": "difunctional",
+   "question": "As against this well-defined behavior of a simple chemical compound, a polymer like ＿＿＿＿ does not melt sharply at one particular temperature into clean liquid.",
+   "answer": "polyethylene",
    "keys": [
     {
-     "en": "difunctional",
+     "en": "polyethylene",
      "cn": ""
     }
    ],
    "ref": "UNIT 1 What are Polymers? · 原文填空",
-   "evidence": "These difunctional molecules are incorporated into the chain with ester linkages at both ends of each.",
+   "evidence": "As against this well-defined behavior of a simple chemical compound, a polymer like polyethylene does not melt sharply at one particular temperature into clean liquid.",
    "difficulty": "hard",
-   "explanation": "原句用 difunctional；注意拼写与单复数。"
+   "explanation": "原句用 polyethylene；注意拼写与单复数。"
   },
   {
    "type": "fill",
@@ -128,23 +128,6 @@
    "type": "fill",
    "chunk_path": "PART A 高分子化学与物理 > UNIT 1 What are Polymers?",
    "score": 2,
-   "question": "Let us consider the formation of a ＿＿＿＿.",
-   "answer": "polyester",
-   "keys": [
-    {
-     "en": "polyester",
-     "cn": ""
-    }
-   ],
-   "ref": "UNIT 1 What are Polymers? · 原文填空",
-   "evidence": "Let us consider the formation of a polyester.",
-   "difficulty": "medium",
-   "explanation": "原句用 polyester；注意拼写与单复数。"
-  },
-  {
-   "type": "fill",
-   "chunk_path": "PART A 高分子化学与物理 > UNIT 1 What are Polymers?",
-   "score": 2,
    "question": "The ＿＿＿＿ of the saturated salt solution is not very much different from that of water.",
    "answer": "viscosity",
    "keys": [
@@ -162,18 +145,18 @@
    "type": "fill",
    "chunk_path": "PART A 高分子化学与物理 > UNIT 1 What are Polymers?",
    "score": 2,
-   "question": "The ＿＿＿＿ of a low molecular weight compound and that of a polymer on dissolution are illustrated in Fig.",
-   "answer": "behavior",
+   "question": "Let us consider the formation of a ＿＿＿＿.",
+   "answer": "polyester",
    "keys": [
     {
-     "en": "behavior",
+     "en": "polyester",
      "cn": ""
     }
    ],
    "ref": "UNIT 1 What are Polymers? · 原文填空",
-   "evidence": "The behavior of a low molecular weight compound and that of a polymer on dissolution are illustrated in Fig.",
-   "difficulty": "easy",
-   "explanation": "原句用 behavior；注意拼写与单复数。"
+   "evidence": "Let us consider the formation of a polyester.",
+   "difficulty": "medium",
+   "explanation": "原句用 polyester；注意拼写与单复数。"
   },
   {
    "type": "fill",
@@ -196,18 +179,18 @@
    "type": "fill",
    "chunk_path": "PART A 高分子化学与物理 > UNIT 1 What are Polymers?",
    "score": 2,
-   "question": "In the former, branch chains ＿＿＿＿ from along the length of a common backbone;",
-   "answer": "emanate",
+   "question": "The ＿＿＿＿ of a low molecular weight compound and that of a polymer on dissolution are illustrated in Fig.",
+   "answer": "behavior",
    "keys": [
     {
-     "en": "emanate",
+     "en": "behavior",
      "cn": ""
     }
    ],
    "ref": "UNIT 1 What are Polymers? · 原文填空",
-   "evidence": "In the former, branch chains emanate from along the length of a common backbone;",
+   "evidence": "The behavior of a low molecular weight compound and that of a polymer on dissolution are illustrated in Fig.",
    "difficulty": "easy",
-   "explanation": "原句用 emanate；注意拼写与单复数。"
+   "explanation": "原句用 behavior；注意拼写与单复数。"
   },
   {
    "type": "fill",
@@ -230,18 +213,18 @@
    "type": "fill",
    "chunk_path": "PART A 高分子化学与物理 > UNIT 1 What are Polymers?",
    "score": 2,
-   "question": "To contrast the difference, the molecular weight of common salt is only 58.5, while that of a ＿＿＿＿ can be as high as several hundred thousands, even more than thousand thousands.",
-   "answer": "polymer",
+   "question": "In the former, branch chains ＿＿＿＿ from along the length of a common backbone;",
+   "answer": "emanate",
    "keys": [
     {
-     "en": "polymer",
+     "en": "emanate",
      "cn": ""
     }
    ],
    "ref": "UNIT 1 What are Polymers? · 原文填空",
-   "evidence": "To contrast the difference, the molecular weight of common salt is only 58.5, while that of a polymer can be as high as several hundred thousands, even more than thousand thousands.",
+   "evidence": "In the former, branch chains emanate from along the length of a common backbone;",
    "difficulty": "easy",
-   "explanation": "原句用 polymer；注意拼写与单复数。"
+   "explanation": "原句用 emanate；注意拼写与单复数。"
   },
   {
    "type": "fill",
@@ -281,6 +264,23 @@
    "type": "fill",
    "chunk_path": "PART A 高分子化学与物理 > UNIT 1 What are Polymers?",
    "score": 2,
+   "question": "To contrast the difference, the molecular weight of common salt is only 58.5, while that of a ＿＿＿＿ can be as high as several hundred thousands, even more than thousand thousands.",
+   "answer": "polymer",
+   "keys": [
+    {
+     "en": "polymer",
+     "cn": ""
+    }
+   ],
+   "ref": "UNIT 1 What are Polymers? · 原文填空",
+   "evidence": "To contrast the difference, the molecular weight of common salt is only 58.5, while that of a polymer can be as high as several hundred thousands, even more than thousand thousands.",
+   "difficulty": "easy",
+   "explanation": "原句用 polymer；注意拼写与单复数。"
+  },
+  {
+   "type": "fill",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 1 What are Polymers?",
+   "score": 2,
    "question": "Instead, it becomes increasingly softer and, ultimately, turns into a very ＿＿＿＿, tacky molten mass.",
    "answer": "viscous",
    "keys": [
@@ -315,23 +315,6 @@
    "type": "fill",
    "chunk_path": "PART A 高分子化学与物理 > UNIT 2 Chain Polymerization",
    "score": 2,
-   "question": "The initiation reaction, which is the activation process of the double bond, can be brought about by heating, ＿＿＿＿, ultrasonics, or initiators.",
-   "answer": "irradiation",
-   "keys": [
-    {
-     "en": "irradiation",
-     "cn": ""
-    }
-   ],
-   "ref": "UNIT 2 Chain Polymerization · 原文填空",
-   "evidence": "The initiation reaction, which is the activation process of the double bond, can be brought about by heating, irradiation, ultrasonics, or initiators.",
-   "difficulty": "medium",
-   "explanation": "原句用 irradiation；注意拼写与单复数。"
-  },
-  {
-   "type": "fill",
-   "chunk_path": "PART A 高分子化学与物理 > UNIT 2 Chain Polymerization",
-   "score": 2,
    "question": "Many olefinic and vinyl ＿＿＿＿ compounds are able to form chain-like macromolecules through elimination of the double bond, a phenomenon first recognized by Staudinger.",
    "answer": "unsaturated",
    "keys": [
@@ -344,6 +327,23 @@
    "evidence": "Many olefinic and vinyl unsaturated compounds are able to form chain-like macromolecules through elimination of the double bond, a phenomenon first recognized by Staudinger.",
    "difficulty": "medium",
    "explanation": "原句用 unsaturated；注意拼写与单复数。"
+  },
+  {
+   "type": "fill",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 2 Chain Polymerization",
+   "score": 2,
+   "question": "The initiation reaction, which is the activation process of the double bond, can be brought about by heating, ＿＿＿＿, ultrasonics, or initiators.",
+   "answer": "irradiation",
+   "keys": [
+    {
+     "en": "irradiation",
+     "cn": ""
+    }
+   ],
+   "ref": "UNIT 2 Chain Polymerization · 原文填空",
+   "evidence": "The initiation reaction, which is the activation process of the double bond, can be brought about by heating, irradiation, ultrasonics, or initiators.",
+   "difficulty": "medium",
+   "explanation": "原句用 irradiation；注意拼写与单复数。"
   },
   {
    "type": "fill",
@@ -366,23 +366,6 @@
    "type": "fill",
    "chunk_path": "PART A 高分子化学与物理 > UNIT 2 Chain Polymerization",
    "score": 2,
-   "question": "The ＿＿＿＿ of their catalytic action is not yet completely clear.",
-   "answer": "mechanism",
-   "keys": [
-    {
-     "en": "mechanism",
-     "cn": ""
-    }
-   ],
-   "ref": "UNIT 2 Chain Polymerization · 原文填空",
-   "evidence": "The mechanism of their catalytic action is not yet completely clear.",
-   "difficulty": "medium",
-   "explanation": "原句用 mechanism；注意拼写与单复数。"
-  },
-  {
-   "type": "fill",
-   "chunk_path": "PART A 高分子化学与物理 > UNIT 2 Chain Polymerization",
-   "score": 2,
    "question": "This should not be interpreted to mean that all molecules of a certain ＿＿＿＿ material consist of 500, or 1 000, or 5 000 monomer units.",
    "answer": "polymeric",
    "keys": [
@@ -395,6 +378,23 @@
    "evidence": "This should not be interpreted to mean that all molecules of a certain polymeric material consist of 500, or 1 000, or 5 000 monomer units.",
    "difficulty": "medium",
    "explanation": "原句用 polymeric；注意拼写与单复数。"
+  },
+  {
+   "type": "fill",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 2 Chain Polymerization",
+   "score": 2,
+   "question": "The ＿＿＿＿ of their catalytic action is not yet completely clear.",
+   "answer": "mechanism",
+   "keys": [
+    {
+     "en": "mechanism",
+     "cn": ""
+    }
+   ],
+   "ref": "UNIT 2 Chain Polymerization · 原文填空",
+   "evidence": "The mechanism of their catalytic action is not yet completely clear.",
+   "difficulty": "medium",
+   "explanation": "原句用 mechanism；注意拼写与单复数。"
   },
   {
    "type": "fill",
@@ -451,23 +451,6 @@
    "type": "fill",
    "chunk_path": "PART A 高分子化学与物理 > UNIT 3 Step Growth Polymerization",
    "score": 2,
-   "question": "＿＿＿＿ consists of the growth of M₁•by the successive additions of large numbers (hundreds, and perhaps, thousands) of monomer molecules.",
-   "answer": "propagation",
-   "keys": [
-    {
-     "en": "propagation",
-     "cn": ""
-    }
-   ],
-   "ref": "UNIT 3 Step Growth Polymerization · 原文填空",
-   "evidence": "Propagation consists of the growth of M₁•by the successive additions of large numbers (hundreds, and perhaps, thousands) of monomer molecules.",
-   "difficulty": "medium",
-   "explanation": "原句用 propagation；注意拼写与单复数。"
-  },
-  {
-   "type": "fill",
-   "chunk_path": "PART A 高分子化学与物理 > UNIT 3 Step Growth Polymerization",
-   "score": 2,
    "question": "~CH₂—CH• + •CH—CH₂~ →(k_td)→ ~CH₂—CH₂ + CH—CH=CH~ (2.6) │Y │Y │Y │Y Termination can also occur by a ＿＿＿＿ of coupling and disproportionation.",
    "answer": "combination",
    "keys": [
@@ -480,6 +463,23 @@
    "evidence": "~CH₂—CH• + •CH—CH₂~ →(k_td)→ ~CH₂—CH₂ + CH—CH=CH~ (2.6) │Y │Y │Y │Y Termination can also occur by a combination of coupling and disproportionation.",
    "difficulty": "medium",
    "explanation": "原句用 combination；注意拼写与单复数。"
+  },
+  {
+   "type": "fill",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 3 Step Growth Polymerization",
+   "score": 2,
+   "question": "＿＿＿＿ consists of the growth of M₁•by the successive additions of large numbers (hundreds, and perhaps, thousands) of monomer molecules.",
+   "answer": "propagation",
+   "keys": [
+    {
+     "en": "propagation",
+     "cn": ""
+    }
+   ],
+   "ref": "UNIT 3 Step Growth Polymerization · 原文填空",
+   "evidence": "Propagation consists of the growth of M₁•by the successive additions of large numbers (hundreds, and perhaps, thousands) of monomer molecules.",
+   "difficulty": "medium",
+   "explanation": "原句用 propagation；注意拼写与单复数。"
   },
   {
    "type": "fill",
@@ -502,23 +502,6 @@
    "type": "fill",
    "chunk_path": "PART A 高分子化学与物理 > UNIT 3 Step Growth Polymerization",
    "score": 2,
-   "question": "**UNIT 3 Step-Growth Polymerization** Many different chemical reactions may be used to ＿＿＿＿ polymeric materials by step-growth polymerization.",
-   "answer": "synthesize",
-   "keys": [
-    {
-     "en": "synthesize",
-     "cn": ""
-    }
-   ],
-   "ref": "UNIT 3 Step Growth Polymerization · 原文填空",
-   "evidence": "**UNIT 3 Step-Growth Polymerization** Many different chemical reactions may be used to synthesize polymeric materials by step-growth polymerization.",
-   "difficulty": "medium",
-   "explanation": "原句用 synthesize；注意拼写与单复数。"
-  },
-  {
-   "type": "fill",
-   "chunk_path": "PART A 高分子化学与物理 > UNIT 3 Step Growth Polymerization",
-   "score": 2,
    "question": "Polymerization proceeds by the reactions between two different functional groups, e.g., hydroxyl and carboxyl groups, or ＿＿＿＿ and hydroxyl groups.",
    "answer": "isocyanate",
    "keys": [
@@ -536,18 +519,18 @@
    "type": "fill",
    "chunk_path": "PART A 高分子化学与物理 > UNIT 3 Step Growth Polymerization",
    "score": 2,
-   "question": "These include esterification, ＿＿＿＿, the formation of urethanes, aromatic substitution, etc.",
-   "answer": "amidation",
+   "question": "**UNIT 3 Step-Growth Polymerization** Many different chemical reactions may be used to ＿＿＿＿ polymeric materials by step-growth polymerization.",
+   "answer": "synthesize",
    "keys": [
     {
-     "en": "amidation",
+     "en": "synthesize",
      "cn": ""
     }
    ],
    "ref": "UNIT 3 Step Growth Polymerization · 原文填空",
-   "evidence": "These include esterification, amidation, the formation of urethanes, aromatic substitution, etc.",
+   "evidence": "**UNIT 3 Step-Growth Polymerization** Many different chemical reactions may be used to synthesize polymeric materials by step-growth polymerization.",
    "difficulty": "medium",
-   "explanation": "原句用 amidation；注意拼写与单复数。"
+   "explanation": "原句用 synthesize；注意拼写与单复数。"
   },
   {
    "type": "fill",
@@ -570,18 +553,35 @@
    "type": "fill",
    "chunk_path": "PART A 高分子化学与物理 > UNIT 3 Step Growth Polymerization",
    "score": 2,
-   "question": "There is ample experimental evidence which indicates that although radical reactivity depends on molecular size, the effect of size vanishes after the ＿＿＿＿ or hexamer.",
-   "answer": "pentamer",
+   "question": "These include esterification, ＿＿＿＿, the formation of urethanes, aromatic substitution, etc.",
+   "answer": "amidation",
    "keys": [
     {
-     "en": "pentamer",
+     "en": "amidation",
      "cn": ""
     }
    ],
    "ref": "UNIT 3 Step Growth Polymerization · 原文填空",
-   "evidence": "There is ample experimental evidence which indicates that although radical reactivity depends on molecular size, the effect of size vanishes after the pentamer or hexamer.",
+   "evidence": "These include esterification, amidation, the formation of urethanes, aromatic substitution, etc.",
+   "difficulty": "medium",
+   "explanation": "原句用 amidation；注意拼写与单复数。"
+  },
+  {
+   "type": "fill",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 3 Step Growth Polymerization",
+   "score": 2,
+   "question": "But each polymer molecule that forms still has ＿＿＿＿ end groups;",
+   "answer": "reactive",
+   "keys": [
+    {
+     "en": "reactive",
+     "cn": ""
+    }
+   ],
+   "ref": "UNIT 3 Step Growth Polymerization · 原文填空",
+   "evidence": "But each polymer molecule that forms still has reactive end groups;",
    "difficulty": "easy",
-   "explanation": "原句用 pentamer；注意拼写与单复数。"
+   "explanation": "原句用 reactive；注意拼写与单复数。"
   },
   {
    "type": "single",
@@ -589,12 +589,12 @@
    "score": 2,
    "question": "「聚合物」对应的英文术语是：",
    "options": [
-    "imperfect",
-    "segment",
     "polymer",
-    "amorphous"
+    "trioxane",
+    "shellac",
+    "conversion"
    ],
-   "answer": "C",
+   "answer": "A",
    "keys": [
     {
      "en": "polymer",
@@ -612,9 +612,9 @@
    "score": 2,
    "question": "「想象」对应的英文术语是：",
    "options": [
-    "termination",
-    "polystyrene",
-    "aromatic",
+    "surmount",
+    "eliminate",
+    "disintegrate",
     "imagine"
    ],
    "answer": "D",
@@ -635,10 +635,10 @@
    "score": 2,
    "question": "「丁二烯」对应的英文术语是：",
    "options": [
-    "transparency",
+    "dimer",
     "butadiene",
-    "inhibit",
-    "hardener"
+    "initiation",
+    "mechanism"
    ],
    "answer": "B",
    "keys": [
@@ -658,12 +658,12 @@
    "score": 2,
    "question": "「单体」对应的英文术语是：",
    "options": [
-    "urethane",
-    "acidify",
-    "drain",
-    "monomer"
+    "monomer",
+    "bitumen",
+    "wedge",
+    "grease"
    ],
-   "answer": "D",
+   "answer": "A",
    "keys": [
     {
      "en": "monomer",
@@ -681,12 +681,12 @@
    "score": 2,
    "question": "「合成的」对应的英文术语是：",
    "options": [
-    "bubble",
-    "amorphous",
-    "triethanolamine",
-    "synthetic"
+    "equivalent",
+    "adiabatic",
+    "synthetic",
+    "recursive"
    ],
-   "answer": "D",
+   "answer": "C",
    "keys": [
     {
      "en": "synthetic",
@@ -704,12 +704,12 @@
    "score": 2,
    "question": "「性能」对应的英文术语是：",
    "options": [
-    "diffraction",
-    "arrangement",
-    "behavior",
-    "substitution"
+    "microlamellae",
+    "parkesine",
+    "trioxane",
+    "behavior"
    ],
-   "answer": "C",
+   "answer": "D",
    "keys": [
     {
      "en": "behavior",
@@ -727,12 +727,12 @@
    "score": 2,
    "question": "「聚乙烯」对应的英文术语是：",
    "options": [
-    "ruggedness",
-    "sophisticated",
-    "approach",
-    "polyethylene"
+    "beaker",
+    "trioxane",
+    "polyethylene",
+    "hotplate"
    ],
-   "answer": "D",
+   "answer": "C",
    "keys": [
     {
      "en": "polyethylene",
@@ -750,9 +750,9 @@
    "score": 2,
    "question": "「粘稠的」对应的英文术语是：",
    "options": [
-    "ellipsoid",
-    "oxyalkylation",
-    "pigment",
+    "atactic",
+    "unsaturated",
+    "imperfect",
     "viscous"
    ],
    "answer": "D",
@@ -773,12 +773,12 @@
    "score": 2,
    "question": "「(表面)发粘的」对应的英文术语是：",
    "options": [
-    "dislocation",
+    "perceptibly",
+    "isotropic",
     "tacky",
-    "integral",
-    "parkesine"
+    "ambient"
    ],
-   "answer": "B",
+   "answer": "C",
    "keys": [
     {
      "en": "tacky",
@@ -796,10 +796,10 @@
    "score": 2,
    "question": "「溶解」对应的英文术语是：",
    "options": [
-    "uniaxial",
-    "acetal",
+    "hydroxyl",
+    "asbestos",
     "dissolution",
-    "viscosity"
+    "termination"
    ],
    "answer": "C",
    "keys": [
@@ -819,12 +819,12 @@
    "score": 2,
    "question": "「使…溶解」对应的英文术语是：",
    "options": [
-    "tedious",
-    "variance",
-    "dissolve",
-    "monofilament"
+    "suffice",
+    "neutralize",
+    "imbed",
+    "dissolve"
    ],
-   "answer": "C",
+   "answer": "D",
    "keys": [
     {
      "en": "dissolve",
@@ -842,12 +842,12 @@
    "score": 2,
    "question": "「饱和」对应的英文术语是：",
    "options": [
-    "transfer",
+    "wedge",
+    "departure",
     "saturation",
-    "derivative",
-    "helices"
+    "polystyrene"
    ],
-   "answer": "B",
+   "answer": "C",
    "keys": [
     {
      "en": "saturation",
@@ -865,12 +865,12 @@
    "score": 2,
    "question": "「粘度」对应的英文术语是：",
    "options": [
-    "yield",
-    "polyimide",
     "viscosity",
-    "kinetics"
+    "conformation",
+    "termination",
+    "polysulfone"
    ],
-   "answer": "C",
+   "answer": "A",
    "keys": [
     {
      "en": "viscosity",
@@ -888,10 +888,10 @@
    "score": 2,
    "question": "「溶胀」对应的英文术语是：",
    "options": [
-    "crystallite",
-    "thickener",
+    "align",
+    "encapsulate",
     "swell",
-    "anhydride"
+    "diffuse"
    ],
    "answer": "C",
    "keys": [
@@ -912,9 +912,9 @@
    "question": "「(生)面团」对应的英文术语是：",
    "options": [
     "dough",
-    "real",
-    "clarity",
-    "encompass"
+    "odor",
+    "terpolymer",
+    "polyamide"
    ],
    "answer": "A",
    "keys": [
@@ -934,12 +934,12 @@
    "score": 2,
    "question": "「稠度」对应的英文术语是：",
    "options": [
-    "consistency",
-    "approach",
-    "rational",
-    "polycondensation"
+    "adhesive",
+    "kinetics",
+    "trimer",
+    "consistency"
    ],
-   "answer": "A",
+   "answer": "D",
    "keys": [
     {
      "en": "consistency",
@@ -957,12 +957,12 @@
    "score": 2,
    "question": "「粉状的」对应的英文术语是：",
    "options": [
-    "clarity",
-    "powdery",
-    "successive",
-    "visualise"
+    "coiling",
+    "isotropic",
+    "amorphous",
+    "powdery"
    ],
-   "answer": "B",
+   "answer": "D",
    "keys": [
     {
      "en": "powdery",
@@ -980,12 +980,12 @@
    "score": 2,
    "question": "「溶剂」对应的英文术语是：",
    "options": [
-    "solvent",
-    "rheostat",
-    "formalin",
-    "micromixing"
+    "glycerol",
+    "adhesive",
+    "crosslinking",
+    "solvent"
    ],
-   "answer": "A",
+   "answer": "D",
    "keys": [
     {
      "en": "solvent",
@@ -1003,12 +1003,12 @@
    "score": 2,
    "question": "「奇特」对应的英文术语是：",
    "options": [
-    "bypass",
-    "complex",
-    "spherulite",
-    "peculiarity"
+    "butyl",
+    "peculiarity",
+    "ellipsoid",
+    "arrangement"
    ],
-   "answer": "D",
+   "answer": "B",
    "keys": [
     {
      "en": "peculiarity",
@@ -1026,12 +1026,12 @@
    "score": 2,
    "question": "「晶体」对应的英文术语是：",
    "options": [
-    "olefinic",
     "crystal",
-    "integral",
-    "hexamer"
+    "bypass",
+    "ingenuity",
+    "mole"
    ],
-   "answer": "B",
+   "answer": "A",
    "keys": [
     {
      "en": "crystal",
@@ -1049,10 +1049,10 @@
    "score": 2,
    "question": "「碎屑」对应的英文术语是：",
    "options": [
-    "pipette",
+    "density",
     "fragment",
-    "lubricant",
-    "reflux"
+    "hydrogen",
+    "polystyrene"
    ],
    "answer": "B",
    "keys": [
@@ -1072,12 +1072,12 @@
    "score": 2,
    "question": "「均聚物」对应的英文术语是：",
    "options": [
+    "pyrogallol",
+    "radical",
     "homopolymer",
-    "dissolve",
-    "thermocouple",
-    "celluloid"
+    "backmixing"
    ],
-   "answer": "A",
+   "answer": "C",
    "keys": [
     {
      "en": "homopolymer",
@@ -1095,12 +1095,12 @@
    "score": 2,
    "question": "「主链」对应的英文术语是：",
    "options": [
+    "polymer",
+    "crystallinity",
     "backbone",
-    "dissolve",
-    "rheostat",
-    "visualise"
+    "formalin"
    ],
-   "answer": "A",
+   "answer": "C",
    "keys": [
     {
      "en": "backbone",
@@ -1118,12 +1118,12 @@
    "score": 2,
    "question": "「聚酯」对应的英文术语是：",
    "options": [
-    "texture",
-    "adhesive",
+    "transparency",
     "polyester",
-    "reflux"
+    "approach",
+    "stirrer"
    ],
-   "answer": "C",
+   "answer": "B",
    "keys": [
     {
      "en": "polyester",
@@ -1141,12 +1141,12 @@
    "score": 2,
    "question": "「双官能度的」对应的英文术语是：",
    "options": [
-    "imperfect",
     "difunctional",
-    "emanate",
-    "polyethylene"
+    "ambient",
+    "monofunctional",
+    "opaque"
    ],
-   "answer": "B",
+   "answer": "A",
    "keys": [
     {
      "en": "difunctional",
@@ -1164,12 +1164,12 @@
    "score": 2,
    "question": "「结晶(作用)」对应的英文术语是：",
    "options": [
-    "activation",
-    "crystallization",
-    "neutralize",
-    "polyoxymethylene"
+    "decomposition",
+    "indicator",
+    "polyester",
+    "crystallization"
    ],
-   "answer": "B",
+   "answer": "D",
    "keys": [
     {
      "en": "crystallization",
@@ -1187,12 +1187,12 @@
    "score": 2,
    "question": "「源于」对应的英文术语是：",
    "options": [
-    "gear",
     "emanate",
-    "imagine",
-    "butyl"
+    "generalize",
+    "comingle",
+    "truncate"
    ],
-   "answer": "B",
+   "answer": "A",
    "keys": [
     {
      "en": "emanate",
@@ -1210,12 +1210,12 @@
    "score": 2,
    "question": "「内聚性」对应的英文术语是：",
    "options": [
-    "arbitrary",
-    "cohesiveness",
-    "imperfect",
-    "density"
+    "monomer",
+    "helices",
+    "radical",
+    "cohesiveness"
    ],
-   "answer": "B",
+   "answer": "D",
    "keys": [
     {
      "en": "cohesiveness",
@@ -1233,12 +1233,12 @@
    "score": 2,
    "question": "「三元共聚物」对应的英文术语是：",
    "options": [
-    "sublimation",
-    "dynamics",
+    "crystal",
     "terpolymer",
-    "hydrostatic"
+    "viscosity",
+    "globule"
    ],
-   "answer": "C",
+   "answer": "B",
    "keys": [
     {
      "en": "terpolymer",
@@ -1256,12 +1256,12 @@
    "score": 2,
    "question": "「不可分(性)」对应的英文术语是：",
    "options": [
-    "annihilation",
-    "polyetheretherketone",
     "indivisibility",
-    "cylinder"
+    "variance",
+    "esterification",
+    "polyvinylchloride"
    ],
-   "answer": "C",
+   "answer": "A",
    "keys": [
     {
      "en": "indivisibility",
@@ -1279,12 +1279,12 @@
    "score": 2,
    "question": "「烯烃的」对应的英文术语是：",
    "options": [
-    "medium",
-    "suffice",
-    "tacky",
-    "olefinic"
+    "acidic",
+    "olefinic",
+    "nonelastic",
+    "foregoing"
    ],
-   "answer": "D",
+   "answer": "B",
    "keys": [
     {
      "en": "olefinic",
@@ -1303,9 +1303,9 @@
    "question": "「乙烯基(的)」对应的英文术语是：",
    "options": [
     "vinyl",
-    "coiling",
-    "polyester",
-    "successive"
+    "model",
+    "bakelite",
+    "lubricant"
    ],
    "answer": "A",
    "keys": [
@@ -1325,12 +1325,12 @@
    "score": 2,
    "question": "「不饱和的」对应的英文术语是：",
    "options": [
-    "condenser",
-    "encompass",
-    "diffraction",
-    "unsaturated"
+    "anisotropic",
+    "unsaturated",
+    "thermodynamically",
+    "biaxially"
    ],
-   "answer": "D",
+   "answer": "B",
    "keys": [
     {
      "en": "unsaturated",
@@ -1348,12 +1348,12 @@
    "score": 2,
    "question": "「消除」对应的英文术语是：",
    "options": [
-    "powdery",
-    "relaxation",
-    "azeotrope",
-    "eliminate"
+    "drain",
+    "generalize",
+    "eliminate",
+    "synthesize"
    ],
-   "answer": "D",
+   "answer": "C",
    "keys": [
     {
      "en": "eliminate",
@@ -1371,12 +1371,12 @@
    "score": 2,
    "question": "「(链)转移」对应的英文术语是：",
    "options": [
-    "diamine",
-    "flask",
-    "consistency",
-    "transfer"
+    "transfer",
+    "settle",
+    "disintegrate",
+    "acidify"
    ],
-   "answer": "D",
+   "answer": "A",
    "keys": [
     {
      "en": "transfer",
@@ -1395,9 +1395,9 @@
    "question": "「引发剂」对应的英文术语是：",
    "options": [
     "initiator",
-    "microlamellae",
-    "stream",
-    "dissolution"
+    "departure",
+    "fragment",
+    "synthesis"
    ],
    "answer": "A",
    "keys": [
@@ -1417,12 +1417,12 @@
    "score": 2,
    "question": "「自由基」对应的英文术语是：",
    "options": [
-    "perceptibly",
-    "withdraw",
-    "validity",
-    "radical"
+    "dimer",
+    "radical",
+    "crystallite",
+    "homopolymer"
    ],
-   "answer": "D",
+   "answer": "B",
    "keys": [
     {
      "en": "radical",
@@ -1441,9 +1441,9 @@
    "question": "「聚氯乙烯」对应的英文术语是：",
    "options": [
     "polyvinylchloride",
-    "monomethylolurea",
-    "stoichiometric",
-    "cohesiveness"
+    "interpretation",
+    "benzenesulfonamide",
+    "micromixing"
    ],
    "answer": "A",
    "keys": [
@@ -1463,12 +1463,12 @@
    "score": 2,
    "question": "「聚苯乙烯」对应的英文术语是：",
    "options": [
-    "integral",
-    "occluded",
-    "truncate",
-    "polystyrene"
+    "resilience",
+    "polystyrene",
+    "stabiliser",
+    "crystallinity"
    ],
-   "answer": "D",
+   "answer": "B",
    "keys": [
     {
      "en": "polystyrene",
@@ -1486,12 +1486,12 @@
    "score": 2,
    "question": "「聚合(物)的」对应的英文术语是：",
    "options": [
-    "opaque",
-    "dynamics",
+    "arbitrary",
     "polymeric",
-    "miscellaneous"
+    "hydrophilic",
+    "integral"
    ],
-   "answer": "C",
+   "answer": "B",
    "keys": [
     {
      "en": "polymeric",
