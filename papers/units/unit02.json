@@ -1,0 +1,148 @@
+{
+ "unit": 2,
+ "title": "UNIT 2 Chain Polymerization",
+ "trans": [
+  {
+   "en": "In the same way, by means of a chain reaction, one monomer molecule after the other is added (2 000~20 000 monomers per second) until the active state is terminated through a different type of reaction.",
+   "cn": "以同样的方式，借助于连锁反应，单体分子一个接一个地加成上去（每秒2 000~20 000个单体），直到活性中心通过另一种类型的反应而终止。",
+   "keys": [
+    {
+     "en": "chain reaction",
+     "cn": "连锁反应"
+    },
+    {
+     "en": "active state",
+     "cn": "活性（中心）状态"
+    },
+    {
+     "en": "terminate",
+     "cn": "终止"
+    }
+   ]
+  },
+  {
+   "en": "The length of the chain molecules, measured by means of the degree of polymerization, can be varied over a large range through selection of suitable reaction conditions.",
+   "cn": "链分子的长度以聚合度来衡量，通过选择适宜的反应条件，可以在很大的范围内加以调节。",
+   "keys": [
+    {
+     "en": "degree of polymerization",
+     "cn": "聚合度"
+    },
+    {
+     "en": "reaction conditions",
+     "cn": "反应条件"
+    },
+    {
+     "en": "vary",
+     "cn": "变化，改变"
+    }
+   ]
+  },
+  {
+   "en": "Usually, with commercially prepared and utilized polymers, the degree of polymerization lies in the range of 1 000 to 5 000, but in many cases it can be below 500 and over 10 000.",
+   "cn": "通常，对于工业化生产和使用的聚合物，其聚合度处于1 000~5 000的范围，但在许多情况下也可以低于500或高于10 000。",
+   "keys": [
+    {
+     "en": "commercially prepared",
+     "cn": "工业（商品化）生产的"
+    },
+    {
+     "en": "degree of polymerization",
+     "cn": "聚合度"
+    },
+    {
+     "en": "range",
+     "cn": "范围"
+    }
+   ]
+  },
+  {
+   "en": "These are energy rich compounds which can add suitable unsaturated compounds (monomers) and maintain the activated radical, or ionic, state so that further monomer molecules can be added in the same manner.",
+   "cn": "这些是高能态化合物，它们能够加成合适的不饱和化合物（单体），并保持自由基或离子活性状态，从而使更多的单体分子能以同样的方式继续加成。",
+   "keys": [
+    {
+     "en": "energy rich compounds",
+     "cn": "高能态化合物"
+    },
+    {
+     "en": "unsaturated compounds",
+     "cn": "不饱和化合物"
+    },
+    {
+     "en": "activated radical",
+     "cn": "活性自由基"
+    }
+   ]
+  },
+  {
+   "en": "Because very small amounts of the initiator bring about the formation of a large amount of polymeric material (1 : 1 000 to 1 : 10 000), it is possible to regard polymerization from a superficial point of view as a catalytic reaction.",
+   "cn": "由于极少量的引发剂就能生成大量的聚合物（1 : 1 000~1 : 10 000），因此从表面上看，可以把聚合反应看作一种催化反应。",
+   "keys": [
+    {
+     "en": "initiator",
+     "cn": "引发剂"
+    },
+    {
+     "en": "polymeric material",
+     "cn": "聚合物料"
+    },
+    {
+     "en": "catalytic reaction",
+     "cn": "催化反应"
+    }
+   ]
+  }
+ ],
+ "qa": [
+  {
+   "q": "Why are the initiators used in polymerization often called polymerization catalysts even though they are not true catalysts?",
+   "a": "Initiators are often called polymerization catalysts because very small amounts of them bring about the formation of a large amount of polymeric material, in a ratio of about 1 : 1 000 to 1 : 10 000, so that polymerization can be regarded, from a superficial point of view, as a catalytic reaction. In the strictest sense, however, they are not true catalysts. The initiator enters into the reaction as a real partner and can be found chemically bound in the reaction product, that is, in the polymer. Besides radical and ionic initiators, metal complex initiators such as Ziegler catalysts also play an important role.",
+   "ev": "For this reason, the initiators used in polymerization reactions are often designated as polymerization catalysts, even though, in the strictest sense, they are not true catalysts because the polymerization initiator enters into the reaction as a real partner and can be found chemically bound in the reaction product, i.e., the polymer.",
+   "keys": [
+    {
+     "en": "initiator",
+     "cn": "引发剂"
+    },
+    {
+     "en": "in the strictest sense",
+     "cn": "严格地讲"
+    },
+    {
+     "en": "Ziegler catalysts",
+     "cn": "齐格勒催化剂"
+    }
+   ]
+  },
+  {
+   "q": "How is the initiation reaction brought about, and what does an initiator do to the monomer?",
+   "a": "The initiation reaction is the activation process of the double bond, and it can be brought about by heating, irradiation, ultrasonics, or by initiators. The initiation of a chain reaction is observed most clearly with radical or ionic initiators, which are energy rich compounds. Such a compound adds a suitable unsaturated compound, that is, a monomer, and keeps the activated radical or ionic state, so that further monomer molecules can be added in the same manner. Only a relatively small activation energy is needed for the individual growth steps, so a single activation step converts a large number of olefin molecules.",
+   "ev": "The initiation reaction, which is the activation process of the double bond, can be brought about by heating, irradiation, ultrasonics, or initiators.",
+   "keys": [
+    {
+     "en": "initiation",
+     "cn": "引发"
+    },
+    {
+     "en": "activation",
+     "cn": "活化"
+    },
+    {
+     "en": "irradiation",
+     "cn": "辐照"
+    }
+   ]
+  }
+ ],
+ "describe": [
+  {
+   "q": "Describe the overall kinetics of radical chain polymerization in English.",
+   "a": "Radical chain polymerization is a chain reaction that consists of three steps: initiation, propagation and termination. The initiation step involves two reactions. In the first, an initiator or catalyst species I dissociates homolytically to yield a pair of radicals R, and the rate constant for this catalyst dissociation is kd. In the second, one of these radicals adds to the first monomer molecule M to produce the chain initiating species M, and the rate constant for this step is ki. For the polymerization of CH2=CHY, the radical adds to the double bond and gives R-CH2-CH(Y). Propagation repeats this addition many times, and termination ends the active center.",
+   "ev": "The initiation step is considered to involve two reactions."
+  },
+  {
+   "q": "Describe how the length of polymer chains is controlled and how chain lengths are distributed in a real polymeric material in English.",
+   "a": "The length of the chain molecules can be measured by the degree of polymerization, and it can be varied over a large range by selecting suitable reaction conditions. With commercially prepared and utilized polymers the degree of polymerization usually lies between 1 000 and 5 000, but in many cases it can be below 500 and over 10 000. This does not mean, however, that every molecule of a given polymeric material contains exactly 500, 1 000 or 5 000 monomer units. In almost all cases the material is a mixture of polymer molecules whose degrees of polymerization differ from one another.",
+   "ev": "In almost all cases, the polymeric material consists of a mixture of polymer molecules of different degrees of polymerization."
+  }
+ ]
+}

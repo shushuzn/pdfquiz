@@ -1,0 +1,148 @@
+{
+ "unit": 6,
+ "title": "UNIT 6 Polymer Solution",
+ "trans": [
+  {
+   "en": "Solubility relations in polymer systems are more complex than those among low-molecular-weight compounds, because of the size differences between polymer and solvent molecules, the viscosity of the system, and the effects of the texture and molecular weight of the polymer.",
+   "cn": "聚合物体系中的溶解性关系比低分子化合物之间的溶解性关系更为复杂，原因在于聚合物与溶剂分子之间的尺寸差异、体系的粘度，以及聚合物的织态结构和分子量的影响。",
+   "keys": [
+    {
+     "en": "solubility relations",
+     "cn": "溶解性关系"
+    },
+    {
+     "en": "low-molecular-weight compounds",
+     "cn": "低分子化合物"
+    },
+    {
+     "en": "texture",
+     "cn": "织态（结构）"
+    }
+   ]
+  },
+  {
+   "en": "For linear polymers that are not appreciably extended beyond their most probable shape, the mean-square end-to-end distance and the square of the radius of gyration are simply related; r² = 6 s².",
+   "cn": "对于并未明显伸展到超出其最可几形态的线形聚合物，均方末端距与回转半径的平方之间存在简单的关系：r² = 6 s²。",
+   "keys": [
+    {
+     "en": "mean-square end-to-end distance",
+     "cn": "均方末端距"
+    },
+    {
+     "en": "radius of gyration",
+     "cn": "回转半径"
+    },
+    {
+     "en": "most probable shape",
+     "cn": "最可几形态"
+    }
+   ]
+  },
+  {
+   "en": "It is now accepted that polymer chains are strongly intertwined and entangled in the melt; the dynamic behavior of such a system has been reviewed, but is only poorly understood.",
+   "cn": "现在已公认，聚合物链在熔体中强烈地相互缠结；关于这种体系的动态行为已有综述，但人们对它的了解仍然很少。",
+   "keys": [
+    {
+     "en": "entangled",
+     "cn": "缠结的"
+    },
+    {
+     "en": "melt",
+     "cn": "熔体"
+    },
+    {
+     "en": "dynamic behavior",
+     "cn": "动态行为"
+    }
+   ]
+  },
+  {
+   "en": "Measurements with rotational devices become difficult to interpret at very high shear stress, owing to the generation of heat in the specimen because of dissipation of energy, and to the tendency of the specimen to migrate out of the region of high shear.",
+   "cn": "采用旋转装置进行测量时，在很高的剪切应力下测量结果会变得难以解释，其原因一是能量耗散使试样内部产生热量，二是试样有从高剪切区域向外迁移的趋势。",
+   "keys": [
+    {
+     "en": "shear stress",
+     "cn": "剪切应力"
+    },
+    {
+     "en": "dissipation of energy",
+     "cn": "能量耗散"
+    },
+    {
+     "en": "migrate",
+     "cn": "迁移"
+    }
+   ]
+  },
+  {
+   "en": "As molecular weight is increased in a homologous series of liquids up to the polymer range, the activation energy of flow E does not increase proportionally with the heat of vaporization but levels off at a value independent of molecular weight.",
+   "cn": "当同系物液体的分子量增大到聚合物范围时，流动活化能 E 并不随蒸发潜热成比例地增大，而是趋于平缓，达到一个与分子量无关的数值。",
+   "keys": [
+    {
+     "en": "activation energy of flow",
+     "cn": "流动活化能"
+    },
+    {
+     "en": "latent heat of vaporization",
+     "cn": "蒸发潜热"
+    },
+    {
+     "en": "homologous series",
+     "cn": "同系物"
+    }
+   ]
+  }
+ ],
+ "qa": [
+  {
+   "q": "Why does the activation energy of flow of long-chain polymers become independent of molecular weight, although for low-molecular-weight liquids it is related to the latent heat of vaporization?",
+   "a": "For a low-molecular-weight liquid the activation energy for viscous flow is linked to the latent heat of vaporization, because removing a molecule from its neighbors is part of both processes; this is evidence that the jumping unit is a single molecule. In a homologous series, the flow activation energy stops rising with the heat of vaporization and levels off at a value independent of molecular weight. This is taken to mean that in long chains the unit of flow is much smaller than the complete molecule: a segment of about 5 to 50 carbon atoms. Flow then occurs by successive jumps of segments until the whole chain has shifted.",
+   "ev": "This is taken to mean that in long chains the unit of flow is considerably smaller than the complete molecule.",
+   "keys": [
+    {
+     "en": "activation energy for viscous flow",
+     "cn": "粘性流动活化能"
+    },
+    {
+     "en": "latent heat of vaporization",
+     "cn": "蒸发潜热"
+    },
+    {
+     "en": "segment",
+     "cn": "链段"
+    }
+   ]
+  },
+  {
+   "q": "What is shear thinning, how does it arise, and how does it differ from dilatant behavior?",
+   "a": "In a Newtonian liquid the viscosity is independent of the rate of shear. Polymer solutions and melts usually deviate from this. Shear thinning, or pseudoplastic behavior, is a reversible decrease in viscosity as the shear rate rises; it results from the tendency of the applied force to disturb the long chains from their favored equilibrium conformation, causing elongation in the direction of shear, so that they flow more easily. The opposite effect, shear thickening or dilatant behavior, in which viscosity increases with increasing shear rate, is not observed in polymers.",
+   "ev": "Shear thinning results from the tendency of the applied force to disturb the long chains from their favored equilibrium conformation, causing elongation in the direction of shear.",
+   "keys": [
+    {
+     "en": "shear thinning",
+     "cn": "剪切变稀"
+    },
+    {
+     "en": "pseudoplastic",
+     "cn": "假塑性的"
+    },
+    {
+     "en": "dilatant behavior",
+     "cn": "膨胀（流）型行为"
+    }
+   ]
+  }
+ ],
+ "describe": [
+  {
+   "q": "Describe the random-coil conformation of a dissolved polymer molecule and the statistical parameters used to express the size of the coil. in English.",
+   "a": "In solution a polymer molecule is a randomly coiling mass whose conformations occupy many times the volume of its segments alone; the average segment density inside the coil is only of the order of 10⁻¹ to 10⁻⁵ g/cm³. The coil exists because chain bonds rotate relatively freely and because an enormous number of conformations is accessible to the molecule. Only the fully extended conformation has a length that can be calculated directly, the contour length. Otherwise the coil size must be described statistically, either by the root-mean-square end-to-end distance or by the radius of gyration, the root-mean-square distance of chain elements from the center of gravity. For an unperturbed linear chain r² = 6s²; for extended chains r² > 6s². The radius of gyration is often preferred because it can be measured experimentally.",
+   "ev": "In solution, a polymer molecule is a randomly coiling mass most of whose conformations occupy many times the volume of its segments alone."
+  },
+  {
+   "q": "Describe the two main types of instrument used to measure the flow of polymer melts, including their advantages and limitations. in English.",
+   "a": "Two kinds of instrument dominate flow measurement. Rotational viscometers use concentric cylinders, cones of different angles, or a cone and plate. At very high shear stress their readings become hard to interpret, because energy dissipation generates heat in the specimen and because the specimen tends to migrate out of the high-shear region, the Weissenberg effect, which arises from non-negligible normal stresses in viscoelastic fluids. The Mooney viscometer, a simple rotational instrument, measures the torque needed to turn a rotor at constant speed and is used to follow changes in rubber during milling. Capillary rheometers are precise, rugged and easy to operate and cover commercial shear stresses, but the shear stress falls from a maximum at the wall to zero at the center.",
+   "ev": "However, they have the disadvantage that the shear stress in the capillary varies from zero at the center to a maximum at the wall."
+  }
+ ]
+}

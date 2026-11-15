@@ -1,0 +1,148 @@
+{
+ "unit": 10,
+ "title": "UNIT 10 Preparations of Amino Resins in Laboratory",
+ "trans": [
+  {
+   "en": "50 grams (1 mole) of urea and 137 g (1.7 mole) of formalin (37%) are charged into a 500-ml reaction kettle equipped with a mechanical stirrer and a reflux condenser.",
+   "cn": "将 50 g（1 摩尔）尿素和 137 g（1.7 摩尔）福尔马林（37%）加入装有机械搅拌器和回流冷凝器的 500 mL 反应釜中。",
+   "keys": [
+    {
+     "en": "formalin",
+     "cn": "福尔马林"
+    },
+    {
+     "en": "reaction kettle",
+     "cn": "反应釜"
+    },
+    {
+     "en": "reflux condenser",
+     "cn": "回流冷凝器"
+    }
+   ]
+  },
+  {
+   "en": "The solution is acidified with 5 drops of glacial acetic acid; 44 g of furfuryl alcohol and 0.55 g of triethanolamine are introduced into the reaction mixture, and the solution is heated at 90℃ for 15 min.",
+   "cn": "用 5 滴冰醋酸将溶液酸化；向反应混合物中加入 44 g 糠醇和 0.55 g 三乙醇胺，然后在 90℃ 下加热 15 min。",
+   "keys": [
+    {
+     "en": "glacial acetic acid",
+     "cn": "冰醋酸"
+    },
+    {
+     "en": "furfuryl alcohol",
+     "cn": "糠醇"
+    },
+    {
+     "en": "triethanolamine",
+     "cn": "三乙醇胺"
+    }
+   ]
+  },
+  {
+   "en": "A 15-g sample of the resin is removed and is mixed with a hardener composed of 1 g of wood flour, 0.05 g of calcium phosphate, and 0.2 g of ammonium chloride.",
+   "cn": "取出 15 g 树脂试样，与由 1 g 木粉、0.05 g 磷酸钙和 0.2 g 氯化铵组成的固化剂混合。",
+   "keys": [
+    {
+     "en": "hardener",
+     "cn": "固化剂"
+    },
+    {
+     "en": "wood flour",
+     "cn": "木粉"
+    },
+    {
+     "en": "ammonium chloride",
+     "cn": "氯化铵"
+    }
+   ]
+  },
+  {
+   "en": "Add 10 to 15 drops of thymolphthalein indicator solution to the flask containing the sample, and adjust the color of the solution to a faint blue with 0.1N NaOH.",
+   "cn": "向盛有试样的烧瓶中加入 10~15 滴百里酚酞指示剂溶液，并用 0.1N NaOH 将溶液颜色调至浅蓝色。",
+   "keys": [
+    {
+     "en": "thymolphthalein",
+     "cn": "百里酚酞"
+    },
+    {
+     "en": "indicator solution",
+     "cn": "指示剂溶液"
+    },
+    {
+     "en": "faint blue",
+     "cn": "浅蓝色"
+    }
+   ]
+  },
+  {
+   "en": "After 20 min heating of the sample, a Dean-Stark trap is inserted between the flask and the condenser, and 10 ml of water is distilled off.",
+   "cn": "试样加热 20 min 后，在烧瓶与冷凝器之间插入迪安-斯达克分水器，蒸出 10 mL 水。",
+   "keys": [
+    {
+     "en": "Dean-Stark trap",
+     "cn": "迪安-斯达克分水器"
+    },
+    {
+     "en": "distilled off",
+     "cn": "蒸出"
+    },
+    {
+     "en": "condenser",
+     "cn": "冷凝器"
+    }
+   ]
+  }
+ ],
+ "qa": [
+  {
+   "q": "How is the free formaldehyde content of an amino resin sample determined in the laboratory?",
+   "a": "A weighed 2 to 3 g sample of resin is added to 100 ml of water in a 250 ml Erlenmeyer flask and swirled until it dissolves; ethanol may be added if the resin will not dissolve. The solution is cooled to 4℃ in an ice bath, 10 to 15 drops of thymolphthalein are added, and the colour is adjusted to a faint blue with 0.1N NaOH. A cold acid sulfite solution, made from 25 ml of 1M Na2SO3 and 10.00 ml of standard 1N HCl, is then transferred into the flask, and the contents are titrated with standard 1N NaOH to the thymolphthalein endpoint. The free formaldehyde content is calculated from the quantity of HCl consumed.",
+   "ev": "Add a weighed 2 to 3g sample of resin into 100 ml of water in a 250 ml Erlenmeyer flask, and swirl the contents of the flask until they are dissolved completely.",
+   "keys": [
+    {
+     "en": "free formaldehyde",
+     "cn": "游离甲醛"
+    },
+    {
+     "en": "acid sulfite",
+     "cn": "酸式亚硫酸盐"
+    },
+    {
+     "en": "endpoint",
+     "cn": "终点"
+    }
+   ]
+  },
+  {
+   "q": "What is observed when urea and formalin are acidified, and how is the precipitate examined?",
+   "a": "Urea is mixed with formalin in a test tube and the tube is shaken until the urea has dissolved. The pH of the solution is then adjusted to 4 by adding 4 drops of 0.5N H2SO4, and the time required for precipitation to occur is observed, showing how quickly urea reacts with formaldehyde when the solution is acidic. Part of the precipitate is then removed and its solubility in water is compared with that of a sample of monomethylolurea. Amino resins in general are reaction products of amino derivatives with aldehydes under acidic or basic conditions, and the urea-formaldehyde resin is the most important representative of this class.",
+   "ev": "Adjust the pH of the solution to 4 by the addition of 4 drops of 0.5N H₂SO₄, and observe the time required for precipitation to occur.",
+   "keys": [
+    {
+     "en": "precipitation",
+     "cn": "沉淀"
+    },
+    {
+     "en": "monomethylolurea",
+     "cn": "单羟甲基脲"
+    },
+    {
+     "en": "acidic conditions",
+     "cn": "酸性条件"
+    }
+   ]
+  }
+ ],
+ "describe": [
+  {
+   "q": "Describe in English the preparation of a urea-formaldehyde adhesive, from the charge to the hardened sample.",
+   "a": "50 g (1 mole) of urea and 137 g (1.7 mole) of formalin (37%) are charged into a 500-ml reaction kettle fitted with a mechanical stirrer and a reflux condenser. The pH of the mixture is adjusted with 2N NaOH to between 7 and 8, as determined by universal indicator paper, and the mixture is refluxed for 2 hr, the free formaldehyde content being determined at each 0.5-hr interval. A Dean-Stark trap is then introduced between the flask and the condenser, about 40 ml of water is distilled into it and discarded, and the solution is acidified with 5 drops of glacial acetic acid. 44 g of furfuryl alcohol and 0.55 g of triethanolamine are added, and the solution is heated at 90℃ for 15 min. After cooling, a 15-g portion is mixed with a hardener of wood flour, calcium phosphate and ammonium chloride and set aside to harden at room temperature.",
+   "ev": "After the mixture has refluxed for 2 hrs, a Dean-Stark trap is introduced between the flask and the reflux condenser."
+  },
+  {
+   "q": "Describe in English the preparation of a melamine-formaldehyde resin and the handling of the products obtained.",
+   "a": "63 g (0.5 mole) of melamine and 122 g (1.5 mole) of formalin (37%) are added to a 500-ml reaction kettle equipped with a mechanical stirrer and a condenser, and the mixture is refluxed for 40 min. The percentage of free formaldehyde is determined, but at 10-min intervals, by the procedure already described for the urea resin. After 20 min of heating, a Dean-Stark trap is inserted between the flask and the condenser and 10 ml of water is distilled off, so that water is removed from the system. The uncured sample is then placed in a screwcap jar and is submitted, together with the cured resin, to the laboratory instructor.",
+   "ev": "To a 500-ml reaction kettle equipped with a mechanical stirrer and a condenser is added 63 g (0.5 mole) of melamine and 122 g (1.5 mole) of formalin (37%)."
+  }
+ ]
+}

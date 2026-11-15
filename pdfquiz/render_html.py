@@ -174,7 +174,10 @@ def render_html(
     reports: list[Report],
     mock: bool,
     template: Path | None = None,
+    hub: str | None = None,
 ) -> str:
+    """hub 是「返回全部试卷」的链接。给了就在侧栏底部放一条入口，
+    没给（例如独立分发的单份题库）整块不渲染。"""
     from datetime import datetime
 
     generated = f"{datetime.now():%Y-%m-%d %H:%M}"
@@ -195,9 +198,19 @@ def render_html(
     if mock:
         subtitle_bits.insert(0, "离线模式产物")
 
+    hublink = ""
+    if hub:
+        hublink = (
+            '<a class="hub-link" href="' + html.escape(hub) + '">'
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">'
+            '<path d="M19 12H5M12 19l-7-7 7-7"/></svg>'
+            "全部试卷</a>"
+        )
+
     return (
         tpl.replace("{{TITLE}}", html.escape(title))
         .replace("{{SUBTITLE}}", html.escape(" · ".join(subtitle_bits)))
         .replace("{{SOURCE}}", html.escape(source))
+        .replace("{{HUPLINK}}", hublink)
         .replace("{{DATA}}", data)
     )

@@ -1,0 +1,89 @@
+{
+ "meta": {
+  "title": "高分子材料工程专业英语 · 期末模拟卷 B",
+  "source": "《高分子材料工程专业英语》曹同玉、冯连芳主编（化学工业出版社）",
+  "note": "平行卷：题型与分值与 A 卷一致（英译中 12×5、中译英 5×2、英文描述 3×5、英文问答 3×5），题目与 A 卷不重复。范围同 A 卷。"
+ },
+ "questions": [
+  {
+   "type": "trans_cn_en",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 1 What are Polymers?",
+   "score": 2,
+   "question": "支链聚合物",
+   "answer": "branched polymer",
+   "keys": [
+    {
+     "en": "branched polymer",
+     "cn": "支链聚合物"
+    }
+   ],
+   "ref": "UNIT 1 What are Polymers? · 词汇表",
+   "evidence": "When we speak of a branched polymer, we refer to the presence of additional polymeric chains issuing from the backbone of a linear molecule.",
+   "explanation": "注意是 branched 而非 branch；与 linear polymer、cross-linked polymer 对照记忆。"
+  },
+  {
+   "type": "trans_cn_en",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 1 What are Polymers?",
+   "score": 2,
+   "question": "粘度",
+   "answer": "viscosity",
+   "keys": [
+    {
+     "en": "viscosity",
+     "cn": "粘度"
+    }
+   ],
+   "ref": "UNIT 1 What are Polymers? · 词汇表",
+   "evidence": "The viscosity of the saturated salt solution is not very much different from that of water.",
+   "explanation": "“聚合物溶液粘度远高于水”是教材反复强调的判据。"
+  },
+  {
+   "type": "trans_cn_en",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 6 Polymer Solution",
+   "score": 2,
+   "question": "结晶性",
+   "answer": "crystallinity",
+   "keys": [
+    {
+     "en": "crystallinity",
+     "cn": "结晶性"
+    }
+   ],
+   "ref": "UNIT 6 Polymer Solution · 词汇表",
+   "evidence": "This may be all that happens if, for example, the polymer-polymer intermolecular forces are high because of crosslinking, crystallinity, or strong hydrogen bonding.1 But if these forces can be overcome by the introduction of strong polymer-solvent interactions, the second stage of solution can take place.",
+   "explanation": "名词形式；形容词 crystalline，半结晶 semi-crystalline。"
+  },
+  {
+   "type": "trans_cn_en",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 7 Morphology of Solid Polymers",
+   "score": 2,
+   "question": "模量",
+   "answer": "modulus",
+   "keys": [
+    {
+     "en": "modulus",
+     "cn": "模量"
+    }
+   ],
+   "ref": "UNIT 7 Morphology of Solid Polymers · 词汇表",
+   "evidence": "At room temperature these polymers may be of high modulus, such as polymethyl methacrylate, polystyrene and melt-quenched polyethylene terephthalate, or of low modulus, such as rubber or atactic polypropylene.",
+   "explanation": "复数 moduli；storage modulus 储能模量、loss modulus 损耗模量。"
+  },
+  {
+   "type": "trans_cn_en",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 10 Preparations of Amino Resins in Laboratory",
+   "score": 2,
+   "question": "冰醋酸",
+   "answer": "glacial acetic acid",
+   "keys": [
+    {
+     "en": "glacial acetic acid",
+     "cn": "冰醋酸"
+    }
+   ],
+   "ref": "UNIT 10 Preparations of Amino Resins in Laboratory · 词汇表",
+   "evidence": "The solution is acidified with 5 drops of glacial acetic acid;",
+   "explanation": "glacial 本义“冰状的”，指无水乙酸；不是“冰镇”。"
+  }
+ ]
+}

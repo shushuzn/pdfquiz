@@ -1,0 +1,148 @@
+{
+ "unit": 3,
+ "title": "UNIT 3 Step-Growth Polymerization",
+ "trans": [
+  {
+   "en": "The esterification reaction occurs anywhere in the monomer matrix where two monomer molecules collide, and once the ester has formed, it too, can react further by virtue of its still-reactive hydroxyl or carboxyl groups.",
+   "cn": "酯化反应发生在单体基体中任何两个单体分子相互碰撞的位置；而且酯一旦形成，它本身依靠其仍然具有反应活性的羟基或羧基，还能进一步反应。",
+   "keys": [
+    {
+     "en": "esterification",
+     "cn": "酯化（作用）"
+    },
+    {
+     "en": "monomer matrix",
+     "cn": "单体基体"
+    },
+    {
+     "en": "hydroxyl or carboxyl groups",
+     "cn": "羟基或羧基"
+    }
+   ]
+  },
+  {
+   "en": "But each polymer molecule that forms still has reactive end groups; hence the polymerization reaction will continue in a stepwise fashion, with each esterification step being identical in rate and mechanism to the initial esterification of monomers.",
+   "cn": "但生成的每个聚合物分子仍然带有反应性端基；因此聚合反应将以逐步的方式继续进行，其中每一步酯化的速率和机理都与单体最初的酯化相同。",
+   "keys": [
+    {
+     "en": "reactive end groups",
+     "cn": "反应性端基"
+    },
+    {
+     "en": "stepwise fashion",
+     "cn": "逐步方式"
+    },
+    {
+     "en": "identical in rate and mechanism",
+     "cn": "在速率和机理上相同"
+    }
+   ]
+  },
+  {
+   "en": "Similarly, high-purity monomers are necessary in the A—B type of polycondensation, and it follows that high yield reactions are the only practical ones for polymer formation, since side reactions will upset the stoichiometric balance.",
+   "cn": "同样，A—B 型缩聚也必须使用高纯度单体；由此可见，只有高收率的反应才适用于聚合物的生成，因为副反应会破坏化学计量平衡。",
+   "keys": [
+    {
+     "en": "polycondensation",
+     "cn": "缩（合）聚（合）"
+    },
+    {
+     "en": "side reactions",
+     "cn": "副反应"
+    },
+    {
+     "en": "stoichiometric balance",
+     "cn": "化学计量平衡"
+    }
+   ]
+  },
+  {
+   "en": "The much greater value of k_t (whether k_tc or k_td) compared to k_p does not prevent propagation because the radical species are present in very low concentrations and because the polymerization rate is dependent on only the one-half power of k_t.",
+   "cn": "与 k_p 相比，k_t（无论是 k_tc 还是 k_td）的数值要大得多，但这并不妨碍链增长，因为自由基的浓度非常低，而且聚合速率仅取决于 k_t 的二分之一次方。",
+   "keys": [
+    {
+     "en": "propagation",
+     "cn": "（链）增长"
+    },
+    {
+     "en": "radical species",
+     "cn": "自由基物种"
+    },
+    {
+     "en": "one-half power",
+     "cn": "二分之一次方"
+    }
+   ]
+  },
+  {
+   "en": "In order to obtain a kinetic expression for the overall rate of polymerization, it is necessary to assume that k_p and k_t are independent of the size of the radical.",
+   "cn": "为了得到总聚合速率的动力学表达式，必须假设 k_p 和 k_t 与自由基的大小无关。",
+   "keys": [
+    {
+     "en": "kinetic expression",
+     "cn": "动力学表达式"
+    },
+    {
+     "en": "overall rate of polymerization",
+     "cn": "总聚合速率"
+    },
+    {
+     "en": "independent of the size of the radical",
+     "cn": "与自由基大小无关"
+    }
+   ]
+  }
+ ],
+ "qa": [
+  {
+   "q": "Why is the polymerization rate proportional to the square root of the initiation rate instead of to the initiation rate itself?",
+   "a": "The rate of polymerization is given by R_p = k_p[M](R_i/2k_t)^{1/2}, so it depends on the square root of the initiation rate, not on R_i itself. The steady-state assumption sets the rate of initiation equal to the rate of termination, R_i = 2k_t[M•]², which allows the unknown radical concentration to be eliminated. Because termination is bimolecular, the radical concentration varies as the one-half power of R_i. Doubling the initiation rate therefore raises the polymerization rate only by the factor √2. This behavior is a direct consequence of the bimolecular termination reaction between radicals.",
+   "ev": "Doubling the rate of initiation does not double the polymerization rate; the polymerization rate is increased only by the factor √2.",
+   "keys": [
+    {
+     "en": "steady-state assumption",
+     "cn": "稳态假设"
+    },
+    {
+     "en": "square root of the initiation rate",
+     "cn": "引发速率的平方根"
+    },
+    {
+     "en": "bimolecular termination",
+     "cn": "双分子终止"
+    }
+   ]
+  },
+  {
+   "q": "How does termination by disproportionation differ from termination by coupling, and how are the two modes treated kinetically?",
+   "a": "In coupling, two radical chains combine at their radical centers to form a single dead polymer molecule whose length is the sum of the two original chains, as shown by Mₙ• + Mₘ• → M_{n+m}. In disproportionation, a hydrogen radical that is beta to one radical center is transferred to the other radical center, so two polymer molecules are produced, one saturated and one unsaturated. Disproportionation is the rarer mode. Both modes follow the same kinetic expression, so the overall termination constant is written as k_t = k_tc + k_td, and the rate equation needs no specification of which mode operates.",
+   "ev": "This results in the formation of two polymer molecules—one saturated and one unsaturated.",
+   "keys": [
+    {
+     "en": "coupling",
+     "cn": "偶合（终止）"
+    },
+    {
+     "en": "disproportionation",
+     "cn": "歧化（终止）"
+    },
+    {
+     "en": "dead polymer",
+     "cn": "死聚物"
+    }
+   ]
+  }
+ ],
+ "describe": [
+  {
+   "q": "Describe how molecular weight develops with monomer conversion in step-growth polymerization, using a hydroxy acid as the example. in English.",
+   "a": "In step-growth polymerization the monomer disappears quickly but the molecular weight rises slowly. Taking a hydroxy acid as the monomer: after the first dimers form, half of the monomer has been consumed and the average degree of polymerization is only 2. When trimers and more dimers have formed, more than 80 percent of the monomer has reacted, yet the average degree of polymerization is still only 2.5. Only when every monomer molecule has reacted does it reach 4. Each polymer molecule formed still carries reactive hydroxyl or carboxyl end groups, so esterification continues stepwise, every step having the same rate and mechanism as the first one. Growth therefore stops only when the viscosity becomes too high to remove water or to let end groups meet.",
+   "ev": "The net effect of this is that monomer molecules are consumed rapidly without any large increase in molecular weight."
+  },
+  {
+   "q": "Describe the mechanism of free-radical chain polymerization from initiation to termination. in English.",
+   "a": "Free-radical chain polymerization starts when an initiator produces a primary radical, which adds a monomer molecule to form M₁•. Propagation then proceeds by the successive addition of hundreds or thousands of monomer molecules, each addition creating a new radical larger by one monomer unit. The propagation constant is large, 10² to 10⁴ L/(mol·s), so high polymer is built up very rapidly. Growth ends by termination, in which two radicals react by coupling or disproportionation to give dead polymer. Termination constants of 10⁶ to 10⁸ L/(mol·s) are far larger than k_p, yet propagation is not prevented, because radicals are present at very low concentration, about 10⁻⁸ molar.",
+   "ev": "The chain nature of the process resides in the propagation step (Eq. (2.4)) in which large numbers of monomer molecules are converted to polymer for each initial radical species produced in the first step (Eq. (2.1))."
+  }
+ ]
+}

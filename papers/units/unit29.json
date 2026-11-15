@@ -1,0 +1,148 @@
+{
+ "unit": 29,
+ "title": "UNIT 29 Synthetic Plastics",
+ "trans": [
+  {
+   "en": "The polymer is the pure material which results from the process of polymerisation and is usually taken as the family name for materials which have long chain like molecules and this includes rubber.",
+   "cn": "聚合物是聚合过程所得到的纯净材料，通常用作具有长链状分子的材料的统称，橡胶也包含在内。",
+   "keys": [
+    {
+     "en": "polymerisation",
+     "cn": "聚合"
+    },
+    {
+     "en": "long chain like molecules",
+     "cn": "长链状分子"
+    },
+    {
+     "en": "family name",
+     "cn": "统称（族名）"
+    }
+   ]
+  },
+  {
+   "en": "This cycle of softening by heat and solidifying when cooled can be repeated more or less indefinitely and is a definite advantage in that it is the basis of most processing methods for these materials.",
+   "cn": "这种受热软化、冷却固化的循环可以或多或少无限次地重复，这无疑是一大优点，因为它是这类材料大多数加工方法的基础。",
+   "keys": [
+    {
+     "en": "cycle of softening",
+     "cn": "软化循环"
+    },
+    {
+     "en": "solidifying",
+     "cn": "固化"
+    },
+    {
+     "en": "processing methods",
+     "cn": "加工方法"
+    }
+   ]
+  },
+  {
+   "en": "The first stage results in the formation of long chain like molecules similar to those present in thermoplastics, but still capable of further reaction.",
+   "cn": "第一阶段生成与热塑性塑料中相似的长链状分子，但这些分子仍能进一步反应。",
+   "keys": [
+    {
+     "en": "the first stage",
+     "cn": "第一阶段"
+    },
+    {
+     "en": "thermoplastics",
+     "cn": "热塑性塑料"
+    },
+    {
+     "en": "capable of further reaction",
+     "cn": "能进一步反应"
+    }
+   ]
+  },
+  {
+   "en": "For the purposes of this article, the following definition is offered: engineering plastics are thermoplastics that maintain dimensional stability and most mechanical properties above 100°C and below 0°C.",
+   "cn": "就本文而言，给出如下定义：工程塑料是指在 100°C 以上和 0°C 以下仍能保持尺寸稳定性和大部分力学性能的热塑性塑料。",
+   "keys": [
+    {
+     "en": "engineering plastics",
+     "cn": "工程塑料"
+    },
+    {
+     "en": "dimensional stability",
+     "cn": "尺寸稳定性"
+    },
+    {
+     "en": "mechanical properties",
+     "cn": "力学性能"
+    }
+   ]
+  },
+  {
+   "en": "This definition encompasses plastics which can be formed into functional parts that can bear loads and withstand abuse in temperature environments commonly experienced by the traditional engineering materials: wood, metals, glass, and ceramics.",
+   "cn": "该定义涵盖了这样一类塑料：它们可成型为功能部件，能够承受载荷，并能在木材、金属、玻璃和陶瓷等传统工程材料通常所处的温度环境中耐受苛刻使用。",
+   "keys": [
+    {
+     "en": "encompasses",
+     "cn": "涵盖"
+    },
+    {
+     "en": "functional parts",
+     "cn": "功能部件"
+    },
+    {
+     "en": "bear loads",
+     "cn": "承受载荷"
+    }
+   ]
+  }
+ ],
+ "qa": [
+  {
+   "q": "What is the difference between a polymer and a plastic?",
+   "a": "A polymer is the pure material that results from the process of polymerisation, and the word is usually taken as the family name for materials with long chain like molecules, rubber included. Pure polymers are seldom used on their own, however; it is when additives are present that the term plastic is applied. Additives may be there simply because impurities left by the polymerisation process would be uneconomic to remove, or they may be added deliberately, as stabilisers, lubricants, fillers or pigments, to enhance the properties of the material. The two words are therefore often treated as synonymous, but in fact a distinction exists.",
+   "ev": "Pure polymers are seldom used on their own and it is when additives are present that the term 'plastic' is applied.",
+   "keys": [
+    {
+     "en": "additives",
+     "cn": "添加剂"
+    },
+    {
+     "en": "impurities",
+     "cn": "杂质"
+    },
+    {
+     "en": "synonymous",
+     "cn": "同义的"
+    }
+   ]
+  },
+  {
+   "q": "Why can a thermosetting material not be softened again by heating, while a thermoplastic can?",
+   "a": "In a thermoplastic the long chain like molecules are held together only by relatively weak Van der Waals forces, so heating weakens the intermolecular forces, the material becomes soft and flexible and finally a viscous melt, and cooling solidifies it again. In a thermoset the chemical reaction has two stages: the first forms long chain like molecules still capable of further reaction, and during moulding the second stage sets up a close network structure in which the chains are interlinked by strong bonds. Because these bonds are strong chemical bonds, heat cannot soften the material again; excess heat only makes it char and degrade, just as a hard-boiled egg cannot be softened again.",
+   "ev": "During the second stage the long molecular chains have been interlinked by strong bonds so that the material cannot be softened again by the application of heat.",
+   "keys": [
+    {
+     "en": "network structure",
+     "cn": "网络结构"
+    },
+    {
+     "en": "interlinked",
+     "cn": "相互交联"
+    },
+    {
+     "en": "char and degrade",
+     "cn": "焦化降解"
+    }
+   ]
+  }
+ ],
+ "describe": [
+  {
+   "q": "Describe the structure and behaviour of a thermoplastic material when it is heated and cooled in English.",
+   "a": "In a thermoplastic material the long chain like molecules are held together by relatively weak Van der Waals forces, and a useful image of the structure is a mass of randomly distributed long strands of sticky wool. When the material is heated, the intermolecular forces are weakened, so it becomes soft and flexible and eventually, at high temperatures, it is a viscous melt; when it is allowed to cool it solidifies again. This cycle can be repeated more or less indefinitely, and that is the basis of most processing methods for these materials. The drawback is that their properties are heat sensitive. Like candle wax, they can be repeatedly softened by heat and will solidify when cooled. Examples are polyethylene, polyvinyl chloride, polystyrene, nylon and polycarbonate.",
+   "ev": "When the material is heated the intermolecular forces are weakened so that it becomes soft and flexible and eventually, at high temperatures, it is a viscous melt."
+  },
+  {
+   "q": "Describe the differences between crystalline and amorphous plastics and how they influence the choice of material in English.",
+   "a": "Plastics are either crystalline or amorphous. Acetals, most nylons, some polyesters, poly (aromatic sulfide) and polyetherketones are crystalline resins, and in general crystalline polymers do not transmit light whereas amorphous polymers do. The most distinguishing properties are organic solvent resistance and light transmission: where solvent resistance is important, as in a gear box exposed to oils and greases, a crystalline polymer is the likely choice, while for filter bowls and glazing, where clarity is required, an amorphous polymer may be preferred. Lubricity of crystalline polymers is usually higher, and they are more stable dimensionally, but they expand and contract with ambient moisture and show much higher mold shrinkage, about 0.015 mm/mm against 0.005 mm/mm for amorphous resins.",
+   "ev": "By far the most distinguishing properties between amorphous and crystalline polymers are organic solvent resistance and light transmission."
+  }
+ ]
+}

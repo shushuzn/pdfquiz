@@ -1,0 +1,148 @@
+{
+ "unit": 7,
+ "title": "UNIT 7 Morphology of Solid Polymers",
+ "trans": [
+  {
+   "en": "The defects in the chain folded crystals may be imperfect folds, irregularities in packing, chain entanglements, loose chain ends, dislocations, occluded impurities, or numerous other imperfections.",
+   "cn": "折叠链晶体中的缺陷可能是折叠不完善、堆砌不规则、链缠结、松散的链端、位错、夹杂的杂质，或许多其他不完善之处。",
+   "keys": [
+    {
+     "en": "chain folded crystal",
+     "cn": "折叠链晶体"
+    },
+    {
+     "en": "chain entanglement",
+     "cn": "链缠结"
+    },
+    {
+     "en": "dislocation",
+     "cn": "位错"
+    }
+   ]
+  },
+  {
+   "en": "The possibility of the chain molecules changing their conformations therefore depends on the relative magnitude of the energy barrier compared with thermal energies and the perturbing effects of applied stresses.",
+   "cn": "因此，链状分子能否改变其构象，取决于能垒相对于热能以及所施加应力的扰动效应的相对大小。",
+   "keys": [
+    {
+     "en": "conformation",
+     "cn": "构象"
+    },
+    {
+     "en": "energy barrier",
+     "cn": "能垒"
+    },
+    {
+     "en": "perturbing effect",
+     "cn": "扰动效应"
+    }
+   ]
+  },
+  {
+   "en": "Electron diffraction shows that the molecular chains are approximately normal to the lamellar surface and since the molecules are usually of the order of 1 μm in length, it can be deduced that they must be folded back and forth within the crystals.",
+   "cn": "电子衍射表明，分子链大致垂直于片晶表面；又因为分子长度通常在 1 μm 量级，所以可以推断它们在晶体内必定来回折叠。",
+   "keys": [
+    {
+     "en": "electron diffraction",
+     "cn": "电子衍射"
+    },
+    {
+     "en": "lamellar surface",
+     "cn": "片晶表面"
+    },
+    {
+     "en": "folded back and forth",
+     "cn": "来回折叠"
+    }
+   ]
+  },
+  {
+   "en": "The simplest explanation of such behavior is that the orientation processes have brought the molecules into adequate juxtaposition for them to take up positions of three-dimensional order, and hence crystallize.",
+   "cn": "对这一行为最简单的解释是：取向过程使分子彼此充分并置，从而能够占据三维有序的位置并因而结晶。",
+   "keys": [
+    {
+     "en": "orientation",
+     "cn": "取向"
+    },
+    {
+     "en": "juxtaposition",
+     "cn": "并置"
+    },
+    {
+     "en": "three-dimensional order",
+     "cn": "三维有序"
+    }
+   ]
+  },
+  {
+   "en": "Although such specimens are unoriented in the macroscopic sense i.e. they possess isotropic bulk mechanical properties, they are not homogeneous in the microscopic sense and often show a spherulitic structure under a polarizing microscope.",
+   "cn": "尽管这类试样在宏观意义上未取向，即具有各向同性的本体力学性能，但它们在微观意义上并不均匀，在偏光显微镜下常常呈现球晶结构。",
+   "keys": [
+    {
+     "en": "isotropic",
+     "cn": "各向同性的"
+    },
+    {
+     "en": "spherulitic structure",
+     "cn": "球晶结构"
+    },
+    {
+     "en": "polarizing microscope",
+     "cn": "偏光显微镜"
+    }
+   ]
+  }
+ ],
+ "qa": [
+  {
+   "q": "By what experimental methods is the extent and type of crystallinity in a polymer determined, and how are the results usually expressed?",
+   "a": "Crystallinity is not judged by appearance but measured experimentally. The extent and type of crystallinity in a polymer is determined by methods such as density, X-ray and electron diffraction, infrared spectroscopy and nuclear magnetic resonance. Since most polymers are only partially crystalline, the results are usually interpreted in a simplified manner as a weight percent or a volume percent crystallinity. This is obtained by comparison with measurements made on completely crystalline and on completely amorphous polymer samples. The value therefore expresses how far a given specimen lies between the two extremes of order and disorder.",
+   "ev": "The extent and type of crystallinity in a polymer is experimentally determined by methods such as density, X-ray and electron diffraction, infrared spectroscopy, and nuclear magnetic resonance.",
+   "keys": [
+    {
+     "en": "crystallinity",
+     "cn": "结晶度"
+    },
+    {
+     "en": "X-ray diffraction",
+     "cn": "X 射线衍射"
+    },
+    {
+     "en": "weight or volume percent crystallinity",
+     "cn": "重量或体积百分比结晶度"
+    }
+   ]
+  },
+  {
+   "q": "Why may the fringed-micelle and folded-chain theories be used together, and which polymers does each serve best?",
+   "a": "The two theories are often considered mutually exclusive, but they need not be considered so. It is usually practical to adopt a working model of polymer crystallinity which employs the features of both concepts. The folded-chain theory is especially well suited for highly crystalline polymers, which can be regarded as one-phase crystalline systems containing defects such as imperfect folds, irregularities in packing, chain entanglements, loose chain ends, dislocations and occluded impurities. Polymers of medium to low crystallinity are better treated by the fringed-micelle concept as two-phase systems, in which crystallites are imbedded in uncrystallized amorphous polymer. The crystallites in such polymers may themselves have folded-chain lamellar structure.",
+   "ev": "The folded chain theory is especially well suited for highly crystalline polymers where one can consider them to be one phase crystalline systems with defects.",
+   "keys": [
+    {
+     "en": "mutually exclusive",
+     "cn": "相互排斥的"
+    },
+    {
+     "en": "one phase crystalline system",
+     "cn": "单相结晶体系"
+    },
+    {
+     "en": "two phase system",
+     "cn": "两相体系"
+    }
+   ]
+  }
+ ],
+ "describe": [
+  {
+   "q": "Describe in English how spherulitic textures form when a polymer melt is cooled and what the lamellar morphology implies about the melt.",
+   "a": "When a polymer melt is cooled, crystallization is initiated at nuclei located at different points of the specimen. Spherulitic textures are then formed by the growth of dominant lamellae from a central nucleus in all directions, by twisting of these lamellae along fibrils, the intervening spaces being filled in by subsidiary lamellae and possibly low molecular weight material. Such specimens are unoriented in the macroscopic sense and show isotropic bulk mechanical properties, yet they are not homogeneous microscopically and appear spherulitic under a polarizing microscope. Neutron diffraction shows only small changes in the radius of gyration of the chains on crystallization, so the highly entangled topology existing in the melt must be substantially retained in the semicrystalline state; one model proposes crystallization by straightening of coil sequences without long range diffusion.",
+   "ev": "Spherulitic textures are then formed by the growth of dominant lamellae from a central nucleus in all directions by twisting of these lamellae along fibrils, the intervening spaces being filled in by subsidiary lamellae and possibly low molecular weight material."
+  },
+  {
+   "q": "Describe in English the structure of amorphous polymers and the changes produced by stretching, using polymethyl methacrylate, polystyrene and polyethylene terephthalate as examples.",
+   "a": "Many polymers when cooled from the molten state form a disordered structure, which is termed the amorphous state. At room temperature these polymers may be of high modulus, such as polymethyl methacrylate, polystyrene and melt-quenched polyethylene terephthalate, or of low modulus, such as rubber or atactic polypropylene. Amorphous polymers are usually considered to be a random tangle of molecules, yet completely random packing cannot occur, although X-ray diffraction reveals no distinct structure. If such a polymer is stretched, the molecules may be preferentially aligned along the stretch direction. In polymethyl methacrylate and polystyrene the orientation is detected by optical measurements but no three-dimensional order appears, so the structure is described as oriented amorphous. In polyethylene terephthalate, stretching produces both molecular orientation and small crystallites.",
+   "ev": "In polymethyl methacrylate and polystyrene such molecular orientation may be detected by optical measurements, but X-ray diffraction measurements still reveal no sign of three dimensional order."
+  }
+ ]
+}

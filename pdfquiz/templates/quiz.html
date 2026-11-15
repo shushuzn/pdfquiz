@@ -172,12 +172,14 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;tou
 .nav-item[aria-current="true"] .cnt{color:var(--accent-ink);opacity:.75}
 
 .side-foot{margin-top:auto;display:flex;flex-direction:column;gap:6px;padding-top:12px;border-top:1px solid var(--line)}
-.side-foot button{
+.side-foot button,.side-foot .hub-link{
   display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:9px;
   font-size:12.5px;color:var(--ink2);text-align:left;transition:background .15s,color .15s;
 }
-.side-foot button:hover{background:var(--surface2);color:var(--ink)}
+.side-foot button:hover,.side-foot .hub-link:hover{background:var(--surface2);color:var(--ink)}
 .side-foot svg{width:14px;height:14px;opacity:.7}
+.side-foot .hub-link{margin-bottom:2px;color:var(--accent);font-weight:600}
+.side-foot .hub-link:hover{background:color-mix(in srgb, var(--accent) 10%, transparent)}
 
 /* ---------------------------------------------------------------- main */
 .main{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;position:relative}
@@ -723,6 +725,7 @@ blockquote.ev::before{
     <nav class="chapters" id="chapters" aria-label="章节导航"></nav>
 
     <div class="side-foot">
+      {{HUPLINK}}
       <button id="printBtn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
         打印 / 存为 PDF
@@ -824,6 +827,10 @@ blockquote.ev::before{
     single: "单选题", multiple: "多选题", truefalse: "判断题", fill: "填空题", short: "简答题",
     trans_en_cn: "英译中", trans_cn_en: "中译英", describe: "描述题", qa: "问答题", term: "术语翻译"
   };
+  /* 题型固定顺序：侧栏、结果页统计都按这个排，免得随出题顺序抖动 */
+  const TYPE_ORDER = ["trans_en_cn", "trans_cn_en", "describe", "qa",
+    "single", "multiple", "truefalse", "fill", "short", "term"];
+  const typeRank = (t) => { const i = TYPE_ORDER.indexOf(t); return i < 0 ? 99 : i; };
   /* 从 "UNIT 17 …" 取出单元号，用于稳定排序；取不到排最后 */
   const unitKey = (s) => { const m = String(s || "").match(/UNIT\s*(\d+)/i); return m ? +m[1] : 999; };
   /* 主观题：无法自动判分，一律「作答 → 对照参考答案 → 自评」 */
@@ -1471,6 +1478,25 @@ blockquote.ev::before{
     });
     chapters.sort((a, b) => unitKey(a.sec) - unitKey(b.sec));
 
+    /* 按题型统计：题多的卷子里，章节分布看不出「哪类题弱」，题型更直观 */
+    const byType = [];
+    Q.forEach((q) => {
+      let t = byType.find((x) => x.t === q.t);
+      if (!t) { t = { t: q.t, ok: 0, total: 0 }; byType.push(t); }
+      t.total++;
+      if (isCorrect(q.i)) t.ok++;
+    });
+    byType.sort((a, b) => typeRank(a.t) - typeRank(b.t));
+
+    const barsHTML = (rows, label) =>
+      '<div class="bars">' + rows.map((c) => {
+        const p = c.total ? Math.round((c.ok / c.total) * 100) : 0;
+        const name = label(c);
+        return '<div class="bar-row"><div class="top"><span class="lbl" title="' + esc(name) + '">' + esc(name) + '</span>' +
+          '<span class="frac">' + c.ok + "/" + c.total + '</span></div>' +
+          '<span class="track"><i class="fill" style="width:' + p + '%"></i></span></div>';
+      }).join("") + "</div>";
+
     const wrongs = bad.concat(pending);
 
     // 按分值算分：正卷 100 分，术语速记属于附加分，单独注明
@@ -1498,14 +1524,14 @@ blockquote.ev::before{
             "<div><b>" + unanswered + "</b>未作答</div>" +
           "</div></div>" +
       "</div>" +
-      '<div class="res-sec"><h3>分章节表现</h3><div class="bars">' +
-        chapters.map((c) => {
-          const p = c.total ? Math.round((c.ok / c.total) * 100) : 0;
-          return '<div class="bar-row"><div class="top"><span class="lbl" title="' + esc(c.sec) + '">' + esc(c.sec) + '</span>' +
-            '<span class="frac">' + c.ok + "/" + c.total + '</span></div>' +
-            '<span class="track"><i class="fill" style="width:' + p + '%"></i></span></div>';
-        }).join("") +
-      "</div></div>" +
+      '<div class="res-sec"><h3>分章节表现</h3>' +
+        barsHTML(chapters, (c) => c.sec) +
+      "</div>" +
+      (byType.length > 1
+        ? '<div class="res-sec"><h3>分题型表现</h3>' +
+          barsHTML(byType, (c) => TYPE_CN[c.t] || c.t) +
+          "</div>"
+        : "") +
       (wrongs.length
         ? '<div class="res-sec"><h3>需要回看的题（' + wrongs.length + "）</h3><div class=\"wrong-list\">" +
           wrongs.map((q) =>
@@ -1517,6 +1543,7 @@ blockquote.ev::before{
         : '<div class="res-sec"><h3>需要回看的题</h3><div class="empty" style="padding:28px 0"><b>全部正确</b>这一份可以过了。</div></div>') +
       '<div class="res-actions">' +
         (wrongs.length ? '<button class="btn primary" id="redoWrong">只做错题（' + wrongs.length + "）</button>" : "") +
+        (wrongs.length ? '<button class="btn ghost" id="exportWrong">导出错题</button>' : "") +
         '<button class="btn ghost" id="reviewAll">回看全部题目</button>' +
         '<button class="btn ghost" id="restart">重新开始</button>' +
       "</div>";
@@ -1541,8 +1568,64 @@ blockquote.ev::before{
       applyFilter(false);
     });
     $("#restart").addEventListener("click", resetAll);
+    const expBtn = $("#exportWrong");
+    if (expBtn) expBtn.addEventListener("click", () => exportWrong(wrongs));
     $$("#result [data-jump]").forEach((b) =>
       b.addEventListener("click", () => { closeResult(); jump(Number(b.dataset.jump)); }));
+  }
+
+  /* 错题导出成 Markdown：手机上直接存文件，存不了就退回复制到剪贴板。
+     内容按「题干 / 你的答案 / 参考答案 / 采分点 / 出处 / 原文依据」排，
+     复制到笔记软件里就是一份能背的错题本。 */
+  function exportWrong(list) {
+    const L = [];
+    L.push("# " + (META.title || "题库") + " · 错题整理", "");
+    L.push("- 导出时间：" + new Date().toLocaleString());
+    L.push("- 模式：" + (S.mode === "exam" ? "考试" : "练习") + "，用时 " + elapsed());
+    L.push("- 共 " + list.length + " 题", "");
+    list.forEach((q) => {
+      const a = ans(q.i) || {};
+      L.push("## " + String(q.n).padStart(2, "0") + " · " + (TYPE_CN[q.t] || q.t) + " · " + q.sec, "");
+      L.push("**题目** " + q.q, "");
+      if (q.t === "term" || q.t === "fill") {
+        L.push("- 你的答案：" + (a.text || "（未填）"));
+      } else if (SUBJECTIVE[q.t]) {
+        L.push("- 你的作答：" + (String(a.text || "").trim() || "（未写）"));
+      } else {
+        L.push("- 你的选择：" + ((a.picked || []).join("") || "（未选）"));
+      }
+      L.push("- 参考答案：" + (q.a || []).join(" / "));
+      if (a && a.pending) L.push("- 状态：待自评");
+      if (q.keys && q.keys.length) {
+        L.push("- 采分点：" + q.keys.map((k) => k.en + (k.cn ? "（" + k.cn + "）" : "")).join("；"));
+      }
+      if (q.ref) L.push("- 出处：" + q.ref);
+      if (q.ev) L.push("- 原文依据：" + q.ev);
+      L.push("");
+    });
+    const text = L.join("\n");
+    const fname = "错题-" + (META.id || "deck") + ".md";
+    try {
+      const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = fname;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 5000);
+      toast("已导出 " + list.length + " 道错题");
+    } catch (e) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(
+          () => toast("已复制到剪贴板"),
+          () => toast("导出失败，请用打印功能")
+        );
+      } else {
+        toast("导出失败，请用打印功能");
+      }
+    }
   }
 
   function closeResult() {

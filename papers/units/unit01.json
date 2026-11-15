@@ -1,0 +1,148 @@
+{
+ "unit": 1,
+ "title": "UNIT 1 What are Polymers?",
+ "trans": [
+  {
+   "en": "To contrast the difference, the molecular weight of common salt is only 58.5, while that of a polymer can be as high as several hundred thousands, even more than thousand thousands.",
+   "cn": "为了对比这一差别，食盐的分子量只有58.5，而聚合物的分子量却可以高达几十万，甚至超过百万。",
+   "keys": [
+    {
+     "en": "molecular weight",
+     "cn": "分子量"
+    },
+    {
+     "en": "common salt",
+     "cn": "食盐"
+    },
+    {
+     "en": "polymer",
+     "cn": "聚合物"
+    }
+   ]
+  },
+  {
+   "en": "As against this well-defined behavior of a simple chemical compound, a polymer like polyethylene does not melt sharply at one particular temperature into clean liquid.",
+   "cn": "与简单化合物这种明确而确定的性能相反，像聚乙烯这样的聚合物并不会在某一特定温度下骤然熔融成为澄清的液体。",
+   "keys": [
+    {
+     "en": "well-defined behavior",
+     "cn": "明确（确定）的性能"
+    },
+    {
+     "en": "melt sharply",
+     "cn": "骤然熔融"
+    },
+    {
+     "en": "polyethylene",
+     "cn": "聚乙烯"
+    }
+   ]
+  },
+  {
+   "en": "As more and more quantity of polymer is added to water, the time taken for the dissolution of the polymer obviously increases and the mix ultimately assumes a soft, dough-like consistency.",
+   "cn": "随着越来越多的聚合物被加入水中，聚合物溶解所需的时间明显延长，混合物最终呈现出柔软的、类似面团的稠度。",
+   "keys": [
+    {
+     "en": "dissolution",
+     "cn": "溶解"
+    },
+    {
+     "en": "dough-like consistency",
+     "cn": "类面团稠度"
+    },
+    {
+     "en": "quantity",
+     "cn": "量"
+    }
+   ]
+  },
+  {
+   "en": "Eventually a point is reached at which the amount of branching is so extensive that the polymer molecule becomes a giant three dimensional network.",
+   "cn": "最终会达到这样一种程度：支化的数量如此之大，以致聚合物分子变成一个巨大的三维网络。",
+   "keys": [
+    {
+     "en": "branching",
+     "cn": "支化"
+    },
+    {
+     "en": "three dimensional network",
+     "cn": "三维网络"
+    },
+    {
+     "en": "extensive",
+     "cn": "大量的，广泛的"
+    }
+   ]
+  },
+  {
+   "en": "Among synthetic polymers, those in which a single kind of repeat unit are involved are called homopolymers, and those containing more than one kind of repeat unit are copolymers.",
+   "cn": "在合成聚合物中，只涉及一种重复单元的称为均聚物，而含有一种以上重复单元的则称为共聚物。",
+   "keys": [
+    {
+     "en": "repeat unit",
+     "cn": "重复单元"
+    },
+    {
+     "en": "homopolymer",
+     "cn": "均聚物"
+    },
+    {
+     "en": "copolymer",
+     "cn": "共聚物"
+    }
+   ]
+  }
+ ],
+ "qa": [
+  {
+   "q": "Why does polyvinyl alcohol behave so differently from sodium chloride when it is added to water, and what is the underlying cause?",
+   "a": "Sodium chloride, a low molecular weight compound, dissolves in water only up to a saturation point; any further salt does not go into solution but settles at the bottom as solid, and the viscosity of the saturated solution is not much different from that of water. Polyvinyl alcohol behaves quite differently. Its globules first absorb water, swell and become distorted in shape, and only after a long time do they go into solution. No saturation point is ever reached, so a very large quantity of the polymer can be added, and the mixture finally assumes a soft, dough-like consistency of high viscosity.",
+   "ev": "Also, we can add a very large quantity of the polymer to the same quantity of water without the saturation point ever being reached.",
+   "keys": [
+    {
+     "en": "saturation point",
+     "cn": "饱和点"
+    },
+    {
+     "en": "viscosity",
+     "cn": "粘度"
+    },
+    {
+     "en": "swell",
+     "cn": "溶胀"
+    }
+   ]
+  },
+  {
+   "q": "How is a branch introduced into a growing polyester chain, and how does branching change the number of chain ends?",
+   "a": "In the formation of a polyester, difunctional acids and difunctional alcohols allow the chain to grow, because each such molecule is incorporated into the chain with ester linkages at both ends. Trifunctional acids or alcohols give a linear molecule by reacting through only two of their functional groups. If the third group reacts and the chain continues to grow, a branch has been introduced into the original chain. Branching can also arise adventitiously when an atom is abstracted from the original linear molecule and growth starts from the resulting active site. At low degrees of branching, a molecule with i branches has i+2 chain ends instead of two.",
+   "ev": "If the third reacts and the resulting chain continues to grow, a branch has been introduced into the original chain.",
+   "keys": [
+    {
+     "en": "trifunctional",
+     "cn": "三官能度的"
+    },
+    {
+     "en": "ester linkage",
+     "cn": "酯键"
+    },
+    {
+     "en": "adventitious branching",
+     "cn": "偶然支化"
+    }
+   ]
+  }
+ ],
+ "describe": [
+  {
+   "q": "Describe how benzene and polyethylene behave when they are heated, in English.",
+   "a": "Benzene is a simple, low molecular weight compound, and its behavior on heating is well defined. Solid benzene melts to liquid benzene at 5.5 degrees Celsius, and on further heating the liquid boils and becomes gaseous benzene. Polyethylene, a polymer, does not behave in this way. It does not melt sharply at one particular temperature into a clean liquid. Instead, it becomes increasingly softer as the temperature rises and finally turns into a very viscous, tacky molten mass. If this hot, viscous melt is heated further, it is converted into various gases, but the material obtained is no longer polyethylene; the polymer has decomposed.",
+   "ev": "Solid benzene, for instance, melts to become liquid benzene at 5.5°C and, on further heating, boils into gaseous benzene."
+  },
+  {
+   "q": "Describe the difference between branched and cross-linked polymer molecules in English.",
+   "a": "A branched polymer carries additional polymeric chains that issue from the backbone of a linear molecule; substituent groups such as methyl or phenyl groups on the repeat units are not counted as branches. When the concentration of junction points is high enough, even branches will contain branches, and the molecule becomes a giant three dimensional network. In that state the molecule is said to be cross-linked. The two structures differ in scale and in the forces that hold them together. A cross-linked body may be regarded as essentially one molecule, and the forces giving it cohesiveness are covalent bonds rather than intermolecular forces. Its mechanical behavior is therefore much different from that of a polymer without cross-linking.",
+   "ev": "If the concentration of junction points is high enough, even branches will contain branches."
+  }
+ ]
+}

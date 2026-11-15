@@ -1,0 +1,85 @@
+{
+ "unit": 17,
+ "title": "UNIT 17 Introduction to Modelling of Polymerization Kinetics",
+ "trans": [
+  {
+   "en": "The measures of product polymer properties typically available to the reactor engineer are the molecular weight distribution, expressed in terms of the distribution function itself or in terms of the moments of this distribution, and the composition and sequence distributions in the case of copolymers.",
+   "cn": "反应器工程师通常可获得的产物聚合物性能指标是分子量分布（用分布函数本身或该分布的矩来表示），以及在共聚物情况下的组成分布和序列分布。",
+   "keys": [
+    "分子量分布：分布函数或矩",
+    "共聚物的组成与序列分布",
+    "工程师可用的性能指标"
+   ]
+  },
+  {
+   "en": "The equations for the concentrations of polymer of chain length k can be transformed by a number of related methods, termed here transformation techniques, into a finite set whose solution yields both the moments of the polymer chain length distribution as well as the polymer chain length distribution (PLD) itself.",
+   "cn": "链长为 k 的聚合物浓度方程可通过若干彼此相关的方法（此处称为变换技术）化为一组有限方程，其解既给出聚合物链长分布的矩，也给出聚合物链长分布（PLD）本身。",
+   "keys": [
+    "变换技术（相互关联的方法）",
+    "化无限集为有限方程组",
+    "解同时给出矩与链长分布"
+   ]
+  },
+  {
+   "en": "Statistical approaches have the advantages of simplicity and directness in some cases, as well as occasionally revealing certain characteristics of the polymerization process which is marked by a purely deterministic treatment.",
+   "cn": "统计方法在某些情况下具有简单、直接的优点，并且有时还能揭示出聚合过程的某些特征，这些特征在纯确定性处理中是不易显现的。",
+   "keys": [
+    "简单、直接的优点",
+    "偶能揭示过程特征",
+    "与纯确定性处理对照"
+   ]
+  },
+  {
+   "en": "Statistical techniques frequently do not work explicitly in terms of time as a variable, which is inconvenient since engineers usually wish to make predictions as a function of time.",
+   "cn": "统计技术常常不以时间作为显含变量来处理，这一点很不方便，因为工程师通常希望作出随时间变化的预测。",
+   "keys": [
+    "不以时间为显含变量",
+    "由此带来不便",
+    "工程上需按时间函数预测"
+   ]
+  },
+  {
+   "en": "On the other hand, when statistical methods do work, they usually lead to results in a comparatively simple way and can sometimes reveal features of a polymerization system that a mass balance approach does not.",
+   "cn": "另一方面，当统计方法确实奏效时，它们通常以比较简单的方式给出结果，并且有时能揭示出质量衡算方法所不能揭示的聚合体系特征。",
+   "keys": [
+    "奏效时结果较为简单",
+    "可揭示质量衡算看不到的特征",
+    "两种方法各有长短"
+   ]
+  }
+ ],
+ "qa": [
+  {
+   "q": "What does the assumption of equal reactivity state, and why is it essential in solving the material balances for the anionic polymerization of styrene?",
+   "a": "The material balances for the various polymer species in a batch reactor give an infinite set of equations, and no real simplification is possible until an assumption is made. Fundamental to all analyses of polymerization kinetics is the assumption of equal reactivity, that is k_j = k for all j > 0, so the rate constant does not depend on chain length. This proves to be a reasonable assumption, although unequal reactivity, that is chain-length dependent reactivity, is often important in high conversion free radical polymerization; it need not be considered here. With fast initiation, no impurities and no termination or transfer, propagation is the only reaction of interest.",
+   "ev": "Fundamental to all analyses of polymerization kinetics is the assumption of equal reactivity, i.e. k_j = k for all j > 0.",
+   "keys": [
+    "无限方程组需先作假设",
+    "等活性：k_j = k（与链长无关）",
+    "高转化自由基聚合中非等活性才重要"
+   ]
+  },
+  {
+   "q": "What are the advantages and disadvantages of the statistical approach compared with the mass balance approach?",
+   "a": "The statistical approach bypasses the mass balance equations and pictures the chain as growing by selecting monomer according to some statistical distribution. It has the advantages of simplicity and directness in some cases and can sometimes reveal features that a mass balance approach does not. Its disadvantages are that it relies too heavily on intuition, so it lacks the methodic reliability of the mass balance approach, and that it frequently does not work explicitly in terms of time as a variable, which is inconvenient since engineers wish to predict behaviour as a function of time. It is also less easily adapted to different reactor configurations.",
+   "ev": "This approach had the disadvantage of relying too heavily on intuition and so lacked the methodic reliability of the mass balance approach.",
+   "keys": [
+    "绕过质量衡算、按统计分布选单体",
+    "优点：简单直接、可揭示新特征",
+    "缺点：依赖直觉、不以时间为显含变量"
+   ]
+  }
+ ],
+ "describe": [
+  {
+   "q": "Describe the deterministic route from a postulated kinetic mechanism to the chain length distribution in English.",
+   "a": "The first step is the postulation of a kinetic mechanism governing the reactions that comprise the polymerization. For a particular reactor type this mechanism leads, through the mass balance equations, to a set of equations governing the evolution of the concentration of polymer of a given chain length. This set could be solved directly, usually numerically, to yield the entire distribution, but the procedure is tedious and lengthy because the equations form an infinite set. Alternatively, moment equations can be developed, and since colligative methods of analysis yield data related to the moments, a truncated set may suffice. Transformation techniques convert the equations into a finite set whose solution yields both the moments and the chain length distribution itself.",
+   "ev": "The equations could be solved directly, usually by numerical means, to yield the entire distribution of polymer chain lengths."
+  },
+  {
+   "q": "Describe how the infinite set of species balance equations for the anionic polymerization of styrene is simplified and solved in English.",
+   "a": "Initiation with butyl lithium in a solvent such as THF is very fast, so the I₀ moles of initiator added at time zero are for practical purposes converted immediately to living polymer of chain length one, and the kinetics of initiation can be neglected. In a mixture free from impurities, termination and transfer are negligible, so propagation is the only reaction of interest, and with the assumption of equal reactivity the infinite set of species balances is reduced to a simple recursion. A change of the time variable, the eigenzeit transformation, removes the monomer concentration from the equations. The set is then solved sequentially, or analytically by the Laplace transform with a normalisation condition, giving a Poisson distribution.",
+   "ev": "Since there are no termination reactions and all the growth chains are created at t=0, it is obvious that the number of polymer molecules remains constant."
+  }
+ ]
+}

@@ -1,0 +1,85 @@
+{
+ "unit": 16,
+ "title": "UNIT 16 Copolymer Composition Distributions Affected by Micromixing",
+ "trans": [
+  {
+   "en": "In multicomponent polymerizations by a free radical mechanism, polymer molecules will usually have a composition different than that of the monomer mixture from which they were formed.",
+   "cn": "在自由基机理的多组分聚合中，聚合物分子的组成通常不同于生成它们的单体混合物的组成。",
+   "keys": [
+    "多组分聚合、自由基机理这一前提",
+    "聚合物与单体混合物组成不同",
+    "由该单体混合物生成"
+   ]
+  },
+  {
+   "en": "For these results, the feed composition was selected to give an initial polymer composition of 28 wt% acrylonitrile, and the mean residence time in each type of reactor was adjusted to give 60% overall conversion.",
+   "cn": "为得到这些结果，所选取的进料组成使初始聚合物中丙烯腈含量为 28 wt%，同时把各类反应器中的平均停留时间调节到使总转化率达到 60%。",
+   "keys": [
+    "进料组成使初始聚合物含 28 wt% 丙烯腈",
+    "平均停留时间被调节",
+    "总转化率为 60%"
+   ]
+  },
+  {
+   "en": "The perfect mixer gives a uniform composition distribution at the average value of 28% acrylonitrile while a batch reactor shows a spread with compositions ranging up to 31%.",
+   "cn": "全混反应器给出的是均匀的组成分布，位于 28% 丙烯腈这一平均值处；而间歇反应器则出现分布展宽，组成最高可达 31%。",
+   "keys": [
+    "全混：28% 处均匀分布",
+    "间歇釜：分布展宽",
+    "组成上限 31%"
+   ]
+  },
+  {
+   "en": "The state of complete segregation is easily imagined for any residence time distribution; simply consider the individual fluid elements to be encapsulated so that they experience the gross flow patterns of the vessel without any interchange of molecules.",
+   "cn": "对任意停留时间分布而言，完全离析状态都很容易设想：只需把各个流体微元视为被封装起来，它们经历容器的宏观流动型式，但彼此之间不发生任何分子交换。",
+   "keys": [
+    "对任意停留时间分布均可设想",
+    "流体微元被封装",
+    "无分子交换"
+   ]
+  },
+  {
+   "en": "In the completely segregated reactor, mixing between fluid elements that have spent different times in the vessel occurs as late as possible, namely, in the exit stream.",
+   "cn": "在完全离析反应器中，在器内停留时间不同的流体微元之间的混合发生得尽可能晚，即在出口物流中才发生。",
+   "keys": [
+    "停留时间不同的流体微元",
+    "混合尽可能晚",
+    "发生在出口物流"
+   ]
+  }
+ ],
+ "qa": [
+  {
+   "q": "In Fig. 16.1, what quantity characterises the level of macromixing, and what do perfect mixing, batch operation and a segregated stirred tank each give?",
+   "a": "The level of macromixing is characterised by the dimensionless variance σ², which represents the fraction of the system volume that is stirred; intermediate residence time distributions correspond to a stirred tank in series with a piston flow reactor. For a feed chosen to give an initial polymer composition of 28 wt% acrylonitrile and a mean residence time giving 60% overall conversion, the perfect mixer gives a uniform composition distribution at the average value of 28%, the batch reactor gives a spread extending up to 31%, and the segregated stirred tank gives the broadest distribution, whose tail approaches pure polyacrylonitrile.",
+   "ev": "The magnitude of σ² represents the fraction of the system volume that is stirred.",
+   "keys": [
+    "σ² 表示被搅拌的体积分数",
+    "全混：28% 均匀分布",
+    "离析釜分布最宽、拖尾趋近纯聚丙烯腈"
+   ]
+  },
+  {
+   "q": "Why do the completely segregated and maximum mixedness reactors predict different yields even though their residence time distributions are identical?",
+   "a": "Both limits can be modelled as piston flow reactors, one with multiple side exits and one with multiple side entrances, and both reproduce the same residence time distribution, yet they generally predict different reaction yields because the timing of mixing differs. In the completely segregated reactor, molecules that have spent different times in the vessel meet only in the exit stream, so mixing is as late as possible. In the maximum mixedness reactor the same mixing happens at the entrance points, that is, as early as possible. Zwietering showed these two conditions bound the mixing possible between molecules of different ages.",
+   "ev": "These two piston flow models have the same residence time distribution but in general will predict different reaction yields.",
+   "keys": [
+    "二者停留时间分布相同",
+    "离析：混合最晚（出口）",
+    "最大混合度：混合最早（入口）"
+   ]
+  }
+ ],
+ "describe": [
+  {
+   "q": "Describe the two limits of micromixing and the piston flow reactor models used to represent them in English.",
+   "a": "Complete segregation is the lower limit, at which there is no molecular mixing at all: the individual fluid elements can be imagined as encapsulated, so that they follow the gross flow patterns of the vessel without any interchange of molecules, as beads in a continuous suspension do. Such a reactor can be modelled as a piston flow reactor with multiple side exits, distributed so as to match an arbitrary residence time distribution, which is equivalent to many piston flow elements in parallel. The upper limit is maximum mixedness, the greatest molecular level mixing possible with a given residence time distribution; Zwietering modelled it as a piston flow reactor with multiple side entrances.",
+   "ev": "Zwietering showed that complete segregation and maximum mixedness represent bounds on the amount of mixing possible between molecules that have spent different times in the reactor."
+  },
+  {
+   "q": "Describe how a composite macro/micromixing model can be built for an isothermal continuous flow reactor in English.",
+   "a": "A complete model must predict both macromixing and micromixing. The usual approach is to use any conventional submodel for the residence time distribution and to devote one additional parameter to the level of micromixing possible with that distribution. The simplest composite model treats the system as two reactors in parallel with identical residence time distributions, one completely segregated and one in maximum mixedness; the micromixing parameter represents the division of entering material between them. This model, suggested by Methot and Roy, belongs to the class of two-environment models. In the usual formulation the division is based on the age of a fluid element, material entering the segregated environment and leaving from the maximum mixedness one; Chen and Fan proposed a reversed version, in which reactants are initially well mixed but become segregated as viscosity rises.",
+   "ev": "The two reactors have identical residence time distribution, but one is completely segregated and the other is in maximum mixedness."
+  }
+ ]
+}

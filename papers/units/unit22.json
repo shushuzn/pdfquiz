@@ -1,0 +1,152 @@
+{
+ "unit": 22,
+ "title": "UNIT 22 Mechanical Properties of Polymers",
+ "trans": [
+  {
+   "en": "If an isotropic polymer is subjected to an imposed external stress, it undergoes a structural rearrangement called orientation.",
+   "cn": "对各向同性的聚合物施加外应力时，它会发生一种称为取向的结构重排。",
+   "keys": [
+    {
+     "en": "isotropic",
+     "cn": "各向同性的"
+    },
+    {
+     "en": "imposed external stress",
+     "cn": "施加的外应力"
+    },
+    {
+     "en": "structural rearrangement",
+     "cn": "结构重排"
+    },
+    {
+     "en": "orientation",
+     "cn": "取向"
+    }
+   ]
+  },
+  {
+   "en": "Uniaxial orientation is accomplished by stretching a thread, strip or bar in one direction, usually this process is carried out at a temperature just above the glass transition point.",
+   "cn": "单轴取向是通过沿一个方向拉伸丝、带或棒来实现的，该过程通常在略高于玻璃化转变温度的温度下进行。",
+   "keys": [
+    {
+     "en": "uniaxial orientation",
+     "cn": "单轴取向"
+    },
+    {
+     "en": "glass transition point",
+     "cn": "玻璃化转变点"
+    },
+    {
+     "en": "stretching",
+     "cn": "拉伸"
+    }
+   ]
+  },
+  {
+   "en": "The degree of crystallinity does not change much during drawing if one starts from a specimen with a developed crystallinity (before drawing); if on the other hand, the crystallinity of the undrawn filament is not, or only moderately, developed, crystallinity can be greatly induced by drawing.",
+   "cn": "如果起始试样（拉伸前）已具有充分发展的结晶度，则拉伸过程中结晶度变化不大；反之，若未拉伸丝的结晶度尚未发展或仅中等程度发展，则拉伸可以大大诱发结晶。",
+   "keys": [
+    {
+     "en": "degree of crystallinity",
+     "cn": "结晶度"
+    },
+    {
+     "en": "drawing",
+     "cn": "拉伸"
+    },
+    {
+     "en": "undrawn filament",
+     "cn": "未拉伸丝条"
+    }
+   ]
+  },
+  {
+   "en": "The so called draw ratio is the ratio of the length of the drawn to that of the undrawn filament; it is about 4 to 5 for many polymers, but may be as high as 40 for linear polyolefins and as low as 2 in the case of regenerated cellulose.",
+   "cn": "所谓拉伸比是指拉伸后丝条长度与未拉伸丝条长度之比；对许多聚合物而言约为 4~5，但线型聚烯烃可高达 40，而再生纤维素则低至 2。",
+   "keys": [
+    {
+     "en": "draw ratio",
+     "cn": "拉伸比"
+    },
+    {
+     "en": "linear polyolefins",
+     "cn": "线型聚烯烃"
+    },
+    {
+     "en": "regenerated cellulose",
+     "cn": "再生纤维素"
+    }
+   ]
+  },
+  {
+   "en": "So the moduli of the materials, the complex moduli, include the storage moduli which determine the amount of recoverable energy stored as elastic energy, and the loss moduli which determine the dissipation of energy as heat when the material is deformed.",
+   "cn": "因此，材料的模量即复合模量包括储存模量和损耗模量：储存模量决定以弹性能形式储存的可恢复能量的大小，损耗模量决定材料变形时能量以热量形式耗散的程度。",
+   "keys": [
+    {
+     "en": "complex moduli",
+     "cn": "复合模量"
+    },
+    {
+     "en": "storage moduli",
+     "cn": "储存模量"
+    },
+    {
+     "en": "loss moduli",
+     "cn": "损耗模量"
+    }
+   ]
+  }
+ ],
+ "qa": [
+  {
+   "q": "What is the difference between the storage moduli and the loss moduli of a viscoelastic material?",
+   "a": "The two components of the complex modulus describe how a viscoelastic material stores and dissipates energy. The storage moduli determine the amount of recoverable energy that is stored as elastic energy while the material is deformed, so they reflect the elastic, solid-like response of the material. The loss moduli determine the dissipation of energy as heat when the material is deformed, so they reflect the viscous, liquid-like response. Both are needed because stress and strain in such a material are not in phase: measurement under periodic forces shows that the strain lags behind the stress by the loss angle.",
+   "ev": "So the moduli of the materials, the complex moduli, include the storage moduli which determine the amount of recoverable energy stored as elastic energy, and the loss moduli which determine the dissipation of energy as heat when the material is deformed.",
+   "keys": [
+    {
+     "en": "recoverable energy",
+     "cn": "可恢复能量"
+    },
+    {
+     "en": "dissipation",
+     "cn": "耗散"
+    },
+    {
+     "en": "loss angle",
+     "cn": "损耗角"
+    }
+   ]
+  },
+  {
+   "q": "How is a neck formed when a semi-crystalline filament is cold drawn?",
+   "a": "Cold drawing, as practised on nylon 6.6 and 6, is carried out more or less adiabatically, so the drawing energy is dissipated as heat instead of being conducted away, and the temperature of the thread rises while its viscosity falls. The thread then reaches its yield stress, at which point it becomes mechanically unstable. A neck is thus formed: instead of becoming thinner gradually, the thread thins suddenly over a short distance. Because the undrawn thread may contain spherulites, rupture can also occur at spherulite boundaries, which is why their presence is a disadvantage.",
+   "ev": "As the polymer thread reaches its yield stress, it becomes mechanically unstable and a neck is formed.",
+   "keys": [
+    {
+     "en": "cold drawing",
+     "cn": "冷拉伸"
+    },
+    {
+     "en": "yield stress",
+     "cn": "屈服应力"
+    },
+    {
+     "en": "neck",
+     "cn": "细颈"
+    }
+   ]
+  }
+ ],
+ "describe": [
+  {
+   "q": "Describe the process of uniaxial orientation of polymers and its effects on their properties in English.",
+   "a": "Uniaxial orientation is produced by stretching a thread, strip or bar in one direction, usually at a temperature just above the glass transition point. The polymer chains tend to line up parallel to the direction of stretching, although in reality only a small fraction of the chain segments becomes perfectly oriented. Nearly all polymeric objects already retain some orientation from forming, but this is negligible compared with the orientation imposed by drawing. Orientation has a pronounced effect on the physical properties: oriented polymers have varying properties in different directions, that is, they are anisotropic, and with increasing orientation the tensile strength and stiffness increase while the anisotropy increases as well. Oriented fibres are therefore strong in the direction of their long axis but relatively weak perpendicular to it, which is why this process is of the utmost importance in the production of man made fibres.",
+   "ev": "Oriented fibres are strong in the direction of their long axis, but relatively weak perpendicular to it."
+  },
+  {
+   "q": "Describe how the morphology of a semi-crystalline filament changes during drawing in English.",
+   "a": "During drawing the crystallites tend to break up into microlamellae and finally into still smaller units, possibly by unfolding or despiralizing of chains. Spherulites present in the undrawn thread remain intact during the first stages of drawing and often elongate into ellipsoids, and because rupture of the filament may occur at spherulite boundaries, their presence is a disadvantage. After this first stage of reversible deformation of the spherulites, a second phase may occur in which the spherulites are disrupted and separate helices of chains, in the case of polyamides, become permanently arranged parallel to the fibre axis. At extreme orientations the helices themselves are straightened. Such rearrangements in the crystalline material can be read from the X-ray diffraction patterns.",
+   "ev": "During the drawing process the crystallites tend to break up into microlamellae and finally into still smaller units, possibly by unfolding or despiralizing of chains."
+  }
+ ]
+}
