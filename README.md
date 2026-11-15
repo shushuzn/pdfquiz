@@ -10,6 +10,8 @@ PDF → 结构化 Markdown → 章节切块 → LLM 出题 → 溯源校验 → 
 
 ![网页题库](docs/preview.png)
 
+**在线试作**：https://shushuzn.github.io/pdfquiz/ （就是 `examples/` 里那份离线文件的线上版本）
+
 > 除了 Markdown，每次运行还会产出一个**单文件网页题库**（`*.quiz.html`）：无外链、无 CDN、双击即开，可作答、可判分、可翻页回顾。
 
 ## 为什么校验环节是重点
