@@ -1,0 +1,96 @@
+%PDF-1.4
+%‚„œ”
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [5 0 R 7 0 R 9 0 R] /Count 3 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Length 1229 >>
+stream
+BT
+/F1 16 Tf 1 0 0 1 72 780 Tm (Chapter 3  Overfitting and Regularization) Tj
+/F1 12 Tf 1 0 0 1 72 738 Tm (3.1 Definition of overfitting) Tj
+/F1 10 Tf 1 0 0 1 72 718 Tm (Overfitting refers to the phenomenon where the training error keeps) Tj
+/F1 10 Tf 1 0 0 1 72 700 Tm (decreasing while the validation error starts to rise after a certain) Tj
+/F1 10 Tf 1 0 0 1 72 682 Tm (epoch. The model is fitting noise in the training samples as if it) Tj
+/F1 10 Tf 1 0 0 1 72 664 Tm (were signal. A reliable symptom is not the absolute value of the) Tj
+/F1 10 Tf 1 0 0 1 72 646 Tm (training loss, but the widening gap between training and validation) Tj
+/F1 10 Tf 1 0 0 1 72 628 Tm (loss.) Tj
+/F1 12 Tf 1 0 0 1 72 592 Tm (3.2 Bias and variance trade-off) Tj
+/F1 10 Tf 1 0 0 1 72 572 Tm (Generalization error decomposes into bias, variance and irreducible) Tj
+/F1 10 Tf 1 0 0 1 72 554 Tm (noise. Bias measures the systematic deviation between the hypothesis) Tj
+/F1 10 Tf 1 0 0 1 72 536 Tm (space and the true function. Variance measures sensitivity to) Tj
+/F1 10 Tf 1 0 0 1 72 518 Tm (perturbations of the training set. High bias corresponds to) Tj
+/F1 10 Tf 1 0 0 1 72 500 Tm (underfitting, high variance corresponds to overfitting.) Tj
+ET
+endstream
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 4 0 R >>
+endobj
+6 0 obj
+<< /Length 1156 >>
+stream
+BT
+/F1 12 Tf 1 0 0 1 72 780 Tm (3.3 L2 regularization) Tj
+/F1 10 Tf 1 0 0 1 72 760 Tm (L2 regularization adds the sum of squared weights to the loss,) Tj
+/F1 10 Tf 1 0 0 1 72 742 Tm (scaled by a coefficient lambda. Its effect is to shrink weights) Tj
+/F1 10 Tf 1 0 0 1 72 724 Tm (toward zero without setting them exactly to zero, which is why it is) Tj
+/F1 10 Tf 1 0 0 1 72 706 Tm (also called weight decay. When lambda approaches zero the penalty) Tj
+/F1 10 Tf 1 0 0 1 72 688 Tm (vanishes and the model reduces to ordinary least squares.) Tj
+/F1 12 Tf 1 0 0 1 72 652 Tm (3.4 L1 regularization and sparsity) Tj
+/F1 10 Tf 1 0 0 1 72 632 Tm (L1 regularization adds the sum of absolute weights. Unlike L2 it) Tj
+/F1 10 Tf 1 0 0 1 72 614 Tm (tends to drive a subset of weights exactly to zero, producing a) Tj
+/F1 10 Tf 1 0 0 1 72 596 Tm (sparse solution that can serve as feature selection. Geometrically) Tj
+/F1 10 Tf 1 0 0 1 72 578 Tm (the constraint region of L1 is a diamond whose vertices lie on the) Tj
+/F1 10 Tf 1 0 0 1 72 560 Tm (axes, so the optimum often lands on a vertex where some weights) Tj
+/F1 10 Tf 1 0 0 1 72 542 Tm (are exactly zero.) Tj
+ET
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 6 0 R >>
+endobj
+8 0 obj
+<< /Length 976 >>
+stream
+BT
+/F1 12 Tf 1 0 0 1 72 780 Tm (3.5 Dropout) Tj
+/F1 10 Tf 1 0 0 1 72 760 Tm (Dropout randomly zeroes the output of a fraction p of neurons at) Tj
+/F1 10 Tf 1 0 0 1 72 742 Tm (each training iteration. At inference no neuron is dropped, but) Tj
+/F1 10 Tf 1 0 0 1 72 724 Tm (weights must be rescaled by the keep probability to preserve the) Tj
+/F1 10 Tf 1 0 0 1 72 706 Tm (expected output. Dropout can be read as an implicit ensemble of) Tj
+/F1 10 Tf 1 0 0 1 72 688 Tm (many weight-sharing subnetworks, so it reduces variance.) Tj
+/F1 12 Tf 1 0 0 1 72 652 Tm (3.6 Early stopping) Tj
+/F1 10 Tf 1 0 0 1 72 632 Tm (Early stopping halts training when validation loss stops improving) Tj
+/F1 10 Tf 1 0 0 1 72 614 Tm (for a number of consecutive epochs and rolls back to the best) Tj
+/F1 10 Tf 1 0 0 1 72 596 Tm (checkpoint. It requires no change to the loss function and is the) Tj
+/F1 10 Tf 1 0 0 1 72 578 Tm (cheapest regularizer, at the cost of holding out a validation set.) Tj
+ET
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Resources << /Font << /F1 3 0 R >> >> /Contents 8 0 R >>
+endobj
+xref
+0 10
+0000000000 65535 f 
+0000000015 00000 n 
+0000000064 00000 n 
+0000000133 00000 n 
+0000000230 00000 n 
+0000001511 00000 n 
+0000001637 00000 n 
+0000002845 00000 n 
+0000002971 00000 n 
+0000003998 00000 n 
+trailer
+<< /Size 10 /Root 1 0 R >>
+startxref
+4124
+%%EOF

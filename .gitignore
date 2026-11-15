@@ -1,0 +1,35 @@
+# 运行产物
+out/
+out_*/
+*.quiz.md
+*.rejected.json
+*.extracted.md
+
+# 保留示例产物
+!examples/*.md
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+
+# 模型与缓存（docling 首次运行会下载）
+.cache/
+*.safetensors
+*.bin
+
+# 环境与密钥
+.env
+.env.*
+*.key
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
