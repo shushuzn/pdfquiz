@@ -920,12 +920,13 @@ blockquote.ev::before{
   /* 术语题答案唯一，不能用「包含」判对，否则 poly 会被判成 polymerization。
      归一化已抹平大小写、连字符与空格，这里再容忍单复数。 */
   function gradeTerm(q, text) {
-    const got = norm(text);
-    if (!got) return null;
     const stem = (s) => s.replace(/ies$/, "y").replace(/(es|s)$/, "");
     const alts = String(q.a[0] || "").split(/[\/／|｜；;、]/).map(norm).filter(Boolean);
     if (!alts.length) return null;
-    return alts.some((alt) => got === alt || stem(got) === stem(alt));
+    /* 允许多写：polyethylene / PE 全抄回来、只写缩写、只写全称，都算对 */
+    const gots = String(text).split(/[\/／|｜；;、]/).map(norm).filter(Boolean);
+    if (!gots.length) return null;
+    return gots.some((got) => alts.some((alt) => got === alt || stem(got) === stem(alt)));
   }
 
   /* 需要键入文字的题型统一走这里 */

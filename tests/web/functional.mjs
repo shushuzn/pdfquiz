@@ -136,7 +136,9 @@ if (fillType) {
 
   // 截断前缀不能判对：polymer 与 polymerization 的区别
   if (fillType === "term") {
-    const longIdx = await evaluate(`window.__QUIZ__.questions.findIndex(q=>q.t==='term' && q.a[0].length>=8)`);
+    // 有多个可接受答案（如 "polyethylene / PE"）的题不能拿来做前缀用例：
+    // 截断后正好等于另一个合法答案，判对才是对的
+    const longIdx = await evaluate(`window.__QUIZ__.questions.findIndex(q=>q.t==='term' && q.a[0].length>=8 && !/[\\/／|｜；;、]/.test(q.a[0]))`);
     if (longIdx >= 0) {
       const p = await answerBy(longIdx, `
         const full = window.__QUIZ__.questions[${longIdx}].a[0];

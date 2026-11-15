@@ -412,6 +412,8 @@ def build_textbook(units: dict[str, str]) -> str:
 
 DECKS = [
     ("exam_key", "考前重点卷", "按老师「2.1 考前复习」：每单元重点句 + 强调词汇 + Notes，分值 60/10/15/15"),
+    ("objective", "客观题专练", "填空挖自教材原句、选项全取词汇表，对齐考试的客观题部分"),
+    ("materials", "高分子材料名称默写", "PPT 指定重中之重：常见材料名称中译英"),
     ("exam_a", "期末模拟卷 A", "人工出题，分值与题型对齐考试；附核心术语"),
     ("exam_b", "期末模拟卷 B", "平行卷：题型分值同 A，题目全部不同"),
     ("practice", "分单元精练", "每单元 4 句翻译 + 2 问答 + 1 描述 + 8 个术语"),
@@ -483,6 +485,11 @@ def main(argv: list[str]) -> int:
                     int(m.group(1)), titles, str(q.get("chunk_path", "")).split(">")[-1].strip()
                 )
         decks["exam_key"] = (paper_key["meta"]["title"], qs)
+
+    for name in ("objective", "materials"):
+        paper = load_paper(name)
+        if paper:
+            decks[name] = (paper["meta"]["title"], fill_defaults(copy.deepcopy(paper["questions"])))
 
     decks["terms"] = ("高分子材料工程专业英语 · 术语默写总表",
                       make_term_questions(units, titles, per_unit=None, phrases="hit"))

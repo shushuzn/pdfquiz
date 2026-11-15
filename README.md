@@ -57,6 +57,7 @@ python run.py samples/过拟合与正则化.md --offline -n 3
 | 结果页 | 正确率环形图、**按分值折算的得分**、答对/答错/待自评/未作答、分章节正确率条、错题清单可一键跳回 |
 | 采分点 | 主观题除参考答案外，额外列出必写关键词（中英对照），对应“关键词必须会写”的给分习惯 |
 | 筛选 | 按范围（全部/未做/错题/标记）与题型过滤，长题库也能逐块过 |
+| 术语容错 | 一个答案可给多个写法（`polyethylene / PE`），全称、缩写、连写回原文都判对 |
 | 记忆 | 答题记录、标记、模式写入 localStorage，刷新不丢 |
 | 键盘 | `1`–`4` 选项、`←`/`→` 翻页、`Enter` 确认、`M` 标记、`T` 切主题 |
 | 主题 | 浅色/深色两套，默认跟随系统 |
@@ -190,9 +191,19 @@ pdfquiz/
 │   ├── render_html.py          网页题库导出
 │   ├── templates/quiz.html     单文件网页模板（内联样式与脚本）
 │   └── cli.py                  命令行
-├── papers/exam_a.json          试卷题目（题干/答案/采分点/出处）
+├── papers/                     各卷题目（题干/答案/采分点/出处）
+│   ├── exam_key.json           考前重点卷（按老师划的范围与三件重点）
+│   ├── exam_a.json / exam_b.json   平行模拟卷
+│   ├── objective.json          客观题（填空 + 单选）
+│   ├── materials.json          高分子材料名称中译英
+│   ├── notes.json              教材 Notes 重点句
+│   └── units/unitNN.json       分单元精练稿
 ├── tools/
 │   ├── build_exam.py           试卷 + 词汇表 → 题库（校验、去重、导出）
+│   ├── build_objective.py      原句挖空 + 词汇表四选一 → 客观题
+│   ├── build_materials.py      正文里的材料名 → 中译英默写（配套 materials.tsv）
+│   ├── build_hub.py            生成 docs 总览页并同步各卷
+│   ├── extract_notes.py        抽 Notes 句子与教材原译
 │   └── restyle.py              用最新模板重渲染已有题库，不重跑解析
 ├── tests/
 │   ├── test_pipeline.py        17 项单测
@@ -219,7 +230,7 @@ node tests/web/functional.mjs "file:///$PWD/docs/exam_a.html" 69   # 判分链�
 node tests/web/mobile.mjs     "file:///$PWD/docs/exam_a.html"      # 移动端交互 13 项
 ```
 
-`functional.mjs` 按题库里实际存在的题型挑用例：教材卷覆盖术语精确比对与主观题自评，示例卷（`docs/demo.html`）覆盖客观题判分，缺哪类就跳过哪类，不会误报。
+`functional.mjs` 按题库里实际存在的题型挑用例：教材卷覆盖术语精确比对与主观题自评，`docs/objective.html` 覆盖单选与填空判分，示例卷（`docs/demo.html`）覆盖多选与判断，缺哪类就跳过哪类，不会误报。
 
 移动端那组用 CDP 的 `Input.dispatchTouchEvent` 真发触摸事件，断言底栏吸底、聚焦时收栏、文本框自增高、横滑翻页两个方向、题号面板分组与跳转、字号三档持久化、抽屉不再嵌套滚动。
 

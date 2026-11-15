@@ -1,0 +1,369 @@
+{
+ "meta": {
+  "title": "高分子材料名称 · 中译英默写",
+  "source": "《高分子材料工程专业英语》曹同玉、冯连芳主编（化学工业出版社）",
+  "note": "PPT「2.1 考前复习」指定：常见高分子材料名称与性质的英文翻译是重点"
+ },
+ "questions": [
+  {
+   "type": "term",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 1 What are Polymers?",
+   "score": 2,
+   "question": "聚乙烯",
+   "answer": "polyethylene / PE",
+   "keys": [
+    {
+     "en": "polyethylene",
+     "cn": "聚乙烯"
+    },
+    {
+     "en": "PE",
+     "cn": "聚乙烯（缩写）"
+    }
+   ],
+   "ref": "UNIT 1 What are Polymers? · 材料名称",
+   "evidence": "Further heating of this hot, viscous, molten polymer does convert it into various gases but it is no longer polyethylene (Fig.",
+   "explanation": "常见高分子材料名称：聚乙烯 → polyethylene，缩写 PE"
+  },
+  {
+   "type": "term",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 7 Morphology of Solid Polymers",
+   "score": 2,
+   "question": "聚丙烯",
+   "answer": "polypropylene / PP",
+   "keys": [
+    {
+     "en": "polypropylene",
+     "cn": "聚丙烯"
+    },
+    {
+     "en": "PP",
+     "cn": "聚丙烯（缩写）"
+    }
+   ],
+   "ref": "UNIT 7 Morphology of Solid Polymers · 材料名称",
+   "evidence": "At room temperature these polymers may be of high modulus, such as polymethyl methacrylate, polystyrene and melt-quenched polyethylene terephthalate, or of low modulus, such as rubber or atactic polypropylene.",
+   "explanation": "常见高分子材料名称：聚丙烯 → polypropylene，缩写 PP"
+  },
+  {
+   "type": "term",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 7 Morphology of Solid Polymers",
+   "score": 2,
+   "question": "聚苯乙烯",
+   "answer": "polystyrene / PS",
+   "keys": [
+    {
+     "en": "polystyrene",
+     "cn": "聚苯乙烯"
+    },
+    {
+     "en": "PS",
+     "cn": "聚苯乙烯（缩写）"
+    }
+   ],
+   "ref": "UNIT 7 Morphology of Solid Polymers · 材料名称",
+   "evidence": "At room temperature these polymers may be of high modulus, such as polymethyl methacrylate, polystyrene and melt-quenched polyethylene terephthalate, or of low modulus, such as rubber or atactic polypropylene.",
+   "explanation": "常见高分子材料名称：聚苯乙烯 → polystyrene，缩写 PS"
+  },
+  {
+   "type": "term",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 29 Synthetic Plastics",
+   "score": 2,
+   "question": "聚氯乙烯",
+   "answer": "polyvinyl chloride / PVC",
+   "keys": [
+    {
+     "en": "polyvinyl chloride",
+     "cn": "聚氯乙烯"
+    },
+    {
+     "en": "PVC",
+     "cn": "聚氯乙烯（缩写）"
+    }
+   ],
+   "ref": "UNIT 29 Synthetic Plastics · 材料名称",
+   "evidence": "Examples of thermoplastics are polyethylene, polyvinyl chloride, polystyrene, nylon, cellulose acetate, acetal, polycarbonate, polymethyl methacrylate and polypropylene.",
+   "explanation": "常见高分子材料名称：聚氯乙烯 → polyvinyl chloride，缩写 PVC"
+  },
+  {
+   "type": "term",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 1 What are Polymers?",
+   "score": 2,
+   "question": "聚乙烯醇",
+   "answer": "polyvinyl alcohol / PVA",
+   "keys": [
+    {
+     "en": "polyvinyl alcohol",
+     "cn": "聚乙烯醇"
+    },
+    {
+     "en": "PVA",
+     "cn": "聚乙烯醇（缩写）"
+    }
+   ],
+   "ref": "UNIT 1 What are Polymers? · 材料名称",
+   "evidence": "But if we take a polymer instead, say, polyvinyl alcohol, and add it to a fixed quantity of water, the polymer does not go into solution immediately.",
+   "explanation": "常见高分子材料名称：聚乙烯醇 → polyvinyl alcohol，缩写 PVA"
+  },
+  {
+   "type": "term",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 7 Morphology of Solid Polymers",
+   "score": 2,
+   "question": "聚对苯二甲酸乙二醇酯",
+   "answer": "polyethylene terephthalate / PET",
+   "keys": [
+    {
+     "en": "polyethylene terephthalate",
+     "cn": "聚对苯二甲酸乙二醇酯"
+    },
+    {
+     "en": "PET",
+     "cn": "聚对苯二甲酸乙二醇酯（缩写）"
+    }
+   ],
+   "ref": "UNIT 7 Morphology of Solid Polymers · 材料名称",
+   "evidence": "At room temperature these polymers may be of high modulus, such as polymethyl methacrylate, polystyrene and melt-quenched polyethylene terephthalate, or of low modulus, such as rubber or atactic polypropylene.",
+   "explanation": "常见高分子材料名称：聚对苯二甲酸乙二醇酯 → polyethylene terephthalate，缩写 PET"
+  },
+  {
+   "type": "term",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 3 Step Growth Polymerization",
+   "score": 2,
+   "question": "聚酰胺",
+   "answer": "polyamide / PA",
+   "keys": [
+    {
+     "en": "polyamide",
+     "cn": "聚酰胺"
+    },
+    {
+     "en": "PA",
+     "cn": "聚酰胺（缩写）"
+    }
+   ],
+   "ref": "UNIT 3 Step Growth Polymerization · 材料名称",
+   "evidence": "Thus, polyamides can be obtained from the reaction of diamines with diacids n H₂N—R—NH₂ + n HO₂C—R′—CO₂H → H—[NH—R—NHCO—R′—CO]ₙ—OH + (2n − 1) H₂O (3.1) or from the reaction of amino acids with themselves n H₂N—R—CO₂H → H—[NH—R—CO]ₙ—OH + (n−1) H₂O (3.2) The two groups of reactions can be represented in a general manner by the equations as follows A—A + B—B → [—A—A—B—B—] A—B → [—A—B—] Reaction (3.1) illustrates the former, while (3.2) is of the latter type.① Polyesterification, whether between diol and dibasic acid or intermolecularly between hydroxy acid molecules, is an example of a step-growth polymerization process.",
+   "explanation": "常见高分子材料名称：聚酰胺 → polyamide，缩写 PA"
+  },
+  {
+   "type": "term",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 29 Synthetic Plastics",
+   "score": 2,
+   "question": "聚碳酸酯",
+   "answer": "polycarbonate / PC",
+   "keys": [
+    {
+     "en": "polycarbonate",
+     "cn": "聚碳酸酯"
+    },
+    {
+     "en": "PC",
+     "cn": "聚碳酸酯（缩写）"
+    }
+   ],
+   "ref": "UNIT 29 Synthetic Plastics · 材料名称",
+   "evidence": "Examples of thermoplastics are polyethylene, polyvinyl chloride, polystyrene, nylon, cellulose acetate, acetal, polycarbonate, polymethyl methacrylate and polypropylene.",
+   "explanation": "常见高分子材料名称：聚碳酸酯 → polycarbonate，缩写 PC"
+  },
+  {
+   "type": "term",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 7 Morphology of Solid Polymers",
+   "score": 2,
+   "question": "聚氨酯",
+   "answer": "polyurethane / PU",
+   "keys": [
+    {
+     "en": "polyurethane",
+     "cn": "聚氨酯"
+    },
+    {
+     "en": "PU",
+     "cn": "聚氨酯（缩写）"
+    }
+   ],
+   "ref": "UNIT 7 Morphology of Solid Polymers · 材料名称",
+   "evidence": "For example, polyesters, polyamides and polyurethanes are usually considered to be ______ polymers, but they can be prepared by addition as well as by condensation reaction.",
+   "explanation": "常见高分子材料名称：聚氨酯 → polyurethane，缩写 PU"
+  },
+  {
+   "type": "term",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 16 Copolymer Composition Distributions Affected by Micromixing",
+   "score": 2,
+   "question": "聚丙烯腈",
+   "answer": "polyacrylonitrile / PAN",
+   "keys": [
+    {
+     "en": "polyacrylonitrile",
+     "cn": "聚丙烯腈"
+    },
+    {
+     "en": "PAN",
+     "cn": "聚丙烯腈（缩写）"
+    }
+   ],
+   "ref": "UNIT 16 Copolymer Composition Distributions Affected by Micromixing · 材料名称",
+   "evidence": "A segregated stirred tank gives the broadest copolymer composition distribution with the tail of the distribution approaching pure polyacrylonitrile.",
+   "explanation": "常见高分子材料名称：聚丙烯腈 → polyacrylonitrile，缩写 PAN"
+  },
+  {
+   "type": "term",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 1 What are Polymers?",
+   "score": 2,
+   "question": "聚酯",
+   "answer": "polyester",
+   "keys": [
+    {
+     "en": "polyester",
+     "cn": "聚酯"
+    }
+   ],
+   "ref": "UNIT 1 What are Polymers? · 材料名称",
+   "evidence": "Let us consider the formation of a polyester.",
+   "explanation": "常见高分子材料名称：聚酯 → polyester"
+  },
+  {
+   "type": "term",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 3 Step Growth Polymerization",
+   "score": 2,
+   "question": "聚醚",
+   "answer": "polyether",
+   "keys": [
+    {
+     "en": "polyether",
+     "cn": "聚醚"
+    }
+   ],
+   "ref": "UNIT 3 Step Growth Polymerization · 材料名称",
+   "evidence": "Put the following words into Chinese chain polymerization phosgene titanium trichloride metal complex propagation disproportionation polyvinyl alcohol common salt fragment linear polymer branched polymer copolymer **Reading Materials** **Polyethers** **1.",
+   "explanation": "常见高分子材料名称：聚醚 → polyether"
+  },
+  {
+   "type": "term",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 29 Synthetic Plastics",
+   "score": 2,
+   "question": "聚酰亚胺",
+   "answer": "polyimide",
+   "keys": [
+    {
+     "en": "polyimide",
+     "cn": "聚酰亚胺"
+    }
+   ],
+   "ref": "UNIT 29 Synthetic Plastics · 材料名称",
+   "evidence": "Generic resins falling within the scope of this definition include acetal resins, polyamides (nylons), polyimides, polyetherimides, polyesters, polycarbon-ates, polyethers, polysulfide polymers, polysulfones, blends or alloys of the foregoing resins, and some examples from other resin types.",
+   "explanation": "常见高分子材料名称：聚酰亚胺 → polyimide"
+  },
+  {
+   "type": "term",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 29 Synthetic Plastics",
+   "score": 2,
+   "question": "聚砜",
+   "answer": "polysulfone",
+   "keys": [
+    {
+     "en": "polysulfone",
+     "cn": "聚砜"
+    }
+   ],
+   "ref": "UNIT 29 Synthetic Plastics · 材料名称",
+   "evidence": "Generic resins falling within the scope of this definition include acetal resins, polyamides (nylons), polyimides, polyetherimides, polyesters, polycarbon-ates, polyethers, polysulfide polymers, polysulfones, blends or alloys of the foregoing resins, and some examples from other resin types.",
+   "explanation": "常见高分子材料名称：聚砜 → polysulfone"
+  },
+  {
+   "type": "term",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 1 What are Polymers?",
+   "score": 2,
+   "question": "聚丁二烯",
+   "answer": "polybutadiene",
+   "keys": [
+    {
+     "en": "polybutadiene",
+     "cn": "聚丁二烯"
+    }
+   ],
+   "ref": "UNIT 1 What are Polymers? · 材料名称",
+   "evidence": "As an example, a gaseous compound called butadiene, with a molecular weight of 54, combines nearly 4 000 times and gives a polymer known as polybutadiene (a synthetic rubber) with about 200 000 molecular weight.",
+   "explanation": "常见高分子材料名称：聚丁二烯 → polybutadiene"
+  },
+  {
+   "type": "term",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 10 Preparations of Amino Resins in Laboratory",
+   "score": 2,
+   "question": "三聚氰胺甲醛树脂",
+   "answer": "melamine-formaldehyde resin",
+   "keys": [
+    {
+     "en": "melamine-formaldehyde resin",
+     "cn": "三聚氰胺甲醛树脂"
+    }
+   ],
+   "ref": "UNIT 10 Preparations of Amino Resins in Laboratory · 材料名称",
+   "evidence": "The most important representatives of this class are the urea-formaldehyde (UF) and melamine-formaldehyde resins.",
+   "explanation": "常见高分子材料名称：三聚氰胺甲醛树脂 → melamine-formaldehyde resin"
+  },
+  {
+   "type": "term",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 10 Preparations of Amino Resins in Laboratory",
+   "score": 2,
+   "question": "氨基树脂",
+   "answer": "amino resin",
+   "keys": [
+    {
+     "en": "amino resin",
+     "cn": "氨基树脂"
+    }
+   ],
+   "ref": "UNIT 10 Preparations of Amino Resins in Laboratory · 材料名称",
+   "evidence": "Amino resins are reaction products of amino derivatives with aldehydes under acidic or basic conditions.",
+   "explanation": "常见高分子材料名称：氨基树脂 → amino resin"
+  },
+  {
+   "type": "term",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 22 Mechanical Properties of Polymers",
+   "score": 2,
+   "question": "纤维素",
+   "answer": "cellulose",
+   "keys": [
+    {
+     "en": "cellulose",
+     "cn": "纤维素"
+    }
+   ],
+   "ref": "UNIT 22 Mechanical Properties of Polymers · 材料名称",
+   "evidence": "it is about 4 to 5 for many polymers, but may be as high as 40 for linear polyolefins and as low as 2 in the case of regenerated cellulose.",
+   "explanation": "常见高分子材料名称：纤维素 → cellulose"
+  },
+  {
+   "type": "term",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 29 Synthetic Plastics",
+   "score": 2,
+   "question": "醋酸纤维素",
+   "answer": "cellulose acetate",
+   "keys": [
+    {
+     "en": "cellulose acetate",
+     "cn": "醋酸纤维素"
+    }
+   ],
+   "ref": "UNIT 29 Synthetic Plastics · 材料名称",
+   "evidence": "Examples of thermoplastics are polyethylene, polyvinyl chloride, polystyrene, nylon, cellulose acetate, acetal, polycarbonate, polymethyl methacrylate and polypropylene.",
+   "explanation": "常见高分子材料名称：醋酸纤维素 → cellulose acetate"
+  },
+  {
+   "type": "term",
+   "chunk_path": "PART A 高分子化学与物理 > UNIT 3 Step Growth Polymerization",
+   "score": 2,
+   "question": "尼龙",
+   "answer": "nylon",
+   "keys": [
+    {
+     "en": "nylon",
+     "cn": "尼龙"
+    }
+   ],
+   "ref": "UNIT 3 Step Growth Polymerization · 材料名称",
+   "evidence": "Together with nylon, acetals have the highest abrasion resistance of all commercial thermoplastics.",
+   "explanation": "常见高分子材料名称：尼龙 → nylon"
+  }
+ ]
+}

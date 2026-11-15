@@ -33,6 +33,9 @@ ORDER = ["trans_en_cn", "trans_cn_en", "describe", "qa", "term",
 
 # 卷子级别的角色，决定卡片上的标签与按钮文案
 ROLE = {
+    "exam_key": ("考前冲刺", "先做这套", "老师划的范围，100 分"),
+    "objective": ("客观题", "刷选择填空", "对齐考试客观题部分"),
+    "materials": ("重中之重", "默写材料名", "PPT 点名的重点"),
     "exam_a": ("模拟考", "开始模考", "100 分正卷 · 60 分钟"),
     "exam_b": ("模拟考", "开始模考", "100 分平行卷 · 60 分钟"),
     "practice": ("精练", "按单元练", "10 个单元逐个过"),
@@ -123,6 +126,22 @@ h1{
 }
 .go svg{width:15px;height:15px;transition:transform .18s}
 .card:hover .go svg{transform:translateX(3px)}
+.plan{
+  margin:38px 0 0;padding:20px 22px;border:1px solid var(--line);border-radius:16px;
+  background:var(--surface);box-shadow:var(--shadow);
+}
+.plan h3{
+  font-family:var(--serif);font-size:17px;margin:0 0 4px;font-weight:600;
+}
+.plan .sub{margin:0 0 14px;font-size:13px;color:var(--muted)}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 20px;margin:0;padding:0;list-style:none}
+.steps li{display:flex;gap:10px;font-size:13.5px;color:var(--ink2);line-height:1.6;min-width:0}
+.steps li>span:last-child{min-width:0}
+.steps .no{
+  flex:0 0 22px;height:22px;border-radius:50%;background:var(--accent-soft);color:var(--accent-ink);
+  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px;
+}
+.steps b{color:var(--ink);font-weight:600}
 .foot{
   margin-top:44px;padding-top:20px;border-top:1px solid var(--line);
   color:var(--muted);font-size:12.5px;display:flex;flex-wrap:wrap;gap:6px 20px;
@@ -130,6 +149,9 @@ h1{
 .foot code{
   font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;
   background:var(--surface2);padding:1px 5px;border-radius:4px;
+}
+@media (max-width:760px){
+  .steps{grid-template-columns:minmax(0,1fr)}
 }
 @media (max-width:560px){
   .wrap{padding:34px 16px 56px}
@@ -205,6 +227,19 @@ def main() -> int:
   <main class="grid">
 {cards}
   </main>
+
+  <section class="plan">
+    <h3>按这个顺序刷，最省时间</h3>
+    <p class="sub">老师「2.1 考前复习」划的三件重点：课文重点句、上课强调的词汇、课文后 Notes 注释句；其中「常见高分子材料名称与性质的英文翻译」是重中之重。</p>
+    <ol class="steps">
+      <li><span class="no">1</span><span><b>考前重点卷</b>先过一遍，摸清 100 分怎么分布</span></li>
+      <li><span class="no">2</span><span><b>材料名称默写</b>每天一轮，这部分几乎必考</span></li>
+      <li><span class="no">3</span><span><b>客观题专练</b>练手速，填空专治拼写</span></li>
+      <li><span class="no">4</span><span><b>分单元精练</b>哪章错得多就回哪章</span></li>
+      <li><span class="no">5</span><span><b>模拟卷</b>限时 60 分钟，练时间分配</span></li>
+      <li><span class="no">6</span><span>考前 30 分钟只看<b>重点句对照</b>与错题</span></li>
+    </ol>
+  </section>
 
   <footer class="foot">
     <span>每套题库都是单个 HTML，双击即可作答，无需联网。</span>
