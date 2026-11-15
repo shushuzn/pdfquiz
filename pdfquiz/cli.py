@@ -32,6 +32,7 @@ def _argparser() -> argparse.ArgumentParser:
     p.add_argument("--min-chars", type=int, default=60, help="碎片合并阈值")
     p.add_argument("--extract-only", action="store_true", help="只做解析，导出 Markdown 就停")
     p.add_argument("--keep-md", action="store_true", help="保留中间 Markdown")
+    p.add_argument("--no-html", action="store_true", help="不生成网页版题库")
 
     g = p.add_argument_group("模型来源（四选一，默认自动探测）")
     g.add_argument(
@@ -196,6 +197,22 @@ def main(argv: list[str] | None = None) -> int:
     quiz_path = out_dir / f"{stem}.quiz.md"
     quiz_path.write_text(quiz_md, encoding="utf-8")
 
+    print(f"      题库 {quiz_path}")
+    if not args.no_html:
+        from .render_html import render_html
+
+        web = render_html(
+            title=stem,
+            engine=doc.engine,
+            source=str(src),
+            chunks=len(chunks),
+            reports=reports,
+            mock=(provider == "offline"),
+        )
+        web_path = out_dir / f"{stem}.quiz.html"
+        web_path.write_text(web, encoding="utf-8")
+        print(f"      网页版 {web_path}")
+
     rejected = [q for r in reports for q in r.rejected]
     if rejected:
         (out_dir / f"{stem}.rejected.json").write_text(
@@ -203,7 +220,6 @@ def main(argv: list[str] | None = None) -> int:
         )
 
     total = len(accepted) + len(rejected)
-    print(f"      题库 {quiz_path}")
     print(f"      通过 {len(accepted)}/{total} 题，淘汰率 {len(rejected) / max(1, total):.0%}")
     return 0
 

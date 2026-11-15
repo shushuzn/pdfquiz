@@ -1,6 +1,7 @@
 # 运行产物
 out/
 out_*/
+.shots/
 *.quiz.md
 *.rejected.json
 *.extracted.md

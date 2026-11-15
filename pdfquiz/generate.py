@@ -86,7 +86,12 @@ def generate_for_chunk(
 
 def parse_questions(raw: str, chunk: Chunk) -> list[dict]:
     data = parse_json(raw)
-    items = data.get("questions", data if isinstance(data, list) else [])
+    if isinstance(data, list):
+        items = data
+    elif isinstance(data, dict):
+        items = data.get("questions") or data.get("items") or []
+    else:
+        items = []
     if not isinstance(items, list):
         items = []
     out: list[dict] = []
