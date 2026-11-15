@@ -1,0 +1,202 @@
+// 前端功能测试：node functional.mjs <url> [期望题数]
+// 直接驱动页面作答，断言判分逻辑与页面无异常。
+// 需要本机 Edge/Chrome 带 --remote-debugging-port=9222 启动。
+//
+// 题库题型不一定齐全（教材卷是翻译类，示例卷是客观题类），
+// 所以每组用例先看题库里有没有对应题型，没有就跳过而不是失败。
+const [, , url, expectArg] = process.argv;
+const EXPECT = expectArg ? Number(expectArg) : null;
+
+const created = await fetch("http://127.0.0.1:9222/json/new?about:blank", { method: "PUT" }).then((r) => r.json());
+const ws = new WebSocket(created.webSocketDebuggerUrl);
+await new Promise((res) => (ws.onopen = res));
+
+let seq = 0;
+const pending = new Map();
+const problems = [];
+ws.onmessage = (e) => {
+  const msg = JSON.parse(e.data);
+  if (msg.method === "Runtime.exceptionThrown") {
+    problems.push("异常: " + (msg.params.exceptionDetails.exception?.description || msg.params.exceptionDetails.text).slice(0, 200));
+  }
+  if (msg.method === "Log.entryAdded" && msg.params.entry.level === "error") {
+    problems.push("控制台错误: " + msg.params.entry.text.slice(0, 200));
+  }
+  if (msg.id && pending.has(msg.id)) {
+    const { res, rej } = pending.get(msg.id);
+    pending.delete(msg.id);
+    msg.error ? rej(new Error(JSON.stringify(msg.error))) : res(msg.result);
+  }
+};
+const send = (method, params = {}) =>
+  new Promise((res, rej) => {
+    const id = ++seq;
+    pending.set(id, { res, rej });
+    ws.send(JSON.stringify({ id, method, params }));
+  });
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const evaluate = async (expression) => {
+  const r = await send("Runtime.evaluate", { expression, awaitPromise: true, returnByValue: true });
+  if (r.exceptionDetails) throw new Error("JS 异常: " + (r.exceptionDetails.exception?.description || "").slice(0, 300));
+  return r.result.value;
+};
+
+await send("Page.enable");
+await send("Runtime.enable");
+await send("Log.enable");
+await send("Emulation.setDeviceMetricsOverride", { width: 1440, height: 940, deviceScaleFactor: 1, mobile: false });
+await send("Page.navigate", { url });
+for (let i = 0; i < 80; i++) {
+  if ((await evaluate("document.readyState")) === "complete") break;
+  await sleep(100);
+}
+await sleep(500);
+await evaluate("localStorage.clear()");
+await send("Page.reload");
+await sleep(900);
+
+const results = [];
+const ok = (name, pass, detail) => {
+  results.push({ name, pass });
+  console.log((pass ? "✓ " : "✗ ") + name + (detail ? "  " + detail : ""));
+};
+const skip = (name, why) => console.log("– " + name + "  跳过（" + why + "）");
+
+/* 清掉某道题的作答记录并刷新，用于同一道题反复判对/判错 */
+const resetOne = async (idx) => {
+  await evaluate(`(() => {
+    const k = 'pdfquiz:' + (window.__QUIZ__.meta.id || 'deck');
+    const raw = JSON.parse(localStorage.getItem(k) || '{}');
+    if (raw.answers) delete raw.answers[${idx}];
+    localStorage.setItem(k, JSON.stringify(raw));
+  })()`);
+  await send("Page.reload");
+  await sleep(800);
+};
+
+/* 定位题卡 → 执行作答脚本 → 回读判定结果 */
+const answerBy = (idx, js) => evaluate(`(() => {
+  const i = ${idx};
+  const node = document.querySelector('#stage .q[data-i="'+i+'"]');
+  if (!node) return { cls: '', txt: '找不到题卡', granted: false };
+  ${js}
+  const v = node.querySelector('.verdict');
+  return { cls: v.className, txt: v.textContent.trim(), graded: node.classList.contains('graded') };
+})()`);
+
+// ---- 1. 题库加载
+const meta = await evaluate("({n: window.__QUIZ__.questions.length, types: [...new Set(window.__QUIZ__.questions.map(q=>q.t))]})");
+ok("题库加载", meta.n > 0 && (EXPECT === null || meta.n === EXPECT), `题数=${meta.n} 题型=${meta.types.join(",")}`);
+
+const has = (t) => meta.types.includes(t);
+const first = (t) => `window.__QUIZ__.questions.findIndex(q=>q.t==='${t}')`;
+
+// ---- 2. 选择题：选对判对、选错判负
+if (has("single") || has("truefalse")) {
+  const type = has("single") ? "single" : "truefalse";
+  const idx = await evaluate(first(type));
+  const right = await evaluate(`window.__QUIZ__.questions[${idx}].a[0]`);
+  const wrong = await evaluate(`(() => {
+    const q = window.__QUIZ__.questions[${idx}];
+    const letters = q.t === 'truefalse' ? ['T','F'] : 'ABCDEFGH'.slice(0, q.o.length).split('');
+    return letters.find(l => !q.a.includes(l));
+  })()`);
+
+  const r1 = await answerBy(idx, `node.querySelector('.opt[data-l="${right}"]').click();`);
+  ok("选择题选对判对", /verdict ok/.test(r1.cls), `答案=${right} → ${r1.txt}`);
+
+  await resetOne(idx);
+  const r2 = await answerBy(idx, `node.querySelector('.opt[data-l="${wrong}"]').click();`);
+  ok("选择题选错判负", /verdict bad/.test(r2.cls), `选 ${wrong} → ${r2.txt}`);
+} else {
+  skip("选择题判分", "题库无单选题/判断题");
+}
+
+// ---- 3. 填空 / 术语：精确比对，前缀不算对
+const fillType = has("term") ? "term" : has("fill") ? "fill" : null;
+const cn = fillType === "term" ? "术语" : "填空题";
+if (fillType) {
+  const idx = await evaluate(first(fillType));
+  const ans = await evaluate(`window.__QUIZ__.questions[${idx}].a[0]`);
+
+  const r3 = await answerBy(idx, `
+    const f = node.querySelector('.field');
+    f.value = ${JSON.stringify(ans)};
+    f.dispatchEvent(new Event('input', {bubbles:true}));
+    node.querySelector('[data-act="confirm"]').click();`);
+  ok(cn + "答对判对", /verdict ok/.test(r3.cls), `答案=${ans} → ${r3.txt}`);
+
+  await resetOne(idx);
+  const r4 = await answerBy(idx, `
+    const f = node.querySelector('.field');
+    f.value = 'zzzz';
+    f.dispatchEvent(new Event('input', {bubbles:true}));
+    node.querySelector('[data-act="confirm"]').click();`);
+  ok(cn + "答错判负", /verdict bad/.test(r4.cls), `输入 zzzz → ${r4.txt}`);
+
+  // 截断前缀不能判对：polymer 与 polymerization 的区别
+  if (fillType === "term") {
+    const longIdx = await evaluate(`window.__QUIZ__.questions.findIndex(q=>q.t==='term' && q.a[0].length>=8)`);
+    if (longIdx >= 0) {
+      const p = await answerBy(longIdx, `
+        const full = window.__QUIZ__.questions[${longIdx}].a[0];
+        const f = node.querySelector('.field');
+        f.value = full.slice(0, Math.max(4, full.length - 4));
+        f.dispatchEvent(new Event('input', {bubbles:true}));
+        node.querySelector('[data-act="confirm"]').click();`);
+      const full = await evaluate(`window.__QUIZ__.questions[${longIdx}].a[0]`);
+      ok("术语题前缀不判对", /verdict bad/.test(p.cls), `${full} vs 前缀输入`);
+    } else {
+      skip("术语题前缀不判对", "没有足够长的术语题");
+    }
+  }
+} else {
+  skip("填空类判分", "题库无填空题/术语题");
+}
+
+// ---- 4. 主观题：作答后走自评，自评结果落到统计
+const subType = ["trans_en_cn", "trans_cn_en", "describe", "qa", "short"].find(has);
+if (subType) {
+  const idx = await evaluate(first(subType));
+  const r6 = await evaluate(`(() => {
+    const i = ${idx};
+    const node = document.querySelector('#stage .q[data-i="'+i+'"]');
+    const ta = node.querySelector('.field');
+    const btn = node.querySelector('[data-act="reveal"]');
+    if (!ta || !btn) return { err: '控件缺失 ta=' + !!ta + ' btn=' + !!btn };
+    ta.value = '我的作答';
+    ta.dispatchEvent(new Event('input', {bubbles:true}));
+    btn.click();
+    return { txt: node.querySelector('.verdict').textContent.trim(), self: !!node.querySelector('.self-grade') };
+  })()`);
+
+  if (r6.err) {
+    ok("主观题走自评", false, r6.err);
+  } else {
+    ok("主观题走自评", r6.self === true, r6.txt);
+    const after = await evaluate(`(() => {
+      const node = document.querySelector('#stage .q[data-i="${idx}"]');
+      node.querySelector('[data-self="yes"]').click();
+      return { cls: node.querySelector('.verdict').className, txt: node.querySelector('.verdict').textContent.trim() };
+    })()`);
+    ok("自评后标记为掌握", /verdict ok/.test(after.cls), after.txt);
+  }
+} else {
+  skip("主观题自评", "题库无主观题");
+}
+
+// ---- 5. 统计口径：已完成 = 对 + 错，且与未做相加等于总题数
+const stats = await evaluate(`(() => {
+  const num = (s) => Number((document.querySelector(s) || {}).textContent || 0);
+  const ring = num('#ringNum'), okN = num('#okNum'), badN = num('#badNum'), left = num('#leftNum');
+  const n = window.__QUIZ__.questions.length;
+  return { ring, okN, badN, left, n, consistent: ring === okN + badN && okN + badN + left === n };
+})()`);
+ok("统计口径一致", stats.consistent, `已完成 ${stats.ring} = 对 ${stats.okN} + 错 ${stats.badN}，未做 ${stats.left}，共 ${stats.n}`);
+
+// ---- 6. JS 无异常
+ok("无 JS 异常", problems.length === 0, problems.slice(0, 3).join(" | "));
+
+console.log("\n通过 " + results.filter((r) => r.pass).length + "/" + results.length);
+ws.close();
+process.exit(results.every((r) => r.pass) ? 0 : 1);

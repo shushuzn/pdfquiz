@@ -66,6 +66,34 @@ python run.py samples/过拟合与正则化.md --offline -n 3
 
 答题判定只做**客观题**：填空与术语按去空格与标点后比对，简答/翻译/描述/问答无法自动判分，因此走「查看参考答案 → 自己标记记住了/没答到」的路径，统计里单列为「待自评」，不混进正确率。
 
+### 手机上
+
+题库的主要使用场景是通勤路上刷两题，所以移动端不是把桌面版缩一缩：
+
+| 问题 | 处理 |
+|---|---|
+| 底栏在长页面里被顶到文档末尾，翻页要点半天 | 窄屏改成 `position:fixed` 吸底，正文预留 `padding-bottom`，并吃 `safe-area-inset` |
+| iOS 聚焦输入框会放大整页 | 输入框字号提到 `max(16px, 正文字号)`，不再触发自动缩放 |
+| 软键盘弹起后被固定底栏挡掉一行 | 聚焦输入时收起底栏（`body.kbd`），失焦恢复 |
+| 翻译题固定 3 行，写两句就得抠着滚 | 文本框跟随内容自增高，上限 55vh 后转为内部滚动 |
+| 长英文题干在手机上读着累 | 抽屉里有「正文字号 小/标准/大」三档，单独存 localStorage |
+| 想跳回第 32 题要开抽屉再滚半天 | 底栏中间的数字点开是**题号面板**：按单元/按题型两种分组，颜色标出对/错/待自评/未做，点击直达 |
+| 单手翻页够不到顶栏 | 题干区域支持横滑翻页（位移 > 55px 且明显偏水平才认，不抢竖向滚动） |
+| 横滑被浏览器当成「后退」手势 | `overscroll-behavior-x: none` |
+| 抽屉里章节列表自成滚动区，只露出三行 | 窄屏取消内层滚动，整个抽屉一起滚 |
+
+![手机端](docs/mobile.png)
+
+同一份模板在平板与桌面仍是左右分栏，底栏回落到 `sticky`；题号面板在宽屏收成居中浮层而不是横贯整屏。
+
+改了模板想给旧产物换新壳，不必重跑解析：
+
+```bash
+python tools/restyle.py examples/*.quiz.html      # 就地重渲染
+python tools/restyle.py in.html -o out.html       # 另存
+```
+
+
 ### 用 MCP 接入模型
 
 ```bash
@@ -164,10 +192,15 @@ pdfquiz/
 │   └── cli.py                  命令行
 ├── papers/exam_a.json          试卷题目（题干/答案/采分点/出处）
 ├── tools/
-│   └── build_exam.py           试卷 + 词汇表 → 题库（校验、去重、导出）
+│   ├── build_exam.py           试卷 + 词汇表 → 题库（校验、去重、导出）
+│   └── restyle.py              用最新模板重渲染已有题库，不重跑解析
 ├── tests/
 │   ├── test_pipeline.py        15 项单测
-│   └── fake_mcp_server.py      假 MCP 服务器，内含 1 道伪造题
+│   ├── fake_mcp_server.py      假 MCP 服务器，内含 1 道伪造题
+│   └── web/
+│       ├── functional.mjs      前端功能测试（判分 / 自评 / 无异常）
+│       ├── mobile.mjs          移动端交互测试（吸底 / 自增高 / 横滑 / 题号面板）
+│       └── shots.mjs           批量截图
 └── samples/
 ```
 
@@ -178,6 +211,17 @@ python -m unittest discover -s tests -v
 ```
 
 覆盖：章节切分、超长切分、碎片合并、逐字命中、空白容错、伪造拒绝、否定翻转拒绝、过短拒绝、重复选项、答案越界、多选单答、判断题非法答案、跨题去重、离线题 100% 可溯源。
+
+前端测试直接驱动真实浏览器（本机 Edge / Chrome 以 `--remote-debugging-port=9222` 启动，用 Node 内置 WebSocket 走 CDP，无额外依赖）：
+
+```bash
+node tests/web/functional.mjs "file:///$PWD/out_exam/exam_a.quiz.html" 69   # 判分链路 8 项
+node tests/web/mobile.mjs     "file:///$PWD/out_exam/exam_a.quiz.html"      # 移动端交互 13 项
+```
+
+`functional.mjs` 按题库里实际存在的题型挑用例：教材卷覆盖术语精确比对与主观题自评，示例卷（`docs/demo.html`）覆盖客观题判分，缺哪类就跳过哪类，不会误报。
+
+移动端那组用 CDP 的 `Input.dispatchTouchEvent` 真发触摸事件，断言底栏吸底、聚焦时收栏、文本框自增高、横滑翻页两个方向、题号面板分组与跳转、字号三档持久化、抽屉不再嵌套滚动。
 
 ## 已知局限
 
