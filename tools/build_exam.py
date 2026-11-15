@@ -199,7 +199,7 @@ def build_textbook(units: dict[str, str]) -> str:
     heads = {
         "unit01": "UNIT 1 What are Polymers?（书页 1-6）",
         "unit02": "UNIT 2 Chain Polymerization（书页 7-10）",
-        "unit03": "UNIT 3 Step-Growth Polymerization（书页 11-20）",
+        "unit03": "UNIT 3 Step Growth Polymerization（书页 11-20）",
         "unit06": "UNIT 6 Polymer Solution（书页 34-40）",
         "unit07": "UNIT 7 Morphology of Solid Polymers（书页 41-47）",
         "unit10": "UNIT 10 Preparations of Amino Resins in Laboratory（书页 61-68）",
