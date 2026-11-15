@@ -6,6 +6,13 @@ out_*/
 *.rejected.json
 *.extracted.md
 
+# 教材扫描件与逐页转录稿：属于版权文本，不入库
+.pages/
+.probe/
+.units/
+.vendor/
+教材整理稿.md
+
 # 保留示例产物
 !examples/*.md
 

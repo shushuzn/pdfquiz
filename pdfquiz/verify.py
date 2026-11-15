@@ -62,7 +62,9 @@ def evidence_ok(evidence: str, source: str) -> tuple[bool, str]:
 def check_structure(q: dict) -> tuple[bool, str]:
     qtype = str(q.get("type", "single")).lower()
     question = normalize(q.get("question", ""))
-    if len(question) < 6:
+    # 术语翻译题的题干就是一个词（如“逐步聚合”），不能套用长题干阈值
+    min_len = 2 if qtype in {"trans_cn_en", "term"} else 6
+    if len(question) < min_len:
         return False, "题干为空或过短"
 
     if qtype in {"single", "multiple"}:
@@ -107,14 +109,23 @@ def is_duplicate(question: str, seen: list[set[str]]) -> bool:
 def verify(questions: list[dict], source_text: str) -> Report:
     report = Report()
     seen: list[set[str]] = []
+    seen_exact: set[str] = set()
 
     for q in questions:
         ok, why = check_structure(q)
         if ok:
             ok, why = evidence_ok(q.get("evidence", ""), source_text)
-        if ok and is_duplicate(q.get("question", ""), seen):
-            ok, why = False, "与已有题目高度重复"
         if ok:
+            key = squash(q.get("question", ""))
+            # 短题干（术语题常只有两三个字）构不出 3-gram，
+            # 用精确比对判重，否则会被 is_duplicate 的“空集=重复”误杀
+            if len(key) < 6:
+                if key in seen_exact:
+                    ok, why = False, "与已有题目重复"
+            elif is_duplicate(q.get("question", ""), seen):
+                ok, why = False, "与已有题目高度重复"
+        if ok:
+            seen_exact.add(squash(q.get("question", "")))
             seen.append(_grams(q.get("question", "")))
             report.accepted.append(q)
         else:

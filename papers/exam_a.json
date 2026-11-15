@@ -1,0 +1,361 @@
+{
+  "meta": {
+    "title": "高分子材料工程专业英语 · 期末模拟卷 A",
+    "source": "《高分子材料工程专业英语》曹同玉、冯连芳主编（化学工业出版社）",
+    "note": "范围：Introduction(由 UNIT 1 导论内容覆盖)、UNIT 1、2、3、6、7、10、16、17、22、29"
+  },
+  "questions": [
+    {
+      "type": "trans_en_cn",
+      "chunk_path": "PART A 高分子化学与物理 > UNIT 1 What are Polymers?",
+      "score": 5,
+      "question": "It is essentially the 'giantness' of the size of the polymer molecule that makes its behavior different from that of a commonly known chemical compound such as benzene.",
+      "answer": "本质上，正是聚合物分子尺寸上的“巨大性”，才使其行为不同于苯这类人们熟知的化合物。",
+      "keys": [
+        { "en": "giantness", "cn": "巨大性" },
+        { "en": "molecular size", "cn": "分子尺寸" },
+        { "en": "be different from", "cn": "不同于" },
+        { "en": "compound", "cn": "化合物" }
+      ],
+      "ref": "UNIT 1 · 书页 1",
+      "evidence": "It is essentially the 'giantness' of the size of the polymer molecule that makes its behavior different from that of a commonly known chemical compound such as benzene.",
+      "explanation": "强调句 It is ... that ... 汉译用“正是……才……”体现。注意 that of = the behavior of，比较对象要译出。"
+    },
+    {
+      "type": "trans_en_cn",
+      "chunk_path": "PART A 高分子化学与物理 > UNIT 2 Chain Polymerization",
+      "score": 5,
+      "question": "Such reactions occur through the initial addition of a monomer molecule to an initiator radical or an initiator ion, by which the active state is transferred from the initiator to the added monomer.",
+      "answer": "这类反应的发生，是单体分子首先加成到引发剂自由基或引发剂离子上，借此活性态由引发剂转移到所加成的单体上。",
+      "keys": [
+        { "en": "initiator radical", "cn": "引发剂自由基" },
+        { "en": "initiator ion", "cn": "引发剂离子" },
+        { "en": "active state", "cn": "活性态" },
+        { "en": "be transferred from ... to", "cn": "从……转移到……" }
+      ],
+      "ref": "UNIT 2 · 书页 7",
+      "evidence": "Such reactions occur through the initial addition of a monomer molecule to an initiator radical or an initiator ion, by which the active state is transferred from the initiator to the added monomer.",
+      "explanation": "by which 引导非限制性定语从句，指代前面整个“加成”过程；汉译宜拆成两句，避免“由……通过……借此……”堆叠。"
+    },
+    {
+      "type": "trans_en_cn",
+      "chunk_path": "PART A 高分子化学与物理 > UNIT 2 Chain Polymerization",
+      "score": 5,
+      "question": "The polymerization is a chain reaction in two ways, because of the reaction kinetics and because as a reaction product one obtains a chain molecule.",
+      "answer": "聚合反应从两方面看都是链式反应：一是就反应动力学而言，二是作为反应产物得到的是链状分子。",
+      "keys": [
+        { "en": "chain reaction", "cn": "链式反应" },
+        { "en": "reaction kinetics", "cn": "反应动力学" },
+        { "en": "chain molecule", "cn": "链状分子" },
+        { "en": "in two ways", "cn": "从两方面" }
+      ],
+      "ref": "UNIT 2 · 书页 7",
+      "evidence": "The polymerization is a chain reaction in two ways, because of the reaction kinetics and because as a reaction product one obtains a chain molecule.",
+      "explanation": "这是 UNIT 2 的核心判断句，考试常见。in two ways 的两个 because 并列，须译出两层含义。"
+    },
+    {
+      "type": "trans_en_cn",
+      "chunk_path": "PART A 高分子化学与物理 > UNIT 3 Step-Growth Polymerization",
+      "score": 5,
+      "question": "Thus, molecular weight increases slowly even at high levels of monomer conversion, and it will continue to increase until the viscosity build-up makes it mechanically too difficult to remove water of esterification or for reactive end groups to find each other.",
+      "answer": "因此，即使在单体转化率很高的情况下，分子量也只是缓慢增长；而且它会继续增长，直到粘度增大到在机械上难以脱除酯化水，或使活性端基难以彼此相遇为止。",
+      "keys": [
+        { "en": "monomer conversion", "cn": "单体转化率" },
+        { "en": "viscosity build-up", "cn": "粘度增大" },
+        { "en": "water of esterification", "cn": "酯化水" },
+        { "en": "reactive end group", "cn": "活性端基" }
+      ],
+      "ref": "UNIT 3 · 书页 11",
+      "evidence": "Thus, molecular weight increases slowly even at high levels of monomer conversion, and it will continue to increase until the viscosity build-up makes it mechanically too difficult to remove water of esterification or for reactive end groups to find each other.",
+      "explanation": "makes it too difficult to do A or for B to do C 是形式宾语结构，it 指代后面的不定式；汉译要还原为“难以做某事”。"
+    },
+    {
+      "type": "trans_en_cn",
+      "chunk_path": "PART A 高分子化学与物理 > UNIT 3 Step-Growth Polymerization",
+      "score": 5,
+      "question": "It can also be shown that in the A—A + B—B type of polymerization, an exact stoichiometric balance is necessary to achieve high molecular weights.",
+      "answer": "还可以证明，在 A—A + B—B 型聚合中，欲获得高分子量，必须保持精确的化学计量平衡。",
+      "keys": [
+        { "en": "stoichiometric balance", "cn": "化学计量平衡" },
+        { "en": "high molecular weight", "cn": "高分子量" },
+        { "en": "it can be shown that", "cn": "可以证明" }
+      ],
+      "ref": "UNIT 3 · 书页 12",
+      "evidence": "It can also be shown that in the A—A + B—B type of polymerization, an exact stoichiometric balance is necessary to achieve high molecular weights.",
+      "explanation": "被动句 It can be shown that 译作“可以证明”；A—A + B—B 是双官能团单体配对，须保留符号形式。"
+    },
+    {
+      "type": "trans_en_cn",
+      "chunk_path": "PART A 高分子化学与物理 > UNIT 6 Polymer Solution",
+      "score": 5,
+      "question": "Dissolving a polymer is a slow process that occurs in two stages. First, solvent molecules slowly diffuse into the polymer to produce a swollen gel.",
+      "answer": "聚合物的溶解是一个缓慢过程，分两个阶段进行。首先，溶剂分子缓慢扩散进入聚合物内部，生成溶胀凝胶。",
+      "keys": [
+        { "en": "dissolve", "cn": "溶解" },
+        { "en": "diffuse into", "cn": "扩散进入" },
+        { "en": "swollen gel", "cn": "溶胀凝胶" },
+        { "en": "in two stages", "cn": "分两个阶段" }
+      ],
+      "ref": "UNIT 6 · 书页 34",
+      "evidence": "Dissolving a polymer is a slow process that occurs in two stages. First, solvent molecules slowly diffuse into the polymer to produce a swollen gel.",
+      "explanation": "本单元开篇定义句，几乎是必考句。two stages = 溶胀（swelling）+ 溶解（dissolution），译时不要漏掉阶段名称的对应。"
+    },
+    {
+      "type": "trans_en_cn",
+      "chunk_path": "PART A 高分子化学与物理 > UNIT 6 Polymer Solution",
+      "score": 5,
+      "question": "In a thermodynamically 'good' solvent, where polymer solvent contacts are highly favored, the coils are relatively extended. In a 'poor' solvent they are relatively contracted.",
+      "answer": "在热力学上的“良”溶剂中，聚合物与溶剂的接触十分有利，线团相对伸展；而在“不良”溶剂中，线团则相对收缩。",
+      "keys": [
+        { "en": "good solvent", "cn": "良溶剂" },
+        { "en": "poor solvent", "cn": "不良溶剂" },
+        { "en": "coil", "cn": "线团" },
+        { "en": "extended", "cn": "伸展的" },
+        { "en": "contracted", "cn": "收缩的" }
+      ],
+      "ref": "UNIT 6 · 书页 34",
+      "evidence": "In a thermodynamically 'good' solvent, where polymer solvent contacts are highly favored, the coils are relatively extended. In a 'poor' solvent they are relatively contracted.",
+      "explanation": "良/不良溶剂对线团尺寸的影响是高频考点。where 引导定语从句修饰 solvent；extended 与 contracted 成对记忆。"
+    },
+    {
+      "type": "trans_en_cn",
+      "chunk_path": "PART A 高分子化学与物理 > UNIT 7 Morphology of Solid Polymers",
+      "score": 5,
+      "question": "The fringed-micelle theory, developed in the 1930's, considers polymers to consist of small-sized, ordered crystalline regions termed crystallites imbedded in an unordered, amorphous polymer matrix.",
+      "answer": "20 世纪 30 年代提出的缨状胶束理论认为，聚合物由尺寸较小的有序晶区（称为微晶）嵌埋在无序的非晶聚合物基质中构成。",
+      "keys": [
+        { "en": "fringed-micelle theory", "cn": "缨状胶束理论" },
+        { "en": "crystallite", "cn": "微晶" },
+        { "en": "amorphous", "cn": "非晶的" },
+        { "en": "polymer matrix", "cn": "聚合物基质" }
+      ],
+      "ref": "UNIT 7 · 书页 41",
+      "evidence": "The fringed-micelle theory, developed in the 1930's, considers polymers to consist of small-sized, ordered crystalline regions termed crystallites imbedded in an unordered, amorphous polymer matrix.",
+      "explanation": "developed in the 1930's 是插入语，作后置定语；termed crystallites 为过去分词短语后置，译作“称为微晶的”。"
+    },
+    {
+      "type": "trans_en_cn",
+      "chunk_path": "PART A 高分子化学与物理 > UNIT 10 Preparations of Amino Resins",
+      "score": 5,
+      "question": "In order to demonstrate the rapidity of the reaction of urea with formaldehyde under acidic conditions, mix 5 g of urea with 6 ml of formalin in a test tube, and shake the tube until the urea has dissolved.",
+      "answer": "为了演示酸性条件下尿素与甲醛反应的快速性，在试管中将 5 g 尿素与 6 ml 甲醛溶液混合，并振荡试管直至尿素溶解。",
+      "keys": [
+        { "en": "urea", "cn": "尿素" },
+        { "en": "formaldehyde", "cn": "甲醛" },
+        { "en": "formalin", "cn": "甲醛溶液" },
+        { "en": "rapidity", "cn": "快速性" }
+      ],
+      "ref": "UNIT 10 · 书页 61",
+      "evidence": "In order to demonstrate the rapidity of the reaction of urea with formaldehyde under acidic conditions, mix 5 g of urea with 6 ml of formalin in a test tube, and shake the tube until the urea has dissolved.",
+      "explanation": "实验类课文考“祈使句+剂量+条件”。formaldehyde 与 formalin 要区分：前者是甲醛，后者是甲醛水溶液（福尔马林）。"
+    },
+    {
+      "type": "trans_en_cn",
+      "chunk_path": "PART B 聚合工程 > UNIT 16 Copolymer Composition Distributions",
+      "score": 5,
+      "question": "The initial polymer will be rich in the more reactive component, but as polymerization proceeds, the monomer mixture will be depleted in this component, and compositions will drift toward the less reactive component.",
+      "answer": "初始生成的聚合物将富含反应活性较高的组分；但随着聚合进行，单体混合物中该组分会被消耗殆尽，组成将朝活性较低的组分漂移。",
+      "keys": [
+        { "en": "reactive component", "cn": "活性组分" },
+        { "en": "be rich in", "cn": "富含" },
+        { "en": "be depleted in", "cn": "在……方面被耗尽" },
+        { "en": "drift toward", "cn": "朝……漂移" }
+      ],
+      "ref": "UNIT 16 · 书页 102",
+      "evidence": "The initial polymer will be rich in the more reactive component, but as polymerization proceeds, the monomer mixture will be depleted in this component, and compositions will drift toward the less reactive component.",
+      "explanation": "这是“组成漂移”现象的经典表述，也是问答题的理论基础。be rich in / be depleted in 成对记忆。"
+    },
+    {
+      "type": "trans_en_cn",
+      "chunk_path": "PART C 加工·性能·应用 > UNIT 22 Mechanical Properties of Polymers",
+      "score": 5,
+      "question": "The most important and most characteristic mechanical properties are called moduli. A modulus is the ratio between the applied stress and the corresponding deformation. The reciprocals of the moduli are called compliances.",
+      "answer": "最重要且最具特征的力学性能称为模量。模量是施加的应力与相应形变之比。模量的倒数称为柔量。",
+      "keys": [
+        { "en": "modulus", "cn": "模量" },
+        { "en": "stress", "cn": "应力" },
+        { "en": "deformation", "cn": "形变" },
+        { "en": "compliance", "cn": "柔量" },
+        { "en": "reciprocal", "cn": "倒数" }
+      ],
+      "ref": "UNIT 22 · 书页 143",
+      "evidence": "The most important and most characteristic mechanical properties are called moduli. A modulus is the ratio between the applied stress and the corresponding deformation. The reciprocals of the moduli are called compliances.",
+      "explanation": "三个定义句连排，是名词解释题的直接来源。注意 moduli 是 modulus 的复数，compliances 对应“柔量”。"
+    },
+    {
+      "type": "trans_en_cn",
+      "chunk_path": "PART C 加工·性能·应用 > UNIT 29 Synthetic Plastics",
+      "score": 5,
+      "question": "Plastics offer advantages such as lightness, resilience, resistance to corrosion, colour fastness, transparency, ease of processing, etc., and although they also have their limitations, their exploitation is limited only by the ingenuity of the designer.",
+      "answer": "塑料具有质轻、回弹性好、耐腐蚀、色泽牢固、透明、易加工等优点；尽管塑料也有其局限性，但它的应用只受设计师创造力的限制。",
+      "keys": [
+        { "en": "resilience", "cn": "回弹性" },
+        { "en": "resistance to corrosion", "cn": "耐腐蚀性" },
+        { "en": "colour fastness", "cn": "色泽牢固度" },
+        { "en": "ingenuity", "cn": "独创性；创造力" },
+        { "en": "limitation", "cn": "局限性" }
+      ],
+      "ref": "UNIT 29 · 书页 182",
+      "evidence": "Plastics offer advantages such as lightness, resilience, resistance to corrosion, colour fastness, transparency, ease of processing, etc., and although they also have their limitations, their exploitation is limited only by the ingenuity of the designer.",
+      "explanation": "优点并列项多，须逐项译出且不重复用词。only 的位置决定语气：limited only by = 仅仅受……限制。"
+    },
+
+    {
+      "type": "trans_cn_en",
+      "chunk_path": "PART A 高分子化学与物理 > UNIT 3 Step-Growth Polymerization",
+      "score": 2,
+      "question": "逐步聚合",
+      "answer": "step-growth polymerization",
+      "keys": [{ "en": "step-growth polymerization", "cn": "逐步聚合" }],
+      "ref": "UNIT 3 · 书页 11",
+      "evidence": "Many different chemical reactions may be used to synthesize polymeric materials by step-growth polymerization.",
+      "explanation": "注意连字符：step-growth，不是 step growth。缩合聚合可称 condensation polymerization。"
+    },
+    {
+      "type": "trans_cn_en",
+      "chunk_path": "PART A 高分子化学与物理 > UNIT 2 Chain Polymerization",
+      "score": 2,
+      "question": "自由基链式聚合",
+      "answer": "radical chain polymerization",
+      "keys": [{ "en": "radical chain polymerization", "cn": "自由基链式聚合" }],
+      "ref": "UNIT 2 · 阅读材料",
+      "evidence": "Radical chain polymerization is a chain reaction consisting of a sequence of three steps: initiation, propagation, and termination.",
+      "explanation": "radical 在此是“自由基”，不是“根本的”。也可写 free radical polymerization。"
+    },
+    {
+      "type": "trans_cn_en",
+      "chunk_path": "PART A 高分子化学与物理 > UNIT 6 Polymer Solution",
+      "score": 2,
+      "question": "无规线团",
+      "answer": "random coil",
+      "keys": [{ "en": "random coil", "cn": "无规线团" }],
+      "ref": "UNIT 6 · 书页 34",
+      "evidence": "The random coil (Fig. 6.1) arises from the relative freedom of rotation associated with the chain bonds of most polymers and the formidably large number of conformations accessible to the molecule.",
+      "explanation": "random coil 是描述溶液中聚合物构象的核心术语，常与 extended chain（伸展链）对照。"
+    },
+    {
+      "type": "trans_cn_en",
+      "chunk_path": "PART A 高分子化学与物理 > UNIT 7 Morphology of Solid Polymers",
+      "score": 2,
+      "question": "折叠链片晶",
+      "answer": "folded-chain lamella",
+      "keys": [{ "en": "folded-chain lamella", "cn": "折叠链片晶" }],
+      "ref": "UNIT 7 · 书页 41",
+      "evidence": "The folded-chain lamella theory arose in the late 1950's when polymer single crystals in the form of thin platelets termed lamella were grown from polymer solutions.",
+      "explanation": "lamella 单数，复数为 lamellae。对应理论名 folded-chain lamella theory。"
+    },
+    {
+      "type": "trans_cn_en",
+      "chunk_path": "PART B 聚合工程 > UNIT 16 Copolymer Composition Distributions",
+      "score": 2,
+      "question": "共聚物组成分布",
+      "answer": "copolymer composition distribution",
+      "keys": [{ "en": "copolymer composition distribution", "cn": "共聚物组成分布" }],
+      "ref": "UNIT 16 · 书页 102",
+      "evidence": "A segregated stirred tank gives the broadest copolymer composition distribution with the tail of the distribution approaching pure polyacrylonitrile.",
+      "explanation": "本单元标题即此短语；composition 指组成，不是“作文”。"
+    },
+
+    {
+      "type": "describe",
+      "chunk_path": "PART A 高分子化学与物理 > UNIT 6 Polymer Solution",
+      "score": 5,
+      "question": "Describe the two stages of polymer dissolution, and explain why a polymer solution shows no saturation point while a salt solution does.",
+      "answer": "Polymer dissolution proceeds in two stages. In the first stage, solvent molecules slowly diffuse into the polymer, producing a swollen gel; this may be the whole process if polymer-polymer intermolecular forces are high because of crosslinking, crystallinity or strong hydrogen bonding. In the second stage, provided strong polymer-solvent interactions overcome those forces, the gel gradually disintegrates into a true solution, and only this stage can be materially accelerated by agitation. A polymer solution shows no saturation point because the polymer chains are extremely long and their dissolution is controlled by slow diffusion and chain disentanglement rather than by a fixed solubility limit; more polymer can keep being added, the dissolution time simply increases, and the mixture ends up as a soft, dough-like mass. A saturated salt solution, by contrast, rejects excess solute, which settles as solid.",
+      "keys": [
+        { "en": "swollen gel", "cn": "溶胀凝胶" },
+        { "en": "polymer-polymer intermolecular forces", "cn": "聚合物-聚合物分子间作用力" },
+        { "en": "disintegrate into a true solution", "cn": "崩解为真溶液" },
+        { "en": "saturation point", "cn": "饱和点" },
+        { "en": "dough-like consistency", "cn": "面团状稠度" }
+      ],
+      "ref": "UNIT 6 · 书页 34；UNIT 1 · 书页 2",
+      "evidence": "Dissolving a polymer is a slow process that occurs in two stages. First, solvent molecules slowly diffuse into the polymer to produce a swollen gel.",
+      "explanation": "两个采分层次：①两阶段及其控制因素（是否交联/结晶/氢键）②无饱和点的原因（链长、扩散控制、本体溶胀而非溶解极限）。U1 已用食盐与聚乙烯醇做过对比，可直接引用。"
+    },
+    {
+      "type": "describe",
+      "chunk_path": "PART A 高分子化学与物理 > UNIT 7 Morphology of Solid Polymers",
+      "score": 5,
+      "question": "Describe the two classical theories of polymer crystallinity and state the range of polymers to which each is best applied.",
+      "answer": "The fringed-micelle theory, developed in the 1930's, treats a polymer as small ordered crystalline regions, called crystallites, imbedded in an unordered amorphous matrix; each chain contributes ordered segments to several crystallites, and the segments between them form the amorphous phase. The folded-chain lamella theory arose in the late 1950's from solution-grown single crystals in the form of thin platelets called lamellae, whose diffraction patterns show that molecules fold back and forth on themselves like an accordion. The two theories are often treated as mutually exclusive but need not be. The folded-chain theory suits highly crystalline polymers, which can be regarded as one-phase crystalline systems with defects (imperfect folds, packing irregularities, entanglements, loose chain ends, dislocations, occluded impurities). Polymers of medium to low crystallinity are better treated by the fringed-micelle concept as two-phase systems of crystallites in an amorphous matrix, and the crystallites themselves may still have folded-chain lamellar structure.",
+      "keys": [
+        { "en": "fringed-micelle theory", "cn": "缨状胶束理论" },
+        { "en": "folded-chain lamella", "cn": "折叠链片晶" },
+        { "en": "crystallite", "cn": "微晶" },
+        { "en": "amorphous matrix", "cn": "非晶基质" },
+        { "en": "semi-crystalline", "cn": "半结晶的" }
+      ],
+      "ref": "UNIT 7 · 书页 41-42",
+      "evidence": "The fringed micelle and folded chain theories of polymer crystallinity are often considered to be mutually exclusive but they need not be so considered.",
+      "explanation": "高分答案要写出“适用分界”：高结晶度→折叠链（单相+缺陷）；中低结晶度→缨状胶束（两相）。只描述两个理论而不给分界，最多得 3 分。"
+    },
+    {
+      "type": "describe",
+      "chunk_path": "PART A 高分子化学与物理 > UNIT 2 Chain Polymerization",
+      "score": 5,
+      "question": "Describe the three elementary steps of radical chain polymerization and point out which step determines the chain nature of the process.",
+      "answer": "Radical chain polymerization consists of three steps: initiation, propagation and termination. Initiation involves two reactions: the homolytic dissociation of an initiator I to give a pair of radicals R·, and the addition of this radical to the first monomer molecule to form the chain-initiating species M·. Propagation is the growth of M· by successive additions of monomer molecules; each addition regenerates a radical of the same identity but larger by one monomer unit, and kp for most monomers is 10^2 to 10^4 L/(mol·s). Termination is the annihilation of radical centres by bimolecular reaction between two radicals, either by combination (coupling) or, more rarely, by disproportionation, and kt is typically 10^6 to 10^8 L/(mol·s). The chain nature resides in the propagation step: large numbers of monomer molecules are converted to polymer for each initial radical produced in initiation. Termination is fast but does not prevent propagation because radical concentrations are very low (about 10^-8 M) and the rate depends on only the one-half power of kt.",
+      "keys": [
+        { "en": "initiation", "cn": "引发" },
+        { "en": "propagation", "cn": "增长" },
+        { "en": "termination", "cn": "终止" },
+        { "en": "combination (coupling)", "cn": "偶合" },
+        { "en": "disproportionation", "cn": "歧化" }
+      ],
+      "ref": "UNIT 2 · 书页 8-9（阅读材料）",
+      "evidence": "Radical chain polymerization is a chain reaction consisting of a sequence of three steps: initiation, propagation, and termination.",
+      "explanation": "关键在最后一句：链式特征由增长步决定，而非引发步。终止有两种方式（偶合/歧化），漏写歧化会丢分。"
+    },
+
+    {
+      "type": "qa",
+      "chunk_path": "PART A 高分子化学与物理 > UNIT 2 Chain Polymerization",
+      "score": 5,
+      "question": "Why is polymerization called a chain reaction in two senses? And why are initiators often called polymerization catalysts although they are not true catalysts?",
+      "answer": "Polymerization is a chain reaction in two senses: kinetically, because one activation step sets off a sequence in which monomer molecules are added one after another (2000 to 20000 monomers per second) until the active state is terminated; and in terms of product, because the reaction product itself is a chain molecule whose length is proportional to the kinetic chain length. Initiators are commonly called polymerization catalysts because very small amounts of them produce a large amount of polymer, in ratios of 1:1000 to 1:10000, which superficially resembles catalysis. Strictly, however, they are not true catalysts: the initiator enters the reaction as a real partner and can be found chemically bound in the reaction product, i.e. in the polymer molecule, whereas a true catalyst is recovered unchanged at the end of the reaction.",
+      "keys": [
+        { "en": "kinetic chain length", "cn": "动力学链长" },
+        { "en": "active state", "cn": "活性态" },
+        { "en": "chemically bound", "cn": "化学键合的" },
+        { "en": "true catalyst", "cn": "真正的催化剂" }
+      ],
+      "ref": "UNIT 2 · 书页 7",
+      "evidence": "The polymerization is a chain reaction in two ways, because of the reaction kinetics and because as a reaction product one obtains a chain molecule.",
+      "explanation": "两问都要答。第二问的判分核心是“引发剂进入产物、成为聚合物链的一部分”，只答“用量少”不给分。"
+    },
+    {
+      "type": "qa",
+      "chunk_path": "PART A 高分子化学与物理 > UNIT 3 Step-Growth Polymerization",
+      "score": 5,
+      "question": "Why must an exact stoichiometric balance be maintained in A—A + B—B step-growth polymerization? What happens if a monofunctional impurity is present?",
+      "answer": "In A—A + B—B polymerization the chain grows only by reaction between the two complementary functional groups, so the maximum attainable degree of polymerization is governed by the ratio of the two monomers. Any imbalance means one kind of end group runs out while the other remains, and growth stops there; high molecular weight therefore requires an exact stoichiometric balance. If a monofunctional impurity is present, its single functional group reacts with a chain end and renders that end inactive, capping the chain. It acts as a chain stopper, limiting the molecular weight regardless of conversion. For the same reason high-purity monomers are needed in A—B polycondensation, and only high-yield reactions are practical, since side reactions upset the stoichiometric balance. Note also that molecular weight increases slowly even at high monomer conversion, and increases only in a stepwise fashion as esterification continues.",
+      "keys": [
+        { "en": "stoichiometric balance", "cn": "化学计量平衡" },
+        { "en": "monofunctional impurity", "cn": "单官能杂质" },
+        { "en": "chain end", "cn": "链端" },
+        { "en": "high molecular weight", "cn": "高分子量" }
+      ],
+      "ref": "UNIT 3 · 书页 12",
+      "evidence": "If some monofunctional impurity is present, its reaction will limit the molecular weight by rendering a chain end inactive.",
+      "explanation": "判分点：①链增长依赖两种互补官能团等量反应 ②单官能杂质封端（capping/chain stopper）使分子量封顶，与转化率无关 ③由此推出需高纯单体和高效反应。"
+    },
+    {
+      "type": "qa",
+      "chunk_path": "PART B 聚合工程 > UNIT 16 Copolymer Composition Distributions",
+      "score": 5,
+      "question": "How do micromixing and macromixing affect copolymer composition distribution? Why must the more reactive monomer be fed continuously if a uniform copolymer is wanted?",
+      "answer": "In free radical multicomponent polymerization the polymer composition differs from the monomer mixture: the polymer is rich in the more reactive monomers and deficient in the less reactive ones. In a batch or piston flow reactor the initial polymer is rich in the more reactive component, but as polymerization proceeds that component is depleted and the composition drifts toward the less reactive one, so the composition distribution broadens. A perfect mixer gives a chemically uniform copolymer because the composition is uniform at the average value; a segregated stirred tank gives the broadest distribution, with a tail approaching pure polyacrylonitrile, because segregation preserves local composition differences. Macromixing is characterized by the residence time distribution and its dimensionless variance, whose magnitude represents the fraction of the system volume that is stirred; varying it at fixed micromixing moves the distribution between the perfect-mixer and batch limits. If a uniform copolymer is wanted, the more reactive monomer must be fed to the reactor as a function of time, to compensate for its faster consumption and keep the monomer ratio at the value that yields the target composition.",
+      "keys": [
+        { "en": "micromixing", "cn": "微观混合" },
+        { "en": "macromixing", "cn": "宏观混合" },
+        { "en": "copolymer composition distribution", "cn": "共聚物组成分布" },
+        { "en": "residence time distribution", "cn": "停留时间分布" },
+        { "en": "azeotrope", "cn": "恒比点" }
+      ],
+      "ref": "UNIT 16 · 书页 102-103",
+      "evidence": "If a copolymer of uniform composition is desired, the more reactive monomer must be fed to the reactor as a function of time.",
+      "explanation": "必须区分两个层次：微观混合决定局部浓度是否均匀，宏观混合决定各微元在反应器中的停留时间。补加单体的理由是“补偿快消耗、维持单体配比”。提到恒比点（azeotrope）可加分。"
+    }
+  ]
+}

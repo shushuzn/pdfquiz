@@ -106,6 +106,12 @@ def build_payload(
                 "a": answer,
                 "exp": str(q.get("explanation", "") or "").strip(),
                 "ev": str(q.get("evidence", "") or "").strip(),
+                # 主观题（翻译/描述/问答）专用：
+                # keys 是采分点术语对，ref 是教材出处，prompt 是作答提示
+                "keys": _keys(q.get("keys")),
+                "ref": str(q.get("ref", "") or "").strip(),
+                "hint": str(q.get("hint", "") or "").strip(),
+                "score": q.get("score") or 0,
             }
         )
 
@@ -131,6 +137,32 @@ def build_payload(
 def _slug(text: str) -> str:
     keep = [c for c in text if c.isalnum() or c in "-_"]
     return "".join(keep)[:60] or "deck"
+
+
+def _keys(raw: object) -> list[dict]:
+    """采分点归一：接受 [{"en":..,"cn":..}]、"en => cn" 字符串、或纯字符串列表。"""
+    if not raw:
+        return []
+    out: list[dict] = []
+    seq = raw if isinstance(raw, list) else [raw]
+    for item in seq:
+        if isinstance(item, dict):
+            en = str(item.get("en", "") or "").strip()
+            cn = str(item.get("cn", "") or "").strip()
+        else:
+            s = str(item)
+            if "=>" in s:
+                en, cn = s.split("=>", 1)
+                en, cn = en.strip(), cn.strip()
+            elif "—" in s or " - " in s:
+                parts = re.split(r"\s*[—]\s*|\s+-\s+", s, maxsplit=1)
+                en = parts[0].strip()
+                cn = parts[1].strip() if len(parts) > 1 else ""
+            else:
+                en, cn = s.strip(), ""
+        if en or cn:
+            out.append({"en": en, "cn": cn})
+    return out
 
 
 def render_html(

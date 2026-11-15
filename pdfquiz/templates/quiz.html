@@ -324,10 +324,24 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
 .ans-row{display:flex;gap:10px;font-size:13.5px;line-height:1.8;margin-bottom:8px}
 .ans-row:last-child{margin-bottom:0}
 .ans-row .k{
-  flex:0 0 46px;font-size:11.5px;color:var(--muted);letter-spacing:.06em;padding-top:2px;
+  flex:0 0 auto;min-width:46px;white-space:nowrap;
+  font-size:11.5px;color:var(--muted);letter-spacing:.06em;padding-top:2px;
 }
 .ans-row .v{flex:1;color:var(--ink);min-width:0}
 .ans-row .v b{color:var(--accent-ink);font-weight:600}
+
+/* 翻译题：输入框下的操作提示 */
+.typeline{margin-top:8px;font-size:11.5px;color:var(--muted);line-height:1.7}
+
+/* 采分点：英文术语与中文释义分开排版，别挤成一串 */
+.keys{margin:12px 0 10px;padding:11px 13px;border-radius:9px;background:var(--surface2)}
+.keys-h{font-size:10px;letter-spacing:.12em;color:var(--muted);margin-bottom:7px}
+.key-row{display:flex;gap:8px;align-items:baseline;line-height:2}
+.key-row .ke{font-family:var(--mono);font-size:12.5px;color:var(--accent-ink);font-weight:600}
+.key-row .kc{font-size:12.5px;color:var(--ink2)}
+.key-row .kc::before{content:"·";margin-right:8px;color:var(--muted)}
+/* 出处 */
+.src{margin-top:10px;font-size:11.5px;color:var(--muted);letter-spacing:.02em}
 blockquote.ev{
   margin:10px 0 0;padding:2px 0 2px 14px;border-left:2px solid var(--accent);
   font-size:12.5px;line-height:1.85;color:var(--ink2);
@@ -369,6 +383,7 @@ blockquote.ev::before{
 .big-ring .t span{display:block;font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.06em}
 .res-title h2{margin:0 0 6px;font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:.01em}
 .res-title p{margin:0;color:var(--ink2);font-size:13.5px}
+.res-title p b.sc{font-family:var(--mono);font-size:19px;color:var(--accent-ink);font-weight:600;margin:0 1px}
 .res-stats{display:flex;gap:26px;margin-top:16px;flex-wrap:wrap}
 .res-stats div{font-size:12.5px;color:var(--muted)}
 .res-stats b{display:block;font-size:21px;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;margin-bottom:1px}
@@ -377,12 +392,15 @@ blockquote.ev::before{
   font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
   margin:0 0 12px;font-weight:600;
 }
-.bars{display:flex;flex-direction:column;gap:11px;max-width:640px}
-.bar-row{display:grid;grid-template-columns:minmax(120px,220px) 1fr 48px;gap:14px;align-items:center;font-size:12.5px}
-.bar-row .lbl{grid-column:1;color:var(--ink2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.bar-row .track{grid-column:2;height:6px;border-radius:99px;background:var(--surface2);overflow:hidden}
+.bars{display:flex;flex-direction:column;gap:13px;max-width:640px}
+/* 单元名长短悬殊（最长 60 字符），单行三段式必然截断，改成上下两行 */
+.bar-row{display:flex;flex-direction:column;gap:6px;font-size:12.5px}
+.bar-row .top{display:flex;align-items:baseline;gap:12px;justify-content:space-between}
+.bar-row .lbl{color:var(--ink2);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-row .frac{flex:0 0 auto;font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+/* 轨道用可见的浅色：surface2 与纸底几乎同色，0% 的行看上去会像没有轨道 */
+.bar-row .track{display:block;width:100%;height:6px;border-radius:99px;background:color-mix(in srgb,var(--line2) 62%,transparent);overflow:hidden}
 .bar-row .fill{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .5s ease}
-.bar-row .frac{grid-column:3;font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums;text-align:right}
 .wrong-list{display:flex;flex-direction:column;gap:8px}
 .wrong-item{
   display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:11px;
@@ -392,6 +410,8 @@ blockquote.ev::before{
 .wrong-item:hover{border-color:var(--line2);transform:translateX(2px)}
 .wrong-item .n{font-family:var(--mono);font-size:11.5px;color:var(--muted);flex:0 0 26px;padding-top:2px}
 .wrong-item .qt{font-size:13.5px;line-height:1.6;color:var(--ink);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.wrong-item .qt .tk{font-style:normal;font-size:10.5px;letter-spacing:.04em;color:var(--accent-ink);
+  background:color-mix(in srgb,var(--accent) 9%,transparent);border-radius:4px;padding:1px 5px;margin-right:7px;vertical-align:1px}
 .res-actions{display:flex;gap:10px;margin-top:32px;flex-wrap:wrap}
 .empty{text-align:center;padding:80px 20px;color:var(--muted)}
 .empty b{display:block;font-size:16px;color:var(--ink);margin-bottom:6px;font-weight:600}
@@ -433,7 +453,7 @@ blockquote.ev::before{
   .num{font-size:22px}
   .opt{padding:11px 13px;font-size:14.5px}
   .seg.small button{padding:4px 7px;font-size:11.5px}
-  .bar-row{grid-template-columns:96px 1fr 40px;gap:8px}
+  .bar-row{font-size:12px;gap:5px}
   .crumb span:first-child,.crumb .sep{display:none}
   .top-right{gap:6px}
   .btn{padding:6px 11px;font-size:12.5px}
@@ -565,7 +585,25 @@ blockquote.ev::before{
   const $ = (s, r) => (r || document).querySelector(s);
   const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
 
-  const TYPE_CN = { single: "单选题", multiple: "多选题", truefalse: "判断题", fill: "填空题", short: "简答题" };
+  const TYPE_CN = {
+    single: "单选题", multiple: "多选题", truefalse: "判断题", fill: "填空题", short: "简答题",
+    trans_en_cn: "英译中", trans_cn_en: "中译英", describe: "描述题", qa: "问答题", term: "术语翻译"
+  };
+  /* 从 "UNIT 17 …" 取出单元号，用于稳定排序；取不到排最后 */
+  const unitKey = (s) => { const m = String(s || "").match(/UNIT\s*(\d+)/i); return m ? +m[1] : 999; };
+  /* 主观题：无法自动判分，一律「作答 → 对照参考答案 → 自评」 */
+  const SUBJECTIVE = { short: 1, trans_en_cn: 1, trans_cn_en: 1, describe: 1, qa: 1 };
+  /* 可自动判分的填空题型：术语题答案唯一，比对时忽略大小写、空格与连字符 */
+  const FILLABLE = { fill: 1, term: 1 };
+  /* 需要输入框的作答区提示语 */
+  const PLACEHOLDER = {
+    short: "写下你的回答，再对照参考答案自评",
+    trans_en_cn: "先在此译成中文，再展开参考答案逐句比对",
+    trans_cn_en: "用英文写出译文，注意关键词拼写",
+    describe: "用英文描述，尽量写全要点",
+    qa: "用英文作答，先给结论再展开",
+    term: "写出对应的英文术语"
+  };
   const DIFF_CN = { easy: "简单", medium: "中等", hard: "困难" };
   const LTR = "ABCDEFGH";
 
@@ -637,6 +675,22 @@ blockquote.ev::before{
     return alts.some((alt) => got === alt || (alt.length >= 2 && (got.includes(alt) || alt.includes(got))));
   }
 
+  /* 术语题答案唯一，不能用「包含」判对，否则 poly 会被判成 polymerization。
+     归一化已抹平大小写、连字符与空格，这里再容忍单复数。 */
+  function gradeTerm(q, text) {
+    const got = norm(text);
+    if (!got) return null;
+    const stem = (s) => s.replace(/ies$/, "y").replace(/(es|s)$/, "");
+    const alts = String(q.a[0] || "").split(/[\/／|｜；;、]/).map(norm).filter(Boolean);
+    if (!alts.length) return null;
+    return alts.some((alt) => got === alt || stem(got) === stem(alt));
+  }
+
+  /* 需要键入文字的题型统一走这里 */
+  function gradeText(q, text) {
+    return q.t === "term" ? gradeTerm(q, text) : gradeFill(q, text);
+  }
+
   /* ------------------------------------------------------------ render */
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -666,24 +720,36 @@ blockquote.ev::before{
             '<span class="txt">' + t + "</span>" +
             '<span class="flag"></span>' +
           "</button>").join("") + "</div>";
-    } else if (q.t === "fill") {
-      body = '<input class="field" data-i="' + q.i + '" type="text" autocomplete="off" ' +
-        'placeholder="在此填写答案，回车确认">';
+    } else if (q.t === "fill" || q.t === "term") {
+      body = '<input class="field" data-i="' + q.i + '" type="text" autocomplete="off" spellcheck="false" ' +
+        'placeholder="' + (q.t === "term" ? "写出英文术语，回车确认" : "在此填写答案，回车确认") + '">';
     } else {
-      body = '<textarea class="field" data-i="' + q.i + '" rows="4" placeholder="写下你的回答，再对照参考答案自评"></textarea>';
+      const ph = PLACEHOLDER[q.t] || "写下你的回答，再对照参考答案自评";
+      const rows = (q.t === "trans_en_cn" || q.t === "describe" || q.t === "qa") ? 5 : 3;
+      body = '<textarea class="field" data-i="' + q.i + '" rows="' + rows + '" placeholder="' + esc(ph) + '"></textarea>' +
+        (q.t === "trans_en_cn" || q.t === "trans_cn_en"
+          ? '<div class="typeline">' + (q.t === "trans_en_cn"
+              ? '译完再点开参考答案，逐句比对是否漏译、误译'
+              : '先写关键词，再连成完整句子；拼写错误在考试中同样扣分') + "</div>"
+          : "");
     }
 
     let actions = "";
     if (q.t === "multiple") {
       actions = '<div class="q-actions"><button class="btn primary" data-act="confirm" data-i="' + q.i + '" disabled>确认作答</button>' +
         '<span class="hint">可选多项，选完点确认</span></div>';
-    } else if (q.t === "fill") {
+    } else if (q.t === "fill" || q.t === "term") {
       actions = '<div class="q-actions"><button class="btn primary" data-act="confirm" data-i="' + q.i + '" disabled>确认作答</button>' +
-        '<span class="hint">文字按去空格与标点后比对，近似匹配即算对</span></div>';
-    } else if (q.t === "short") {
-      actions = '<div class="q-actions"><button class="btn ghost" data-act="reveal" data-i="' + q.i + '">查看参考答案</button>' +
-        '<span class="hint">简答题需自行判断是否答到要点</span></div>';
+        '<span class="hint">' + (q.t === "term"
+          ? "只需写英文术语本身，不区分大小写与连字符"
+          : "文字按去空格与标点后比对，近似匹配即算对") + "</span></div>";
+    } else if (SUBJECTIVE[q.t]) {
+      actions = '<div class="q-actions"><button class="btn ghost" data-act="reveal" data-i="' + q.i + '">对照参考答案</button>' +
+        '<span class="hint">' + (q.t === "trans_en_cn" ? "翻译题按要点自评" : "答到要点即算通过") + "</span></div>";
     }
+
+    /* 长答案（描述题/问答题的整段参考答案）不加粗，否则整段发黑难读 */
+    const longAns = SUBJECTIVE[q.t] && String(q.a[0] || "").length > 60;
 
     const answerHTML = q.t === "truefalse"
       ? "<b>" + (q.a[0] === "T" ? "正确" : "错误") + "</b>"
@@ -694,7 +760,23 @@ blockquote.ev::before{
               const k = LTR.indexOf(l);
               return q.o[k] ? '<span class="alt"><i>' + l + "</i>" + esc(q.o[k]) + "</span>" : "";
             }).join("")
-          : "<b>" + esc(q.a[0]) + "</b>";
+          : longAns ? esc(q.a[0]) : "<b>" + esc(q.a[0]) + "</b>";
+
+    const ansLabel = q.t === "trans_en_cn" ? "参考译文"
+      : q.t === "trans_cn_en" ? "参考英文"
+      : q.t === "term" ? "英文术语"
+      : q.t === "describe" || q.t === "qa" ? "参考答案"
+      : "答案";
+
+    /* 采分点：术语中英对照，翻译题与问答题靠它判断答到几分 */
+    const keysHTML = (q.keys && q.keys.length)
+      ? '<div class="keys">' +
+          '<div class="keys-h">采分点 · 关键词必须会写</div>' +
+          q.keys.map((k) =>
+            '<div class="key-row"><span class="ke">' + esc(k.en) + "</span>" +
+            (k.cn ? '<span class="kc">' + esc(k.cn) + "</span>" : "") + "</div>").join("") +
+        "</div>"
+      : "";
 
     return '<article class="q" data-i="' + q.i + '" data-sec="' + esc(q.sec) + '">' +
       '<div class="qhead">' +
@@ -705,9 +787,11 @@ blockquote.ev::before{
       '<div class="stem">' + esc(q.q).replace(/＿{2,}/g, '<span class="blank"></span>') + "</div>" + body + actions +
       '<div class="verdict" aria-live="polite"></div>' +
       '<div class="ans">' +
-        '<div class="ans-row"><span class="k">答案</span><span class="v">' + answerHTML + "</span></div>" +
+        '<div class="ans-row"><span class="k">' + ansLabel + '</span><span class="v">' + answerHTML + "</span></div>" +
+        keysHTML +
         (q.exp ? '<div class="ans-row"><span class="k">解析</span><span class="v">' + esc(q.exp) + "</span></div>" : "") +
         (q.ev ? '<blockquote class="ev">' + esc(q.ev) + "</blockquote>" : "") +
+        (q.ref ? '<div class="src">出处 · ' + esc(q.ref) + "</div>" : "") +
       "</div>" +
     "</article>";
   }
@@ -719,7 +803,7 @@ blockquote.ev::before{
 
   function buildSidebar() {
     // 题型筛选（固定顺序，避免随题目出现顺序抖动）
-    const ORDER = ["single", "multiple", "truefalse", "fill", "short"];
+    const ORDER = ["trans_en_cn", "trans_cn_en", "describe", "qa", "term", "single", "multiple", "truefalse", "fill", "short"];
     const counts = {};
     Q.forEach((q) => { counts[q.t] = (counts[q.t] || 0) + 1; });
     const types = ORDER.filter((t) => counts[t]);
@@ -729,7 +813,7 @@ blockquote.ev::before{
       types.map((t) => '<button data-type="' + t + '" aria-pressed="' + (S.filter.type === t) + '">' +
         (TYPE_CN[t] || t) + " " + counts[t] + "</button>").join("");
 
-    // 章节导航
+    // 章节导航（按单元号排序，否则只有术语题的单元会掉到列表末尾）
     const groups = [];
     Q.forEach((q) => {
       let g = groups.find((x) => x.ch === q.ch);
@@ -738,6 +822,8 @@ blockquote.ev::before{
       if (!it) { it = { sec: q.sec, qs: [] }; g.items.push(it); }
       it.qs.push(q.i);
     });
+    groups.sort((a, b) => unitKey(a.ch + " " + a.items[0].sec) - unitKey(b.ch + " " + b.items[0].sec));
+    groups.forEach((g) => g.items.sort((a, b) => unitKey(a.sec) - unitKey(b.sec)));
     $("#chapters").innerHTML = groups.map((g) =>
       '<div class="grp"><div class="grp-t">' + esc(g.ch) + "</div>" +
       g.items.map((it) =>
@@ -852,7 +938,7 @@ blockquote.ev::before{
       }
     });
 
-    if (q.t === "fill" || q.t === "short") {
+    if (q.t === "fill" || q.t === "term" || SUBJECTIVE[q.t]) {
       const f = node.querySelector(".field");
       if (f && a && typeof a.text === "string" && f.value !== a.text) f.value = a.text;
       if (f && isGraded(i)) f.readOnly = true;
@@ -907,7 +993,7 @@ blockquote.ev::before{
     const sg = node.querySelector(".self-grade");
     if (sg) sg.remove();
 
-    if (q.t === "short") {
+    if (SUBJECTIVE[q.t]) {
       v.className = "verdict " + (a && a.correct ? "ok" : "bad");
       v.innerHTML = '<span class="ico">' + (a && a.correct ? "✓" : "✕") + "</span><span>" +
         (a && a.correct ? "已标记为掌握" : "已标记为未掌握") + "</span>";
@@ -962,11 +1048,11 @@ blockquote.ev::before{
     if (q.t === "multiple") {
       if (!a.picked || !a.picked.length) return;
       a.correct = gradeChoice(q, a.picked);
-    } else if (q.t === "fill") {
+    } else if (q.t === "fill" || q.t === "term") {
       const text = (node.querySelector(".field").value || "").trim();
       if (!text) return;
       a.text = text;
-      a.correct = gradeFill(q, text);
+      a.correct = gradeText(q, text);
       if (a.correct === null) a.correct = false;
     }
     a.graded = true;
@@ -1017,11 +1103,11 @@ blockquote.ev::before{
     Q.forEach((q) => {
       const a = ans(q.i);
       if (!a || a.graded) return;
-      if (q.t === "short") {
+      if (SUBJECTIVE[q.t]) {
         a.graded = true; a.pending = true; a.correct = null;
-      } else if (q.t === "fill") {
+      } else if (q.t === "fill" || q.t === "term") {
         if (!String(a.text || "").trim()) return;
-        a.correct = gradeFill(q, a.text) === true;
+        a.correct = gradeText(q, a.text) === true;
         a.graded = true;
       } else {
         if (!a.picked || !a.picked.length) return;
@@ -1055,8 +1141,15 @@ blockquote.ev::before{
       c.total++;
       if (isCorrect(q.i)) c.ok++;
     });
+    chapters.sort((a, b) => unitKey(a.sec) - unitKey(b.sec));
 
     const wrongs = bad.concat(pending);
+
+    // 按分值算分：正卷 100 分，术语速记属于附加分，单独注明
+    const scored = Q.filter((q) => (q.score || 0) > 0);
+    const totalScore = scored.reduce((s, q) => s + q.score, 0);
+    const gotScore = scored.reduce((s, q) => s + (isCorrect(q.i) ? q.score : 0), 0);
+    const bonusScore = scored.filter((q) => q.t === "term").reduce((s, q) => s + q.score, 0);
 
     $("#result").innerHTML =
       '<div class="res-head">' +
@@ -1066,8 +1159,9 @@ blockquote.ev::before{
             'stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + (C - (rate / 100) * C).toFixed(1) + '"/>' +
         "</svg><div class=\"t\"><b>" + rate + "%</b><span>正确率</span></div></div>" +
         '<div class="res-title"><h2>' + (rate >= 85 ? "掌握得不错" : rate >= 60 ? "还有提升空间" : "需要回头重看这一章") + "</h2>" +
-          "<p>本次作答 " + graded.length + " / " + N + " 题，" + (S.mode === "exam" ? "考试模式" : "练习模式") +
-          "，用时 " + elapsed() + "。</p>" +
+          "<p>得分 <b class=\"sc\">" + gotScore + "</b> / " + totalScore +
+          (bonusScore ? "（含术语附加 " + bonusScore + " 分，正卷 " + (totalScore - bonusScore) + " 分）" : "") +
+          "　" + (S.mode === "exam" ? "考试模式" : "练习模式") + "，用时 " + elapsed() + "。</p>" +
           '<div class="res-stats">' +
             "<div><b>" + ok.length + "</b>答对</div>" +
             "<div><b>" + bad.length + "</b>答错</div>" +
@@ -1078,9 +1172,9 @@ blockquote.ev::before{
       '<div class="res-sec"><h3>分章节表现</h3><div class="bars">' +
         chapters.map((c) => {
           const p = c.total ? Math.round((c.ok / c.total) * 100) : 0;
-          return '<div class="bar-row"><span class="lbl">' + esc(c.sec) + "</span>" +
-            '<span class="track"><i class="fill" style="width:' + p + '%"></i></span>' +
-            '<span class="frac">' + c.ok + "/" + c.total + "</span></div>";
+          return '<div class="bar-row"><div class="top"><span class="lbl" title="' + esc(c.sec) + '">' + esc(c.sec) + '</span>' +
+            '<span class="frac">' + c.ok + "/" + c.total + '</span></div>' +
+            '<span class="track"><i class="fill" style="width:' + p + '%"></i></span></div>';
         }).join("") +
       "</div></div>" +
       (wrongs.length
@@ -1088,7 +1182,8 @@ blockquote.ev::before{
           wrongs.map((q) =>
             '<button class="wrong-item" data-jump="' + q.i + '">' +
               '<span class="n">' + String(q.n).padStart(2, "0") + "</span>" +
-              '<span class="qt">' + esc(q.q) + "</span></button>").join("") +
+              '<span class="qt"><i class="tk">' + (TYPE_CN[q.t] || "") + "</i>" +
+                esc(q.t === "term" ? q.q + " → 英文术语" : q.q) + "</span></button>").join("") +
           "</div></div>"
         : '<div class="res-sec"><h3>需要回看的题</h3><div class="empty" style="padding:28px 0"><b>全部正确</b>这一份可以过了。</div></div>') +
       '<div class="res-actions">' +
@@ -1272,7 +1367,7 @@ blockquote.ev::before{
       return;
     }
     if (e.key === "ArrowRight" || e.key === "Enter") {
-      if (e.key === "Enter" && !isGraded(cur) && (q.t === "multiple" || q.t === "fill")) { confirmAnswer(cur); e.preventDefault(); return; }
+      if (e.key === "Enter" && !isGraded(cur) && (q.t === "multiple" || q.t === "fill" || q.t === "term")) { confirmAnswer(cur); e.preventDefault(); return; }
       if (e.key === "Enter" && !isGraded(cur) && q.t === "short") return;
       go(1); e.preventDefault(); return;
     }
@@ -1349,6 +1444,12 @@ blockquote.ev::before{
     applyFilter(true);
 
     // 侧栏副标题改短，避免长路径换行挤压标题
+    const h1 = document.querySelector(".brand-t h1");
+    if (h1) {
+      // 标题在 190px 宽的侧栏里会从词语中间折断（“专业英 / 语”），改在“·”处换行
+      const parts = h1.textContent.split("·").map((s) => s.trim()).filter(Boolean);
+      if (parts.length > 1) h1.innerHTML = parts.map(esc).join("<br>");
+    }
     const sub = document.querySelector(".brand-t p");
     if (sub) {
       const secs = new Set(Q.map((q) => q.sec)).size;

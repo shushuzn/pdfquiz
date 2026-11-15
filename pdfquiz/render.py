@@ -14,7 +14,17 @@ TYPE_CN = {
     "truefalse": "判断题",
     "short": "简答题",
     "fill": "填空题",
+    "trans_en_cn": "英译中",
+    "trans_cn_en": "中译英",
+    "describe": "描述题",
+    "qa": "问答题",
+    "term": "术语翻译",
 }
+
+DIFFICULTY_CN = {"easy": "简单", "medium": "中等", "hard": "困难"}
+
+# 主观题：给出作答横线，答案另附
+SUBJECTIVE = {"short", "trans_en_cn", "trans_cn_en", "describe", "qa", "term"}
 
 
 def _answer_text(q: dict) -> str:
@@ -64,7 +74,11 @@ def render(
             + " · ".join(f"{TYPE_CN.get(k, k)} {v}" for k, v in st["type"].items())
             + " |",
             "| 认知层次 | " + " · ".join(f"{k} {v}" for k, v in st["bloom"].items()) + " |",
-            "| 难度 | " + " · ".join(f"{k} {v}" for k, v in st["difficulty"].items()) + " |",
+            "| 难度 | "
+            + " · ".join(
+                f"{DIFFICULTY_CN.get(k, k)} {v}" for k, v in st["difficulty"].items()
+            )
+            + " |",
             "",
         ]
 
@@ -79,17 +93,33 @@ def render(
     if accepted:
         lines += ["", "---", "", "## 答案与解析", ""]
         for i, q in enumerate(accepted, 1):
-            lines.append(
-                f"**{i}. {_answer_text(q)}**　"
-                f"*{TYPE_CN.get(str(q.get('type')), q.get('type'))} · "
-                f"{q.get('bloom', '')} · {q.get('difficulty', '')}*"
-            )
+            meta_bits = [TYPE_CN.get(str(q.get("type")), str(q.get("type")))]
+            if q.get("score"):
+                meta_bits.append(f"{q['score']} 分")
+            if q.get("bloom"):
+                meta_bits.append(str(q["bloom"]))
+            if q.get("difficulty"):
+                meta_bits.append(DIFFICULTY_CN.get(str(q["difficulty"]), str(q["difficulty"])))
+            lines.append(f"**{i}. {_answer_text(q)}**　*{' · '.join(meta_bits)}*")
+
+            keys = [k for k in (q.get("keys") or []) if isinstance(k, dict)]
+            if keys:
+                lines.append(
+                    "　　采分点："
+                    + "；".join(
+                        f"{k.get('en', '')}（{k.get('cn', '')}）" if k.get("cn") else k.get("en", "")
+                        for k in keys
+                    )
+                )
             expl = str(q.get("explanation", "")).strip()
             if expl:
                 lines.append(f"　　{expl}")
             ev = str(q.get("evidence", "")).strip()
             if ev:
                 lines.append(f"　　> 原文依据：{ev}")
+            ref = str(q.get("ref", "")).strip()
+            if ref:
+                lines.append(f"　　> 出处：{ref}")
             lines.append("")
 
     if rejected:
@@ -103,7 +133,11 @@ def render(
 
 def _render_question(i: int, q: dict) -> list[str]:
     qtype = str(q.get("type", "single"))
-    out = [f"**{i}.** {q.get('question', '').strip()}", ""]
+    score = q.get("score")
+    head = f"**{i}.**"
+    if score:
+        head += f"（{score} 分）"
+    out = [f"{head} {q.get('question', '').strip()}", ""]
     options = q.get("options") or []
     if not options and qtype == "truefalse":
         options = ["正确", "错误"]
@@ -115,7 +149,7 @@ def _render_question(i: int, q: dict) -> list[str]:
         out.append(f"- {text}")
     if options:
         out.append("")
-    if qtype == "short":
+    if qtype in SUBJECTIVE:
         out.append("　　_答：_")
         out.append("")
     return out
