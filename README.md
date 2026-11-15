@@ -1,5 +1,9 @@
 # pdfquiz
 
+[![CI](https://github.com/shushuzn/pdfquiz/actions/workflows/ci.yml/badge.svg)](https://github.com/shushuzn/pdfquiz/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+
 把 PDF / 讲义转成**可溯源**的复习题库：每一道题都必须能指回原文的某一句话，指不回去的直接丢弃。
 
 ```
@@ -23,6 +27,7 @@ PDF → 结构化 Markdown → 章节切块 → LLM 出题 → 溯源校验 → 
 | 编造依据 | 题目看着合理，但原文压根没说 | `evidence` 必须逐字出现在原文，规范化后做包含判断 |
 | 偷改语义 | 把「是」改成「不是」，把「通常」改成「一定」 | 同上，改动后字符不再匹配，直接判负 |
 | 重复生成 | 同一知识点出五道几乎一样的题 | 题干 3-gram Jaccard ≥ 0.72 判重 |
+| 跨页误判 | 书上的一句话被翻页切成两半，校验却把真话当幻觉丢掉 | 比对前先摘掉 `### p151` 页标记，断词 `rear-` / `ranged` 去连字符后拼回 |
 
 实测：故意混入 1 道伪造引用的题（见 `tests/fake_mcp_server.py`），7 个章节全部被准确识别，淘汰率 50%。
 
@@ -40,9 +45,26 @@ PDF → 结构化 Markdown → 章节切块 → LLM 出题 → 溯源校验 → 
 ## 快速开始
 
 ```bash
-pip install pypdf                 # 最小依赖，纯文本兜底
-python run.py samples/过拟合与正则化.md --offline -n 3
+pip install -e .                  # 只装最小依赖（pypdf）
+pdfquiz samples/过拟合与正则化.md --offline -n 3
+
+# 想要更好的解析效果，按需加装
+pip install -e ".[fast]"          # pymupdf4llm：快，保留标题/表格
+pip install -e ".[docling]"       # docling：结构化最好，首次运行需下模型
 ```
+
+装好后 `pdfquiz` 就是命令行入口，`pdfquiz --version` 可自查版本；不装也行，`python run.py <文件>` 等价。
+
+开发：
+
+```bash
+pip install -e ".[dev]"
+python -m unittest discover -s tests -v   # 33 项单测
+python tests/smoke_cli.py                 # 端到端冒烟：离线跑一遍 CLI 并检查产物
+ruff check .
+```
+
+CI 在 GitHub Actions 上跑 Python 3.10–3.13（外加 Windows），包含 lint、单测、冒烟三步。
 
 输出两份：`out/过拟合与正则化.quiz.md`（打印/归档）和 `out/过拟合与正则化.quiz.html`（直接在浏览器打开作答）。
 
@@ -187,6 +209,7 @@ pdfquiz/
 │   ├── llm.py                  OpenAI 兼容客户端（标准库实现）
 │   ├── mcp_llm.py              MCP stdio 客户端
 │   ├── verify.py               溯源校验 / 结构检查 / 去重  ← 核心
+│   ├── booktext.py             页标记 / 切句 / 词汇表 / 章节路径（纯函数，好测）
 │   ├── render.py               Markdown 导出
 │   ├── render_html.py          网页题库导出
 │   ├── templates/quiz.html     单文件网页模板（内联样式与脚本）
@@ -205,8 +228,11 @@ pdfquiz/
 │   ├── build_hub.py            生成 docs 总览页并同步各卷
 │   ├── extract_notes.py        抽 Notes 句子与教材原译
 │   └── restyle.py              用最新模板重渲染已有题库，不重跑解析
+├── pyproject.toml              打包 / 依赖 / ruff / console script
 ├── tests/
-│   ├── test_pipeline.py        17 项单测
+│   ├── test_pipeline.py        17 项单测（切块 / 溯源 / 结构 / 渲染）
+│   ├── test_booktext.py        16 项单测（页标记 / 切句 / 跨页 evidence）
+│   ├── smoke_cli.py            端到端冒烟：离线跑 CLI 并检查产物结构
 │   ├── fake_mcp_server.py      假 MCP 服务器，内含 1 道伪造题
 │   └── web/
 │       ├── functional.mjs      前端功能测试（判分 / 自评 / 无异常）

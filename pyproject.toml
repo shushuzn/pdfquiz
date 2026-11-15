@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pdfquiz"
+version = "0.2.0"
+description = "PDF / 讲义 → 带原文溯源的复习题：每道题都能指回原文某一句"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "shushuzn" }]
+keywords = ["pdf", "quiz", "rag", "education", "markdown"]
+classifiers = [
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+]
+dependencies = ["pypdf>=5.0"]
+
+[project.optional-dependencies]
+# 解析加速：装哪个都能用，extract.py 会自动择优
+fast = ["pymupdf4llm>=0.0.17"]
+docling = ["docling>=2.0"]
+dev = ["ruff>=0.6"]
+
+[project.scripts]
+pdfquiz = "pdfquiz.cli:main"
+
+[project.urls]
+Homepage = "https://shushuzn.github.io/pdfquiz/"
+Repository = "https://github.com/shushuzn/pdfquiz"
+
+[tool.setuptools]
+packages = ["pdfquiz"]
+
+[tool.setuptools.package-data]
+pdfquiz = ["templates/*.html"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+# 只留「写错就会崩」的规则，风格问题不阻塞 CI
+select = ["F811", "F821", "E9"]

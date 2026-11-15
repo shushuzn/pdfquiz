@@ -21,7 +21,7 @@ OUT = ROOT / "papers" / "materials.json"
 TABLE = ROOT / "tools" / "materials.tsv"
 
 sys.path.insert(0, str(ROOT / "tools"))
-from build_exam import sentences, split_body, unit_title  # noqa: E402
+from pdfquiz.booktext import sentences, split_body, unit_title  # noqa: E402
 
 
 def load_units() -> dict[str, str]:

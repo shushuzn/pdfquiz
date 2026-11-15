@@ -8,6 +8,7 @@ import os
 import sys
 from pathlib import Path
 
+from . import __version__
 from .chunk import Chunk, chunk_markdown
 from .extract import extract
 from .generate import build_prompts, generate_for_chunk, offline_questions, parse_questions
@@ -33,6 +34,7 @@ def _argparser() -> argparse.ArgumentParser:
     p.add_argument("--extract-only", action="store_true", help="只做解析，导出 Markdown 就停")
     p.add_argument("--keep-md", action="store_true", help="保留中间 Markdown")
     p.add_argument("--no-html", action="store_true", help="不生成网页版题库")
+    p.add_argument("-V", "--version", action="version", version=f"pdfquiz {__version__}")
 
     g = p.add_argument_group("模型来源（四选一，默认自动探测）")
     g.add_argument(

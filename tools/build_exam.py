@@ -27,6 +27,16 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from pdfquiz.booktext import (  # noqa: E402
+    canonical_path,
+    clean_md,
+    first_meaning,
+    parse_vocab,
+    part_of_unit,
+    sentences,
+    split_body,
+    unit_title,
+)
 from pdfquiz.render import render as render_markdown  # noqa: E402
 from pdfquiz.render_html import render_html  # noqa: E402
 from pdfquiz.verify import verify  # noqa: E402
@@ -62,94 +72,7 @@ def load_units() -> dict[str, str]:
     return out
 
 
-def split_body(md: str) -> str:
-    """只要正文，不要词汇表与注释——术语题的高频统计必须基于正文。
-
-    保留 `### pN` 页标记：句子切分要以页为界。跨页拼接出来的“句子”在原文里
-    并不连续，拿它当 evidence 会过不了逐字回查（旧版本的坑）。
-    """
-    m = re.search(r"^## 正文(.*?)^## Words", md, re.M | re.S)
-    body = m.group(1) if m else md
-    body = re.sub(r"^>.*$", "", body, flags=re.M)                       # 插图说明/脚注
-    body = re.sub(r"^\d{1,3}\s+\*\*.{0,80}?\*\*\s*$", "", body, flags=re.M)  # 页眉「170 **UNIT 3 …**」
-    return body
-
-
-def clean_md(md: str) -> str:
-    t = re.sub(r"^\|.*$", "", md, flags=re.M)          # 表格行
-    t = re.sub(r"^#{1,6}\s*", "", t, flags=re.M)        # 标题
-    t = re.sub(r"\*{1,2}|_{1,2}", "", t)                # 强调符
-    t = re.sub(r"\$\$?.*?\$\$?", "", t, flags=re.S)      # 公式
-    t = re.sub(r"\n{3,}", "\n\n", t)
-    return t.strip()
-
-
-def unit_title(md: str, stem: str) -> str:
-    m = re.search(r"^#\s+(.+)$", md, re.M)
-    if m:
-        title = re.sub(r"[（(][^）)]*[）)]\s*$", "", m.group(1)).strip()
-        if title:
-            return title
-    return f"UNIT {int(stem[4:])}"
-
-
-def part_of_unit(num: int) -> str:
-    if num <= 10:
-        return "PART A 高分子化学与物理"
-    if num <= 20:
-        return "PART B 高分子材料工程"
-    return "PART C 高分子材料与应用"
-
-
-def canonical_path(num: int, titles: dict[int, str], fallback: str = "") -> str:
-    part = part_of_unit(num)
-    title = titles.get(num, "")
-    if part and title:
-        return f"{part} > {title}"
-    return title or fallback
-
-
 # ---------------------------------------------------------------- 术语题
-
-
-def parse_vocab(md: str) -> list[dict]:
-    """从词汇表还原词条。"""
-    m = re.search(r"## Words and Expressions(.*?)(?:\n## |\Z)", md, re.S)
-    if not m:
-        return []
-    rows = []
-    for line in m.group(1).splitlines():
-        line = line.strip()
-        if not line.startswith("|"):
-            continue
-        cells = [c.strip() for c in line.strip("|").split("|")]
-        if len(cells) < 4:
-            continue
-        term, _, pos, meaning = cells[0], cells[1], cells[2], cells[3]
-        if term.lower() in {"term", ""} or set(term) <= {"-", ":"}:
-            continue
-        if not re.match(r"^[A-Za-z][A-Za-z\s\-']*$", term):
-            continue
-        rows.append({"term": term, "pos": pos, "meaning": meaning})
-    return rows
-
-
-def sentences(body: str) -> list[str]:
-    """按页切句。跨页拼出来的句子在原文中并不连续，不能当依据。"""
-    out: list[str] = []
-    for chunk in re.split(r"^###.*$", body, flags=re.M):
-        flat = re.sub(r"\s+", " ", chunk)
-        parts = re.split(r"(?<=[.;!?])\s+", flat)
-        out += [p.strip() for p in parts if len(p.strip()) > 30]
-    return out
-
-
-def _first_meaning(raw: str) -> str:
-    """教材释义常写成“性能,行为”“溶解[度];溶液”，只取第一个义项。"""
-    meaning = re.sub(r"\[[^\]]*\]", "", raw)
-    meaning = re.split(r"[;；]", meaning)[0]
-    meaning = re.split(r"[,，]", meaning)[0].strip()
-    return meaning
 
 
 def make_term_questions(
@@ -189,7 +112,7 @@ def make_term_questions(
         picked = scored if per_unit is None else scored[:per_unit]
 
         for _, term, row, ev in picked:
-            meaning = _first_meaning(row["meaning"])
+            meaning = first_meaning(row["meaning"])
             if len(meaning) < 2 or term.lower() in used:
                 continue
             used.add(term.lower())
@@ -215,7 +138,7 @@ def make_term_questions(
                 ev = next((s for s in sents if term.lower() in s.lower()), "")
                 if not ev:
                     continue
-                meaning = _first_meaning(row["meaning"])
+                meaning = first_meaning(row["meaning"])
                 if len(meaning) < 2:
                     continue
                 used.add(term.lower())

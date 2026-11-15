@@ -22,9 +22,9 @@ UNITS = ROOT / ".units"
 OUT = ROOT / "papers" / "objective.json"
 
 sys.path.insert(0, str(ROOT / "tools"))
-from build_exam import (  # noqa: E402
-    _first_meaning,
+from pdfquiz.booktext import (  # noqa: E402
     canonical_path,
+    first_meaning,
     parse_vocab,
     sentences,
     split_body,
@@ -66,7 +66,7 @@ def vocab_all(units: dict[str, str]):
             key = re.sub(r"[^a-z]", "", term.lower())
             if len(key) < 4 or key in seen or " " in term:
                 continue
-            meaning = _first_meaning(row["meaning"])
+            meaning = first_meaning(row["meaning"])
             if len(meaning) < 2:
                 continue
             seen.add(key)

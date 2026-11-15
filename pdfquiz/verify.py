@@ -14,6 +14,8 @@ import re
 import unicodedata
 from dataclasses import dataclass, field
 
+from .booktext import strip_page_marks
+
 MIN_EVIDENCE = 10
 DUP_THRESHOLD = 0.72
 
@@ -52,9 +54,12 @@ def evidence_ok(evidence: str, source: str) -> tuple[bool, str]:
     ev = normalize(evidence)
     if len(ev) < MIN_EVIDENCE:
         return False, f"evidence 过短（{len(ev)} 字）"
-    if ev in normalize(source):
+    # 页标记先摘掉：书上一句话被翻页切开时，中间会插一行 `### p151`，
+    # 不摘掉这句真话永远匹配不上，只能被当成幻觉丢掉。
+    src = strip_page_marks(source)
+    if ev in normalize(src):
         return True, ""
-    if squash(ev) and squash(ev) in squash(source):
+    if squash(ev) and squash(ev) in squash(src):
         return True, "evidence 仅标点/空白有差异"
     return False, "evidence 在原文中找不到"
 
