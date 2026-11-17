@@ -64,9 +64,11 @@ class TestSections(unittest.TestCase):
         self.assertEqual(build_amc.section_of("ch03", "S28"), "4 生物质能源材料")
         self.assertEqual(build_amc.section_of("ch04", "S99"), "拓展资源")
         self.assertEqual(build_amc.section_of("ch01", "S1"), "课程导入")
+        self.assertEqual(build_amc.section_of("ch09", "S3"), "课程导入")
+        self.assertEqual(build_amc.section_of("ch10", "S45"), "碳纳米管")
 
     def test_unknown_slide_falls_back(self):
-        self.assertEqual(build_amc.section_of("ch09", "S3"), "未分节")
+        self.assertEqual(build_amc.section_of("ch08", "S3"), "未分节")
 
 
 class TestDecks(unittest.TestCase):
