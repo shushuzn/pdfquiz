@@ -1,0 +1,1974 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" id="tcMeta" content="#f3f1ec">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="先进材料研究进展C · 期末模拟卷">
+<title>先进材料研究进展C · 期末模拟卷 · 复习题库</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f6b5a'/%3E%3Cpath d='M11 22V10h5a4 4 0 0 1 0 8h-5m5 0 4 4' stroke='%23fff' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+/* ---------------------------------------------------------------- tokens */
+:root{
+  --sans: system-ui,-apple-system,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --serif: "Iowan Old Style","Source Han Serif SC","Noto Serif SC","Songti SC",Georgia,serif;
+  --mono: ui-monospace,SFMono-Regular,"JetBrains Mono",Menlo,Consolas,monospace;
+
+  --paper:#f3f1ec;
+  --surface:#fffefc;
+  --surface2:#f7f4ee;
+  --ink:#1b201e;
+  --ink2:#49524f;
+  --muted:#8a938f;
+  --line:#e6e1d6;
+  --line2:#d3ccbd;
+  --accent:#1f6b5a;
+  --accent-ink:#175246;
+  --accent-soft:#e7f1ed;
+  --ok:#187a55;
+  --ok-soft:#e6f4ee;
+  --bad:#b23a30;
+  --bad-soft:#fbeae7;
+  --shadow-sm:0 1px 2px rgba(27,32,30,.05);
+  --shadow:0 1px 2px rgba(27,32,30,.04),0 14px 32px -20px rgba(27,32,30,.35);
+  --r:16px;
+  /* 可调字号：题干与选项、输入框跟随，正文其它元素保持不变 */
+  --stem:18.5px;
+  --body:15px;
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-t:env(safe-area-inset-top,0px);
+}
+html[data-fs="sm"]{--stem:16.5px;--body:13.8px}
+html[data-fs="md"]{--stem:18.5px;--body:15px}
+html[data-fs="lg"]{--stem:21px;--body:17px}
+[data-theme="dark"]{
+  --paper:#0f1214;
+  --surface:#171b1e;
+  --surface2:#1d2226;
+  --ink:#e9edeb;
+  --ink2:#b8c1be;
+  --muted:#7d8885;
+  --line:#272f33;
+  --line2:#374247;
+  --accent:#5ec0a5;
+  --accent-ink:#8ad8c2;
+  --accent-soft:#13302a;
+  --ok:#57c496;
+  --ok-soft:#122f29;
+  --bad:#f08a7e;
+  --bad-soft:#321a1a;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 40px -24px rgba(0,0,0,.9);
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+/* 横滑翻页不能被浏览器当成「后退」手势吃掉 */
+html{overscroll-behavior-x:none}
+body{
+  margin:0;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, color-mix(in srgb, var(--accent) 6%, transparent), transparent 70%),
+    var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  -webkit-text-size-adjust:100%;
+  -webkit-tap-highlight-color:transparent;
+  overscroll-behavior-y:contain;
+}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;touch-action:manipulation}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+::selection{background:color-mix(in srgb, var(--accent) 22%, transparent)}
+
+/* ---------------------------------------------------------------- shell */
+.app{display:grid;grid-template-columns:296px minmax(0,1fr);min-height:100vh;min-height:100dvh}
+
+/* ---------------------------------------------------------------- side */
+.side{
+  position:sticky;top:0;height:100vh;overflow-y:auto;overscroll-behavior:contain;
+  padding:26px 18px 20px;
+  background:color-mix(in srgb, var(--surface) 72%, transparent);
+  border-right:1px solid var(--line);
+  display:flex;flex-direction:column;gap:22px;
+  backdrop-filter:blur(8px);
+}
+.brand{display:flex;gap:12px;align-items:flex-start;padding:0 4px}
+.mark{
+  width:34px;height:34px;flex:0 0 34px;border-radius:10px;
+  background:var(--accent);color:#fff;display:grid;place-items:center;
+  font-family:var(--serif);font-size:17px;font-weight:600;letter-spacing:.02em;
+  box-shadow:0 2px 8px -2px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+.brand-t h1{
+  margin:0;font-family:var(--serif);font-size:15.5px;font-weight:600;line-height:1.45;
+  letter-spacing:.01em;
+}
+.brand-t p{margin:3px 0 0;font-size:11.5px;color:var(--muted);letter-spacing:.02em}
+
+.panel{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:16px;display:flex;gap:16px;align-items:center;box-shadow:var(--shadow-sm);
+}
+.ring{position:relative;width:72px;height:72px;flex:0 0 72px}
+.ring svg{transform:rotate(-90deg);display:block}
+.ring .track{stroke:var(--line2);opacity:.55}
+.ring .bar{stroke:var(--accent);stroke-linecap:round;transition:stroke-dashoffset .5s cubic-bezier(.2,.8,.2,1)}
+.ring-t{
+  position:absolute;inset:0;display:grid;place-content:center;text-align:center;line-height:1.1;
+}
+.ring-t b{font-size:18px;font-weight:600;letter-spacing:-.02em}
+.ring-t span{display:block;font-size:10px;color:var(--muted);margin-top:2px}
+.ring-meta{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--ink2)}
+.ring-meta div{display:flex;align-items:center;gap:6px}
+.ring-meta b{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.dot{width:6px;height:6px;border-radius:50%;flex:0 0 6px}
+.dot.ok{background:var(--ok)}.dot.bad{background:var(--bad)}.dot.mut{background:var(--line2)}
+
+.filters{display:flex;flex-direction:column;gap:8px}
+.flabel{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:0 4px}
+.seg{
+  display:flex;background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:3px;gap:2px;
+}
+.seg button{
+  flex:1;padding:5px 8px;border-radius:7px;font-size:12.5px;color:var(--ink2);
+  transition:background .16s,color .16s,box-shadow .16s;white-space:nowrap;
+}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{
+  background:var(--surface);color:var(--ink);font-weight:600;box-shadow:var(--shadow-sm);
+}
+.seg.small button{padding:4px 10px;font-size:12px}
+.chips{display:flex;flex-wrap:wrap;gap:5px;padding:0 2px}
+.chips button{
+  padding:4px 9px;border-radius:999px;border:1px solid var(--line);font-size:12px;color:var(--ink2);
+  background:var(--surface);transition:all .16s;
+}
+.chips button:hover{border-color:var(--line2);color:var(--ink)}
+.chips button[aria-pressed="true"]{
+  background:var(--accent);border-color:var(--accent);color:#fff;font-weight:500;
+}
+
+.chapters{display:flex;flex-direction:column;gap:12px;overflow-y:auto;margin:0 -6px;padding:0 6px}
+.grp-t{
+  font-size:11.5px;font-weight:600;color:var(--muted);letter-spacing:.04em;
+  padding:0 8px 6px;text-transform:none;
+}
+.nav-item{
+  width:100%;display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:9px;
+  font-size:12.5px;color:var(--ink2);text-align:left;transition:background .15s,color .15s;
+  border-left:2px solid transparent;
+}
+.nav-item:hover{background:var(--surface2);color:var(--ink)}
+.nav-item[aria-current="true"]{
+  background:var(--accent-soft);color:var(--accent-ink);font-weight:600;border-left-color:var(--accent);
+}
+.nav-item .cnt{margin-left:auto;font-size:10.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.nav-item[aria-current="true"] .cnt{color:var(--accent-ink);opacity:.75}
+
+.side-foot{margin-top:auto;display:flex;flex-direction:column;gap:6px;padding-top:12px;border-top:1px solid var(--line)}
+.side-foot button,.side-foot .hub-link{
+  display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:9px;
+  font-size:12.5px;color:var(--ink2);text-align:left;transition:background .15s,color .15s;
+}
+.side-foot button:hover,.side-foot .hub-link:hover{background:var(--surface2);color:var(--ink)}
+.side-foot svg{width:14px;height:14px;opacity:.7}
+.side-foot .hub-link{margin-bottom:2px;color:var(--accent);font-weight:600}
+.side-foot .hub-link:hover{background:color-mix(in srgb, var(--accent) 10%, transparent)}
+
+/* ---------------------------------------------------------------- main */
+.main{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;position:relative}
+.progress{position:sticky;top:0;height:2px;background:transparent;z-index:30}
+.progress i{
+  display:block;height:100%;width:0;background:var(--accent);
+  transition:width .4s cubic-bezier(.2,.8,.2,1);
+}
+.topbar{
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:center;gap:14px;
+  padding:14px 26px;
+  background:color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid color-mix(in srgb, var(--line) 70%, transparent);
+}
+.crumb{font-size:12.5px;color:var(--muted);display:flex;gap:7px;align-items:center;min-width:0;white-space:nowrap}
+.crumb span:first-child{overflow:hidden;text-overflow:ellipsis;max-width:180px}
+.crumb span:last-child{color:var(--ink2);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.crumb .sep{opacity:.45}
+.top-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.timer{
+  font-family:var(--mono);font-size:12.5px;color:var(--ink2);
+  font-variant-numeric:tabular-nums;padding:4px 9px;border-radius:8px;
+  background:var(--surface2);border:1px solid var(--line);
+}
+.icon-btn{
+  width:32px;height:32px;border-radius:9px;display:grid;place-items:center;color:var(--ink2);
+  transition:background .15s,color .15s;
+}
+.icon-btn:hover{background:var(--surface2);color:var(--ink)}
+.icon-btn svg{width:16px;height:16px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  padding:7px 15px;border-radius:9px;font-size:13px;font-weight:500;
+  transition:all .16s;white-space:nowrap;
+}
+.btn.ghost{border:1px solid var(--line2);color:var(--ink2);background:var(--surface)}
+.btn.ghost:hover{border-color:var(--ink2);color:var(--ink)}
+.btn.primary{
+  background:var(--accent);color:#fff;border:1px solid var(--accent);
+  box-shadow:0 1px 2px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+.btn.primary:hover{background:var(--accent-ink);border-color:var(--accent-ink)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.primary:disabled:hover{background:var(--accent);border-color:var(--accent)}
+.only-mobile{display:none}
+
+/* ---------------------------------------------------------------- stage */
+.stage{
+  flex:1;width:100%;max-width:860px;margin:0 auto;
+  padding:38px 26px 28px;
+}
+.q{display:none;animation:rise .32s cubic-bezier(.2,.8,.2,1)}
+.q.active{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.qhead{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.num{
+  font-family:var(--serif);font-size:26px;font-weight:600;color:var(--ink);
+  letter-spacing:-.02em;line-height:1;margin-right:2px;font-variant-numeric:tabular-nums;
+}
+.tag{
+  font-size:11px;padding:3px 8px;border-radius:6px;letter-spacing:.02em;
+  background:var(--surface2);color:var(--ink2);border:1px solid var(--line);
+}
+.tag.t{background:var(--accent-soft);color:var(--accent-ink);border-color:transparent;font-weight:500}
+.tag.lv-easy{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 25%, transparent)}
+.tag.lv-hard{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 25%, transparent)}
+.mark-btn{
+  margin-left:auto;display:inline-flex;align-items:center;gap:5px;
+  font-size:11.5px;color:var(--muted);padding:4px 8px;border-radius:7px;
+  transition:all .15s;
+}
+.mark-btn:hover{background:var(--surface2);color:var(--ink2)}
+.mark-btn[aria-pressed="true"]{color:var(--accent);font-weight:600}
+.mark-btn svg{width:13px;height:13px}
+
+.stem{
+  font-size:var(--stem);line-height:1.85;font-weight:500;letter-spacing:.005em;color:var(--ink);
+  margin:0 0 26px;max-width:64ch;overflow-wrap:break-word;
+}
+.stem code,.ans code{
+  font-family:var(--mono);font-size:.88em;background:var(--surface2);
+  padding:1px 5px;border-radius:5px;border:1px solid var(--line);
+}
+.blank{display:inline-block;width:3.4em;border-bottom:1.5px solid var(--line2);vertical-align:-.12em;margin:0 .18em}
+
+/* options */
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{
+  display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;
+  padding:13px 15px;border:1px solid var(--line);border-radius:12px;
+  background:var(--surface);color:var(--ink);
+  font-size:var(--body);line-height:1.65;
+  transition:border-color .16s,background .16s,transform .16s,box-shadow .16s;
+  box-shadow:var(--shadow-sm);
+}
+.opt:hover:not(.locked){border-color:var(--line2);transform:translateY(-1px);box-shadow:var(--shadow)}
+.opt:active:not(.locked){transform:translateY(0) scale(.995);border-color:var(--accent)}
+.opt .ltr{
+  flex:0 0 24px;width:24px;height:24px;border-radius:7px;display:grid;place-items:center;
+  font-family:var(--mono);font-size:12px;font-weight:600;
+  background:var(--surface2);color:var(--ink2);border:1px solid var(--line);
+  transition:all .16s;margin-top:1px;
+}
+.opt .txt{flex:1;min-width:0}
+.opt[aria-checked="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.opt[aria-checked="true"] .ltr{background:var(--accent);border-color:var(--accent);color:#fff}
+.opt.is-ok{border-color:var(--ok);background:var(--ok-soft)}
+.opt.is-ok .ltr{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.is-bad{border-color:var(--bad);background:var(--bad-soft)}
+.opt.is-bad .ltr{background:var(--bad);border-color:var(--bad);color:#fff}
+.opt.locked{cursor:default}
+.opt .flag{font-size:11px;color:var(--muted);margin-left:6px;white-space:nowrap;align-self:center}
+.opt.is-ok .flag{color:var(--ok);font-weight:600}
+.opt.is-bad .flag{color:var(--bad);font-weight:600}
+
+/* text inputs */
+.field{
+  width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:12px;
+  background:var(--surface);color:var(--ink);font:inherit;font-size:var(--body);line-height:1.7;
+  transition:border-color .16s,box-shadow .16s;resize:vertical;
+}
+/* 多行作答区按 rows 给初始高度；单行填空框保持一行高，别撑成大方块 */
+textarea.field{min-height:calc(var(--rows,3) * 1.7em + 28px)}
+.field::placeholder{color:var(--muted)}
+.field:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.field[readonly]{background:var(--surface2);color:var(--ink2)}
+.hint{font-size:12px;color:var(--muted);margin:8px 2px 0;display:flex;gap:6px;align-items:center}
+
+/* actions under question */
+.q-actions{display:flex;align-items:center;gap:10px;margin-top:20px;flex-wrap:wrap}
+.q-actions .spacer{flex:1}
+.self-grade{display:flex;gap:8px}
+.self-grade button{
+  padding:7px 14px;border-radius:9px;font-size:13px;border:1px solid var(--line2);
+  color:var(--ink2);transition:all .16s;
+}
+.self-grade button:hover{border-color:var(--ink2);color:var(--ink)}
+.self-grade button[data-self="yes"]:hover{border-color:var(--ok);color:var(--ok);background:var(--ok-soft)}
+.self-grade button[data-self="no"]:hover{border-color:var(--bad);color:var(--bad);background:var(--bad-soft)}
+
+/* verdict + answer */
+.verdict{
+  display:none;align-items:center;gap:9px;margin-top:22px;
+  font-size:14px;font-weight:600;
+}
+.q.graded .verdict{display:flex}
+.verdict .ico{
+  width:20px;height:20px;border-radius:50%;display:grid;place-items:center;
+  font-size:11px;color:#fff;flex:0 0 20px;
+}
+.verdict.ok{color:var(--ok)}
+.verdict.ok .ico{background:var(--ok)}
+.verdict.bad{color:var(--bad)}
+.verdict.bad .ico{background:var(--bad)}
+.verdict.info{color:var(--ink2)}
+.verdict.info .ico{background:var(--ink2)}
+.verdict .sub{font-weight:400;color:var(--muted);font-size:12.5px}
+
+.ans{display:none;margin-top:14px;padding:18px 20px;border-radius:14px;background:var(--surface2);border:1px solid var(--line)}
+.q.graded .ans{display:block}
+.ans-row{display:flex;gap:10px;font-size:13.5px;line-height:1.8;margin-bottom:8px}
+.ans-row:last-child{margin-bottom:0}
+.ans-row .k{
+  flex:0 0 auto;min-width:46px;white-space:nowrap;
+  font-size:11.5px;color:var(--muted);letter-spacing:.06em;padding-top:2px;
+}
+.ans-row .v{flex:1;color:var(--ink);min-width:0}
+.ans-row .v b{color:var(--accent-ink);font-weight:600}
+
+/* 翻译题：输入框下的操作提示 */
+.typeline{margin-top:8px;font-size:11.5px;color:var(--muted);line-height:1.7}
+
+/* 采分点：英文术语与中文释义分开排版，别挤成一串 */
+.keys{margin:12px 0 10px;padding:11px 13px;border-radius:9px;background:var(--surface2)}
+.keys-h{font-size:10px;letter-spacing:.12em;color:var(--muted);margin-bottom:7px}
+.key-row{display:flex;gap:8px;align-items:baseline;line-height:2}
+.key-row .ke{font-family:var(--mono);font-size:12.5px;color:var(--accent-ink);font-weight:600}
+.key-row .kc{font-size:12.5px;color:var(--ink2)}
+.key-row .kc::before{content:"·";margin-right:8px;color:var(--muted)}
+/* 出处 */
+.src{margin-top:10px;font-size:11.5px;color:var(--muted);letter-spacing:.02em}
+blockquote.ev{
+  margin:10px 0 0;padding:2px 0 2px 14px;border-left:2px solid var(--accent);
+  font-size:12.5px;line-height:1.85;color:var(--ink2);
+}
+blockquote.ev::before{
+  content:"原文依据";display:block;font-size:10px;letter-spacing:.12em;
+  color:var(--muted);margin-bottom:2px;
+}
+.alt{display:block;margin-top:3px;color:var(--ink2);font-size:13px}
+.alt i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--muted);margin-right:6px}
+
+/* navbar */
+.navbar{
+  position:sticky;bottom:0;z-index:20;
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  padding:14px 26px 30px;
+  background:linear-gradient(to top, var(--paper) 62%, transparent);
+}
+.kbd-hint{
+  position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
+  font-size:11px;color:var(--muted);white-space:nowrap;display:flex;gap:12px;align-items:center;
+}
+.kbd-hint kbd{
+  font-family:var(--mono);font-size:10px;padding:0 4px;border:1px solid var(--line);
+  border-radius:4px;background:var(--surface);color:var(--ink2);
+}
+@media (max-width:1100px){.kbd-hint{display:none}}
+.pos{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;min-width:64px;text-align:center}
+.pos b{color:var(--ink);font-weight:600}
+
+/* ---------------------------------------------------------------- result */
+.result{display:none;flex:1;max-width:860px;width:100%;margin:0 auto;padding:44px 26px 60px}
+.result.show{display:block;animation:rise .3s ease}
+.res-head{display:flex;gap:34px;align-items:center;flex-wrap:wrap;margin-bottom:34px}
+.big-ring{position:relative;width:132px;height:132px;flex:0 0 132px}
+.big-ring svg{transform:rotate(-90deg);display:block}
+.big-ring .t{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.big-ring .t b{font-family:var(--serif);font-size:34px;font-weight:600;letter-spacing:-.03em;line-height:1}
+.big-ring .t span{display:block;font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.06em}
+.res-title h2{margin:0 0 6px;font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:.01em}
+.res-title p{margin:0;color:var(--ink2);font-size:13.5px}
+.res-title p.res-meta{margin-top:3px;font-size:12px;color:var(--muted);letter-spacing:.02em}
+.res-title p b.sc{font-family:var(--mono);font-size:19px;color:var(--accent-ink);font-weight:600;margin:0 1px}
+.res-stats{display:flex;gap:26px;margin-top:16px;flex-wrap:wrap}
+.res-stats div{font-size:12.5px;color:var(--muted)}
+.res-stats b{display:block;font-size:21px;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;margin-bottom:1px}
+.res-sec{margin-top:30px}
+.res-sec h3{
+  font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  margin:0 0 12px;font-weight:600;
+}
+.bars{display:flex;flex-direction:column;gap:13px;max-width:640px}
+/* 单元名长短悬殊（最长 60 字符），单行三段式必然截断，改成上下两行 */
+.bar-row{display:flex;flex-direction:column;gap:6px;font-size:12.5px}
+.bar-row .top{display:flex;align-items:baseline;gap:12px;justify-content:space-between}
+.bar-row .lbl{color:var(--ink2);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-row .frac{flex:0 0 auto;font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+/* 轨道用可见的浅色：surface2 与纸底几乎同色，0% 的行看上去会像没有轨道 */
+.bar-row .track{display:block;width:100%;height:6px;border-radius:99px;background:color-mix(in srgb,var(--line2) 62%,transparent);overflow:hidden}
+.bar-row .fill{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .5s ease}
+.wrong-list{display:flex;flex-direction:column;gap:8px}
+.wrong-item{
+  display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:11px;
+  background:var(--surface);border:1px solid var(--line);text-align:left;width:100%;
+  transition:border-color .16s,transform .16s;
+}
+.wrong-item:hover{border-color:var(--line2);transform:translateX(2px)}
+.wrong-item .n{font-family:var(--mono);font-size:11.5px;color:var(--muted);flex:0 0 26px;padding-top:2px}
+.wrong-item .qt{font-size:13.5px;line-height:1.6;color:var(--ink);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.wrong-item .qt .tk{font-style:normal;font-size:10.5px;letter-spacing:.04em;color:var(--accent-ink);
+  background:color-mix(in srgb,var(--accent) 9%,transparent);border-radius:4px;padding:1px 5px;margin-right:7px;vertical-align:1px}
+.res-actions{display:flex;gap:10px;margin-top:32px;flex-wrap:wrap}
+.empty{text-align:center;padding:80px 20px;color:var(--muted)}
+.empty b{display:block;font-size:16px;color:var(--ink);margin-bottom:6px;font-weight:600}
+
+.scrim{display:none}
+.toast{
+  position:fixed;left:50%;bottom:28px;transform:translate(-50%,12px);z-index:100;
+  background:var(--ink);color:var(--paper);font-size:12.5px;padding:8px 16px;border-radius:99px;
+  opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;
+  box-shadow:0 10px 30px -10px rgba(0,0,0,.5);
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------------------------------------------------------------- 题号跳转 */
+.pos-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:1px;
+  min-width:66px;padding:7px 10px;border-radius:9px;border:1px solid transparent;
+  font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;
+  transition:background .15s,border-color .15s,color .15s;
+}
+.pos-btn:hover{background:var(--surface2);border-color:var(--line);color:var(--ink2)}
+.pos-btn b{color:var(--ink);font-weight:600;font-size:13px}
+.pos-btn svg{width:13px;height:13px;flex:0 0 13px;opacity:.5;margin-right:5px}
+.pos-btn:hover svg{opacity:.75}
+
+.sheet-scrim{
+  display:none;position:fixed;inset:0;z-index:70;
+  background:rgba(12,14,13,.38);backdrop-filter:blur(2px);
+}
+.sheet-scrim.show{display:block;animation:fade .18s ease}
+.sheet{
+  display:none;position:fixed;left:0;right:0;bottom:0;z-index:75;
+  max-height:76vh;max-height:76dvh;flex-direction:column;
+  background:var(--surface);border-top:1px solid var(--line);
+  border-radius:20px 20px 0 0;
+  box-shadow:0 -14px 44px -14px rgba(0,0,0,.45);
+  padding-bottom:var(--safe-b);
+}
+.sheet.show{display:flex;animation:sheetUp .26s cubic-bezier(.2,.8,.2,1)}
+@keyframes sheetUp{from{transform:translateY(100%)}to{transform:none}}
+.sheet-h{
+  display:flex;align-items:center;gap:10px;padding:14px 16px 12px;
+  border-bottom:1px solid var(--line);
+}
+.sheet-h b{font-size:13.5px;font-weight:600;letter-spacing:.01em}
+.sheet-h .legend{margin-left:auto;display:flex;gap:11px;font-size:10.5px;color:var(--muted)}
+.sheet-h .legend span{display:inline-flex;align-items:center;gap:4px}
+.sheet-h .legend i{width:8px;height:8px;border-radius:2.5px;background:var(--line2)}
+.sheet-h .legend i.ok{background:var(--ok)}
+.sheet-h .legend i.bad{background:var(--bad)}
+.sheet-tools{padding:11px 16px 0;display:flex;align-items:center}
+.sheet-tools .seg{max-width:210px;width:100%}
+.sheet-body{
+  overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+  padding:14px 16px calc(20px + var(--safe-b));
+}
+.qgrid-grp{margin-bottom:15px}
+.qgrid-grp:last-child{margin-bottom:0}
+.qgrid-t{
+  font-size:10.5px;color:var(--muted);letter-spacing:.06em;margin:0 0 8px 2px;
+  display:flex;align-items:center;gap:8px;line-height:1.5;
+}
+.qgrid-t i{flex:1 1 12px;height:1px;background:var(--line);font-style:normal}
+.qgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:7px}
+.qcell{
+  position:relative;height:44px;border-radius:10px;
+  border:1px solid var(--line);background:var(--surface2);
+  font-family:var(--mono);font-size:12.5px;color:var(--ink2);
+  display:grid;place-items:center;transition:transform .12s,border-color .12s;
+}
+.qcell:active{transform:scale(.94)}
+.qcell.ok{background:var(--ok-soft);border-color:color-mix(in srgb,var(--ok) 42%,transparent);color:var(--ok);font-weight:600}
+.qcell.bad{background:var(--bad-soft);border-color:color-mix(in srgb,var(--bad) 42%,transparent);color:var(--bad);font-weight:600}
+.qcell.pending{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.qcell.cur{outline:2px solid var(--accent);outline-offset:1px}
+.qcell.marked::after{
+  content:"";position:absolute;top:5px;right:5px;width:5px;height:5px;
+  border-radius:50%;background:var(--accent);
+}
+.qcell.cur.marked::after{background:var(--accent-ink)}
+
+/* 翻页方向：左滑进入新题从右侧滑入，右滑返回从左侧 */
+.stage[data-dir="l"] .q.active{animation:slideL .28s cubic-bezier(.2,.8,.2,1)}
+.stage[data-dir="r"] .q.active{animation:slideR .28s cubic-bezier(.2,.8,.2,1)}
+@keyframes slideL{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+@keyframes slideR{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:none}}
+
+/* 桌面端别让面板横贯整屏，收成居中浮层 */
+@media (min-width:981px){
+  .sheet{
+    left:0;right:0;margin:0 auto;width:min(680px,92vw);
+    bottom:28px;border:1px solid var(--line);border-radius:18px;
+    padding-bottom:0;max-height:72vh;
+  }
+  .sheet-body{padding-bottom:18px}
+  .sheet-scrim{background:rgba(12,14,13,.26)}
+}
+
+/* 超长英文单词（化学名）在窄屏会顶破容器 */
+.stem,.opt .txt,.ans-row .v,blockquote.ev,.key-row,.wrong-item .qt{overflow-wrap:break-word}
+
+/* ---------------------------------------------------------------- responsive */
+@media (max-width:980px){
+  /* 小屏上直接放大字号会溢出，按断点重算三档 */
+  html[data-fs="sm"]{--stem:15.8px;--body:13.6px}
+  html[data-fs="md"]{--stem:17.4px;--body:15.4px}
+  html[data-fs="lg"]{--stem:20px;--body:17.4px}
+
+  .app{grid-template-columns:minmax(0,1fr)}
+  .side{
+    position:fixed;left:0;top:0;z-index:60;
+    width:min(86vw,318px);height:100vh;height:100dvh;
+    padding:calc(20px + var(--safe-t)) 16px calc(16px + var(--safe-b));
+    transform:translateX(-100%);
+    transition:transform .26s cubic-bezier(.2,.8,.2,1);
+    background:var(--surface);box-shadow:var(--shadow);
+  }
+  .side.open{transform:none}
+  .scrim.show{
+    display:block;position:fixed;inset:0;z-index:55;background:rgba(0,0,0,.34);
+    animation:fade .2s ease;
+  }
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .only-mobile{display:grid}
+
+  .topbar{
+    padding:calc(8px + var(--safe-t)) 14px 8px;gap:10px;
+    background:color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter:blur(14px) saturate(1.15);
+  }
+  .stage{padding:20px 16px calc(94px + var(--safe-b))}
+
+  /* 底栏贴住视口底部：长页面滚动时始终可点，且不遮住正文末段 */
+  .navbar{
+    position:fixed;left:0;right:0;bottom:0;
+    justify-content:space-between;gap:10px;
+    padding:10px 14px calc(10px + var(--safe-b));
+    background:color-mix(in srgb, var(--surface) 93%, transparent);
+    backdrop-filter:blur(14px) saturate(1.15);
+    border-top:1px solid var(--line);
+    box-shadow:0 -10px 28px -22px rgba(0,0,0,.55);
+  }
+  .nav-prev{min-height:44px;padding:10px 16px;font-size:13.5px}
+  .nav-next{min-height:44px;padding:10px 16px;font-size:13.5px;flex:1;max-width:200px}
+  .pos-btn{min-height:44px;min-width:60px}
+
+  /* 键盘弹出时收起底栏，别压在输入框上 */
+  body.kbd .navbar{display:none}
+  body.kbd .stage{padding-bottom:32px}
+  .toast{bottom:calc(84px + var(--safe-b))}
+
+  /* 抽屉整体滚动，章节列表别再套一层滚动区，否则手机上只剩三行可视 */
+  .chapters{overflow:visible;flex:0 0 auto}
+  .side-foot{margin-top:12px}
+  .result{padding:26px 16px calc(48px + var(--safe-b))}
+  .res-head{gap:20px}
+}
+
+@media (max-width:640px){
+  #mode{display:none}
+  .topbar{gap:8px}
+  .crumb{font-size:11.5px}
+  .crumb span:first-child,.crumb .sep{display:none}
+  .timer{display:block;font-size:11px;padding:3px 7px}
+  .btn{padding:8px 12px;font-size:13px;min-height:40px}
+  .icon-btn{width:40px;height:40px}
+  .icon-btn svg{width:18px;height:18px}
+
+  .qhead{gap:7px;margin-bottom:16px}
+  .num{font-size:22px}
+  .tag{font-size:10.5px;padding:3px 7px}
+  .mark-btn{padding:6px 4px}
+
+  .stem{line-height:1.9;margin-bottom:18px}
+  .opts{gap:10px}
+  .opt{padding:14px;border-radius:13px;min-height:54px;flex-wrap:wrap}
+  .opt .ltr{width:26px;height:26px;flex-basis:26px;margin-top:0}
+  /* 判定标注换行到正文下方，避免把选项文字挤成窄条 */
+  .opt .flag{flex:1 1 100%;margin:5px 0 0 38px;font-size:11px}
+  .opt .flag:empty{display:none}
+
+  .field{padding:13px 14px;font-size:max(16px, var(--body))}
+  .q-actions{gap:8px;margin-top:16px}
+  .q-actions .btn{flex:1;min-height:44px}
+  .q-actions .hint{flex:1 1 100%;margin:0}
+  .self-grade{display:flex;gap:8px;width:100%}
+  .self-grade button{flex:1;min-height:46px;font-size:13.5px}
+
+  .verdict{margin-top:18px;font-size:13.5px}
+  .ans{padding:15px 14px;border-radius:13px;margin-top:12px}
+  .ans-row{font-size:13px;gap:8px}
+  .ans-row .k{min-width:42px;font-size:11px}
+  .keys{padding:10px 12px}
+  .key-row{line-height:1.9}
+  blockquote.ev{font-size:12.5px;line-height:1.9;padding-left:12px}
+
+  /* 结果页：环形缩小、数据两列、按钮整宽堆叠 */
+  .res-head{flex-direction:column;align-items:flex-start;gap:16px;margin-bottom:26px}
+  .big-ring{width:104px;height:104px;flex-basis:104px}
+  .big-ring svg{width:104px;height:104px}
+  .big-ring .t b{font-size:27px}
+  .res-title h2{font-size:20px}
+  .res-title p{font-size:12.5px;line-height:1.8}
+  .res-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;width:100%;margin-top:14px}
+  .res-stats b{font-size:19px}
+  .res-actions{flex-direction:column;gap:8px;margin-top:24px}
+  .res-actions .btn{width:100%;min-height:46px}
+  .wrong-item{padding:11px 12px}
+  .wrong-item .qt{-webkit-line-clamp:3}
+  .bar-row .lbl{white-space:normal;line-height:1.5}
+}
+
+@media (max-width:400px){
+  .topbar{padding-left:10px;padding-right:10px;gap:6px}
+  .crumb{max-width:96px}
+  .num{font-size:20px}
+  .qgrid{grid-template-columns:repeat(auto-fill,minmax(42px,1fr));gap:6px}
+  .qcell{height:42px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+}
+
+/* ---------------------------------------------------------------- print */
+@media print{
+  body{background:#fff}
+  .side,.topbar,.navbar,.scrim,.toast,.progress,.q-actions,.mark-btn,
+  .sheet,.sheet-scrim,.pos-btn{display:none!important}
+  .app{display:block}
+  .stage{max-width:none;padding:0}
+  .q{display:block!important;page-break-inside:avoid;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid #ddd}
+  .ans,.verdict{display:block!important}
+  .opt{box-shadow:none;break-inside:avoid}
+  .result{display:none!important}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side" id="side">
+    <div class="brand">
+      <div class="mark">Q</div>
+      <div class="brand-t">
+        <h1>先进材料研究进展C · 期末模拟卷</h1>
+        <p>解析器 课件转录稿 + 逐字回查 · 42 题 · 生成于 2026-11-17 11:47</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="ring">
+        <svg width="72" height="72" viewBox="0 0 72 72" aria-hidden="true">
+          <circle class="track" cx="36" cy="36" r="30" fill="none" stroke-width="5"/>
+          <circle class="bar" id="ringBar" cx="36" cy="36" r="30" fill="none" stroke-width="5"
+                  stroke-dasharray="188.5" stroke-dashoffset="188.5"/>
+        </svg>
+        <div class="ring-t"><b id="ringNum">0</b><span id="ringAll">/ 0</span></div>
+      </div>
+      <div class="ring-meta">
+        <div><span class="dot ok"></span><b id="okNum">0</b> 答对</div>
+        <div><span class="dot bad"></span><b id="badNum">0</b> 答错</div>
+        <div><span class="dot mut"></span><b id="leftNum">0</b> 未做</div>
+      </div>
+    </div>
+
+    <div class="filters">
+      <div class="flabel">范围</div>
+      <div class="seg" id="scope">
+        <button data-scope="all" aria-pressed="true">全部</button>
+        <button data-scope="todo" aria-pressed="false">未做</button>
+        <button data-scope="wrong" aria-pressed="false">错题</button>
+        <button data-scope="marked" aria-pressed="false">标记</button>
+      </div>
+      <div class="flabel" style="margin-top:6px">题型</div>
+      <div class="chips" id="types"></div>
+      <div class="flabel" style="margin-top:10px">模式</div>
+      <div class="seg small" id="mode2">
+        <button data-mode="practice">练习</button>
+        <button data-mode="exam">考试</button>
+      </div>
+      <div class="flabel" style="margin-top:10px">正文字号</div>
+      <div class="seg small" id="fsSeg">
+        <button data-fs-btn="sm">小</button>
+        <button data-fs-btn="md">标准</button>
+        <button data-fs-btn="lg">大</button>
+      </div>
+    </div>
+
+    <nav class="chapters" id="chapters" aria-label="章节导航"></nav>
+
+    <div class="side-foot">
+      <a class="hub-link" href="amc.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>返回课程</a>
+      <button id="printBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+        打印 / 存为 PDF
+      </button>
+      <button id="resetBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+        清空答题记录
+      </button>
+    </div>
+  </aside>
+
+  <div class="scrim" id="scrim"></div>
+
+  <main class="main">
+    <div class="progress"><i id="progBar"></i></div>
+    <header class="topbar">
+      <button class="icon-btn only-mobile" id="menuBtn" aria-label="打开目录">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <div class="crumb">
+        <span id="crumbCh">—</span><span class="sep">/</span><span id="crumbSec">—</span>
+      </div>
+      <div class="top-right">
+        <div class="timer" id="timer">00:00</div>
+        <div class="seg small" id="mode">
+          <button data-mode="practice">练习</button>
+          <button data-mode="exam">考试</button>
+        </div>
+        <button class="btn ghost" id="submitBtn">交卷</button>
+        <button class="icon-btn" id="themeBtn" aria-label="切换深浅色"></button>
+      </div>
+    </header>
+
+    <div class="stage" id="stage"></div>
+
+    <div class="result" id="result"></div>
+
+    <footer class="navbar" id="navbar">
+      <button class="btn ghost nav-prev" id="prevBtn" disabled>上一题</button>
+      <button class="pos-btn" id="posBtn" aria-label="打开题目列表，快速跳转" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/>
+          <rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/>
+        </svg>
+        <b id="posNow">1</b><span>/</span><span id="posAll">0</span>
+      </button>
+      <button class="btn primary nav-next" id="nextBtn">下一题</button>
+      <div class="kbd-hint">
+        <span><kbd>1</kbd>–<kbd>4</kbd> 选择</span>
+        <span><kbd>←</kbd><kbd>→</kbd> 翻页</span>
+        <span><kbd>M</kbd> 标记</span>
+        <span><kbd>T</kbd> 主题</span>
+      </div>
+    </footer>
+  </main>
+</div>
+
+<div class="sheet-scrim" id="sheetScrim"></div>
+<section class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="题目列表">
+  <header class="sheet-h">
+    <b>题目列表</b>
+    <div class="legend">
+      <span><i class="ok"></i>对</span>
+      <span><i class="bad"></i>错</span>
+      <span><i></i>未做</span>
+    </div>
+    <button class="icon-btn" id="sheetClose" aria-label="关闭">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </header>
+  <div class="sheet-tools">
+    <div class="seg small" id="sheetScope">
+      <button data-sheet-scope="unit" aria-pressed="true">按单元</button>
+      <button data-sheet-scope="type" aria-pressed="false">按题型</button>
+    </div>
+  </div>
+  <div class="sheet-body" id="sheetBody"></div>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<script>window.__QUIZ__ = {"meta":{"id":"先进材料研究进展C期末模拟卷","title":"先进材料研究进展C · 期末模拟卷","engine":"课件转录稿 + 逐字回查","source":"《先进材料研究进展C》课件（课程组）与课程教学大纲","generated":"2026-11-17 11:47","chunks":4,"accepted":42,"rejected":[],"mock":false},"questions":[{"i":0,"n":1,"ch":"第一章 先进材料研究进展概论","sec":"第三节 发展历程与趋势","code":"","t":"single","bloom":"理解","diff":"medium","q":"可充电电池从铅酸体系一路发展而来，决定其容量、寿命与安全的关键因素是什么？","o":["电极与电解质的界面","电极材料的商品名称","电池组内部的串并联方式","单体电池的外形尺寸"],"a":["A"],"exp":"原文写的是「电极/电解质界面决定容量、寿命与安全」。串并联方式只改变成组后的电压与容量配置，外形尺寸属于结构封装问题，商品名称与性能无关，都不是课件给出的决定因素。","ev":"电化学储能\n从铅酸电池到可充电电池：电极/电解质界面决定容量、寿命与安全。","keys":[],"ref":"第 26 页","hint":"","score":2},{"i":1,"n":2,"ch":"第二章 仿生智能材料的设计与制备","sec":"第二节 仿生的诞生","code":"","t":"single","bloom":"记忆","diff":"easy","q":"「仿生学」一词最早是由谁在 1960 年提出的？","o":["巴夫洛特","巴甫洛夫","斯蒂尔","达尔文"],"a":["C"],"exp":"课件写明仿生学一词最早由美国人斯蒂尔取自拉丁文合成。巴夫洛特是 1997 年提出「荷叶效应」的植物学家，与命名无关。","ev":"仿生学一词最早是在1960年由美国人斯蒂尔取自拉丁文“bios”（生命方式）和词尾“nic”（具有……性质的）合成的","keys":[],"ref":"第 9 页","hint":"","score":2},{"i":2,"n":3,"ch":"第三章 木材的科技创新","sec":"1 木材科技创新势在必行","code":"1","t":"single","bloom":"记忆","diff":"easy","q":"根据课件，我国森林资源的现状不包括下列哪一项？","o":["木材需求持续减少","森林质量不高","森林资源分布不均衡","森林覆盖率低"],"a":["A"],"exp":"原文把我国森林资源现状概括为森林覆盖率低、森林资源分布不均衡、森林质量不高三项，A、B、C 均在列；课件同时讲的是林木资源日益匮乏与木材需求持续增加，D 与原文相反。","ev":"我国森林资源现状：森林覆盖率低、森林资源分布不均衡、森林质量不高","keys":[],"ref":"第 3 页","hint":"","score":2},{"i":3,"n":4,"ch":"第四章 电催化材料","sec":"背景与析氢机理","code":"","t":"single","bloom":"记忆","diff":"easy","q":"课件指出，在全球碳中和目标驱动下，电催化技术的两大关键方向是什么？","o":["燃料电池和电解水制氢","太阳能光伏和风电机组","生物质升级和氮气还原合成氨","绿氢制备（HER）和CO₂资源化利用"],"a":["D"],"exp":"原文把两大关键方向定为绿氢制备（HER）和CO₂资源化利用，分别对应清洁能源存储与碳循环闭环。生物质升级、氮气还原合成氨在课件里是进一步拓展版图的其它电催化过程，不是这两大方向；燃料电池、光伏和风电属于链路上下游，不是被并列提出的关键方向。","ev":"在全球碳中和目标驱动下，电催化技术成为连接可再生能源与化学燃料的核心枢纽。绿氢制备（HER）和CO2资源化利用是两大关键方向，分别解决清洁能源存储和碳循环闭环问题，对实现可持续发展具有战略意义。","keys":[],"ref":"第 3 页","hint":"","score":2},{"i":4,"n":5,"ch":"第一章 先进材料研究进展概论","sec":"第一节 先进材料的概念与分类","code":"","t":"single","bloom":"理解","diff":"easy","q":"PEDOT 导电高分子这类材料体现的先进材料特征是哪一类？","o":["智能化","功能化","高性能化","绿色化"],"a":["B"],"exp":"功能化的核心是「材料不只承载，还执行功能」，表现为导电、发光、储能、分离、传感，PEDOT 正是靠导电执行功能。高性能化强调单位质量承载能力（碳纤维复合材料），智能化强调外界刺激触发可控响应（镍钛合金支架），绿色化强调全生命周期降低环境负荷（PLA 生物基包装）。","ev":"PEDOT导电高分子\n②\n功能化\n核心：材料不只承载，还执行功能\n表现：导电、发光、储能、分离、传感","keys":[],"ref":"第 8 页","hint":"","score":2},{"i":5,"n":6,"ch":"第二章 仿生智能材料的设计与制备","sec":"第二节 仿生的诞生","code":"","t":"single","bloom":"记忆","diff":"easy","q":"课件把什么事件当作仿生学诞生的标志？","o":["雷达在二战中的使用","第一台电子计算机问世","第一只仿生机器人研制成功","1960 年全美第一届仿生学讨论会"],"a":["D"],"exp":"原句直接给出第一届仿生学讨论会是诞生标志。雷达和电子计算机只是文中提到的仿生成果例子，不是学科诞生的标志。","ev":"一般认为，1960年全美召开的第一届仿生学讨论会是仿生学诞生的标志。","keys":[],"ref":"第 9 页","hint":"","score":2},{"i":6,"n":7,"ch":"第三章 木材的科技创新","sec":"2 功能性实体木材","code":"2","t":"single","bloom":"理解","diff":"medium","q":"木材尺寸稳定性处理的作用机理是什么？","o":["在木材表面复合一层金属覆盖层","包围或封闭或置换亲水性游离羟基","增加木材中亲水性游离羟基的数量","消除微生物赖以生存的营养与水分"],"a":["B"],"exp":"S6 处理机理一行给出的就是包围、封闭或置换亲水性游离羟基；B 与机理方向相反；C 属于木材防腐处理的目的，D 属于木质-金属复合材料的处理形式，都不是尺寸稳定性处理的机理。","ev":"包围或封闭或置换亲水性游离羟基","keys":[],"ref":"第 6 页","hint":"","score":2},{"i":7,"n":8,"ch":"第四章 电催化材料","sec":"评价指标与活性描述符","code":"","t":"single","bloom":"理解","diff":"medium","q":"在电解槽的过电位构成中，η_other 主要依靠什么方式来降低？","o":["优化电解槽的设计","同时换用析氧和析氢两种催化剂","换用高活性的析氢催化剂","换用高活性的析氧催化剂"],"a":["A"],"exp":"原文区分了两类损耗：η_other 可以通过优化电解槽的设计来降低，而 η_a 和 η_c 必须分别靠高活性的析氧催化剂和析氢催化剂来最小化。后三个选项处理的是 η_a 与 η_c，不是 η_other。","ev":"实际上，η_other 可以通过优化电解槽的设计来降低，而 η_a 和 η_c 则必须分别通过高活性的析氧催化剂和析氢催化剂来最小化。","keys":[],"ref":"第 10 页","hint":"","score":2},{"i":8,"n":9,"ch":"第一章 先进材料研究进展概论","sec":"第一节 先进材料的概念与分类","code":"","t":"single","bloom":"记忆","diff":"easy","q":"按功能分类时，承担能量转化与存储任务的一类先进材料，其典型材料是哪一组？","o":["半导体、OLED、量子点","水凝胶、医用高分子、钛合金","光伏材料、电池材料、电解质","分离膜、催化剂、可降解塑料"],"a":["C"],"exp":"能源功能材料的功能任务是能量转化存储，典型材料为光伏材料、电池材料、催化剂、电解质、碳材料。A 属于电子信息材料，B 属于生物医用材料，D 属于环境功能材料，三者虽然都含催化或高分子字样，但承担的是信息、诊疗、吸附分离降解任务。","ev":"能源功能材料\n能量转化存储\n光伏材料、电池材料、催化剂、电解质、碳材料","keys":[],"ref":"第 10 页","hint":"","score":2},{"i":9,"n":10,"ch":"第二章 仿生智能材料的设计与制备","sec":"第二节 仿生的诞生","code":"","t":"single","bloom":"理解","diff":"medium","q":"按课件的定义，仿生学研究的对象是什么？","o":["生物系统的结构、性状、原理、行为以及相互作用","生物体的分类地位与进化谱系","生物体的基因序列与表达调控","生物材料的化学成分与合成路线"],"a":["A"],"exp":"定义句列出的正是结构、性状、原理、行为以及相互作用。其余三项分别跑到分类学、化学合成和分子生物学，都不是仿生学的定义范围。","ev":"研究生物系统的结构、性状、原理、行为以及相互作用","keys":[],"ref":"第 10 页","hint":"","score":2},{"i":10,"n":11,"ch":"第三章 木材的科技创新","sec":"2 功能性实体木材","code":"2","t":"single","bloom":"记忆","diff":"easy","q":"下列木材尺寸稳定性的处理手段中，属于课件所列化学法的是？","o":["聚氨酯漆","聚乙二醇","乙酰化","石蜡"],"a":["C"],"exp":"原文化学法一行为加热、乙酰化、异氰酸酯，故 C 正确；石蜡、聚乙二醇、聚氨酯漆都列在同一页的物理法一行之中。","ev":"化学法：加热，乙酰化，异氰酸酯","keys":[],"ref":"第 6 页","hint":"","score":2},{"i":11,"n":12,"ch":"第四章 电催化材料","sec":"析氢催化剂","code":"","t":"single","bloom":"记忆","diff":"easy","q":"关于贵金属Pt作为HER电催化剂，下列表述正确的是哪一项？","o":["Pt必须负载到载体上才具备催化HER的能力","Pt位于火山图顶点附近，具有“准零”起始过电位和较小的Tafel斜率","Pt储量丰富，只是加工困难才限制了大规模应用","Pt的短板是Ru−H键强度偏高，氢难以从表面脱附"],"a":["B"],"exp":"原文对Pt的描述是位于火山图顶点附近、HER最有效的电催化剂，具有“准零”起始过电位和较小的Tafel斜率，障碍是高成本和有限储量。Ru−H键强度适中说的是Ru；Pt的障碍是储量与成本而非加工；载体只是提高利用率的手段之一，不是Pt具有活性的前提。","ev":"(1)  Pt：位于火山图顶点附近，Pt是HER最有效的电催化剂，具有“准零”起始过电位和较小的Tafel斜率。不幸的是，Pt的高成本和有限储量已成为其大规模应用的主要障碍。","keys":[],"ref":"第 19 页","hint":"","score":2},{"i":12,"n":13,"ch":"第一章 先进材料研究进展概论","sec":"第二节 先进能源材料发展的必要性","code":"","t":"single","bloom":"记忆","diff":"easy","q":"我国在第七十五届联合国大会上宣布，二氧化碳排放力争在哪一年前达到峰值？","o":["2025年","2060年","2045年","2030年"],"a":["D"],"exp":"原文是「二氧化碳排放力争于2030年前达到峰值，努力争取2060年前实现碳中和」。2060 年对应碳中和而不是碳达峰，2025 与 2045 在原文中没有出现。","ev":"2020年9月22日在第七十五届联合国大会上，习近平主席宣布中国将提高国家自主贡献力度，采用更加有力的政策和措施，二氧化碳排放力争于2030年前达到峰值，努力争取2060年前实现碳中和。","keys":[],"ref":"第 11 页","hint":"","score":2},{"i":13,"n":14,"ch":"第二章 仿生智能材料的设计与制备","sec":"第二节 仿生的诞生","code":"","t":"single","bloom":"理解","diff":"medium","q":"广义上理解的仿生学，强调的是什么？","o":["只研究生物接收、传递、加工信息的方法","研究生物系统的各种特征，逐步改善技术设备并创造新工艺","只复制生物的外观形态","只研究自控机的设计原理"],"a":["B"],"exp":"广义理解落在「作为模拟对象逐步改善现代技术设备并创造新的工艺技术」。只谈信息与自控机的是狭义理解；只复制外观是把仿生缩小成了形态模仿。","ev":"作为模拟对象逐步改善现代技术设备并创造新的工艺技术","keys":[],"ref":"第 11 页","hint":"","score":2},{"i":14,"n":15,"ch":"第三章 木材的科技创新","sec":"2 功能性实体木材","code":"2","t":"single","bloom":"理解","diff":"medium","q":"经尺寸稳定性处理的木材，课件列出的应用方向是？","o":["木建筑、木门窗","家具产品、车船内饰","古建筑维护、现代木结构建筑","景观设施、木结构框架"],"a":["D"],"exp":"S9 的应用一栏是景观设施、木结构框架、木地板、实木家具，A 与之相符；B 是防腐处理的应用，C 是阻燃处理的应用，D 是木塑复合材料的应用，三者都不属于尺寸稳定性处理。","ev":"景观设施，木结构框架","keys":[],"ref":"第 9 页","hint":"","score":2},{"i":15,"n":16,"ch":"第四章 电催化材料","sec":"析氢催化剂","code":"","t":"single","bloom":"理解","diff":"medium","q":"课件把Ru看作Pt的一种更廉价的替代品，其主要依据是什么？","o":["Ru纳米颗粒抗团聚能力强，耐久性优于Pt","Ru的晶格失配度仅0.77%，可与Pt无缝互溶","Ru−H键强度适中，氢脱附能垒较低","Ru位于火山图顶点，本征活性高于Pt"],"a":["C"],"exp":"原文给出的理由是Ru具有适中的Ru−H键强度（约65 kcal mol⁻¹），因此氢脱附能垒较低。晶格失配度0.77%描述的是Pd；Ru纳米颗粒恰恰因易团聚而耐久性差；火山图顶点附近的材料是Pt。","ev":"(3)  Ru：作为Pt的一种更廉价的替代品，钌（Ru）具有适中的Ru−H键强度（约65 kcal mol⁻¹），因此氢脱附能垒较低。在4d过渡金属中，Ru具有较高的表面能。然而，Ru纳米颗粒（Ru NPs）因易发生团聚而面临耐久性差的挑战。因此，寻求合适的载体来稳定Ru NPs，对于优化其分散性至关重要。目前，研究者已探究了将Ru NPs负载于多种载体或助催化剂上，如聚合物、MoO₂、CeO₂、氮掺杂石墨烯、石墨、胶原基碳骨架以及NiCoP等。","keys":[],"ref":"第 20 页","hint":"","score":2},{"i":16,"n":17,"ch":"第一章 先进材料研究进展概论","sec":"第二节 先进能源材料发展的必要性","code":"","t":"single","bloom":"记忆","diff":"easy","q":"按相当于 46 个三峡电站年发电量估算，2060 年实现碳中和大约需要多大规模的储能？","o":["4600TWh","46000TWh","46TWh","460TWh"],"a":["A"],"exp":"原句是「2060年碳中和预计需储能4600TWh,相当于46个三峡电站年发电量」，46 是三峡电站的个数，4600 才是以 TWh 计的储能规模。A 把电站个数当成储能数值，B、D 是把小数点移位的易混结果。","ev":"2060年碳中和预计需储能4600TWh,相当于46个三峡电站年发电量！","keys":[],"ref":"第 17 页","hint":"","score":2},{"i":17,"n":18,"ch":"第二章 仿生智能材料的设计与制备","sec":"第三节 仿生与科技创新","code":"","t":"single","bloom":"记忆","diff":"medium","q":"贝壳珍珠层相对普通文石，硬度和韧性的差别是？","o":["硬度和韧性都约为 2 倍","硬度更高但韧性更低","硬度约为 2 倍，韧性约为 1000 倍","硬度约为 1000 倍，韧性约为 2 倍"],"a":["C"],"exp":"原文给的是硬度 2 倍、韧性 1000 倍，两者差三个数量级，不能对调。这也正是珍珠层成为硬质陶瓷仿生对象的原因。","ev":"贝壳珍珠层的硬度是普通文石的2倍，韧性是后者的1000倍","keys":[],"ref":"第 15 页","hint":"","score":2},{"i":18,"n":19,"ch":"第三章 木材的科技创新","sec":"2 功能性实体木材","code":"2","t":"single","bloom":"记忆","diff":"easy","q":"木材防腐处理旨在消除微生物赖以生存的必要条件，课件未列入这些条件的是？","o":["光照","氧气","营养","温度"],"a":["A"],"exp":"原文括号内列出的必要条件是营养、温度、氧气、水分、酸度，A、B、C 都在其中；光照未被课件列为微生物生存的必要条件。","ev":"消除微生物赖以生存的必要条件之一（营养、温度、氧气、水分、酸度）","keys":[],"ref":"第 10 页","hint":"","score":2},{"i":19,"n":20,"ch":"第四章 电催化材料","sec":"析氢催化剂","code":"","t":"single","bloom":"理解","diff":"medium","q":"在各种非贵金属中，Ni被认为HER活性突出，课件给出的依据是什么？","o":["Ni具有最高的氢吸附自由能和最低的HER交换电流密度（j₀）","Ni的d带最宽，费米能级附近态密度最高","Ni在碱性溶液中不发生氢吸附，因而免于中毒","Ni具有最低的氢吸附自由能（ΔG_H*）和最高的HER交换电流密度（j₀）"],"a":["D"],"exp":"原文明确写出在各种非贵金属中Ni具有最低的ΔG_H*和最高的j₀，非贵金属活性顺序为Ni > Mo > Co > W > Fe > Cu。B把两个极值说反；d带变宽、态密度重新分布是氮化物的机制；Ni一直被认为能催化碱性溶液中的HER，并非不吸附氢。","ev":"(1)  Ni：近一个世纪以来，金属镍（Ni）一直被认为能够催化碱性溶液中的析氢反应（HER）。基于大量理论计算和实验结果，在各种非贵金属中，Ni具有最低的氢吸附自由能（ΔG_H*）值和最高的HER交换电流密度（j₀）。非贵金属的催化性能顺序为：Ni > Mo > Co > W > Fe > Cu。为了进一步提升催化性能，得益于近年来纳米技术的飞速发展，研究者已开发出多种具有均匀尺寸和形貌分布的镍基催化剂纳米结构。.","keys":[],"ref":"第 23 页","hint":"","score":2},{"i":20,"n":21,"ch":"第一章 先进材料研究进展概论","sec":"第一节 先进材料的概念与分类","code":"","t":"multiple","bloom":"记忆","diff":"easy","q":"智能响应材料靠外界刺激触发可控响应，下列属于这类外界刺激的是哪些？","o":["pH","导电性","温度","应力"],"a":["A","C","D"],"exp":"刺激一栏为「温度、光、电、磁、pH、应力」，因此 A、B、C 正确。导电是被执行的功能之一，出现在功能化材料的「表现」中，不是施加给材料的刺激，故 D 不选。","ev":"核心：外界刺激触发可控响应\n刺激：温度、光、电、磁、pH、应力","keys":[],"ref":"第 8 页","hint":"","score":3},{"i":21,"n":22,"ch":"第二章 仿生智能材料的设计与制备","sec":"第四节 仿生学基本要素","code":"","t":"multiple","bloom":"记忆","diff":"easy","q":"按课件，仿生学的基本要素包括下列哪些？","o":["仿生模本","仿生模拟","仿生评价","仿生需求"],"a":["A","B","D"],"exp":"四个要素是仿生需求、仿生模本、仿生模拟、仿生制品，没有「仿生评价」这一项。评价属于研究流程，不是课件列出的基本要素。","ev":"仿生需求 仿生模本 仿生模拟 仿生制品","keys":[],"ref":"第 19 页","hint":"","score":3},{"i":22,"n":23,"ch":"第三章 木材的科技创新","sec":"2 功能性实体木材","code":"2","t":"multiple","bloom":"理解","diff":"medium","q":"关于木材防腐的冷热槽法，下列说法正确的有？","o":["渗入量容易控制","投资较少、见效快","工艺、设备及操作简单易行","处理时间短、生产效率高"],"a":["B","C"],"exp":"原文优点部分写的就是工艺、设备及操作简单易行，投资较少、见效快，A、B 正确；缺点一行恰恰是渗入量难控制、处理时间长、生产效率低，C、D 把缺点说成了有点。","ev":"优点：工艺、设备及操作简单易行\n投资较少、见效快","keys":[],"ref":"第 12 页","hint":"","score":3},{"i":23,"n":24,"ch":"第四章 电催化材料","sec":"析氢催化剂","code":"","t":"multiple","bloom":"理解","diff":"medium","q":"把另一种元素引入给定金属的晶格形成双金属表面，课件归纳的调控途径包括哪些？","o":["改变平均金属-金属键长，产生应变（压缩或拉伸）效应","增大晶粒尺寸，使表面配位数接近体相","把金属整体转化为氧化物相，以消除d带的影响","形成异原子键，产生配体效应"],"a":["A","D"],"exp":"原文列出两条途径：（i）形成异原子键产生配体效应；（ii）改变平均金属-金属键长产生应变效应。C的氧化和D的粗化都不是课件对该机制的归纳，与应变、配体两种效应对不上。","ev":"(3)  合金：将另一种元素引入给定金属的晶格中，是通过形成双金属表面来调控其电子/化学性质的有效方法，这主要通过两种途径实现：（i）形成异原子键，产生配体效应；（ii）改变平均金属-金属键长，产生应变（如压缩或拉伸）效应。此外，还有其他文献报道了Pt与其他贵金属形成的合金，例如Pt-Ag、Pt-Pd和Pt-Ru。然而，这些合金纳米颗粒的高成本仍然是其进一步商业应用的主要障碍。为了解决这一成本问题，Pt催化剂也已与3d过渡金属（如Fe、Co、Ni等）形成合金。","keys":[],"ref":"第 25 页","hint":"","score":3},{"i":24,"n":25,"ch":"第一章 先进材料研究进展概论","sec":"第一节 先进材料的概念与分类","code":"","t":"truefalse","bloom":"理解","diff":"easy","q":"先进材料只能按功能进行分类。","o":["正确","错误"],"a":["F"],"exp":"错在「只能」。分类同时给出「按组成成分分类」和「按功能分类」两条线索，前者包括金属材料、无机非金属材料、高分子材料、复合材料等，按功能分类则包括电子信息、生物医用、能源功能等类别。","ev":"按组成成分分类\n按功能分类","keys":[],"ref":"第 9 页","hint":"","score":2},{"i":25,"n":26,"ch":"第二章 仿生智能材料的设计与制备","sec":"第二节 仿生的诞生","code":"","t":"truefalse","bloom":"记忆","diff":"easy","q":"「仿生学」一词是斯蒂尔直接从希腊文词根合成的。","o":["正确","错误"],"a":["F"],"exp":"错在语种：课件说的是取自拉丁文“bios”和词尾“nic”，不是希腊文。","ev":"斯蒂尔取自拉丁文“bios”（生命方式）和词尾“nic”","keys":[],"ref":"第 9 页","hint":"","score":2},{"i":26,"n":27,"ch":"第三章 木材的科技创新","sec":"2 功能性实体木材","code":"2","t":"truefalse","bloom":"记忆","diff":"medium","q":"课件把 UDFP 氨基树脂阻燃剂归入无机阻燃剂一类。","o":["正确","错误"],"a":["F"],"exp":"原文有机阻燃剂一行的例子是 UDFP 氨基树脂阻燃剂和 FRW 木材阻燃剂；无机阻燃剂指的是磷、卤素、硼及其化合物，两者分类不同。","ev":"(2) 有机阻燃剂：UDFP氨基树脂阻燃剂，FRW木材阻燃剂","keys":[],"ref":"第 15 页","hint":"","score":2},{"i":27,"n":28,"ch":"第四章 电催化材料","sec":"析氢催化剂","code":"","t":"truefalse","bloom":"理解","diff":"easy","q":"MoN@NPCNCs这种氮化钼/中空氮掺杂碳材料只在酸性介质中才有可用的HER活性。","o":["正确","错误"],"a":["F"],"exp":"原文说分级中空空腔提供高效反应室和更多活性位点，使其在所有pH介质中均表现出优异的HER活性，并非仅限酸性。","ev":"尺寸约为3纳米的MoN纳米点被嵌入中空氮掺杂多孔碳珠和碳线（MoN@NPCNCs）中。MoN@NPCNCs中由此形成的分级中空空腔提供了高效的反应室和更多的活性位点，使其在所有pH介质中均表现出优异的HER活性。","keys":[],"ref":"第 31 页","hint":"","score":2},{"i":28,"n":29,"ch":"第一章 先进材料研究进展概论","sec":"第四节 生物质资源与先进能源材料","code":"","t":"truefalse","bloom":"理解","diff":"medium","q":"用于超级电容器的生物质多孔碳如果孔过多，会造成体积能量密度下降。","o":["正确","错误"],"a":["T"],"exp":"挑战一栏直接写出「孔太多：体积能量密度下降」。微孔提供储电面积、介孔与大孔降低扩散阻力，但孔体积过大挤占了有效体积，因此需要在导电性与比表面积之间平衡。","ev":"□ 孔太多：体积能量密度下降","keys":[],"ref":"第 38 页","hint":"","score":2},{"i":29,"n":30,"ch":"第二章 仿生智能材料的设计与制备","sec":"第四节 仿生学基本要素","code":"","t":"truefalse","bloom":"理解","diff":"easy","q":"神似模拟是在形似模拟的基础上，更注重对生物功能原理与规律的探究。","o":["正确","错误"],"a":["T"],"exp":"这一句正是课件对神似模拟的界定：模仿多因素耦合、协同作用的原理，落点在功能原理与规律。","ev":"更注重对生物功能原理与规律的探究","keys":[],"ref":"第 34 页","hint":"","score":2},{"i":30,"n":31,"ch":"第三章 木材的科技创新","sec":"2 功能性实体木材","code":"2","t":"truefalse","bloom":"记忆","diff":"easy","q":"课件认为氮-磷-硼系水基阻燃剂是木材阻燃剂的主流。","o":["正确","错误"],"a":["T"],"exp":"S17 发展前景一行直接写明氮-磷-硼系水基阻燃剂是木材阻燃剂的主流，同时提出一剂多效型木材保护剂是发展方向。","ev":"氮-磷-硼系水基阻燃剂，木材阻燃剂的主流","keys":[],"ref":"第 17 页","hint":"","score":2},{"i":31,"n":32,"ch":"第四章 电催化材料","sec":"析氢催化剂","code":"","t":"truefalse","bloom":"记忆","diff":"easy","q":"与单一原子掺杂相比，双掺杂石墨烯电催化剂具有更合适的H*吸附能，因而催化活性更高。","o":["正确","错误"],"a":["T"],"exp":"原文将双掺杂石墨烯优于N、B、O、S、P等单原子掺杂石墨烯的原因归结为更合适的H*吸附能，进而表现出更高的催化活性。","ev":"Chen课题组证明了N,S共掺杂石墨烯（NS-G）具有高催化活性。近年来，氮/硫、氮/磷以及氮/氟共掺杂石墨烯均展现出优异的HER催化活性。与单原子掺杂（如N、B、O、S、P掺杂石墨烯）相比，双掺杂石墨烯电催化剂具有更合适的H*吸附能，因而表现出更高的催化活性。此外，研究人员还投入了大量精力来研究和提升硼碳氮化物（BxCyNz）以及与氮掺杂石墨烯复合的g-C₃N₄（g-C₃N₄@N-graphene）的HER性能。","keys":[],"ref":"第 46 页","hint":"","score":2},{"i":32,"n":33,"ch":"第一章 先进材料研究进展概论","sec":"第二节 先进能源材料发展的必要性","code":"","t":"fill","bloom":"记忆","diff":"easy","q":"我国能源结构的特点被概括为富煤、贫油、____。","o":[],"a":["少气"],"exp":"三字概括为富煤、贫油、少气，说明能源转型必须兼顾安全、成本和低碳。填「富气」「多气」都会把原文结构说反。","ev":"我国能源结构：\n富煤、贫油、少气","keys":[],"ref":"第 13 页","hint":"","score":2},{"i":33,"n":34,"ch":"第二章 仿生智能材料的设计与制备","sec":"第二节 仿生的诞生","code":"","t":"fill","bloom":"记忆","diff":"medium","q":"斯蒂尔把拉丁文“bios”与词尾“____”合成，造出「仿生学」这个词。","o":[],"a":["nic"],"exp":"词尾 nic 表示「具有……性质的」，bios 指生命方式，合起来就是研究具有生物系统特征的系统。","ev":"和词尾“nic”（具有……性质的）","keys":[],"ref":"第 9 页","hint":"","score":2},{"i":34,"n":35,"ch":"第三章 木材的科技创新","sec":"2 功能性实体木材","code":"2","t":"fill","bloom":"记忆","diff":"easy","q":"乙酰化木材的增重一般在____之间，同时属于非毒、抗腐、抗虫的处理方法。","o":[],"a":["20%-25%"],"exp":"依据 S7 对乙酰化木材的量化描述，增重 20%-25%，抗张缩系数可达 70%。此处易把 70% 这一缩系数数值误填为增重比例。","ev":"增重20%-25%，抗张缩系数可达70%","keys":[],"ref":"第 7 页","hint":"","score":2},{"i":35,"n":36,"ch":"第四章 电催化材料","sec":"评价指标与活性描述符","code":"","t":"fill","bloom":"记忆","diff":"medium","q":"评估HER催化剂时，交换电流密度（j₀）用于描述电催化剂在 ____ 条件下的本征催化活性，可通过假设过电位（η）为零来外推得到。","o":[],"a":["可逆"],"exp":"原文把j₀描述为电催化剂在可逆条件下的本征催化活性，可通过假设过电位（η）为零来确定或外推得到。","ev":"Tafel斜率（b）是催化剂的本征属性，与HER的反应速率密切相关。交换电流密度（j₀）是一个重要的动力学参数，用于描述电催化剂在可逆条件下的本征催化活性，并且可以通过假设过电位（η）为零来确定（或外推得到）。","keys":[],"ref":"第 13 页","hint":"","score":2},{"i":36,"n":37,"ch":"第一章 先进材料研究进展概论","sec":"第二节 先进能源材料发展的必要性","code":"","t":"fill","bloom":"记忆","diff":"easy","q":"风电、光伏发电存在间歇性和波动性，需要储能技术进行____和调频调相。","o":[],"a":["削峰填谷"],"exp":"原文把储能的两项作用写成削峰填谷与调频调相。答案与「调峰」一类近义说法不同，此处要求与原文用词一致。","ev":"风电、光伏发电的间歇性和波动性，需储能技术进行削峰填谷和调频调相。","keys":[],"ref":"第 17 页","hint":"","score":2},{"i":37,"n":38,"ch":"第二章 仿生智能材料的设计与制备","sec":"第三节 仿生与科技创新","code":"","t":"fill","bloom":"记忆","diff":"medium","q":"海洋贝类由绝大部分碳酸钙和极少量有机质构成，有机质一般少于____。","o":[],"a":["5%"],"exp":"有机质占比极低，却决定了珍珠层的韧性与层状结构，这正是仿生要学的部分。","ev":"有机质 (一般少于5%)","keys":[],"ref":"第 15 页","hint":"","score":2},{"i":38,"n":39,"ch":"第一章 先进材料研究进展概论","sec":"第二节 先进能源材料发展的必要性","code":"","t":"short","bloom":"分析","diff":"medium","q":"实现碳中和的基本逻辑分为哪三个环节？每个环节各举一条对应措施。","o":[],"a":["分三个环节。电力端把以煤为主的结构发展为以风、光、水、核、地热、生物质等可再生能源为主。能源消费端在原材料生产、交通和建筑用能上以绿电、绿氢为主。固碳端对过量二氧化碳进行捕集、封存和利用。之所以要三端同时下手，是因为当前二氧化碳排放主要集中在电力、工业和交通。"],"exp":"评分要点：答出电力端、能源消费端、固碳端三个环节得主要分；每个环节需配一条对应措施（可再生能源替代、绿电绿氢、捕集封存利用）；只答其中两端或把固碳端写成植树造林等笼统说法酌情扣分。","ev":"实现“碳中和”的基本逻辑：\n我国当前二氧化碳排放主要集中在电力，工业，交通\n电力端：由煤为主发展为以风、光、水、核、地热、生物质等可再生能源为主\n能源消费端：原材料生产、交通、建筑用能以绿电、绿氢为主\n固碳端：捕集、封存、利用过量二氧化碳","keys":[],"ref":"第 15 页","hint":"","score":5},{"i":39,"n":40,"ch":"第二章 仿生智能材料的设计与制备","sec":"第一节 仿生的起源","code":"","t":"short","bloom":"分析","diff":"medium","q":"仿生学在远古、工业、信息、知识四个时代的模仿对象各是什么？这条线索说明了什么？","o":[],"a":["远古时代模仿蛛网编网捕鱼，受果实和瓢虫滚动启发发明轮子。工业时代模仿植物与动物结构造建筑，模仿鸟飞造飞机，模仿海豚造潜艇。信息时代模仿人的运算、感知与信息处理。知识时代模仿微观结构、遗传发育、认知与协同进化。四个时代连起来看，模仿对象从外形走向结构、功能、信息与智能系统。"],"exp":"四个时代各 1 分，能点出「从形态模仿走向综合创造」再给 1 分；只背例子不归纳只给一半。","ev":"仿生学从形态模仿，走向结构、功能、信息和智能系统的综合创造。","keys":[],"ref":"第 7 页","hint":"","score":5},{"i":40,"n":41,"ch":"第三章 木材的科技创新","sec":"2 功能性实体木材","code":"2","t":"short","bloom":"理解","diff":"medium","q":"简述阻燃处理工艺中满细胞法的操作步骤，并说明其处理效果与适用范围。","o":[],"a":["步骤依次为：先做前真空，再加药剂，随后加压并让药剂浸入，接着排除内压，再做后真空，最后解除真空。其效果是药剂充满细胞、渗透深度大。同时可以保留最大药剂量，处理效果好。课件指出该工艺适用于难处理木材。"],"exp":"依据 S16 满细胞法工艺，a 到 h 八个字母标出前真空、加药剂、加压、浸入药剂、排除内压、后真空、解除真空的顺序，其后三句分别给出渗透深度大、保留药剂量多、适用于难处理木材。易漏掉真空环节的顺序，或把适用范围说成易处理木材。","ev":"a 前真空\nb 加药剂\nc 加压\nd 浸入药剂\ne-f 排除内压\ng 后真空\nh 解除真空\n药剂充满细胞，渗透深度大\n保留最大药剂量，处理效果好\n适用于难处理木材","keys":[],"ref":"第 16 页","hint":"","score":5},{"i":41,"n":42,"ch":"第四章 电催化材料","sec":"析氢催化剂","code":"","t":"short","bloom":"分析","diff":"hard","q":"为什么大多数过渡金属氧化物（TMOs）难以直接获得高的HER电催化性能？MoO₂和WO₂为何被当作例外？","o":[],"a":["TMOs普遍存在固有的低电导率、缓慢的反应动力学、有限的氢吸附位点以及不合适的氢结合能，课件把这几点列为阻碍其获得高电催化性能的主要障碍。MoO₂和WO₂结晶为单斜晶胞并具有畸变的金红石晶体结构，因而拥有类似金属的高电导率，HER性能相对较好。对性能受限的其它TMOs，课件提出的改进方向包括减小结构尺寸、构建多孔结构、与导电碳载体复合、引入表面缺陷或氧空位以及掺杂其他原子。"],"exp":"依据S27原句：大多数TMOs的障碍被逐条列出，而MoO₂和WO₂的单斜晶胞与畸变金红石结构是它俩被当作例外的原因，改进策略同样出自该页。","ev":"目前，过渡金属氧化物（TMOs）是HER领域最有前景的一类电催化剂之一。然而，大多数TMOs固有的低电导率、缓慢的反应动力学、有限的氢吸附位点以及不合适的氢结合能，是阻碍其获得高电催化性能的主要障碍。MoO₂和WO₂结晶为单斜晶胞，具有畸变的金红石晶体结构，这赋予了它们类似金属的高电导率以及相对较好的HER性能。","keys":[],"ref":"第 27 页","hint":"","score":5}]};</script>
+<script>
+(function () {
+  "use strict";
+
+  const D = window.__QUIZ__ || { meta: {}, questions: [] };
+  const META = D.meta || {};
+  const Q = Array.isArray(D.questions) ? D.questions : [];
+  const N = Q.length;
+  const KEY = "pdfquiz:" + (META.id || "deck");
+  const TKEY = "pdfquiz:theme";
+  const FKEY = "pdfquiz:fs";
+
+  const $ = (s, r) => (r || document).querySelector(s);
+  const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+
+  const TYPE_CN = {
+    single: "单选题", multiple: "多选题", truefalse: "判断题", fill: "填空题", short: "简答题",
+    trans_en_cn: "英译中", trans_cn_en: "中译英", describe: "描述题", qa: "问答题", term: "术语翻译"
+  };
+  /* 题型固定顺序：侧栏、结果页统计都按这个排，免得随出题顺序抖动 */
+  const TYPE_ORDER = ["trans_en_cn", "trans_cn_en", "describe", "qa",
+    "single", "multiple", "truefalse", "fill", "short", "term"];
+  const typeRank = (t) => { const i = TYPE_ORDER.indexOf(t); return i < 0 ? 99 : i; };
+  /* 从 "UNIT 17 …" 取出单元号，用于稳定排序；取不到排最后 */
+  const unitKey = (s) => { const m = String(s || "").match(/UNIT\s*(\d+)/i); return m ? +m[1] : 999; };
+  /* 主观题：无法自动判分，一律「作答 → 对照参考答案 → 自评」 */
+  const SUBJECTIVE = { short: 1, trans_en_cn: 1, trans_cn_en: 1, describe: 1, qa: 1 };
+  /* 可自动判分的填空题型：术语题答案唯一，比对时忽略大小写、空格与连字符 */
+  const FILLABLE = { fill: 1, term: 1 };
+  /* 需要输入框的作答区提示语 */
+  const PLACEHOLDER = {
+    short: "写下你的回答，再对照参考答案自评",
+    trans_en_cn: "先在此译成中文，再展开参考答案逐句比对",
+    trans_cn_en: "用英文写出译文，注意关键词拼写",
+    describe: "用英文描述，尽量写全要点",
+    qa: "用英文作答，先给结论再展开",
+    term: "写出对应的英文术语"
+  };
+  const DIFF_CN = { easy: "简单", medium: "中等", hard: "困难" };
+  const LTR = "ABCDEFGH";
+
+  /* ------------------------------------------------------------ state */
+  const BLANK = {
+    mode: "practice",
+    answers: {},
+    marked: [],
+    cur: 0,
+    filter: { scope: "all", type: "all" },
+    started: Date.now(),
+    submitted: false
+  };
+
+  function load() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (!raw) return null;
+      const s = JSON.parse(raw);
+      if (!s || typeof s !== "object") return null;
+      return Object.assign({}, BLANK, s, {
+        answers: s.answers && typeof s.answers === "object" ? s.answers : {},
+        marked: Array.isArray(s.marked) ? s.marked : [],
+        filter: Object.assign({ scope: "all", type: "all" }, s.filter || {}),
+        submitted: !!s.submitted
+      });
+    } catch (e) {
+      return null;
+    }
+  }
+
+  let S = load() || Object.assign({}, BLANK);
+
+  let saveTimer = null;
+  function save() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* 隐私模式 */ }
+    }, 120);
+  }
+
+  function ans(i) { return S.answers[i] || null; }
+  function isGraded(i) { const a = ans(i); return !!(a && a.graded); }
+  function isCorrect(i) { const a = ans(i); return !!(a && a.correct === true); }
+
+  /* ------------------------------------------------------------ grading */
+  function norm(s) {
+    return String(s == null ? "" : s)
+      .normalize("NFKC")
+      .replace(/[\s，。！？、；：""''（）()\[\]【】《》·.,!?;:"'`~…—\-_/\\*#]/g, "")
+      .toLowerCase();
+  }
+
+  function sameSet(a, b) {
+    if (a.length !== b.length) return false;
+    const sb = new Set(b);
+    return a.every((x) => sb.has(x));
+  }
+
+  function gradeChoice(q, picked) {
+    return sameSet(picked.slice().sort(), q.a.slice().sort());
+  }
+
+  function gradeFill(q, text) {
+    const got = norm(text);
+    if (!got) return null;
+    const alts = String(q.a[0] || "").split(/[\/／|｜；;、]/).map(norm).filter(Boolean);
+    if (!alts.length) return null;
+    return alts.some((alt) => got === alt || (alt.length >= 2 && (got.includes(alt) || alt.includes(got))));
+  }
+
+  /* 术语题答案唯一，不能用「包含」判对，否则 poly 会被判成 polymerization。
+     归一化已抹平大小写、连字符与空格，这里再容忍单复数。 */
+  function gradeTerm(q, text) {
+    const stem = (s) => s.replace(/ies$/, "y").replace(/(es|s)$/, "");
+    const alts = String(q.a[0] || "").split(/[\/／|｜；;、]/).map(norm).filter(Boolean);
+    if (!alts.length) return null;
+    /* 允许多写：polyethylene / PE 全抄回来、只写缩写、只写全称，都算对 */
+    const gots = String(text).split(/[\/／|｜；;、]/).map(norm).filter(Boolean);
+    if (!gots.length) return null;
+    return gots.some((got) => alts.some((alt) => got === alt || stem(got) === stem(alt)));
+  }
+
+  /* 需要键入文字的题型统一走这里 */
+  function gradeText(q, text) {
+    return q.t === "term" ? gradeTerm(q, text) : gradeFill(q, text);
+  }
+
+  /* ------------------------------------------------------------ render */
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  }
+
+  function questionHTML(q) {
+    const tags = [
+      '<span class="tag t">' + (TYPE_CN[q.t] || "题目") + "</span>",
+      q.bloom ? '<span class="tag">' + esc(q.bloom) + "</span>" : "",
+      q.diff ? '<span class="tag lv-' + esc(q.diff) + '">' + (DIFF_CN[q.diff] || esc(q.diff)) + "</span>" : ""
+    ].join("");
+
+    let body = "";
+    if (q.t === "single" || q.t === "multiple") {
+      body = '<div class="opts" role="' + (q.t === "single" ? "radiogroup" : "group") + '">' +
+        q.o.map((o, k) =>
+          '<button class="opt" data-i="' + q.i + '" data-l="' + LTR[k] + '" role="' + (q.t === "single" ? "radio" : "checkbox") + '" aria-checked="false">' +
+            '<span class="ltr">' + LTR[k] + "</span>" +
+            '<span class="txt">' + esc(o) + "</span>" +
+            '<span class="flag"></span>' +
+          "</button>").join("") + "</div>";
+    } else if (q.t === "truefalse") {
+      body = '<div class="opts" role="radiogroup">' +
+        [["T", "正确"], ["F", "错误"]].map(([l, t]) =>
+          '<button class="opt" data-i="' + q.i + '" data-l="' + l + '" role="radio" aria-checked="false">' +
+            '<span class="ltr">' + l + "</span>" +
+            '<span class="txt">' + t + "</span>" +
+            '<span class="flag"></span>' +
+          "</button>").join("") + "</div>";
+    } else if (q.t === "fill" || q.t === "term") {
+      body = '<input class="field" data-i="' + q.i + '" type="text" autocomplete="off" spellcheck="false" ' +
+        'placeholder="' + (q.t === "term" ? "写出英文术语，回车确认" : "在此填写答案，回车确认") + '">';
+    } else {
+      const ph = PLACEHOLDER[q.t] || "写下你的回答，再对照参考答案自评";
+      const rows = (q.t === "trans_en_cn" || q.t === "describe" || q.t === "qa") ? 5 : 3;
+      body = '<textarea class="field" data-i="' + q.i + '" rows="' + rows + '" style="--rows:' + rows + '" placeholder="' + esc(ph) + '"></textarea>' +
+        (q.t === "trans_en_cn" || q.t === "trans_cn_en"
+          ? '<div class="typeline">' + (q.t === "trans_en_cn"
+              ? '译完再点开参考答案，逐句比对是否漏译、误译'
+              : '先写关键词，再连成完整句子；拼写错误在考试中同样扣分') + "</div>"
+          : "");
+    }
+
+    let actions = "";
+    if (q.t === "multiple") {
+      actions = '<div class="q-actions"><button class="btn primary" data-act="confirm" data-i="' + q.i + '" disabled>确认作答</button>' +
+        '<span class="hint">可选多项，选完点确认</span></div>';
+    } else if (q.t === "fill" || q.t === "term") {
+      actions = '<div class="q-actions"><button class="btn primary" data-act="confirm" data-i="' + q.i + '" disabled>确认作答</button>' +
+        '<span class="hint">' + (q.t === "term"
+          ? "只需写英文术语本身，不区分大小写与连字符"
+          : "文字按去空格与标点后比对，近似匹配即算对") + "</span></div>";
+    } else if (SUBJECTIVE[q.t]) {
+      actions = '<div class="q-actions"><button class="btn ghost" data-act="reveal" data-i="' + q.i + '">对照参考答案</button>' +
+        '<span class="hint">' + (q.t === "trans_en_cn" ? "翻译题按要点自评" : "答到要点即算通过") + "</span></div>";
+    }
+
+    /* 长答案（描述题/问答题的整段参考答案）不加粗，否则整段发黑难读 */
+    const longAns = SUBJECTIVE[q.t] && String(q.a[0] || "").length > 60;
+
+    const answerHTML = q.t === "truefalse"
+      ? "<b>" + (q.a[0] === "T" ? "正确" : "错误") + "</b>"
+      : q.t === "single"
+        ? "<b>" + q.a[0] + (q.o[LTR.indexOf(q.a[0])] ? "　" + esc(q.o[LTR.indexOf(q.a[0])]) : "") + "</b>"
+        : q.t === "multiple"
+          ? "<b>" + q.a.join(" ") + "</b>" + q.a.map((l) => {
+              const k = LTR.indexOf(l);
+              return q.o[k] ? '<span class="alt"><i>' + l + "</i>" + esc(q.o[k]) + "</span>" : "";
+            }).join("")
+          : longAns ? esc(q.a[0]) : "<b>" + esc(q.a[0]) + "</b>";
+
+    const ansLabel = q.t === "trans_en_cn" ? "参考译文"
+      : q.t === "trans_cn_en" ? "参考英文"
+      : q.t === "term" ? "英文术语"
+      : q.t === "describe" || q.t === "qa" ? "参考答案"
+      : "答案";
+
+    /* 采分点：术语中英对照，翻译题与问答题靠它判断答到几分 */
+    const keysHTML = (q.keys && q.keys.length)
+      ? '<div class="keys">' +
+          '<div class="keys-h">采分点 · 关键词必须会写</div>' +
+          q.keys.map((k) =>
+            '<div class="key-row"><span class="ke">' + esc(k.en) + "</span>" +
+            (k.cn ? '<span class="kc">' + esc(k.cn) + "</span>" : "") + "</div>").join("") +
+        "</div>"
+      : "";
+
+    return '<article class="q" data-i="' + q.i + '" data-sec="' + esc(q.sec) + '">' +
+      '<div class="qhead">' +
+        '<span class="num">' + String(q.n).padStart(2, "0") + "</span>" + tags +
+        '<button class="mark-btn" data-act="mark" data-i="' + q.i + '" aria-pressed="false" title="标记本题 (M)">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12v18l-6-4-6 4z"/></svg>标记</button>' +
+      "</div>" +
+      '<div class="stem">' + esc(q.q).replace(/＿{2,}/g, '<span class="blank"></span>') + "</div>" + body + actions +
+      '<div class="verdict" aria-live="polite"></div>' +
+      '<div class="ans">' +
+        '<div class="ans-row"><span class="k">' + ansLabel + '</span><span class="v">' + answerHTML + "</span></div>" +
+        keysHTML +
+        (q.exp ? '<div class="ans-row"><span class="k">解析</span><span class="v">' + esc(q.exp) + "</span></div>" : "") +
+        (q.ev ? '<blockquote class="ev">' + esc(q.ev) + "</blockquote>" : "") +
+        (q.ref ? '<div class="src">出处 · ' + esc(q.ref) + "</div>" : "") +
+      "</div>" +
+    "</article>";
+  }
+
+  function buildStage() {
+    $("#stage").innerHTML = Q.map(questionHTML).join("") ||
+      '<div class="empty"><b>没有题目</b>这份题库是空的，先回到命令行重新生成。</div>';
+  }
+
+  function buildSidebar() {
+    // 题型筛选
+    const counts = {};
+    Q.forEach((q) => { counts[q.t] = (counts[q.t] || 0) + 1; });
+    const types = TYPE_ORDER.filter((t) => counts[t]);
+    Object.keys(counts).forEach((t) => { if (!types.includes(t)) types.push(t); });
+    $("#types").innerHTML =
+      '<button data-type="all" aria-pressed="' + (S.filter.type === "all") + '">全部 ' + N + "</button>" +
+      types.map((t) => '<button data-type="' + t + '" aria-pressed="' + (S.filter.type === t) + '">' +
+        (TYPE_CN[t] || t) + " " + counts[t] + "</button>").join("");
+
+    // 章节导航（按单元号排序，否则只有术语题的单元会掉到列表末尾）
+    const groups = [];
+    Q.forEach((q) => {
+      let g = groups.find((x) => x.ch === q.ch);
+      if (!g) { g = { ch: q.ch, items: [] }; groups.push(g); }
+      let it = g.items.find((x) => x.sec === q.sec);
+      if (!it) { it = { sec: q.sec, qs: [] }; g.items.push(it); }
+      it.qs.push(q.i);
+    });
+    groups.sort((a, b) => unitKey(a.ch + " " + a.items[0].sec) - unitKey(b.ch + " " + b.items[0].sec));
+    groups.forEach((g) => g.items.sort((a, b) => unitKey(a.sec) - unitKey(b.sec)));
+    $("#chapters").innerHTML = groups.map((g) =>
+      '<div class="grp"><div class="grp-t">' + esc(g.ch) + "</div>" +
+      g.items.map((it) =>
+        '<button class="nav-item" data-sec="' + esc(it.sec) + '">' +
+          "<span>" + esc(it.sec) + "</span>" +
+          '<span class="cnt" data-cnt="' + esc(it.sec) + '">' + it.qs.length + "</span>" +
+        "</button>").join("") +
+      "</div>").join("");
+  }
+
+  /* ------------------------------------------------------------ 题号面板
+     手机上侧栏要点两下才到得了某道题，底栏中间的数字点开就是全部题号，
+     颜色直接标出对 / 错 / 未做，比翻页快得多。 */
+  let sheetScope = "unit";
+
+  function buildSheet() {
+    const byType = sheetScope === "type";
+    const groups = [];
+    Q.forEach((q) => {
+      const key = byType ? q.t : q.sec;
+      let g = groups.find((x) => x.key === key);
+      if (!g) { g = { key: key, items: [] }; groups.push(g); }
+      g.items.push(q);
+    });
+
+    if (byType) {
+      const rank = (k) => { const i = TYPE_ORDER.indexOf(k); return i < 0 ? 99 : i; };
+      groups.sort((a, b) => rank(a.key) - rank(b.key));
+    } else {
+      groups.sort((a, b) => unitKey(a.key) - unitKey(b.key));
+    }
+    /* 组内按卷面题号排，读起来是 01、02…；题号由题型决定顺序，
+       所以跨题型混排时数字会跳，这是卷面本身的结构，不是错乱 */
+    groups.forEach((g) => g.items.sort((a, b) => a.n - b.n));
+
+    const title = (g) => byType
+      ? (TYPE_CN[g.key] || g.key) + " · " + g.items.length + " 题"
+      : g.key + " · " + g.items.length + " 题";
+
+    $("#sheetBody").innerHTML = groups.map((g) =>
+      '<div class="qgrid-grp"><div class="qgrid-t">' + esc(title(g)) + "<i></i></div><div class=\"qgrid\">" +
+      g.items.map((q) => {
+        const a = ans(q.i);
+        let cls = "";
+        if (a && a.graded) cls = a.pending ? " pending" : (a.correct === true ? " ok" : " bad");
+        if (S.marked.includes(q.i)) cls += " marked";
+        if (q.i === S.cur) cls += " cur";
+        return '<button class="qcell' + cls + '" data-goto="' + q.i + '" ' +
+          'aria-label="第 ' + q.n + " 题，" + esc(TYPE_CN[q.t] || "") + '" ' +
+          'title="' + esc((TYPE_CN[q.t] || "") + " · " + q.sec) + '">' +
+          String(q.n).padStart(2, "0") + "</button>";
+      }).join("") +
+      "</div></div>").join("");
+
+    $$("[data-sheet-scope]").forEach((b) =>
+      b.setAttribute("aria-pressed", b.dataset.sheetScope === sheetScope ? "true" : "false"));
+  }
+
+  function openSheet() {
+    if (!N) return;
+    buildSheet();
+    $("#sheet").classList.add("show");
+    $("#sheetScrim").classList.add("show");
+    const body = $("#sheetBody");
+    const cur = body.querySelector(".qcell.cur");
+    if (cur) {
+      const r = cur.getBoundingClientRect();
+      const br = body.getBoundingClientRect();
+      body.scrollTop += r.top - br.top - br.height / 2 + r.height / 2;
+    }
+  }
+
+  function closeSheet() {
+    $("#sheet").classList.remove("show");
+    $("#sheetScrim").classList.remove("show");
+  }
+
+  /* 输入框跟随内容长高：手机上翻译题写三五句，固定 3 行要一直抠着滚 */
+  function grow(f) {
+    if (!f || f.tagName !== "TEXTAREA" || f.readOnly) return;
+    f.style.height = "auto";
+    const max = Math.round(window.innerHeight * 0.55);
+    f.style.height = Math.min(f.scrollHeight + 2, max) + "px";
+    f.style.overflowY = f.scrollHeight > max ? "auto" : "hidden";
+  }
+
+  /* ------------------------------------------------------------ filtering */
+  function visible() {
+    const f = S.filter;
+    return Q.filter((q) => {
+      if (f.type !== "all" && q.t !== f.type) return false;
+      if (f.scope === "todo") return !isGraded(q.i);
+      if (f.scope === "wrong") return isGraded(q.i) && !isCorrect(q.i);
+      if (f.scope === "marked") return S.marked.includes(q.i);
+      return true;
+    }).map((q) => q.i);
+  }
+
+  let view = [];
+
+  function applyFilter(keepCurrent) {
+    view = visible();
+    const stage = $("#stage");
+    if (!view.length) {
+      stage.innerHTML = '<div class="empty"><b>这个筛选下没有题目</b>换一个范围或题型试试。</div>';
+      $("#navbar").style.visibility = "hidden";
+      $("#posAll").textContent = "0";
+      $("#posNow").textContent = "0";
+      $("#prevBtn").disabled = true;
+      $("#nextBtn").disabled = true;
+      return;
+    }
+    $("#navbar").style.visibility = "";
+    if (!stage.querySelector(".q")) buildStage();
+    if (!keepCurrent || !view.includes(S.cur)) S.cur = view[0];
+    $("#posAll").textContent = view.length;
+    paint();
+  }
+
+  /* ------------------------------------------------------------ paint */
+  function paint() {
+    const cur = S.cur;
+    $$("#stage .q").forEach((n) => n.classList.toggle("active", Number(n.dataset.i) === cur));
+
+    const q = Q[cur];
+    if (q) {
+      $("#crumbCh").textContent = q.ch;
+      $("#crumbSec").textContent = q.sec;
+      const pos = view.indexOf(cur);
+      $("#posNow").textContent = pos < 0 ? "–" : pos + 1;
+      $("#prevBtn").disabled = pos <= 0;
+      $("#nextBtn").disabled = pos < 0 || pos >= view.length - 1;
+      $("#nextBtn").textContent = pos >= view.length - 1 ? "完成" : "下一题";
+
+      $$("#chapters .nav-item").forEach((n) =>
+        n.setAttribute("aria-current", n.dataset.sec === q.sec ? "true" : "false"));
+    }
+    refreshStats();
+    restoreQuestion(cur);
+  }
+
+  function refreshStats() {
+    let ok = 0, bad = 0;
+    Object.keys(S.answers).forEach((k) => {
+      const a = S.answers[k];
+      if (!a || !a.graded) return;
+      if (a.correct === true) ok++;
+      else if (a.correct === false) bad++;
+    });
+    const done = ok + bad;
+    $("#ringNum").textContent = done;
+    $("#ringAll").textContent = "/ " + N;
+    $("#okNum").textContent = ok;
+    $("#badNum").textContent = bad;
+    $("#leftNum").textContent = Math.max(0, N - done);
+    const C = 2 * Math.PI * 30;
+    $("#ringBar").setAttribute("stroke-dashoffset", String(C - (N ? done / N : 0) * C));
+    $("#progBar").style.width = (N ? (done / N) * 100 : 0) + "%";
+
+    // 章节计数
+    $$("#chapters .nav-item").forEach((n) => {
+      const sec = n.dataset.sec;
+      const qs = Q.filter((x) => x.sec === sec);
+      const d = qs.filter((x) => isGraded(x.i)).length;
+      const el = n.querySelector(".cnt");
+      if (el) el.textContent = d ? d + "/" + qs.length : String(qs.length);
+    });
+  }
+
+  function restoreQuestion(i) {
+    const q = Q[i];
+    const node = $('#stage .q[data-i="' + i + '"]');
+    if (!q || !node) return;
+    const a = ans(i);
+
+    // 标记
+    const markBtn = node.querySelector('[data-act="mark"]');
+    if (markBtn) markBtn.setAttribute("aria-pressed", S.marked.includes(i) ? "true" : "false");
+
+    // 选项态
+    node.querySelectorAll(".opt").forEach((btn) => {
+      btn.classList.remove("is-ok", "is-bad", "locked");
+      btn.setAttribute("aria-checked", "false");
+      const flag = btn.querySelector(".flag");
+      if (flag) flag.textContent = "";
+      if (a && Array.isArray(a.picked) && a.picked.includes(btn.dataset.l)) {
+        btn.setAttribute("aria-checked", "true");
+      }
+    });
+
+    if (q.t === "fill" || q.t === "term" || SUBJECTIVE[q.t]) {
+      const f = node.querySelector(".field");
+      if (f && a && typeof a.text === "string" && f.value !== a.text) f.value = a.text;
+      if (f && isGraded(i)) f.readOnly = true;
+      if (f) grow(f);
+    }
+
+    const confirm = node.querySelector('[data-act="confirm"]');
+    if (confirm) confirm.disabled = !(a && ((a.picked && a.picked.length) || (a.text && a.text.trim())));
+
+    if (isGraded(i)) reveal(node, q, a, true);
+  }
+
+  /* ------------------------------------------------------------ reveal */
+  function reveal(node, q, a, quiet) {
+    node.classList.add("graded");
+    node.querySelectorAll(".opt").forEach((btn) => btn.classList.add("locked"));
+    // 判定后收起作答按钮，避免重复提交
+    node.querySelectorAll(".q-actions").forEach((row) => {
+      if (!row.classList.contains("self-grade")) row.style.display = "none";
+    });
+
+    const v = node.querySelector(".verdict");
+    const correctSet = new Set(q.a);
+
+    if (q.t === "single" || q.t === "multiple" || q.t === "truefalse") {
+      node.querySelectorAll(".opt").forEach((btn) => {
+        const l = btn.dataset.l;
+        const flag = btn.querySelector(".flag");
+        const picked = a && Array.isArray(a.picked) && a.picked.includes(l);
+        if (correctSet.has(l)) {
+          btn.classList.add("is-ok");
+          if (flag) flag.textContent = picked ? "你的选择 · 正确" : "正确答案";
+        } else if (picked) {
+          btn.classList.add("is-bad");
+          if (flag) flag.textContent = "你的选择";
+        }
+      });
+    }
+
+    if (a && a.pending) {
+      v.className = "verdict info";
+      v.innerHTML = '<span class="ico">?</span><span>请对照下方参考答案自评<span class="sub"> · 答到要点就选「记住了」</span></span>';
+      if (!node.querySelector(".self-grade")) {
+        const bar = document.createElement("div");
+        bar.className = "q-actions self-grade";
+        bar.innerHTML = '<button data-self="yes" data-i="' + q.i + '">记住了</button>' +
+                        '<button data-self="no" data-i="' + q.i + '">没答到</button>';
+        const anchor = node.querySelector(".ans");
+        anchor.parentNode.insertBefore(bar, anchor);
+      }
+      return;
+    }
+    const sg = node.querySelector(".self-grade");
+    if (sg) sg.remove();
+
+    if (SUBJECTIVE[q.t]) {
+      v.className = "verdict " + (a && a.correct ? "ok" : "bad");
+      v.innerHTML = '<span class="ico">' + (a && a.correct ? "✓" : "✕") + "</span><span>" +
+        (a && a.correct ? "已标记为掌握" : "已标记为未掌握") + "</span>";
+      return;
+    }
+
+    const good = a && a.correct === true;
+    v.className = "verdict " + (good ? "ok" : "bad");
+    v.innerHTML = '<span class="ico">' + (good ? "✓" : "✕") + "</span><span>" +
+      (good ? "回答正确" : "回答错误") +
+      (quiet ? "" : '<span class="sub"> · ' + (good ? "继续保持" : "看一下原文依据") + "</span>") + "</span>";
+  }
+
+  /* ------------------------------------------------------------ actions */
+  function pick(i, letter) {
+    const q = Q[i];
+    if (!q || isGraded(i)) return;
+    let picked = (ans(i) && ans(i).picked) ? ans(i).picked.slice() : [];
+
+    if (q.t === "multiple") {
+      picked = picked.includes(letter) ? picked.filter((x) => x !== letter) : picked.concat(letter);
+    } else {
+      picked = [letter];
+    }
+
+    S.answers[i] = Object.assign({}, S.answers[i], { picked: picked, type: "choice" });
+
+    const node = $('#stage .q[data-i="' + i + '"]');
+    node.querySelectorAll(".opt").forEach((b) => b.setAttribute("aria-checked", picked.includes(b.dataset.l) ? "true" : "false"));
+    const confirm = node.querySelector('[data-act="confirm"]');
+    if (confirm) confirm.disabled = !picked.length;
+
+    if (q.t !== "multiple" && S.mode === "practice") {
+      S.answers[i].correct = gradeChoice(q, picked);
+      S.answers[i].graded = true;
+      reveal(node, q, S.answers[i], false);
+      refreshStats();
+      paintChapters();
+      afterGrade(i);
+    } else {
+      save();
+      refreshStats();
+    }
+  }
+
+  function confirmAnswer(i) {
+    const q = Q[i];
+    const a = ans(i);
+    if (!q || !a || isGraded(i)) return;
+    const node = $('#stage .q[data-i="' + i + '"]');
+
+    if (q.t === "multiple") {
+      if (!a.picked || !a.picked.length) return;
+      a.correct = gradeChoice(q, a.picked);
+    } else if (q.t === "fill" || q.t === "term") {
+      const text = (node.querySelector(".field").value || "").trim();
+      if (!text) return;
+      a.text = text;
+      a.correct = gradeText(q, text);
+      if (a.correct === null) a.correct = false;
+    }
+    a.graded = true;
+    a.type = "choice";
+    save();
+    reveal(node, q, a, false);
+    refreshStats();
+    paintChapters();
+    afterGrade(i);
+  }
+
+  function afterGrade(i) {
+    save();
+    const node = $('#stage .q[data-i="' + i + '"]');
+    if (node) scrollToVerdict(node);
+    if ($("#sheet").classList.contains("show")) buildSheet();
+    const pos = view.indexOf(i);
+    const next = $("#nextBtn");
+    if (pos >= 0 && pos < view.length - 1) next.focus({ preventScroll: true });
+  }
+
+  function paintChapters() {
+    // refreshStats 已包含章节计数，这里只是保持接口对称
+  }
+
+  function go(delta, dir) {
+    const pos = view.indexOf(S.cur);
+    const target = pos + delta;
+    if (target < 0 || target >= view.length) return;
+    S.cur = view[target];
+    save();
+    $("#stage").dataset.dir = dir || (delta > 0 ? "l" : "r");
+    paint();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  /* 判定后把解析顶到视口上方，省得手机上还能看见半屏空白 */
+  function scrollToVerdict(node) {
+    if (window.innerWidth > 980) return;
+    const v = node.querySelector(".verdict");
+    if (!v) return;
+    const r = v.getBoundingClientRect();
+    if (r.top > window.innerHeight * 0.55) {
+      window.scrollTo({ top: r.top + window.scrollY - 72, behavior: "smooth" });
+    }
+  }
+
+  function jump(i) {
+    if (!view.includes(i)) {
+      S.filter = { scope: "all", type: "all" };
+      syncFilterUI();
+      applyFilter(true);
+    }
+    S.cur = i;
+    save();
+    paint();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  /* ------------------------------------------------------------ result */
+  function showResult() {
+    // 交卷时把所有已作答但未判定的题判掉；未作答的保持未做
+    Q.forEach((q) => {
+      const a = ans(q.i);
+      if (!a || a.graded) return;
+      if (SUBJECTIVE[q.t]) {
+        a.graded = true; a.pending = true; a.correct = null;
+      } else if (q.t === "fill" || q.t === "term") {
+        if (!String(a.text || "").trim()) return;
+        a.correct = gradeText(q, a.text) === true;
+        a.graded = true;
+      } else {
+        if (!a.picked || !a.picked.length) return;
+        a.correct = gradeChoice(q, a.picked);
+        a.graded = true;
+      }
+    });
+    S.submitted = true;
+    save();
+
+    // 让回看时每道题都处于已判定状态
+    Q.forEach((q) => {
+      const a = ans(q.i);
+      const node = document.querySelector('#stage .q[data-i="' + q.i + '"]');
+      if (a && a.graded && node) reveal(node, q, a, true);
+    });
+
+    const graded = Q.filter((q) => isGraded(q.i));
+    const ok = graded.filter((q) => isCorrect(q.i));
+    const pending = graded.filter((q) => { const a = ans(q.i); return a && a.pending; });
+    const bad = graded.filter((q) => !isCorrect(q.i) && !(ans(q.i) && ans(q.i).pending));
+    const unanswered = N - graded.length;
+    const base = ok.length + bad.length;
+    const rate = base ? Math.round((ok.length / base) * 100) : 0;
+
+    const C = 2 * Math.PI * 54;
+    const chapters = [];
+    Q.forEach((q) => {
+      let c = chapters.find((x) => x.sec === q.sec);
+      if (!c) { c = { sec: q.sec, ok: 0, total: 0 }; chapters.push(c); }
+      c.total++;
+      if (isCorrect(q.i)) c.ok++;
+    });
+    chapters.sort((a, b) => unitKey(a.sec) - unitKey(b.sec));
+
+    /* 按题型统计：题多的卷子里，章节分布看不出「哪类题弱」，题型更直观 */
+    const byType = [];
+    Q.forEach((q) => {
+      let t = byType.find((x) => x.t === q.t);
+      if (!t) { t = { t: q.t, ok: 0, total: 0 }; byType.push(t); }
+      t.total++;
+      if (isCorrect(q.i)) t.ok++;
+    });
+    byType.sort((a, b) => typeRank(a.t) - typeRank(b.t));
+
+    const barsHTML = (rows, label) =>
+      '<div class="bars">' + rows.map((c) => {
+        const p = c.total ? Math.round((c.ok / c.total) * 100) : 0;
+        const name = label(c);
+        return '<div class="bar-row"><div class="top"><span class="lbl" title="' + esc(name) + '">' + esc(name) + '</span>' +
+          '<span class="frac">' + c.ok + "/" + c.total + '</span></div>' +
+          '<span class="track"><i class="fill" style="width:' + p + '%"></i></span></div>';
+      }).join("") + "</div>";
+
+    const wrongs = bad.concat(pending);
+
+    // 按分值算分：正卷 100 分，术语速记属于附加分，单独注明
+    const scored = Q.filter((q) => (q.score || 0) > 0);
+    const totalScore = scored.reduce((s, q) => s + q.score, 0);
+    const gotScore = scored.reduce((s, q) => s + (isCorrect(q.i) ? q.score : 0), 0);
+    const bonusScore = scored.filter((q) => q.t === "term").reduce((s, q) => s + q.score, 0);
+
+    $("#result").innerHTML =
+      '<div class="res-head">' +
+        '<div class="big-ring"><svg width="132" height="132" viewBox="0 0 132 132">' +
+          '<circle cx="66" cy="66" r="54" fill="none" stroke="var(--line2)" stroke-width="9" opacity=".5"/>' +
+          '<circle cx="66" cy="66" r="54" fill="none" stroke="var(--accent)" stroke-width="9" stroke-linecap="round" ' +
+            'stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + (C - (rate / 100) * C).toFixed(1) + '"/>' +
+        "</svg><div class=\"t\"><b>" + rate + "%</b><span>正确率</span></div></div>" +
+        '<div class="res-title"><h2>' + (rate >= 85 ? "掌握得不错" : rate >= 60 ? "还有提升空间" : "需要回头重看这一章") + "</h2>" +
+          "<p>得分 <b class=\"sc\">" + gotScore + "</b> / " + totalScore +
+          (bonusScore ? "（含术语附加 " + bonusScore + " 分，正卷 " + (totalScore - bonusScore) + " 分）" : "") +
+          "</p>" +
+          '<p class="res-meta">' + (S.mode === "exam" ? "考试模式" : "练习模式") + " · 用时 " + elapsed() + "</p>" +
+          '<div class="res-stats">' +
+            "<div><b>" + ok.length + "</b>答对</div>" +
+            "<div><b>" + bad.length + "</b>答错</div>" +
+            "<div><b>" + pending.length + "</b>待自评</div>" +
+            "<div><b>" + unanswered + "</b>未作答</div>" +
+          "</div></div>" +
+      "</div>" +
+      '<div class="res-sec"><h3>分章节表现</h3>' +
+        barsHTML(chapters, (c) => c.sec) +
+      "</div>" +
+      (byType.length > 1
+        ? '<div class="res-sec"><h3>分题型表现</h3>' +
+          barsHTML(byType, (c) => TYPE_CN[c.t] || c.t) +
+          "</div>"
+        : "") +
+      (wrongs.length
+        ? '<div class="res-sec"><h3>需要回看的题（' + wrongs.length + "）</h3><div class=\"wrong-list\">" +
+          wrongs.map((q) =>
+            '<button class="wrong-item" data-jump="' + q.i + '">' +
+              '<span class="n">' + String(q.n).padStart(2, "0") + "</span>" +
+              '<span class="qt"><i class="tk">' + (TYPE_CN[q.t] || "") + "</i>" +
+                esc(q.t === "term" ? q.q + " → 英文术语" : q.q) + "</span></button>").join("") +
+          "</div></div>"
+        : '<div class="res-sec"><h3>需要回看的题</h3><div class="empty" style="padding:28px 0"><b>全部正确</b>这一份可以过了。</div></div>') +
+      '<div class="res-actions">' +
+        (wrongs.length ? '<button class="btn primary" id="redoWrong">只做错题（' + wrongs.length + "）</button>" : "") +
+        (wrongs.length ? '<button class="btn ghost" id="exportWrong">导出错题</button>' : "") +
+        '<button class="btn ghost" id="reviewAll">回看全部题目</button>' +
+        '<button class="btn ghost" id="restart">重新开始</button>' +
+      "</div>";
+
+    $("#stage").style.display = "none";
+    $("#navbar").style.visibility = "hidden";
+    $("#submitBtn").textContent = "查看结果";
+    $("#result").classList.add("show");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    const redo = $("#redoWrong");
+    if (redo) redo.addEventListener("click", () => {
+      S.filter = { scope: "wrong", type: "all" };
+      syncFilterUI();
+      closeResult();
+      applyFilter(false);
+    });
+    $("#reviewAll").addEventListener("click", () => {
+      S.filter = { scope: "all", type: "all" };
+      syncFilterUI();
+      closeResult();
+      applyFilter(false);
+    });
+    $("#restart").addEventListener("click", resetAll);
+    const expBtn = $("#exportWrong");
+    if (expBtn) expBtn.addEventListener("click", () => exportWrong(wrongs));
+    $$("#result [data-jump]").forEach((b) =>
+      b.addEventListener("click", () => { closeResult(); jump(Number(b.dataset.jump)); }));
+  }
+
+  /* 错题导出成 Markdown：手机上直接存文件，存不了就退回复制到剪贴板。
+     内容按「题干 / 你的答案 / 参考答案 / 采分点 / 出处 / 原文依据」排，
+     复制到笔记软件里就是一份能背的错题本。 */
+  function exportWrong(list) {
+    const L = [];
+    L.push("# " + (META.title || "题库") + " · 错题整理", "");
+    L.push("- 导出时间：" + new Date().toLocaleString());
+    L.push("- 模式：" + (S.mode === "exam" ? "考试" : "练习") + "，用时 " + elapsed());
+    L.push("- 共 " + list.length + " 题", "");
+    list.forEach((q) => {
+      const a = ans(q.i) || {};
+      L.push("## " + String(q.n).padStart(2, "0") + " · " + (TYPE_CN[q.t] || q.t) + " · " + q.sec, "");
+      L.push("**题目** " + q.q, "");
+      if (q.t === "term" || q.t === "fill") {
+        L.push("- 你的答案：" + (a.text || "（未填）"));
+      } else if (SUBJECTIVE[q.t]) {
+        L.push("- 你的作答：" + (String(a.text || "").trim() || "（未写）"));
+      } else {
+        L.push("- 你的选择：" + ((a.picked || []).join("") || "（未选）"));
+      }
+      L.push("- 参考答案：" + (q.a || []).join(" / "));
+      if (a && a.pending) L.push("- 状态：待自评");
+      if (q.keys && q.keys.length) {
+        L.push("- 采分点：" + q.keys.map((k) => k.en + (k.cn ? "（" + k.cn + "）" : "")).join("；"));
+      }
+      if (q.ref) L.push("- 出处：" + q.ref);
+      if (q.ev) L.push("- 原文依据：" + q.ev);
+      L.push("");
+    });
+    const text = L.join("\n");
+    const fname = "错题-" + (META.id || "deck") + ".md";
+    try {
+      const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = fname;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 5000);
+      toast("已导出 " + list.length + " 道错题");
+    } catch (e) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(
+          () => toast("已复制到剪贴板"),
+          () => toast("导出失败，请用打印功能")
+        );
+      } else {
+        toast("导出失败，请用打印功能");
+      }
+    }
+  }
+
+  function closeResult() {
+    $("#result").classList.remove("show");
+    $("#stage").style.display = "";
+    $("#navbar").style.visibility = "";
+    $("#submitBtn").textContent = "交卷";
+  }
+
+  function resetAll() {
+    if (!confirm("清空所有答题记录并重新开始？")) return;
+    S = Object.assign({}, BLANK, { started: Date.now(), filter: S.filter, mode: S.mode });
+    save();
+    closeResult();
+    $$("#stage .q").forEach((n) => {
+      n.classList.remove("graded");
+      n.querySelectorAll(".opt").forEach((b) => {
+        b.classList.remove("is-ok", "is-bad", "locked");
+        b.setAttribute("aria-checked", "false");
+        const f = b.querySelector(".flag"); if (f) f.textContent = "";
+      });
+      const f = n.querySelector(".field");
+      if (f) { f.value = ""; f.readOnly = false; f.style.height = ""; }
+      const c = n.querySelector('[data-act="confirm"]');
+      if (c) c.disabled = true;
+      const v = n.querySelector(".verdict"); if (v) v.innerHTML = "";
+      const sg = n.querySelector(".self-grade"); if (sg) sg.remove();
+    });
+    applyFilter(false);
+    toast("已清空，从第一题重新开始");
+  }
+
+  /* ------------------------------------------------------------ misc ui */
+  function elapsed() {
+    const s = Math.max(0, Math.floor((Date.now() - (S.started || Date.now())) / 1000));
+    const m = Math.floor(s / 60);
+    return m ? m + " 分 " + (s % 60) + " 秒" : s + " 秒";
+  }
+
+  function tick() {
+    const s = Math.max(0, Math.floor((Date.now() - (S.started || Date.now())) / 1000));
+    const m = String(Math.floor(s / 60)).padStart(2, "0");
+    const ss = String(s % 60).padStart(2, "0");
+    $("#timer").textContent = m + ":" + ss;
+  }
+
+  let toastTimer = null;
+  function toast(msg) {
+    const t = $("#toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove("show"), 1800);
+  }
+
+  function syncFilterUI() {
+    $$("#scope button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.scope === S.filter.scope ? "true" : "false"));
+    $$("#types button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.type === S.filter.type ? "true" : "false"));
+    $$("[data-mode]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.mode === S.mode ? "true" : "false"));
+  }
+
+  /* 顶栏与抽屉里各有一套模式切换，统一由这里改状态 */
+  function setMode(m) {
+    if (S.mode === m) return;
+    S.mode = m;
+    syncFilterUI();
+    save();
+    toast(S.mode === "exam" ? "考试模式：作答后不立即判定" : "练习模式：作答后立即判定");
+    applyFilter(true);
+  }
+
+  /* 正文字号：长英文题干在手机上按默认字号读起来偏累，给三档 */
+  function setFs(v) {
+    if (v !== "sm" && v !== "md" && v !== "lg") v = "md";
+    document.documentElement.setAttribute("data-fs", v);
+    try { localStorage.setItem(FKEY, v); } catch (e) {}
+    $$("[data-fs-btn]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.fsBtn === v ? "true" : "false"));
+    $$("textarea.field").forEach(grow);
+  }
+
+  function setTheme(t) {
+    document.documentElement.setAttribute("data-theme", t);
+    try { localStorage.setItem(TKEY, t); } catch (e) {}
+    const tc = $("#tcMeta");
+    if (tc) tc.setAttribute("content", t === "dark" ? "#0f1214" : "#f3f1ec");
+    $("#themeBtn").innerHTML = t === "dark"
+      ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>'
+      : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+  }
+
+  /* ------------------------------------------------------------ events */
+  document.addEventListener("click", (e) => {
+    const opt = e.target.closest(".opt");
+    if (opt) { pick(Number(opt.dataset.i), opt.dataset.l); return; }
+
+    const act = e.target.closest("[data-act]");
+    if (act) {
+      const i = Number(act.dataset.i);
+      const kind = act.dataset.act;
+      if (kind === "confirm") confirmAnswer(i);
+      else if (kind === "mark") {
+        S.marked = S.marked.includes(i) ? S.marked.filter((x) => x !== i) : S.marked.concat(i);
+        save();
+        const btn = document.querySelector('[data-act="mark"][data-i="' + i + '"]');
+        if (btn) btn.setAttribute("aria-pressed", S.marked.includes(i) ? "true" : "false");
+        if (S.filter.scope === "marked") applyFilter(true);
+      } else if (kind === "reveal") {
+        S.answers[i] = { picked: [], graded: true, pending: true, correct: null, type: "short" };
+        save();
+        const node = document.querySelector('#stage .q[data-i="' + i + '"]');
+        reveal(node, Q[i], S.answers[i], false);
+        refreshStats();
+        scrollToVerdict(node);
+      }
+      return;
+    }
+
+    const self = e.target.closest("[data-self]");
+    if (self) {
+      const i = Number(self.dataset.i);
+      S.answers[i] = Object.assign({}, S.answers[i], {
+        graded: true, pending: false, correct: self.dataset.self === "yes"
+      });
+      save();
+      const node = document.querySelector('#stage .q[data-i="' + i + '"]');
+      reveal(node, Q[i], S.answers[i], false);
+      refreshStats();
+      if ($("#sheet").classList.contains("show")) buildSheet();
+      return;
+    }
+
+    const cell = e.target.closest("[data-goto]");
+    if (cell) {
+      closeSheet();
+      jump(Number(cell.dataset.goto));
+      return;
+    }
+
+    const sScope = e.target.closest("[data-sheet-scope]");
+    if (sScope) {
+      sheetScope = sScope.dataset.sheetScope;
+      buildSheet();
+      return;
+    }
+
+    const modeBtn = e.target.closest("[data-mode]");
+    if (modeBtn) { setMode(modeBtn.dataset.mode); return; }
+
+    const fsBtn = e.target.closest("[data-fs-btn]");
+    if (fsBtn) { setFs(fsBtn.dataset.fsBtn); return; }
+
+    const nav = e.target.closest(".nav-item");
+    if (nav) {
+      const sec = nav.dataset.sec;
+      const first = Q.find((q) => q.sec === sec);
+      if (first) {
+        closeMobile();
+        if (!view.includes(first.i)) { S.filter = { scope: "all", type: "all" }; syncFilterUI(); applyFilter(true); }
+        jump(first.i);
+      }
+      return;
+    }
+  });
+
+  document.addEventListener("input", (e) => {
+    const f = e.target.closest(".field");
+    if (!f) return;
+    const i = Number(f.dataset.i);
+    const q = Q[i];
+    if (!q || isGraded(i)) return;
+    S.answers[i] = Object.assign({}, S.answers[i], { text: f.value });
+    const c = document.querySelector('[data-act="confirm"][data-i="' + i + '"]');
+    if (c) c.disabled = !f.value.trim();
+    if (f.tagName === "TEXTAREA") grow(f);
+    save();
+  });
+
+  /* 手机软键盘弹出后会盖住固定底栏，聚焦输入时先把它收起来 */
+  document.addEventListener("focusin", (e) => {
+    if (e.target.closest(".field")) document.body.classList.add("kbd");
+  });
+  document.addEventListener("focusout", (e) => {
+    if (!e.target.closest(".field")) return;
+    setTimeout(() => {
+      if (!document.activeElement || !document.activeElement.closest(".field")) {
+        document.body.classList.remove("kbd");
+      }
+    }, 90);
+  });
+
+  /* 横滑翻页：位移超过 55px 且明显偏水平才认，避免和竖滑滚动打架 */
+  (function swipe() {
+    const stage = $("#stage");
+    let from = null;
+    stage.addEventListener("touchstart", (e) => {
+      if (e.touches.length !== 1 || e.target.closest("input,textarea")) { from = null; return; }
+      const t = e.touches[0];
+      from = { x: t.clientX, y: t.clientY, at: Date.now() };
+    }, { passive: true });
+    stage.addEventListener("touchend", (e) => {
+      if (!from) return;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - from.x;
+      const dy = t.clientY - from.y;
+      const dt = Date.now() - from.at;
+      from = null;
+      if (dt > 700 || Math.abs(dx) < 55 || Math.abs(dx) < Math.abs(dy) * 1.8) return;
+      go(dx < 0 ? 1 : -1, dx < 0 ? "l" : "r");
+    }, { passive: true });
+    stage.addEventListener("touchcancel", () => { from = null; }, { passive: true });
+  })();
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      if ($("#sheet").classList.contains("show")) { closeSheet(); return; }
+      if ($("#side").classList.contains("open")) { closeMobile(); return; }
+    }
+    if (e.target.matches("input,textarea")) {
+      if (e.key === "Enter" && !e.shiftKey && e.target.dataset.i) {
+        e.preventDefault();
+        confirmAnswer(Number(e.target.dataset.i));
+      }
+      return;
+    }
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+
+    const cur = S.cur;
+    const q = Q[cur];
+    if (!q) return;
+
+    if (/^[1-8]$/.test(e.key)) {
+      const idx = Number(e.key) - 1;
+      if (q.t === "truefalse") { if (idx < 2) pick(cur, idx === 0 ? "T" : "F"); }
+      else if (q.o && idx < q.o.length) pick(cur, LTR[idx]);
+      e.preventDefault();
+      return;
+    }
+    if (e.key === "ArrowRight" || e.key === "Enter") {
+      if (e.key === "Enter" && !isGraded(cur) && (q.t === "multiple" || q.t === "fill" || q.t === "term")) { confirmAnswer(cur); e.preventDefault(); return; }
+      if (e.key === "Enter" && !isGraded(cur) && q.t === "short") return;
+      go(1); e.preventDefault(); return;
+    }
+    if (e.key === "ArrowLeft") { go(-1); e.preventDefault(); return; }
+    if (e.key.toLowerCase() === "m") {
+      const i = cur;
+      S.marked = S.marked.includes(i) ? S.marked.filter((x) => x !== i) : S.marked.concat(i);
+      save();
+      const btn = document.querySelector('[data-act="mark"][data-i="' + i + '"]');
+      if (btn) btn.setAttribute("aria-pressed", S.marked.includes(i) ? "true" : "false");
+      toast(S.marked.includes(i) ? "已标记" : "已取消标记");
+    }
+    if (e.key.toLowerCase() === "t") {
+      setTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark");
+    }
+  });
+
+  $("#prevBtn").addEventListener("click", () => go(-1));
+  $("#nextBtn").addEventListener("click", () => go(1));
+  $("#submitBtn").addEventListener("click", () => {
+    const done = Q.filter((q) => isGraded(q.i)).length;
+    if (done < N && !confirm("还有 " + (N - done) + " 题未作答，确定交卷？")) return;
+    showResult();
+  });
+  $("#themeBtn").addEventListener("click", () =>
+    setTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark"));
+  $("#printBtn").addEventListener("click", () => window.print());
+  $("#resetBtn").addEventListener("click", resetAll);
+
+  $("#scope").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-scope]");
+    if (!b) return;
+    S.filter.scope = b.dataset.scope;
+    syncFilterUI();
+    save();
+    applyFilter(false);
+  });
+
+  $("#types").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-type]");
+    if (!b) return;
+    S.filter.type = b.dataset.type;
+    syncFilterUI();
+    save();
+    applyFilter(false);
+  });
+
+  $("#posBtn").addEventListener("click", openSheet);
+  $("#sheetClose").addEventListener("click", closeSheet);
+  $("#sheetScrim").addEventListener("click", closeSheet);
+
+  function closeMobile() { $("#side").classList.remove("open"); $("#scrim").classList.remove("show"); }
+  $("#menuBtn").addEventListener("click", () => {
+    $("#side").classList.add("open");
+    $("#scrim").classList.add("show");
+  });
+  $("#scrim").addEventListener("click", closeMobile);
+
+  /* ------------------------------------------------------------ boot */
+  function boot() {
+    const saved = localStorage.getItem(TKEY);
+    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setTheme(saved || (prefersDark ? "dark" : "light"));
+
+    let fs = "md";
+    try { fs = localStorage.getItem(FKEY) || "md"; } catch (e) {}
+    setFs(fs);
+
+    buildSidebar();
+    buildStage();
+    syncFilterUI();
+    applyFilter(true);
+
+    // 侧栏副标题改短，避免长路径换行挤压标题
+    const h1 = document.querySelector(".brand-t h1");
+    if (h1) {
+      // 标题在 190px 宽的侧栏里会从词语中间折断（“专业英 / 语”），改在“·”处换行
+      const parts = h1.textContent.split("·").map((s) => s.trim()).filter(Boolean);
+      if (parts.length > 1) h1.innerHTML = parts.map(esc).join("<br>");
+    }
+    const sub = document.querySelector(".brand-t p");
+    if (sub) {
+      const secs = new Set(Q.map((q) => q.sec)).size;
+      sub.textContent = N + " 题 · " + secs + " 节";
+      sub.title = (META.engine || "") + " · " + (META.source || "");
+    }
+
+    // 恢复已交卷状态：显示结果页按钮提示
+    if (S.submitted) $("#submitBtn").textContent = "查看结果";
+
+    tick();
+    setInterval(tick, 1000);
+
+    // 旋屏或改窗口宽度后，行高变了，文本框要重新量一次
+    let rz = null;
+    window.addEventListener("resize", () => {
+      clearTimeout(rz);
+      rz = setTimeout(() => $$("textarea.field").forEach(grow), 200);
+    });
+
+    if (META.mock) toast("这是离线模式产物，题目由陈述句改写，仅供链路演示");
+  }
+
+  boot();
+})();
+</script>
+</body>
+</html>
