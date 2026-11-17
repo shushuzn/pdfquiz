@@ -94,6 +94,8 @@ python tools/build_hub.py --course polymer-en   # 只重建一门课
 
 `corpus_amc/` 是从课件逐页转出的文字稿（`### S12` 是第 12 张幻灯片），`papers_amc/ch0N.json` 是按题型分组的草稿。`build_amc.py` 会把每条题的 `evidence` 送回对应章节逐字核对，对不上就整批退回、不生成产物——所以这两份文件是这个课程题库唯一的可信来源。
 
+课程题库目前覆盖九章：第一至第七章、第九章、第十章。第八章「传统碳材料」的课件没有提供，因此没有对应题目和分节。
+
 
 | 能力 | 说明 |
 |---|---|
@@ -239,7 +241,7 @@ pdfquiz/
 │   ├── courses.py              课程注册表读取与页面命名
 │   ├── templates/quiz.html     单文件网页模板（内联样式与脚本）
 │   └── cli.py                  命令行
-├── corpus_amc/                 课件逐页转录稿（ch01–ch04，先进材料研究进展C）
+├── corpus_amc/                 课件逐页转录稿（ch01–ch07、ch09、ch10，先进材料研究进展C；第八章未提供）
 ├── papers/                     各卷题目（题干/答案/采分点/出处）
 │   ├── exam_key.json           考前重点卷（按老师划的范围与三件重点）
 │   ├── exam_a.json / exam_b.json   平行模拟卷
@@ -247,7 +249,7 @@ pdfquiz/
 │   ├── materials.json          高分子材料名称中译英
 │   ├── notes.json              教材 Notes 重点句
 │   └── units/unitNN.json       分单元精练稿
-├── papers_amc/                 先进材料研究进展C 的分章题库草稿（ch01–ch04）
+├── papers_amc/                 先进材料研究进展C 的分章题库草稿（ch01–ch07、ch09、ch10）
 ├── tools/
 │   ├── build_exam.py           试卷 + 词汇表 → 题库（校验、去重、导出）
 │   ├── build_objective.py      原句挖空 + 词汇表四选一 → 客观题
