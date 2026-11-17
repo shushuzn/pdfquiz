@@ -40,6 +40,10 @@ from pdfquiz.booktext import (  # noqa: E402
 from pdfquiz.render import render as render_markdown  # noqa: E402
 from pdfquiz.render_html import render_html  # noqa: E402
 from pdfquiz.verify import verify  # noqa: E402
+from pdfquiz.courses import course_page, find_course, load_courses  # noqa: E402
+
+# 本脚本产出的是「高分子材料工程专业英语」这一门课；课程页由 build_hub 生成。
+COURSE_ID = "polymer-en"
 
 UNITS_DIR = ROOT / ".units"
 PAPERS = ROOT / "papers"
@@ -352,6 +356,7 @@ def main(argv: list[str]) -> int:
         return 0
 
     want = [a for a in argv if not a.startswith("-")]
+    course = find_course(load_courses(ROOT), COURSE_ID)
     units = load_units()
     if not units:
         print("找不到 .units/*.md，先完成转录。")
@@ -445,7 +450,8 @@ def main(argv: list[str]) -> int:
         )
         (OUT / f"{name}.quiz.html").write_text(
             render_html(title=deck_title, engine="逐页识读", source=paper_a["meta"]["source"],
-                        chunks=len(units), reports=[report], mock=False, hub="index.html"),
+                        chunks=len(units), reports=[report], mock=False,
+                        hub=course_page(course), hub_label="返回课程"),
             encoding="utf-8",
         )
         by_type: dict[str, int] = {}

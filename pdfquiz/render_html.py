@@ -175,9 +175,10 @@ def render_html(
     mock: bool,
     template: Path | None = None,
     hub: str | None = None,
+    hub_label: str = "全部试卷",
 ) -> str:
-    """hub 是「返回全部试卷」的链接。给了就在侧栏底部放一条入口，
-    没给（例如独立分发的单份题库）整块不渲染。"""
+    """hub 是返回上一层的链接（课程页或总览页）。给了就在侧栏底部放一条入口，
+    没给（例如独立分发的单份题库）整块不渲染。hub_label 决定链接文案。"""
     from datetime import datetime
 
     generated = f"{datetime.now():%Y-%m-%d %H:%M}"
@@ -204,7 +205,7 @@ def render_html(
             '<a class="hub-link" href="' + html.escape(hub) + '">'
             '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">'
             '<path d="M19 12H5M12 19l-7-7 7-7"/></svg>'
-            "全部试卷</a>"
+            + html.escape(hub_label) + "</a>"
         )
 
     return (

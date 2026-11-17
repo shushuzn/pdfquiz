@@ -72,6 +72,25 @@ CI 在 GitHub Actions 上跑 Python 3.10–3.13（外加 Windows），包含 lin
 
 `render_html.py` 把校验通过的题注入一个自包含 HTML 模板（`pdfquiz/templates/quiz.html`），产物约 70 KB，**不依赖网络**——断网、内网、发给同学都能直接用。
 
+### 站点分两层：先选课程，再选卷子
+
+题库不按「打开就是某张卷」来组织。课程写在仓库根目录的 `courses.json`，`tools/build_hub.py` 据此生成：
+
+```
+docs/index.html        课程选择页，只列课程，不点进去看不到卷子
+docs/<课程>.html       该课程的卷子列表与刷题顺序
+docs/<卷>.html         单份题库，侧栏「返回课程」回到课程页
+```
+
+新增一门课只要在 `courses.json` 里加一条（课程名、说明、产物目录、卷子 id），重新构建后首页就会多一个入口，不必改代码，也不会把不同课程的卷子混在同一个列表里。不同课程的卷子文件名可以用 `prefix` 区分，避免重名。
+
+```bash
+python tools/build_exam.py                      # 生成 out_exam/decks.json 与各卷
+python tools/build_hub.py                       # 同步卷子到 docs/，生成课程页与首页
+python tools/build_hub.py --course polymer-en   # 只重建一门课
+```
+
+
 | 能力 | 说明 |
 |---|---|
 | 题型 | 客观题：单选（点击即判）、多选（选完确认）、判断、填空；主观题：英译中、中译英、描述、问答；术语翻译按输入精确比对自动判分 |
@@ -200,6 +219,7 @@ python tools/build_exam.py
 ```
 pdfquiz/
 ├── run.py                      便捷入口
+├── courses.json                课程注册表：首页与课程页据此生成
 ├── pdfquiz/
 │   ├── extract.py              PDF→Markdown，三级解析器自动降级
 │   ├── ocr.py                  扫描页 OCR（RapidOCR，可选）
@@ -212,6 +232,7 @@ pdfquiz/
 │   ├── booktext.py             页标记 / 切句 / 词汇表 / 章节路径（纯函数，好测）
 │   ├── render.py               Markdown 导出
 │   ├── render_html.py          网页题库导出
+│   ├── courses.py              课程注册表读取与页面命名
 │   ├── templates/quiz.html     单文件网页模板（内联样式与脚本）
 │   └── cli.py                  命令行
 ├── papers/                     各卷题目（题干/答案/采分点/出处）
@@ -225,13 +246,14 @@ pdfquiz/
 │   ├── build_exam.py           试卷 + 词汇表 → 题库（校验、去重、导出）
 │   ├── build_objective.py      原句挖空 + 词汇表四选一 → 客观题
 │   ├── build_materials.py      正文里的材料名 → 中译英默写（配套 materials.tsv）
-│   ├── build_hub.py            生成 docs 总览页并同步各卷
+│   ├── build_hub.py            课程首页 + 课程页 + 卷子同步
 │   ├── extract_notes.py        抽 Notes 句子与教材原译
 │   └── restyle.py              用最新模板重渲染已有题库，不重跑解析
 ├── pyproject.toml              打包 / 依赖 / ruff / console script
 ├── tests/
 │   ├── test_pipeline.py        17 项单测（切块 / 溯源 / 结构 / 渲染）
 │   ├── test_booktext.py        16 项单测（页标记 / 切句 / 跨页 evidence）
+│   ├── test_courses.py         9 项课程注册表与页面生成测试
 │   ├── smoke_cli.py            端到端冒烟：离线跑 CLI 并检查产物结构
 │   ├── fake_mcp_server.py      假 MCP 服务器，内含 1 道伪造题
 │   └── web/
@@ -247,7 +269,7 @@ pdfquiz/
 python -m unittest discover -s tests -v
 ```
 
-覆盖：章节切分、超长切分、碎片合并、逐字命中、空白容错、伪造拒绝、否定翻转拒绝、过短拒绝、重复选项、答案越界、多选单答、多选字符串答案、判断题非法答案、选项标号归一、跨题去重、离线题 100% 可溯源。
+覆盖：章节切分、超长切分、碎片合并、逐字命中、空白容错、伪造拒绝、否定翻转拒绝、过短拒绝、重复选项、答案越界、多选单答、多选字符串答案、判断题非法答案、选项标号归一、跨题去重、离线题 100% 可溯源；课程侧覆盖注册表校验、首页不直链卷子、课程页去重课程名、卷子返回链接重定向。
 
 前端测试直接驱动真实浏览器（本机 Edge / Chrome 以 `--remote-debugging-port=9222` 启动，用 Node 内置 WebSocket 走 CDP，无额外依赖）：
 
