@@ -58,6 +58,7 @@ ROLE = {
     "practice": ("精练", "按单元练"),
     "notes": ("速览", "对照重点句"),
     "terms": ("默写", "刷术语"),
+    "exam": ("模拟考", "限时自测"),
 }
 
 ARROW = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">'
@@ -221,7 +222,7 @@ def course_card(course: dict, decks: list[dict]) -> str:
     total = sum(d.get("count", 0) for d in decks)
     nums = f'<b>{len(decks)}</b> 套' + (f' · <b>{total}</b> 题' if total else "")
     chips = "".join(
-        f'<span class="chip">{html.escape(d.get("short") or ROLE.get(d["id"], ("题库",))[0])} <b>{d.get("count", 0)}</b></span>'
+        f'<span class="chip">{html.escape(d.get("short") or (course.get("labels") or {}).get(d["id"]) or ROLE.get(d["id"], ("题库",))[0])} <b>{d.get("count", 0)}</b></span>'
         for d in decks
     )
     return f"""      <a class="card" href="{html.escape(course_page(course))}">

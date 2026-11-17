@@ -86,9 +86,13 @@ docs/<卷>.html         单份题库，侧栏「返回课程」回到课程页
 
 ```bash
 python tools/build_exam.py                      # 生成 out_exam/decks.json 与各卷
+python tools/check_amc.py                       # 先进材料研究进展C：草稿自检
+python tools/build_amc.py                       # 生成 out_amc/ 的四套题库与 decks.json
 python tools/build_hub.py                       # 同步卷子到 docs/，生成课程页与首页
 python tools/build_hub.py --course polymer-en   # 只重建一门课
 ```
+
+`corpus_amc/` 是从课件逐页转出的文字稿（`### S12` 是第 12 张幻灯片），`papers_amc/ch0N.json` 是按题型分组的草稿。`build_amc.py` 会把每条题的 `evidence` 送回对应章节逐字核对，对不上就整批退回、不生成产物——所以这两份文件是这个课程题库唯一的可信来源。
 
 
 | 能力 | 说明 |
@@ -235,6 +239,7 @@ pdfquiz/
 │   ├── courses.py              课程注册表读取与页面命名
 │   ├── templates/quiz.html     单文件网页模板（内联样式与脚本）
 │   └── cli.py                  命令行
+├── corpus_amc/                 课件逐页转录稿（ch01–ch04，先进材料研究进展C）
 ├── papers/                     各卷题目（题干/答案/采分点/出处）
 │   ├── exam_key.json           考前重点卷（按老师划的范围与三件重点）
 │   ├── exam_a.json / exam_b.json   平行模拟卷
@@ -242,11 +247,14 @@ pdfquiz/
 │   ├── materials.json          高分子材料名称中译英
 │   ├── notes.json              教材 Notes 重点句
 │   └── units/unitNN.json       分单元精练稿
+├── papers_amc/                 先进材料研究进展C 的分章题库草稿（ch01–ch04）
 ├── tools/
 │   ├── build_exam.py           试卷 + 词汇表 → 题库（校验、去重、导出）
 │   ├── build_objective.py      原句挖空 + 词汇表四选一 → 客观题
 │   ├── build_materials.py      正文里的材料名 → 中译英默写（配套 materials.tsv）
 │   ├── build_hub.py            课程首页 + 课程页 + 卷子同步
+│   ├── build_amc.py            分章草稿 → 客观题/精练/术语/模拟卷四套题库
+│   ├── check_amc.py            草稿自检：证据逐字回查 + 题型结构 + 题量上下限
 │   ├── extract_notes.py        抽 Notes 句子与教材原译
 │   └── restyle.py              用最新模板重渲染已有题库，不重跑解析
 ├── pyproject.toml              打包 / 依赖 / ruff / console script
@@ -254,6 +262,7 @@ pdfquiz/
 │   ├── test_pipeline.py        17 项单测（切块 / 溯源 / 结构 / 渲染）
 │   ├── test_booktext.py        16 项单测（页标记 / 切句 / 跨页 evidence）
 │   ├── test_courses.py         9 项课程注册表与页面生成测试
+│   ├── test_amc.py             11 项分章题库测试（证据回查 / 章节分组 / 满分 100）
 │   ├── smoke_cli.py            端到端冒烟：离线跑 CLI 并检查产物结构
 │   ├── fake_mcp_server.py      假 MCP 服务器，内含 1 道伪造题
 │   └── web/
@@ -269,7 +278,7 @@ pdfquiz/
 python -m unittest discover -s tests -v
 ```
 
-覆盖：章节切分、超长切分、碎片合并、逐字命中、空白容错、伪造拒绝、否定翻转拒绝、过短拒绝、重复选项、答案越界、多选单答、多选字符串答案、判断题非法答案、选项标号归一、跨题去重、离线题 100% 可溯源；课程侧覆盖注册表校验、首页不直链卷子、课程页去重课程名、卷子返回链接重定向。
+覆盖：章节切分、超长切分、碎片合并、逐字命中、空白容错、伪造拒绝、否定翻转拒绝、过短拒绝、重复选项、答案越界、多选单答、多选字符串答案、判断题非法答案、选项标号归一、跨题去重、离线题 100% 可溯源；课程侧覆盖注册表校验、首页不直链卷子、课程页去重课程名、卷子返回链接重定向；分章题库覆盖课件证据逐字回查、幻灯片→小节分组、模拟卷满分 100 且四章都抽到题。
 
 前端测试直接驱动真实浏览器（本机 Edge / Chrome 以 `--remote-debugging-port=9222` 启动，用 Node 内置 WebSocket 走 CDP，无额外依赖）：
 
