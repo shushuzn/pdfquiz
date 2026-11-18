@@ -1,7 +1,7 @@
 # pdfquiz
 
 [![CI](https://github.com/shushuzn/pdfquiz/actions/workflows/ci.yml/badge.svg)](https://github.com/shushuzn/pdfquiz/actions/workflows/ci.yml)
-![Python](https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)
+![Python](https://img.shields.io/badge/python-3.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 把 PDF / 讲义转成**可溯源**的复习题库：每一道题都必须能指回原文的某一句话，指不回去的直接丢弃。
@@ -44,6 +44,8 @@ PDF → 结构化 Markdown → 章节切块 → LLM 出题 → 溯源校验 → 
 
 ## 快速开始
 
+需要 Python 3.11+。
+
 ```bash
 pip install -e .                  # 只装最小依赖（pypdf）
 pdfquiz samples/过拟合与正则化.md --offline -n 3
@@ -59,12 +61,12 @@ pip install -e ".[docling]"       # docling：结构化最好，首次运行需�
 
 ```bash
 pip install -e ".[dev]"
-python -m unittest discover -s tests -v   # 33 项单测
+python -m unittest discover -s tests -v   # 52 项单测
 python tests/smoke_cli.py                 # 端到端冒烟：离线跑一遍 CLI 并检查产物
 ruff check .
 ```
 
-CI 在 GitHub Actions 上跑 Python 3.10–3.13（外加 Windows），包含 lint、单测、冒烟三步。
+CI 在 GitHub Actions 上跑 Python 3.11–3.14（外加 Windows），包含 lint、单测、冒烟三步。
 
 输出两份：`out/过拟合与正则化.quiz.md`（打印/归档）和 `out/过拟合与正则化.quiz.html`（直接在浏览器打开作答）。
 

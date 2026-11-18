@@ -7,17 +7,17 @@ name = "pdfquiz"
 version = "0.2.0"
 description = "PDF / 讲义 → 带原文溯源的复习题：每道题都能指回原文某一句"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = { text = "MIT" }
 authors = [{ name = "shushuzn" }]
 keywords = ["pdf", "quiz", "rag", "education", "markdown"]
 classifiers = [
   "License :: OSI Approved :: MIT License",
   "Programming Language :: Python :: 3",
-  "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
   "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
 ]
 dependencies = ["pypdf>=5.0"]
 
@@ -42,7 +42,7 @@ pdfquiz = ["templates/*.html"]
 
 [tool.ruff]
 line-length = 120
-target-version = "py310"
+target-version = "py311"
 
 [tool.ruff.lint]
 # 只留「写错就会崩」的规则，风格问题不阻塞 CI
