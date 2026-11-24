@@ -29,7 +29,7 @@ def load_data(stem: str) -> dict:
 
 
 class TestDrafts(unittest.TestCase):
-    def test_four_chapters_present(self):
+    def test_all_chapters_present(self):
         for stem in build_amc.CHAPTERS:
             with self.subTest(stem=stem):
                 data = load_data(stem)
@@ -66,9 +66,11 @@ class TestSections(unittest.TestCase):
         self.assertEqual(build_amc.section_of("ch01", "S1"), "课程导入")
         self.assertEqual(build_amc.section_of("ch09", "S3"), "课程导入")
         self.assertEqual(build_amc.section_of("ch10", "S45"), "碳纳米管")
+        self.assertEqual(build_amc.section_of("ch08", "S5"), "1.1 什么是活性炭")
+        self.assertEqual(build_amc.section_of("ch08", "S60"), "2 炭黑的生产和应用")
 
     def test_unknown_slide_falls_back(self):
-        self.assertEqual(build_amc.section_of("ch08", "S3"), "未分节")
+        self.assertEqual(build_amc.section_of("ch99", "S3"), "未分节")
 
 
 class TestDecks(unittest.TestCase):
@@ -87,7 +89,7 @@ class TestDecks(unittest.TestCase):
         kinds = [q["_kind"] for q in qs]
         self.assertEqual(kinds.count("single"), 20)
         self.assertEqual(kinds.count("short"), 4)
-        # 四章都要有题，否则模拟卷只考了半本书
+        # 每章都要有题，否则模拟卷只考了半本书
         self.assertEqual(len({q["_stem"] for q in qs}), len(build_amc.CHAPTERS))
 
     def test_practice_sorted_by_chapter(self):

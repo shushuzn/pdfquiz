@@ -25,7 +25,7 @@ PAPERS = ROOT / "papers_amc"
 CORPUS = ROOT / "corpus_amc"
 OUT = ROOT / "out_amc"
 
-CHAPTERS = ["ch01", "ch02", "ch03", "ch04", "ch05", "ch06", "ch07", "ch09", "ch10"]
+CHAPTERS = ["ch01", "ch02", "ch03", "ch04", "ch05", "ch06", "ch07", "ch08", "ch09", "ch10"]
 
 SCORE = {"single": 2, "multiple": 3, "truefalse": 2, "fill": 2, "short": 10, "term": 2}
 
@@ -126,6 +126,15 @@ SECTIONS = {
         (61, "工业化碳制品"),
         (74, "碳材料的发展"),
     ],
+    "ch08": [
+        (2, "课程导入"),
+        (5, "1.1 什么是活性炭"),
+        (35, "1.2 活性炭的发展与应用"),
+        (41, "1.3 活性炭的孔结构"),
+        (56, "1.4 活性炭的制备与分类"),
+        (57, "1.5 思考题"),
+        (76, "2 炭黑的生产和应用"),
+    ],
     "ch09": [
         (3, "课程导入"),
         (13, "一、碳纤维的结构与设计理念"),
@@ -207,7 +216,7 @@ def verified(chapters: list[dict], corpora: dict[str, str]) -> tuple[list[dict],
 
 
 def round_robin(pool: list[dict], n: int) -> list[dict]:
-    """按章轮流抽，保证模拟卷四章都有份。"""
+    """按章轮流抽，保证模拟卷每章都有份。"""
     buckets: dict[str, list[dict]] = {}
     for q in pool:
         buckets.setdefault(q["_stem"], []).append(q)

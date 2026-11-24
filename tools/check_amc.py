@@ -84,7 +84,7 @@ def check(chapter_file: Path) -> Report:
 
 
 def main(argv: list[str]) -> int:
-    picks = argv[1:] or ["ch01", "ch02", "ch03", "ch04", "ch05", "ch06", "ch07", "ch09", "ch10"]
+    picks = argv[1:] or ["ch01", "ch02", "ch03", "ch04", "ch05", "ch06", "ch07", "ch08", "ch09", "ch10"]
     bad = 0
     for stem in picks:
         f = PAPERS / f"{stem}.json"
