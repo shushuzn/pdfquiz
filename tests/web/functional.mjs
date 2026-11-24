@@ -41,19 +41,28 @@ const evaluate = async (expression) => {
   return r.result.value;
 };
 
+/* 线上 Pages 偶尔比 readyState 慢半拍：脚本还没执行完就断言会拿不到 __QUIZ__。
+   统一等题库和首张题卡都就绪，再开始测试。 */
+const waitQuiz = async (tries = 120) => {
+  for (let i = 0; i < tries; i++) {
+    try {
+      if (await evaluate("!!(window.__QUIZ__ && window.__QUIZ__.questions && document.querySelector('#stage .q'))")) return true;
+    } catch (e) { /* 页面还在导航 */ }
+    await sleep(100);
+  }
+  throw new Error("页面在 12 秒内未就绪: " + url);
+};
+
 await send("Page.enable");
 await send("Runtime.enable");
 await send("Log.enable");
 await send("Emulation.setDeviceMetricsOverride", { width: 1440, height: 940, deviceScaleFactor: 1, mobile: false });
 await send("Page.navigate", { url });
-for (let i = 0; i < 80; i++) {
-  if ((await evaluate("document.readyState")) === "complete") break;
-  await sleep(100);
-}
-await sleep(500);
+await waitQuiz();
 await evaluate("localStorage.clear()");
 await send("Page.reload");
-await sleep(900);
+await waitQuiz();
+await sleep(300);
 
 const results = [];
 const ok = (name, pass, detail) => {
@@ -76,7 +85,8 @@ const resetOne = async (idx) => {
     localStorage.setItem(k, JSON.stringify(raw));
   })()`);
   await send("Page.reload");
-  await sleep(800);
+  await waitQuiz();
+  await sleep(250);
 };
 
 /* 定位题卡 → 执行作答脚本 → 回读判定结果 */
@@ -255,7 +265,8 @@ if (allIds) {
       localStorage.setItem(k, JSON.stringify(raw));
     })()`);
     await send("Page.reload");
-    await sleep(1200);
+    await waitQuiz();
+    await sleep(1000);
 
     const after = await evaluate(`(() => {
       const k = 'pdfquiz:' + window.__QUIZ__.meta.id;
@@ -285,7 +296,8 @@ if (allIds) {
       localStorage.setItem(k, JSON.stringify(raw));
     })()`);
     await send("Page.reload");
-    await sleep(1200);
+    await waitQuiz();
+    await sleep(1000);
     // 跳到这道题，让卡片进入已判定态（不同卷子第一题不一定是多选）
     await evaluate("document.querySelector('#posBtn').click()");
     await sleep(150);

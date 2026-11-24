@@ -36,6 +36,17 @@ const evaluate = async (expression) => {
   return r.result.value;
 };
 
+/* 线上 Pages 偶尔比 readyState 慢半拍，等题库和首张题卡真正就绪再断言 */
+const waitQuiz = async (tries = 120) => {
+  for (let i = 0; i < tries; i++) {
+    try {
+      if (await evaluate("!!(window.__QUIZ__ && window.__QUIZ__.questions && document.querySelector('#stage .q'))")) return true;
+    } catch (e) { /* 页面还在导航 */ }
+    await sleep(100);
+  }
+  throw new Error("页面在 12 秒内未就绪: " + url);
+};
+
 await send("Page.enable");
 await send("Runtime.enable");
 await send("Log.enable");
@@ -43,14 +54,11 @@ await send("Emulation.setDeviceMetricsOverride", { width: 390, height: 844, devi
 await send("Emulation.setTouchEmulationEnabled", { enabled: true, maxTouchPoints: 1 });
 await send("Emulation.setFocusEmulationEnabled", { enabled: true }).catch(() => {});
 await send("Page.navigate", { url });
-for (let i = 0; i < 80; i++) {
-  if ((await evaluate("document.readyState")) === "complete") break;
-  await sleep(100);
-}
-await sleep(400);
+await waitQuiz();
 await evaluate("localStorage.clear()");
 await send("Page.reload");
-await sleep(900);
+await waitQuiz();
+await sleep(300);
 
 const results = [];
 const ok = (name, pass, detail) => {
@@ -75,7 +83,8 @@ const FIELD = await evaluate(`(() => {
 })()`);
 if (FIELD.idx > 0) {
   await send("Page.reload");
-  await sleep(900);
+  await waitQuiz();
+  await sleep(300);
 }
 
 // ---- 1. 底栏在手机上固定于视口底部
