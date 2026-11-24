@@ -101,6 +101,13 @@ class TestPages(unittest.TestCase):
         self.assertIn("<h2>期末模拟卷 A</h2>", html)
         self.assertNotIn("某课程 · 期末模拟卷 A", html)
 
+    def test_course_can_override_deck_role(self):
+        course = {**COURSE, "roles": {"terms": ["释义", "写释义"]}}
+        html = build_hub.render_course(course, DECKS)
+        self.assertIn('<span class="tag">释义</span>', html)
+        self.assertIn("写释义", html)
+        self.assertNotIn("刷术语", html)
+
     def test_hublink_retargeted(self):
         page = ('<a class="hub-link" href="index.html">'
                 '<svg viewBox="0 0 24 24"></svg>全部试卷</a>')

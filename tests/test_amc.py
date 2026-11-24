@@ -87,6 +87,10 @@ class TestStorage(unittest.TestCase):
                 with self.subTest(stem=stem, q=q["id"]):
                     self.assertIn(q["difficulty"], amcbank.DIFFICULTIES)
                     self.assertIn(q["bloom"], amcbank.BLOOMS)
+                    if q["type"] == "term":
+                        self.assertEqual(q.get("mode"), "explain")
+                    else:
+                        self.assertNotIn("mode", q)
 
     def test_questions_grouped_by_type(self):
         for stem in build_amc.CHAPTERS:

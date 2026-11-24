@@ -12,6 +12,7 @@
     coverage 覆盖范围（可省略）
     out      构建产物目录，里面要有 decks.json 和 <卷>.quiz.html
     prefix   卷子页面在 docs/ 下的文件名前缀，默认空（保持旧链接不变）
+    roles    可选，按卷子 id 覆盖卡片标签与按钮文案，如 {"terms": ["释义", "写释义"]}
     decks    要收录的卷子 id，顺序即展示顺序
     page     课程页文件名，默认 <id>.html
 """

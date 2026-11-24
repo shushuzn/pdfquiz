@@ -127,8 +127,86 @@ if (has("single") || has("truefalse")) {
   skip("选择题判分", "题库无单选题/判断题");
 }
 
-// ---- 3. 填空 / 术语：精确比对，前缀不算对
-const fillType = has("term") ? "term" : has("fill") ? "fill" : null;
+// ---- 3a. 释义类术语：中文释义 + 自评，不要求输入英文
+const termIdx = has("term") ? await evaluate(first("term")) : -1;
+const termMode = termIdx >= 0 ? await evaluate(`window.__QUIZ__.questions[${termIdx}].mode || ""`) : "";
+if (termIdx >= 0 && termMode === "explain") {
+  const ui = await evaluate(`(() => {
+    const node = document.querySelector('#stage .q[data-i="${termIdx}"]');
+    const tag = node.querySelector('.tag.t');
+    const f = node.querySelector('.field');
+    const labels = [...node.querySelectorAll('.ans .k')].map((x) => x.textContent.trim());
+    return {
+      tag: tag ? tag.textContent.trim() : '',
+      input: !!node.querySelector('input'),
+      textarea: !!f && f.tagName === 'TEXTAREA',
+      placeholder: f ? f.placeholder : '',
+      confirm: !!node.querySelector('[data-act="confirm"]'),
+      reveal: !!node.querySelector('[data-act="reveal"]'),
+      labels,
+      hint: (node.querySelector('.q-actions .hint') || {}).textContent || ''
+    };
+  })()`);
+  ok("释义题按中文释义作答", ui.tag === "术语释义" && ui.textarea && !ui.input && !ui.confirm && ui.reveal &&
+    /释义/.test(ui.placeholder) && ui.labels.includes("参考释义") && !/英文/.test(ui.hint),
+    `标签=${ui.tag} 控件=${ui.input ? "英文输入框" : ui.textarea ? "释义文本框" : "缺失"} 答案项=${ui.labels.join("/")}`);
+
+  // 自己写一句 → 对照参考答案 → 自评掌握
+  const self = await evaluate(`(() => {
+    const i = ${termIdx};
+    const node = document.querySelector('#stage .q[data-i="'+i+'"]');
+    const ta = node.querySelector('.field');
+    ta.value = '这是我的中文释义';
+    ta.dispatchEvent(new Event('input', {bubbles: true}));
+    node.querySelector('[data-act="reveal"]').click();
+    const pending = {
+      cls: node.querySelector('.verdict').className,
+      self: !!node.querySelector('.self-grade')
+    };
+    node.querySelector('[data-self="yes"]').click();
+    return {
+      pendingCls: pending.cls,
+      pendingSelf: pending.self,
+      cls: node.querySelector('.verdict').className,
+      txt: node.querySelector('.verdict').textContent.trim(),
+      redo: !!node.querySelector('[data-act="redo"]'),
+      value: (node.querySelector('.field') || {}).value || '',
+      selfGone: !node.querySelector('.self-grade')
+    };
+  })()`);
+  ok("释义题对照后自评", /verdict info/.test(self.pendingCls) && self.pendingSelf &&
+    /verdict ok/.test(self.cls) && /掌握/.test(self.txt) && self.redo && self.selfGone && self.value === "这是我的中文释义",
+    `自评前=${self.pendingCls} 自评后=${self.txt}`);
+
+  const redo = await evaluate(`(() => {
+    const i = ${termIdx};
+    const node = document.querySelector('#stage .q[data-i="'+i+'"]');
+    const b = node.querySelector('[data-act="redo"]');
+    if (!b) return { err: '没有重做按钮' };
+    b.click();
+    const after = document.querySelector('#stage .q[data-i="'+i+'"]');
+    const ta = after.querySelector('.field');
+    return {
+      graded: after.classList.contains('graded'),
+      readOnly: !!(ta && ta.readOnly),
+      value: ta ? ta.value : 'x',
+      textarea: !!ta && ta.tagName === 'TEXTAREA',
+      confirm: !!after.querySelector('[data-act="confirm"]'),
+      reveal: !!after.querySelector('[data-act="reveal"]')
+    };
+  })()`);
+  await sleep(250);
+  const redoKeys = await evaluate(`(() => {
+    const raw = JSON.parse(localStorage.getItem('pdfquiz:' + window.__QUIZ__.meta.id) || '{}');
+    return { id: window.__QUIZ__.questions[${termIdx}].id, keys: Object.keys(raw.answers || {}) };
+  })()`);
+  ok("释义题可重做", !redo.err && !redo.graded && !redo.readOnly && redo.value === "" && redo.textarea &&
+    !redo.confirm && redo.reveal && !redoKeys.keys.includes(redoKeys.id),
+    redo.err || `已判=${redo.graded} 文本框=${redo.textarea} 内容=${redo.value || "空"}`);
+}
+
+// ---- 3b. 填空 / 英文术语：精确比对，前缀不算对
+const fillType = has("fill") ? "fill" : has("term") && termMode !== "explain" ? "term" : null;
 const cn = fillType === "term" ? "术语" : "填空题";
 if (fillType) {
   const idx = await evaluate(first(fillType));
@@ -185,7 +263,7 @@ if (fillType) {
     }
   }
 } else {
-  skip("填空类判分", "题库无填空题/术语题");
+  skip("填空类判分", has("term") ? "术语题为释义自评" : "题库无填空题/术语题");
 }
 
 // ---- 4. 主观题：作答后走自评，自评结果落到统计

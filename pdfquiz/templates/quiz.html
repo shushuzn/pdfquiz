@@ -841,6 +841,12 @@ blockquote.ev::before{
   const unitKey = (s) => { const m = String(s || "").match(/UNIT\s*(\d+)/i); return m ? +m[1] : 999; };
   /* 主观题：无法自动判分，一律「作答 → 对照参考答案 → 自评」 */
   const SUBJECTIVE = { short: 1, trans_en_cn: 1, trans_cn_en: 1, describe: 1, qa: 1 };
+  /* 术语题有两种：英文术语翻译要精确输入；中文概念释义是长答案，只能自评 */
+  function isExplainTerm(q) { return !!q && q.t === "term" && q.mode === "explain"; }
+  function isSubjective(q) { return !!q && (SUBJECTIVE[q.t] === 1 || isExplainTerm(q)); }
+  if (Q.some(isExplainTerm)) {
+    TYPE_CN.term = Q.some((q) => q.t === "term" && !isExplainTerm(q)) ? "术语" : "术语释义";
+  }
   /* 可自动判分的填空题型：术语题答案唯一，比对时忽略大小写、空格与连字符 */
   const FILLABLE = { fill: 1, term: 1 };
   /* 需要输入框的作答区提示语 */
@@ -1032,11 +1038,11 @@ blockquote.ev::before{
             '<span class="txt">' + t + "</span>" +
             '<span class="flag"></span>' +
           "</button>").join("") + "</div>";
-    } else if (q.t === "fill" || q.t === "term") {
+    } else if (FILLABLE[q.t] && !isExplainTerm(q)) {
       body = '<input class="field" data-i="' + q.i + '" type="text" autocomplete="off" spellcheck="false" ' +
         'placeholder="' + (q.t === "term" ? "写出英文术语，回车确认" : "在此填写答案，回车确认") + '">';
     } else {
-      const ph = PLACEHOLDER[q.t] || "写下你的回答，再对照参考答案自评";
+      const ph = isExplainTerm(q) ? "用自己的话写出释义，再对照参考答案自评" : (PLACEHOLDER[q.t] || "写下你的回答，再对照参考答案自评");
       const rows = (q.t === "trans_en_cn" || q.t === "describe" || q.t === "qa") ? 5 : 3;
       body = '<textarea class="field" data-i="' + q.i + '" rows="' + rows + '" style="--rows:' + rows + '" placeholder="' + esc(ph) + '"></textarea>' +
         (q.t === "trans_en_cn" || q.t === "trans_cn_en"
@@ -1050,18 +1056,18 @@ blockquote.ev::before{
     if (q.t === "multiple") {
       actions = '<div class="q-actions"><button class="btn primary" data-act="confirm" data-i="' + q.i + '" disabled>确认作答</button>' +
         '<span class="hint">可选多项，选完点确认</span></div>';
-    } else if (q.t === "fill" || q.t === "term") {
+    } else if (FILLABLE[q.t] && !isExplainTerm(q)) {
       actions = '<div class="q-actions"><button class="btn primary" data-act="confirm" data-i="' + q.i + '" disabled>确认作答</button>' +
         '<span class="hint">' + (q.t === "term"
           ? "只需写英文术语本身，不区分大小写与连字符"
           : "文字按去空格与标点后比对，近似匹配即算对") + "</span></div>";
-    } else if (SUBJECTIVE[q.t]) {
+    } else if (isSubjective(q)) {
       actions = '<div class="q-actions"><button class="btn ghost" data-act="reveal" data-i="' + q.i + '">对照参考答案</button>' +
-        '<span class="hint">' + (q.t === "trans_en_cn" ? "翻译题按要点自评" : "答到要点即算通过") + "</span></div>";
+        '<span class="hint">' + (q.t === "trans_en_cn" ? "翻译题按要点自评" : isExplainTerm(q) ? "先自己写，再对照参考答案；意思对即可" : "答到要点即算通过") + "</span></div>";
     }
 
     /* 长答案（描述题/问答题的整段参考答案）不加粗，否则整段发黑难读 */
-    const longAns = SUBJECTIVE[q.t] && String(q.a[0] || "").length > 60;
+    const longAns = isSubjective(q) && String(q.a[0] || "").length > 60;
 
     const answerHTML = q.t === "truefalse"
       ? "<b>" + (q.a[0] === "T" ? "正确" : "错误") + "</b>"
@@ -1076,7 +1082,7 @@ blockquote.ev::before{
 
     const ansLabel = q.t === "trans_en_cn" ? "参考译文"
       : q.t === "trans_cn_en" ? "参考英文"
-      : q.t === "term" ? "英文术语"
+      : q.t === "term" ? (isExplainTerm(q) ? "参考释义" : "英文术语")
       : q.t === "describe" || q.t === "qa" ? "参考答案"
       : "答案";
 
@@ -1381,7 +1387,7 @@ blockquote.ev::before{
     const sg = node.querySelector(".self-grade");
     if (sg) sg.remove();
 
-    if (SUBJECTIVE[q.t]) {
+    if (isSubjective(q)) {
       v.className = "verdict " + (a && a.correct ? "ok" : "bad");
       v.innerHTML = '<span class="ico">' + (a && a.correct ? "✓" : "✕") + "</span><span>" +
         (a && a.correct ? "已标记为掌握" : "已标记为未掌握") + "</span>";
@@ -1444,7 +1450,7 @@ blockquote.ev::before{
   function confirmAnswer(i) {
     const q = Q[i];
     const a = ans(i);
-    if (!q || !a || isGraded(i)) return;
+    if (!q || !a || isGraded(i) || isSubjective(q)) return;
     const node = $('#stage .q[data-i="' + i + '"]');
 
     if (q.t === "multiple") {
@@ -1542,7 +1548,7 @@ blockquote.ev::before{
     Q.forEach((q) => {
       const a = ans(q.i);
       if (!a || a.graded) return;
-      if (SUBJECTIVE[q.t]) {
+      if (isSubjective(q)) {
         a.graded = true; a.pending = true; a.correct = null;
       } else if (q.t === "fill" || q.t === "term") {
         if (!String(a.text || "").trim()) return;
@@ -1642,7 +1648,7 @@ blockquote.ev::before{
             '<button class="wrong-item" data-jump="' + q.i + '">' +
               '<span class="n">' + String(q.n).padStart(2, "0") + "</span>" +
               '<span class="qt"><i class="tk">' + (TYPE_CN[q.t] || "") + "</i>" +
-                esc(q.t === "term" ? q.q + " → 英文术语" : q.q) + "</span></button>").join("") +
+                esc(q.t === "term" && !isExplainTerm(q) ? q.q + " → 英文术语" : q.q) + "</span></button>").join("") +
           "</div></div>"
         : '<div class="res-sec"><h3>需要回看的题</h3><div class="empty" style="padding:28px 0"><b>全部正确</b>这一份可以过了。</div></div>') +
       '<div class="res-actions">' +
@@ -1691,14 +1697,14 @@ blockquote.ev::before{
       const a = ans(q.i) || {};
       L.push("## " + String(q.n).padStart(2, "0") + " · " + (TYPE_CN[q.t] || q.t) + " · " + q.sec, "");
       L.push("**题目** " + q.q, "");
-      if (q.t === "term" || q.t === "fill") {
-        L.push("- 你的答案：" + (a.text || "（未填）"));
-      } else if (SUBJECTIVE[q.t]) {
+      if (isExplainTerm(q) || SUBJECTIVE[q.t]) {
         L.push("- 你的作答：" + (String(a.text || "").trim() || "（未写）"));
+      } else if (q.t === "term" || q.t === "fill") {
+        L.push("- 你的答案：" + (a.text || "（未填）"));
       } else {
         L.push("- 你的选择：" + ((a.picked || []).join("") || "（未选）"));
       }
-      L.push("- 参考答案：" + (q.a || []).join(" / "));
+      L.push("- " + (isExplainTerm(q) ? "参考释义" : "参考答案") + "：" + (q.a || []).join(" / "));
       if (a && a.pending) L.push("- 状态：待自评");
       if (q.keys && q.keys.length) {
         L.push("- 采分点：" + q.keys.map((k) => k.en + (k.cn ? "（" + k.cn + "）" : "")).join("；"));
@@ -1950,6 +1956,9 @@ blockquote.ev::before{
     }
     if (e.target.matches("input,textarea")) {
       if (e.key === "Enter" && !e.shiftKey && e.target.dataset.i) {
+        const qq = Q[Number(e.target.dataset.i)];
+        // 主观题与释义题要能换行，不能把回车当成提交
+        if (isSubjective(qq)) return;
         e.preventDefault();
         confirmAnswer(Number(e.target.dataset.i));
       }
@@ -1969,8 +1978,8 @@ blockquote.ev::before{
       return;
     }
     if (e.key === "ArrowRight" || e.key === "Enter") {
-      if (e.key === "Enter" && !isGraded(cur) && (q.t === "multiple" || q.t === "fill" || q.t === "term")) { confirmAnswer(cur); e.preventDefault(); return; }
-      if (e.key === "Enter" && !isGraded(cur) && q.t === "short") return;
+      if (e.key === "Enter" && !isGraded(cur) && (q.t === "multiple" || q.t === "fill" || (q.t === "term" && !isExplainTerm(q)))) { confirmAnswer(cur); e.preventDefault(); return; }
+      if (e.key === "Enter" && !isGraded(cur) && (q.t === "short" || isExplainTerm(q))) return;
       go(1); e.preventDefault(); return;
     }
     if (e.key === "ArrowLeft") { go(-1); e.preventDefault(); return; }

@@ -100,6 +100,7 @@ def build_payload(
                 "code": _section_of(section),
                 "id": str(q.get("id", "") or ""),
                 "t": qtype,
+                "mode": str(q.get("mode", "") or ""),
                 "bloom": str(q.get("bloom", "") or ""),
                 "diff": str(q.get("difficulty", "") or ""),
                 "q": str(q.get("question", "")).strip(),

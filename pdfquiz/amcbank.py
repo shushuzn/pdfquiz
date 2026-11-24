@@ -29,6 +29,7 @@ from pathlib import Path
 SCHEMA_VERSION = 2
 
 KINDS = ("single", "multiple", "truefalse", "fill", "short", "term")
+TERM_MODES = ("translate", "explain")
 DIFFICULTIES = ("easy", "medium", "hard")
 BLOOMS = ("记忆", "理解", "应用", "分析", "评价", "创造")
 BLOOM_ALIASES = {"识记": "记忆"}
@@ -40,7 +41,7 @@ REF_RE = re.compile(r"^S\d+$")
 
 COMMON_FIELDS = ("id", "type", "question", "answer", "explanation", "evidence", "ref")
 OPTION_KINDS = ("single", "multiple")
-QUESTION_FIELDS = ("id", "type", "question", "options", "answer", "explanation", "evidence", "ref", "difficulty", "bloom")
+QUESTION_FIELDS = ("id", "type", "mode", "question", "options", "answer", "explanation", "evidence", "ref", "difficulty", "bloom")
 ALLOWED_FIELDS = frozenset(QUESTION_FIELDS)
 
 
@@ -113,6 +114,12 @@ def validate(data: dict, stem: str) -> list[str]:
         if kind not in KINDS:
             errors.append(f"{where} type 非法：{kind!r}")
             continue
+        mode = q.get("mode")
+        if mode is not None:
+            if kind != "term":
+                errors.append(f"{where} 只有 term 题可以带 mode")
+            elif mode not in TERM_MODES:
+                errors.append(f"{where} mode 非法：{mode!r}，应为 {'/'.join(TERM_MODES)}")
         m = ID_RE.fullmatch(str(q.get("id", "")))
         if not m:
             errors.append(f"{where} id 应形如 {stem}-{kind}-001")

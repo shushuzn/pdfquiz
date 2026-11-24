@@ -67,6 +67,14 @@ ARROW = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-widt
 BACK = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">'
         '<path d="M19 12H5M12 19l-7-7 7-7"/></svg>')
 
+
+def deck_role(course: dict, deck_id: str) -> tuple[str, str]:
+    """课程可用 roles 覆盖某套卷子的卡片标签与按钮文案。"""
+    pair = (course.get("roles") or {}).get(deck_id)
+    if isinstance(pair, (list, tuple)) and len(pair) == 2:
+        return str(pair[0]), str(pair[1])
+    return ROLE.get(deck_id, ("题库", "开始"))
+
 CSS = """
 *,*::before,*::after{box-sizing:border-box}
 :root{
@@ -223,7 +231,7 @@ def course_card(course: dict, decks: list[dict]) -> str:
     total = sum(d.get("count", 0) for d in decks)
     nums = f'<b>{len(decks)}</b> 套' + (f' · <b>{total}</b> 题' if total else "")
     chips = "".join(
-        f'<span class="chip">{html.escape(d.get("short") or (course.get("labels") or {}).get(d["id"]) or ROLE.get(d["id"], ("题库",))[0])} <b>{d.get("count", 0)}</b></span>'
+        f'<span class="chip">{html.escape(d.get("short") or (course.get("labels") or {}).get(d["id"]) or deck_role(course, d["id"])[0])} <b>{d.get("count", 0)}</b></span>'
         for d in decks
     )
     return f"""      <a class="card" href="{html.escape(course_page(course))}">
@@ -236,7 +244,7 @@ def course_card(course: dict, decks: list[dict]) -> str:
 
 
 def deck_card(course: dict, deck: dict) -> str:
-    role, cta = ROLE.get(deck["id"], ("题库", "开始"))
+    role, cta = deck_role(course, deck["id"])
     prefix = f'{course["name"]} · '
     title = deck["title"][len(prefix):] if deck["title"].startswith(prefix) else deck["title"]
     chips = "".join(
@@ -246,7 +254,7 @@ def deck_card(course: dict, deck: dict) -> str:
     nums = f'<b>{deck["count"]}</b> 题' + (f' · <b>{deck["score"]}</b> 分' if deck.get("score") else "")
     # data-* 供 load_decks 在 decks.json 缺失时反推课程页，避免重建首页丢课程
     return f"""      <a class="card" href="{html.escape(deck_page(course, deck["id"]))}" data-deck="{html.escape(deck["id"])}" data-count="{deck.get("count", 0)}" data-score="{deck.get("score") or 0}" data-short="{html.escape(deck.get("short") or "")}">
-        <div class="card-top"><span class="tag">{role}</span><span class="nums">{nums}</span></div>
+        <div class="card-top"><span class="tag">{html.escape(role)}</span><span class="nums">{nums}</span></div>
         <h2>{html.escape(title)}</h2>
         <p>{html.escape(deck["desc"])}</p>
         <div class="chips">{chips}</div>

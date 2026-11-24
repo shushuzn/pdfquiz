@@ -70,7 +70,7 @@ const ok = (name, pass, detail) => {
 const FIELD = await evaluate(`(() => {
   const qs = window.__QUIZ__.questions;
   const MULTI = ['short', 'trans_en_cn', 'trans_cn_en', 'describe', 'qa'];
-  let idx = qs.findIndex((q) => MULTI.includes(q.t));
+  let idx = qs.findIndex((q) => MULTI.includes(q.t) || (q.t === 'term' && q.mode === 'explain'));
   const grow = idx >= 0;
   if (idx < 0) idx = qs.findIndex((q) => ['fill', 'term'].includes(q.t));
   if (idx > 0) {

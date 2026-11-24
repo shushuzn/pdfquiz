@@ -100,6 +100,23 @@ class TestNormalize(unittest.TestCase):
         with self.assertRaises(amcbank.BankError):
             amcbank.normalize(data, "ch01")
 
+    def test_term_mode_is_validated(self):
+        term = {k: v for k, v in question().items() if k != "options"}
+        term.update(type="term", id="ch01-term-001", mode="explain")
+        data = {"schema": 2, "chapter": "第一章 测试", "questions": [term]}
+        out = amcbank.normalize(data, "ch01")
+        self.assertEqual(out["questions"][0]["mode"], "explain")
+
+        for bad in (
+            {**term, "mode": "lookup"},
+            {**question(id="ch01-single-001", type="single"), "mode": "explain"},
+        ):
+            with self.subTest(mode=bad.get("mode")):
+                with self.assertRaises(amcbank.BankError):
+                    amcbank.normalize(
+                        {"schema": 2, "chapter": "第一章 测试", "questions": [bad]}, "ch01"
+                    )
+
 
 if __name__ == "__main__":
     unittest.main()
