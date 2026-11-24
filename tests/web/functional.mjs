@@ -422,6 +422,74 @@ if (allIds) {
 
     const r3 = await answerBy(idx, answerJs);
     ok("重做后可再次提交", /verdict ok/.test(r3.cls), r3.txt);
+
+    // 同一 ID 但题目内容改过：记录里的指纹对不上，旧作答必须失效
+    await sleep(300);
+    const fpBefore = await evaluate(`(() => {
+      const k = 'pdfquiz:' + window.__QUIZ__.meta.id;
+      const raw = JSON.parse(localStorage.getItem(k) || '{}');
+      const key = window.__QUIZ__.questions[${idx}].id;
+      const rec = (raw.answers || {})[key] || {};
+      if (rec.fp) rec.fp = 'stale';
+      localStorage.setItem(k, JSON.stringify(raw));
+      return { key, has: !!raw.answers[key], fp: typeof rec.fp };
+    })()`);
+    await send("Page.reload");
+    await waitQuiz();
+    await sleep(1000);
+    await evaluate("document.querySelector('#posBtn').click()");
+    await sleep(150);
+    await evaluate(`(() => {
+      const c = document.querySelector('[data-goto="${idx}"]');
+      if (c) c.click();
+    })()`);
+    await sleep(250);
+    const fpStale = await evaluate(`(() => {
+      const k = 'pdfquiz:' + window.__QUIZ__.meta.id;
+      const raw = JSON.parse(localStorage.getItem(k) || '{}');
+      const node = document.querySelector('#stage .q[data-i="${idx}"]');
+      const t = document.querySelector('#toast');
+      return {
+        key: window.__QUIZ__.questions[${idx}].id,
+        kept: !!(raw.answers || {})[window.__QUIZ__.questions[${idx}].id],
+        sig: raw.sig || '',
+        graded: node ? node.classList.contains('graded') : true,
+        toast: t ? t.textContent.trim() : ''
+      };
+    })()`);
+    ok("题目改动后旧作答失效", fpBefore.has && !fpStale.kept && fpStale.sig === before.sig &&
+      !fpStale.graded && fpStale.toast.includes("改动"), `保留=${fpStale.kept} 已判=${fpStale.graded}`);
+
+    // 老记录没有指纹时只补指纹，不当作改题，作答继续有效
+    const r4 = await answerBy(idx, answerJs);
+    await sleep(300);
+    await evaluate(`(() => {
+      const k = 'pdfquiz:' + window.__QUIZ__.meta.id;
+      const raw = JSON.parse(localStorage.getItem(k) || '{}');
+      const key = window.__QUIZ__.questions[${idx}].id;
+      if (raw.answers[key]) delete raw.answers[key].fp;
+      localStorage.setItem(k, JSON.stringify(raw));
+    })()`);
+    await send("Page.reload");
+    await waitQuiz();
+    await sleep(1000);
+    await evaluate("document.querySelector('#posBtn').click()");
+    await sleep(150);
+    await evaluate(`(() => {
+      const c = document.querySelector('[data-goto="${idx}"]');
+      if (c) c.click();
+    })()`);
+    await sleep(250);
+    const fpBackfill = await evaluate(`(() => {
+      const k = 'pdfquiz:' + window.__QUIZ__.meta.id;
+      const raw = JSON.parse(localStorage.getItem(k) || '{}');
+      const rec = (raw.answers || {})[window.__QUIZ__.questions[${idx}].id] || {};
+      const node = document.querySelector('#stage .q[data-i="${idx}"]');
+      const v = node ? node.querySelector('.verdict') : null;
+      return { graded: !!v && /verdict ok/.test(v.className), fp: typeof rec.fp, present: 'fp' in rec };
+    })()`);
+    ok("缺指纹的老记录保留并补齐", /verdict ok/.test(r4.cls) && fpBackfill.graded && fpBackfill.present && fpBackfill.fp === "string",
+      `作答=${r4.txt} 已判=${fpBackfill.graded} 指纹=${fpBackfill.fp}`);
   } else {
     skip("进度存储", "题库无单选题/多选题");
   }

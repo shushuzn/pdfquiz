@@ -864,18 +864,32 @@ blockquote.ev::before{
   /* 题目 ID 是稳定身份：答题记录按 ID 存，题库增删或重排后不会把记录套到别的题上。
      老题库没有 ID（如教材卷），退回用下标，行为与之前一致。 */
   const HAS_IDS = Q.length > 0 && Q.every((q) => q.id);
-  function deckSignature() {
+  function hashText(s) {
     let h = 2166136261;
-    const raw = Q.map((q) => q.id).join("|");
-    for (let i = 0; i < raw.length; i++) {
-      h ^= raw.charCodeAt(i);
+    for (let i = 0; i < s.length; i++) {
+      h ^= s.charCodeAt(i);
       h = Math.imul(h, 16777619);
     }
     return (h >>> 0).toString(36);
   }
+  /* 题干、选项、答案共同决定这道题是否还是原来那道题。
+     只改解析或难度不算，改了答案就必须让旧作答失效。 */
+  function qFingerprint(q) {
+    if (!q) return "";
+    return hashText([
+      q.t || "",
+      q.mode || "",
+      q.q || "",
+      (q.o || []).join("\u0001"),
+      (q.a || []).join("\u0001")
+    ].join("\u0002"));
+  }
+  function deckSignature() {
+    return hashText(Q.map((q) => q.id).join("|"));
+  }
   const SIG = HAS_IDS ? deckSignature() : "";
   let staleNote = "";
-  let sigMigrated = false;
+  let stateMigrated = false;
 
   /* ------------------------------------------------------------ state */
   const BLANK = {
@@ -906,23 +920,41 @@ blockquote.ev::before{
       };
       /* 带 ID 的题库换了题目集合后，旧版按数组下标存的答案会错位：
          表现为某些题「已经判过」、按钮消失。这里按题目 ID 过滤：
-         能对上当前题目的记录保留，下标或已删除题目的记录清掉。 */
-      if (SIG && s.sig !== SIG) {
-        sigMigrated = true;
-        const ids = new Set(Q.map((q) => q.id).filter(Boolean));
-        const keptAnswers = {};
-        const keptMarked = [];
-        let dropped = 0;
+         能对上当前题目的记录保留，下标或已删除题目的记录清掉。
+         同一 ID 但题干/选项/答案改过时，旧作答也不再可信，一并清掉。 */
+      let keptAnswers = answers;
+      let keptMarked = marked;
+      let dropped = 0;
+      let changed = 0;
+      let backfilled = 0;
+      const idChanged = !!(SIG && s.sig !== SIG);
+      if (HAS_IDS) {
+        const current = new Map();
+        Q.forEach((q) => { if (q.id) current.set(q.id, qFingerprint(q)); });
+        keptAnswers = {};
         Object.keys(answers).forEach((k) => {
-          if (ids.has(k)) keptAnswers[k] = answers[k];
-          else dropped++;
+          const fp = current.get(k);
+          if (fp === undefined) { dropped++; return; }
+          const rec = answers[k] && typeof answers[k] === "object" ? answers[k] : {};
+          if (rec.fp && rec.fp !== fp) { changed++; return; }
+          if (!rec.fp) { rec.fp = fp; backfilled++; }
+          keptAnswers[k] = rec;
         });
+        keptMarked = [];
         marked.forEach((k) => {
-          if (ids.has(k)) keptMarked.push(k);
+          if (current.has(k)) keptMarked.push(k);
           else dropped++;
         });
-        if (dropped) {
-          staleNote = Object.keys(keptAnswers).length || keptMarked.length
+      }
+      if (backfilled || idChanged || changed) stateMigrated = true;
+      if (idChanged || changed) {
+        const kept = Object.keys(keptAnswers).length || keptMarked.length;
+        if (changed && !idChanged) {
+          staleNote = kept
+            ? "题库已更新，未变题目的记录已保留，改动题目的作答已清理"
+            : "题库已更新，改动题目的作答已清理，请重新作答";
+        } else if (dropped) {
+          staleNote = kept
             ? "题库已更新，有效答题记录已保留，失效记录已清理"
             : "题库已更新，旧答题记录已清空，请重新作答";
         }
@@ -933,7 +965,11 @@ blockquote.ev::before{
           sig: SIG
         });
       }
-      return Object.assign({}, BLANK, s, base, { sig: s.sig || SIG });
+      return Object.assign({}, BLANK, s, base, {
+        answers: keptAnswers,
+        marked: keptMarked,
+        sig: s.sig || SIG
+      });
     } catch (e) {
       return null;
     }
@@ -952,10 +988,14 @@ blockquote.ev::before{
 
   function qkey(i) { const q = Q[i]; return q && q.id ? q.id : String(i); }
   function ans(i) { return S.answers[qkey(i)] || null; }
-  function setAns(i, value) { S.answers[qkey(i)] = value; return value; }
+  function setAns(i, value) {
+    const k = qkey(i);
+    S.answers[k] = Object.assign({}, value, { fp: qFingerprint(Q[i]) });
+    return S.answers[k];
+  }
   function updateAns(i, patch) {
     const k = qkey(i);
-    S.answers[k] = Object.assign({}, S.answers[k], patch);
+    S.answers[k] = Object.assign({}, S.answers[k], patch, { fp: qFingerprint(Q[i]) });
     return S.answers[k];
   }
   function isMarked(i) { return S.marked.includes(qkey(i)); }
@@ -2080,7 +2120,7 @@ blockquote.ev::before{
     });
 
     // 迁移结果要写回，否则每次打开都拿旧签名重新过滤一遍
-    if (sigMigrated) save();
+    if (stateMigrated) save();
     if (staleNote) setTimeout(() => toast(staleNote), 400);
     if (META.mock) toast("这是离线模式产物，题目由陈述句改写，仅供链路演示");
   }
