@@ -61,7 +61,7 @@ pip install -e ".[docling]"       # docling：结构化最好，首次运行需�
 
 ```bash
 pip install -e ".[dev]"
-python -m unittest discover -s tests -v   # 52 项单测
+python -m unittest discover -s tests -v   # 64 项单测
 python tests/smoke_cli.py                 # 端到端冒烟：离线跑一遍 CLI 并检查产物
 ruff check .
 ```
@@ -93,6 +93,22 @@ python tools/build_amc.py                       # 生成 out_amc/ 的四套题�
 python tools/build_hub.py                       # 同步卷子到 docs/，生成课程页与首页
 python tools/build_hub.py --course polymer-en   # 只重建一门课
 ```
+
+课程页同时充当元数据缓存：某门课的 `out_*/decks.json` 缺失时（例如 `out_exam/` 依赖未公开的 `.units/`），`build_hub.py` 会从既有的 `docs/<课程>.html` 反推卷子 id、题数、分值与题型，再重建首页。这样重新生成站点不会因为缺一份生成物就整门课消失。
+
+### 发布前检查
+
+公开仓库只放转写稿（`corpus_amc/`）、题目草稿（`papers_amc/`）与构建后的 `docs/`。原始 PPT/PDF、教务系统截图、`.units/` 等含元数据或内部字段的文件不入库。
+
+文本类隐私规则可以在提交前自查，CI 也会跑：
+
+```bash
+python tools/check_privacy.py
+```
+
+覆盖教师姓名/办公室、课程负责人、QQ、手机号、邮箱，以及 Bilibili / UTM 追踪参数；命中任意一条即返回非零退出码。图片与 PDF 里的水印、页脚不在规则范围内，只能靠提交前人工确认。
+
+CI 还会在干净检出（没有 `out_*` 目录）上重跑 `tools/build_hub.py`，要求 `docs/` 无 diff，防止手改页面后忘记同步生成逻辑。
 
 `corpus_amc/` 是从课件逐页转出的文字稿（`### S12` 是第 12 张幻灯片），`papers_amc/ch0N.json` 是按题型分组的草稿。`build_amc.py` 会把每条题的 `evidence` 送回对应章节逐字核对，对不上就整批退回、不生成产物——所以这两份文件是这个课程题库唯一的可信来源。
 

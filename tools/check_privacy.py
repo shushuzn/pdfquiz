@@ -7,6 +7,7 @@
 from __future__ import annotations
 
 import re
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -27,8 +28,9 @@ PATTERNS = [
 ]
 
 
-def iter_files():
-    for path in ROOT.rglob("*"):
+def iter_files(root: Path = ROOT):
+    root = Path(root)
+    for path in root.rglob("*"):
         if not path.is_file():
             continue
         if any(part in SKIP_DIRS for part in path.parts):
@@ -38,9 +40,10 @@ def iter_files():
         yield path
 
 
-def scan() -> list[tuple[Path, int, str]]:
+def scan(root: Path = ROOT) -> list[tuple[Path, int, str]]:
+    root = Path(root)
     hits: list[tuple[Path, int, str]] = []
-    for path in iter_files():
+    for path in iter_files(root):
         try:
             text = path.read_text(encoding="utf-8")
         except (UnicodeDecodeError, OSError):
@@ -48,13 +51,15 @@ def scan() -> list[tuple[Path, int, str]]:
         for lineno, line in enumerate(text.splitlines(), 1):
             for pattern, label in PATTERNS:
                 if pattern.search(line):
-                    hits.append((path.relative_to(ROOT), lineno, label))
+                    hits.append((path.relative_to(root), lineno, label))
                     break
     return hits
 
 
-def main() -> int:
-    hits = scan()
+def main(argv: list[str] | None = None) -> int:
+    args = sys.argv[1:] if argv is None else argv
+    root = Path(args[0]) if args else ROOT
+    hits = scan(root)
     if hits:
         print("隐私检查未通过：")
         for path, lineno, label in hits:

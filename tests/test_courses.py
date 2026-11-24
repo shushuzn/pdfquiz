@@ -6,6 +6,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 import tempfile
 import unittest
@@ -106,6 +107,91 @@ class TestPages(unittest.TestCase):
         self.assertIn("返回课程", out)
         self.assertNotIn("全部试卷", out)
         self.assertIn("<svg", out)
+
+
+class TestDeckFallback(unittest.TestCase):
+    """decks.json 缺失时，从既有课程页反推卷子清单。"""
+
+    LEGACY_CARD = """<a class="card" href="terms.html">
+        <div class="card-top"><span class="tag">默写</span><span class="nums"><b>20</b> 题 · <b>20</b> 分</span></div>
+        <h2>术语默写总表</h2>
+        <p>课程全部术语。</p>
+        <div class="chips"><span class="chip">术语 <b>20</b></span></div>
+        <span class="go">刷术语</span>
+      </a>"""
+
+    def make_root(self) -> Path:
+        tmp = Path(tempfile.mkdtemp())
+        (tmp / "docs").mkdir()
+        return tmp
+
+    def test_course_page_roundtrip(self):
+        page = build_hub.render_course(COURSE, DECKS)
+        parsed = build_hub.parse_decks(page, COURSE)
+        self.assertEqual([d["id"] for d in parsed], ["exam_a", "terms"])
+        self.assertEqual(parsed[0]["count"], 10)
+        self.assertEqual(parsed[0]["score"], 100)
+        self.assertEqual(parsed[0]["types"], {"term": 10})
+        self.assertEqual(parsed[1]["desc"], "")
+        # 卡片上已去掉课程前缀，重新渲染不会再叠加
+        self.assertIn("<h2>期末模拟卷 A</h2>", build_hub.render_course(COURSE, parsed))
+
+    def test_legacy_page_without_data_attrs(self):
+        parsed = build_hub.parse_decks(self.LEGACY_CARD, COURSE)
+        self.assertEqual(len(parsed), 1)
+        deck = parsed[0]
+        self.assertEqual(deck["id"], "terms")
+        self.assertEqual(deck["title"], "术语默写总表")
+        self.assertEqual(deck["count"], 20)
+        self.assertEqual(deck["score"], 20)
+        self.assertEqual(deck["types"], {"term": 20})
+
+    def test_missing_decks_json_uses_course_page(self):
+        root = self.make_root()
+        (root / "docs" / "demo-course.html").write_text(
+            build_hub.render_course(COURSE, DECKS), encoding="utf-8")
+        decks = build_hub.load_decks(COURSE, root / "docs", root)
+        self.assertEqual([d["id"] for d in decks], ["exam_a", "terms"])
+        html = build_hub.render_home([COURSE], {COURSE["id"]: decks})
+        self.assertIn('href="demo-course.html"', html)
+        self.assertIn("共 30 题", html)
+
+    def test_no_source_at_all(self):
+        root = self.make_root()
+        self.assertEqual(build_hub.load_decks(COURSE, root / "docs", root), [])
+
+    def test_decks_json_wins_over_page(self):
+        root = self.make_root()
+        out = root / "out_demo"
+        out.mkdir()
+        (out / "decks.json").write_text(json.dumps(DECKS, ensure_ascii=False), encoding="utf-8")
+        (root / "docs" / "demo-course.html").write_text(self.LEGACY_CARD, encoding="utf-8")
+        decks = build_hub.load_decks(COURSE, root / "docs", root)
+        self.assertEqual([d["id"] for d in decks], ["exam_a", "terms"])
+        self.assertEqual(decks[0]["title"], "某课程 · 期末模拟卷 A")
+
+
+class TestCommittedSite(unittest.TestCase):
+    """回归：首页必须列出所有已有课程页的课程。"""
+
+    def test_index_lists_every_built_course(self):
+        index = (ROOT / "docs" / "index.html").read_text(encoding="utf-8")
+        for course in load_courses(ROOT):
+            page_name = course_page(course)
+            page = ROOT / "docs" / page_name
+            if not page.exists():
+                continue
+            decks = build_hub.parse_decks(page.read_text(encoding="utf-8"), course)
+            if not decks:
+                continue
+            with self.subTest(course=course["id"]):
+                card = re.search(
+                    rf'<a class="card" href="{re.escape(page_name)}">(.*?)</a>',
+                    index, re.S)
+                self.assertIsNotNone(card, f"{course['id']} 未出现在首页")
+                total = sum(d["count"] for d in decks)
+                self.assertIn(f"<b>{len(decks)}</b> 套", card.group(1))
+                self.assertIn(f"<b>{total}</b> 题", card.group(1))
 
 
 if __name__ == "__main__":

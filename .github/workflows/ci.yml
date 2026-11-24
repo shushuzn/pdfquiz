@@ -57,3 +57,8 @@ jobs:
       - run: ruff check .
       - name: 隐私检查
         run: python tools/check_privacy.py
+
+      - name: 站点可重建
+        run: |
+          python tools/build_hub.py
+          git diff --exit-code -- docs

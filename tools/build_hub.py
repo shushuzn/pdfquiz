@@ -8,7 +8,8 @@
     docs/<课程>.html       该课程的卷子列表
     docs/<卷>.html         单份题库（由 out_*/<卷>.quiz.html 同步过来）
 
-课程信息来自仓库根目录 courses.json，卷子题数来自 out_*/decks.json。
+课程信息来自仓库根目录 courses.json，卷子清单优先读 out_*/decks.json；
+生成物缺失时从既有 docs/<课程>.html 的卡片反推，避免重建首页时丢课。
 同步题库时会把页面里的「返回」链接改成本课程页，避免从卷子跳回首页。
 """
 
@@ -243,7 +244,8 @@ def deck_card(course: dict, deck: dict) -> str:
         for t, n in sorted(deck["types"].items(), key=lambda kv: ORDER.index(kv[0]) if kv[0] in ORDER else 99)
     )
     nums = f'<b>{deck["count"]}</b> 题' + (f' · <b>{deck["score"]}</b> 分' if deck.get("score") else "")
-    return f"""      <a class="card" href="{html.escape(deck_page(course, deck["id"]))}">
+    # data-* 供 load_decks 在 decks.json 缺失时反推课程页，避免重建首页丢课程
+    return f"""      <a class="card" href="{html.escape(deck_page(course, deck["id"]))}" data-deck="{html.escape(deck["id"])}" data-count="{deck.get("count", 0)}" data-score="{deck.get("score") or 0}" data-short="{html.escape(deck.get("short") or "")}">
         <div class="card-top"><span class="tag">{role}</span><span class="nums">{nums}</span></div>
         <h2>{html.escape(title)}</h2>
         <p>{html.escape(deck["desc"])}</p>
@@ -333,6 +335,13 @@ def render_course(course: dict, decks: list[dict]) -> str:
 
 
 HUBLINK = re.compile(r'<a class="hub-link" href="[^"]*">(.*?)</a>', re.S)
+CARD = re.compile(r'<a class="card" href="([^"]+)"([^>]*)>(.*?)</a>', re.S)
+DATA_ATTR = re.compile(r'data-(deck|short|count|score)="([^"]*)"')
+HEADING = re.compile(r"<h2>(.*?)</h2>", re.S)
+PARA = re.compile(r"<p>(.*?)</p>", re.S)
+NUMS = re.compile(r'<span class="nums">(.*?)</span>', re.S)
+CHIP = re.compile(r'<span class="chip">(.*?) <b>(\d+)</b></span>', re.S)
+TYPE_KEY = {label: key for key, label in TYPE_CN.items()}
 
 
 def retarget_hublink(text: str, href: str, label: str = "返回课程") -> str:
@@ -343,16 +352,78 @@ def retarget_hublink(text: str, href: str, label: str = "返回课程") -> str:
     return HUBLINK.sub(sub, text, count=1)
 
 
-def load_decks(course: dict) -> list[dict]:
-    path = ROOT / course["out"] / "decks.json"
-    if not path.exists():
-        return []
-    decks = json.loads(path.read_text(encoding="utf-8"))
-    wanted = course["decks"]
-    if not wanted:
-        return decks
-    order = {name: i for i, name in enumerate(wanted)}
-    return sorted([d for d in decks if d["id"] in order], key=lambda d: order[d["id"]])
+def _deck_id(course: dict, href: str) -> str:
+    name = href.rsplit("/", 1)[-1]
+    if name.endswith(".html"):
+        name = name[:-5]
+    prefix = course.get("prefix") or ""
+    if prefix and name.startswith(prefix):
+        name = name[len(prefix):]
+    return name
+
+
+def parse_decks(text: str, course: dict) -> list[dict]:
+    """从课程页 HTML 反推卷子清单。
+
+    优先读 deck_card 写出的 data-* 属性；旧页面没有属性时，
+    退回解析标题、说明、题数与题型标签，保证首页不会因为
+    缺少 out_*/decks.json 而整门课消失。
+    """
+    order = {name: i for i, name in enumerate(course.get("decks") or [])}
+    decks = []
+    for m in CARD.finditer(text):
+        href, attr_text, body = m.groups()
+        attrs = dict(DATA_ATTR.findall(attr_text))
+        deck_id = attrs.get("deck") or _deck_id(course, href)
+        if order and deck_id not in order:
+            continue
+
+        heading = HEADING.search(body)
+        para = PARA.search(body)
+        nums = NUMS.search(body)
+        count = int(attrs["count"]) if attrs.get("count", "").isdigit() else 0
+        score = int(attrs["score"]) if attrs.get("score", "").isdigit() else 0
+        if nums:
+            q = re.search(r"<b>(\d+)</b>\s*题", nums.group(1))
+            s = re.search(r"<b>(\d+)</b>\s*分", nums.group(1))
+            count = count or (int(q.group(1)) if q else 0)
+            score = score or (int(s.group(1)) if s else 0)
+
+        types: dict[str, int] = {}
+        for label, n in CHIP.findall(body):
+            types[TYPE_KEY.get(label, label)] = int(n)
+
+        decks.append({
+            "id": deck_id,
+            "title": html.unescape(heading.group(1)).strip() if heading else deck_id,
+            "desc": html.unescape(para.group(1)).strip() if para else "",
+            "count": count,
+            "score": score,
+            "short": attrs.get("short", ""),
+            "types": types,
+        })
+
+    if order:
+        decks.sort(key=lambda d: order[d["id"]])
+    return decks
+
+
+def load_decks(course: dict, docs_dir: Path | None = None, root: Path | None = None) -> list[dict]:
+    """读取卷子元数据，优先 decks.json，缺失时从课程页反推。"""
+    root = ROOT if root is None else Path(root)
+    path = root / course["out"] / "decks.json"
+    if path.exists():
+        decks = json.loads(path.read_text(encoding="utf-8"))
+        wanted = course["decks"]
+        if not wanted:
+            return decks
+        order = {name: i for i, name in enumerate(wanted)}
+        return sorted([d for d in decks if d["id"] in order], key=lambda d: order[d["id"]])
+
+    page = (DOCS if docs_dir is None else Path(docs_dir)) / course_page(course)
+    if page.exists():
+        return parse_decks(page.read_text(encoding="utf-8"), course)
+    return []
 
 
 def sync_decks(course: dict, decks: list[dict]) -> tuple[list[str], list[str]]:
@@ -391,13 +462,15 @@ def main(argv: list[str]) -> int:
     for course in courses:
         decks = decks_by_course[course["id"]]
         if not decks:
-            print(f'跳过 {course["id"]}：{course["out"]}/decks.json 不存在，先跑 tools/build_exam.py')
+            print(f'跳过 {course["id"]}：{course["out"]}/decks.json 与 docs/{course_page(course)} 都不存在')
             continue
+        fallback = not (ROOT / course["out"] / "decks.json").exists()
         copied, missing = sync_decks(course, decks)
         out = DOCS / course_page(course)
         out.write_text(render_course(course, decks), encoding="utf-8")
         total = sum(d.get("count", 0) for d in decks)
         print(f'{course["id"]}: {len(decks)} 套 · {total} 题 → {out.name}'
+              + ("（按既有课程页反推）" if fallback else "")
               + (f'（同步 {len(copied)} 份题库）' if copied else ""))
         if missing:
             print("  缺页面：" + ", ".join(missing))
