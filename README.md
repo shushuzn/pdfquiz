@@ -61,12 +61,12 @@ pip install -e ".[docling]"       # docling：结构化最好，首次运行需�
 
 ```bash
 pip install -e ".[dev]"
-python -m unittest discover -s tests -v   # 64 项单测
+python -m unittest discover -s tests -v   # 66 项单测
 python tests/smoke_cli.py                 # 端到端冒烟：离线跑一遍 CLI 并检查产物
 ruff check .
 ```
 
-CI 在 GitHub Actions 上跑 Python 3.11–3.14（外加 Windows），包含 lint、单测、冒烟三步。
+CI 在 GitHub Actions 上跑 Python 3.11–3.14（外加 Windows），包含 lint、题库草稿自检、单测、冒烟、隐私检查，并在干净检出上验证 `docs/` 可重建且无 diff。
 
 输出两份：`out/过拟合与正则化.quiz.md`（打印/归档）和 `out/过拟合与正则化.quiz.html`（直接在浏览器打开作答）。
 

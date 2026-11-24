@@ -399,7 +399,7 @@ def parse_decks(text: str, course: dict) -> list[dict]:
             "desc": html.unescape(para.group(1)).strip() if para else "",
             "count": count,
             "score": score,
-            "short": attrs.get("short", ""),
+            "short": html.unescape(attrs.get("short", "")),
             "types": types,
         })
 
