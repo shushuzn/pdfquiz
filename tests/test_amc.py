@@ -68,7 +68,7 @@ class TestSections(unittest.TestCase):
         self.assertEqual(build_amc.section_of("ch04", "S98"), "拓展资源")
         self.assertEqual(build_amc.section_of("ch01", "S1"), "课程导入")
         self.assertEqual(build_amc.section_of("ch09", "S3"), "课程导入")
-        self.assertEqual(build_amc.section_of("ch10", "S45"), "碳纳米管")
+        self.assertEqual(build_amc.section_of("ch10", "S45"), "碳/碳复合材料")
         self.assertEqual(build_amc.section_of("ch08", "S5"), "1.1 什么是活性炭")
         self.assertEqual(build_amc.section_of("ch08", "S60"), "2 炭黑的生产和应用")
 

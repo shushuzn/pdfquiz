@@ -42,22 +42,22 @@
       "answer": "C",
       "explanation": "镍酸锂的优点一行写的就是自放电率低、价格便宜、环境友好、比容量高、大电流放电性能优异。B 与 C 恰好把原文缺点“制备条件苛刻，不可逆容量高，安全性差，循环性能差，实用性差”说反了；D 的制备容易与耐过充性好是锰酸锂的优点。",
       "evidence": "优点：自放电率低，价格便宜，环境友好，比容量高，大电流放电性能优异。",
-      "ref": "S25",
+      "ref": "S26",
       "difficulty": "easy",
       "bloom": "记忆"
     },
     {
       "question": "课件中，经氮掺杂并浸渍硫之后的碳基结构在 1C 下首次给出的放电容量是多少？",
       "options": [
-        "约 800 mA h gS-1",
-        "568 mA h gS-1",
-        "1673 mA h gS-1",
-        "1152 mA h gS-1"
+        "约 800 mAh·gₛ⁻¹",
+        "568 mAh·gₛ⁻¹",
+        "1673 mAh·gₛ⁻¹",
+        "1152 mAh·gₛ⁻¹"
       ],
       "answer": "D",
-      "explanation": "原文写该结构 delivered a high discharge capacity of 1152 mA h gS-1，并在 1C 循环 80 圈后保持 76% 容量。约 800 mA h gS-1 是碳纳米管-硫复合物在 0.08C、40 圈下的稳定容量，568 mA h gS-1 是硫-PANI 纳米管的比容量，1673 mA h gS-1 是硫正极的理论比容量，三者都不是这一样品的数据。",
-      "evidence": "After nitrogen doping and impregnation with sulfur, the structure delivered a high discharge capacity of 1152 mA h gS-1, retaining 76% of its capacity after 80 cycles at 1C. Even at a high C-rate of 5C, a reversible capacity of 770 mA h gS-1 could still be delivered, indicating excellent rate capability.",
-      "ref": "S97",
+      "explanation": "原文写经氮掺杂和硫浸渗后，该结构在 1 C 下的放电比容量达到 1152 mAh·gₛ⁻¹，循环 80 次后容量保持率 76%，5 C 下仍有 770 mAh·gₛ⁻¹。约 800 mAh·gₛ⁻¹ 是碳纳米管–硫复合物在 0.08 C、40 圈下的稳定容量，568 mAh·gₛ⁻¹ 是硫–PANI 纳米管在 1 C、500 圈后的容量。",
+      "evidence": "经过氮掺杂和硫浸渗后，该结构在1 C倍率下的放电比容量达到 1152 mAh·gₛ⁻¹，循环80次后容量保持率为 76%。",
+      "ref": "S101",
       "difficulty": "medium",
       "bloom": "记忆"
     },
@@ -72,7 +72,7 @@
       "answer": "A",
       "explanation": "原文用 117871.6 mAh 除以 1 mol Si 的质量（28g/mol），得出 4209.7mAh/g。372.07mAh/g 是同一页按 LiC6 算出的石墨理论比容量，属负极；274mAh/g 与 148mAh/g 分别是钴酸锂/镍酸锂和尖晶石锰酸锂的理论容量，属正极，都不该出现在硅的计算结果里。",
       "evidence": "(3) 理论比容量计算：117871.6 mAh÷(1×28g/mol, 1mol Si的质量)\n= 4209.7mAh/g",
-      "ref": "S23",
+      "ref": "S24",
       "difficulty": "medium",
       "bloom": "应用"
     },
@@ -87,7 +87,7 @@
       "answer": "B",
       "explanation": "原文在负极类型一页把这几类直接列在非碳基负极材料之后。碳基负极材料对应的是石墨化碳材料与无定型碳材料；纳米结构的硅碳复合材料是硅基材料的存在形式；正极与电解质与这一分类无关，电解液属于第四章隔膜与电解液之外的另一类组件。",
       "evidence": "非碳基负极材料：硅基材料、锡基材料、氮化物、新型合金、纳米钛酸锂等",
-      "ref": "S36",
+      "ref": "S37",
       "difficulty": "easy",
       "bloom": "记忆"
     },
@@ -102,7 +102,7 @@
       "answer": "C",
       "explanation": "原文对合金类负极写了两条：首次放电效率低，以及充放电中体积形变大导致粉化破碎、效率降低与性能衰减。B 与同页“Si负极开始添加到石墨化碳材料中作为商用负极材料”矛盾；C 是钛酸锂的缺点；D 是锂硫电池硫正极的多硫化物溶解问题。",
       "evidence": "充放电过程中体积形变比较大，材料容易粉化破碎，伴随充电效率降低和性能衰减",
-      "ref": "S39",
+      "ref": "S42",
       "difficulty": "medium",
       "bloom": "理解"
     },
@@ -115,9 +115,9 @@
         "在充放电循环过程中造成电池内部短路"
       ],
       "answer": "D",
-      "explanation": "原文写 The first problem is the lithium dendrite growth, which causes internal short circuiting of LABs during charge/discharge cycles，即直接后果是内部短路。微量水腐蚀属于湿度渗透这一独立问题，多硫化锂被化学还原属于锂硫电池的穿梭效应，孔道堵塞属于 Li–O2 正极的挑战，三者都被安到了枝晶身上。",
-      "evidence": "The first problem is the lithium dendrite growth, which causes internal short circuiting of LABs during charge/discharge cycles.",
-      "ref": "S80",
+      "explanation": "原文把锂空气电池负极的两大问题分开写：第一是锂枝晶生长，在充放电循环中可能引发电池内部短路；第二是充放电效率较低，与不可逆“死锂”和 SEI 膜持续生长有关。微量水腐蚀是下一节水分渗透的挑战，多硫化物化学还原属于锂硫电池，孔道堵塞属于 Li–O₂ 正极问题。",
+      "evidence": "第一，锂枝晶生长。 在充放电循环过程中，锂枝晶可能引发电池内部短路。",
+      "ref": "S85",
       "difficulty": "medium",
       "bloom": "理解"
     },
@@ -132,7 +132,7 @@
       "answer": "A",
       "explanation": "原文写 if the anode is replaced with metallic Li，Li-LMO batteries would deliver a specific energy of 440 W h kg-1。250 W h kg-1 是换负极之前的数值，600 W h kg-1 是锂硫电池的实际比能量，950 W h kg-1 是锂空气电池可达到的实际比能量上限。",
       "evidence": "LIBs with graphite anodes and lithium transition metal oxide (LMO) cathodes can achieve a specific energy of 250 W h kg-1, Li-LMO batteries would deliver a specific energy of 440 W h kg-1 if the anode is replaced with metallic Li.",
-      "ref": "S104",
+      "ref": "S108",
       "difficulty": "medium",
       "bloom": "记忆"
     },
@@ -145,11 +145,41 @@
         "长链多硫化锂溶入醚类电解液，引起容量快速衰减"
       ],
       "answer": "B",
-      "explanation": "原文把导电性差的两条后果写在一起：poor utilization of active material 与放电时绝缘硫化锂沉积引起的正极表面钝化。B 属于多硫化物溶解这一条挑战，C 属于密度差引起的体积膨胀，两者虽是锂硫电池的问题但不是导电性差造成的；D 属于 Li–O2 电池的正极孔道堵塞问题。",
-      "evidence": "The insulating nature of sulfur and lithium sulfide, both electronically and ionically, results in poor utilization of active material. The precipitation of insulating lithium sulfide during discharge also causes passivation of the cathode surface, limiting the discharge capacity that can practically be achieved.",
-      "ref": "S89",
+      "explanation": "原文把导电性差的两条后果写在一起：活性物质利用率不足，以及放电时析出的绝缘硫化锂使正极表面钝化、限制实际放电容量。体积膨胀约 80% 是同页另一条挑战，多硫化物溶解在上一页，孔道堵塞属于 Li–O₂ 正极。",
+      "evidence": "硫和硫化锂的电子导电性及离子导电性均较低，导致活性物质利用率不足。此外，放电过程中析出的绝缘性硫化锂会使正极表面钝化，限制实际可获得的放电容量。",
+      "ref": "S94",
       "difficulty": "hard",
       "bloom": "分析"
+    },
+    {
+      "question": "课件指出，首次充电形成 SEI 膜会消耗正极提供的活性 Li⁺，导致首次库仑效率约为多少？",
+      "options": [
+        "约 90%",
+        "约 99%",
+        "约 80%",
+        "约 70%"
+      ],
+      "answer": "A",
+      "difficulty": "easy",
+      "bloom": "识记",
+      "ref": "S41",
+      "evidence": "首效仅约 90%：SEI 消耗正极提供的活性 Li⁺，这部分锂不可回收 → 不可逆容量约占总容量 10%",
+      "explanation": "原文明确写“首效仅约 90%”，并解释原因是 SEI 消耗正极提供的活性 Li⁺ 且不可回收，不可逆容量约占总容量 10%。其余数值均未在课件出现。"
+    },
+    {
+      "question": "按课件，PP/PE/PP 三层复合隔膜在安全性上的主要优势是什么？",
+      "options": [
+        "低温时 PE 层熔融闭孔切断电流，高温时 PP 层仍保持形状",
+        "三层结构使隔膜完全不可燃，可彻底阻止热失控",
+        "三层复合后孔隙率降为零，能阻止一切离子通过",
+        "PP 层先熔融闭孔，PE 层负责在高温下保持形状"
+      ],
+      "answer": "A",
+      "difficulty": "medium",
+      "bloom": "理解",
+      "ref": "S47",
+      "evidence": "热稳定性 | 闭孔温度 < 破膜温度 且窗口尽量宽 | PE 约 130 ℃ 熔融闭孔、PP 约 165 ℃；PP/PE/PP 三层复合兼得低温闭孔与高温保持形状",
+      "explanation": "原文在热稳定性一行写 PE 约 130 ℃ 熔融闭孔、PP 约 165 ℃，PP/PE/PP 三层复合兼得低温闭孔与高温保持形状，对应 A。隔膜并没有“完全不可燃”或“孔隙率为零”的说法，D 把 PE 与 PP 的角色对调了。"
     }
   ],
   "multiple": [
@@ -179,7 +209,7 @@
       "answer": "BCD",
       "explanation": "优点一行依次列出安全性好、耐过充性好、电压平台（3.9和4.1V）高、制备容易、价格便宜、环境友好，对应 B、C、D。A 恰好是原文缺点一行的内容：比容量低、循环性能差、高温容量衰减快；比容量高属于镍酸锂的优点。",
       "evidence": "优点：安全性好，耐过充性好，电压平台（3.9和4.1V）高，制备容易，价格便宜，环境友好。",
-      "ref": "S26",
+      "ref": "S27",
       "difficulty": "easy",
       "bloom": "记忆"
     },
@@ -192,9 +222,9 @@
         "对 ORR 与 OER 的催化活性差，导致充放电速率低"
       ],
       "answer": "ACD",
-      "explanation": "原文用 (1)(2)(3) 逐条列出催化活性差、碳的副反应与放电孔道堵塞这三项正极挑战，对应 A、C、D，孔道堵塞因此限制了放电容量。B 是锂硫电池部分讲锂金属负极枝晶时的结论，属于负极侧问题，不是 Li–O2 正极的挑战。",
-      "evidence": "Three challenges remain for the present cathodes:(1) Poor catalytic activity towards ORR and OER, resulting in low rate of discharging and charging process.(2) Parasitic reactions of carbon under O2, including the decomposition itself during charging process.(3) Pore clogging occurs during discharging process, which impedes the mass transport of O2, intermediates and products and thus restricts the discharge capacity.",
-      "ref": "S69",
+      "explanation": "原文用（1）（2）（3）逐条列出：催化活性不足导致充放电速率低、碳材料在 O₂ 中发生副反应（含充电时自身分解）、放电时孔道堵塞阻碍传质并限制容量，对应 D、A、C。枝晶刺穿隔膜是锂金属负极的问题，不属于 Li–O₂ 正极挑战。",
+      "evidence": "（1）对氧还原反应（ORR）和析氧反应（OER）的催化活性不足，导致充放电反应速率较低。（2）碳材料在氧气环境下发生副反应，包括其自身在充电过程中的分解。（3）放电过程中出现孔道堵塞，阻碍氧气、反应中间体及产物的传质，从而限制放电容量。",
+      "ref": "S74",
       "difficulty": "medium",
       "bloom": "理解"
     },
@@ -207,38 +237,53 @@
         "它能替代醚类电解液，并兼作隔膜阻挡离子传输"
       ],
       "answer": "ABC",
-      "explanation": "原文用 (a)(b)(c) 给出三条理由：本身导电、弹性柔性好可部分容纳体积变化、官能团丰富且对多硫化锂有强亲和力。D 把功能定位搞错，导电聚合物是硫正极的包覆材料；课件中醚类电解液反而是让多硫化锂溶解的介质，也没有任何一处说它能代替隔膜阻挡离子传输。",
-      "evidence": "Conducting polymers represent a promising class of encapsulation materials for sulfur cathodes owing to: (a) their inherently conducting nature which can facilitate electronic conduction, (b) their elastic and flexible nature which can partially accommodate the volumetric change of sulfur during cycling and (c)the rich variety of functional groups which can have strong affinity for lithium polysulfide species.",
-      "ref": "S98",
+      "explanation": "原文用（a）（b）（c）给出三条理由：自身导电促进电子传输、弹性与柔性缓冲体积变化、官能团丰富且对多硫化锂有较强亲和作用，对应 C、A、B。导电聚合物是硫正极的包覆材料，不能替代醚类电解液，更不能兼作隔膜阻挡离子传输。",
+      "evidence": "导电聚合物是一类很有潜力的硫正极包覆材料，主要具有以下优势：（a）导电性：自身具有导电能力，有助于促进电子传输。（b）弹性与柔性：能够在一定程度上缓冲硫在充放电循环过程中的体积变化。（c）丰富的官能团：可与多硫化锂物种产生较强的亲和作用，有助于将其固定在正极中。",
+      "ref": "S102",
       "difficulty": "hard",
       "bloom": "分析"
+    },
+    {
+      "question": "课件在解释石墨为何成为商用最广的负极材料时，列出了下列哪些特点？",
+      "options": [
+        "层状结构，Li⁺ 可逆嵌入/脱出形成 LiC₆，理论容量 372 mAh/g",
+        "嵌锂电位低（约 0.1 V vs Li/Li⁺）且充放电曲线平坦",
+        "嵌锂体积变化小（约 10%），结构稳定、循环寿命长",
+        "石墨负极完全不形成 SEI 膜，首次库仑效率为 100%"
+      ],
+      "answer": "ABC",
+      "difficulty": "medium",
+      "bloom": "理解",
+      "ref": "S40",
+      "evidence": "层状结构：层间靠范德华力结合，Li⁺ 可逆嵌入 / 脱出形成 LiC₆ —— 理论 372 mAh/g，实测约 350 mAh/g",
+      "explanation": "原文从结构、电位、应变、导电、成本五方面总结石墨的优势：层状结构可逆嵌锂且理论容量 372 mAh/g，嵌锂电位低且曲线平坦，体积变化约 10%，以及首次库仑效率约 90%。D 的“完全不形成 SEI 膜、首效 100%”与原文约 90% 矛盾。"
     }
   ],
   "truefalse": [
     {
       "question": "在锂空气电池中，电解液里混入的微量水对锂金属负极影响很小，也不会引发安全问题。",
       "answer": "false",
-      "evidence": "There is also a high probability of electrolyte contamination with water in long operations.Even trace amounts of water can cause rapid corrosion of the lithium metal anode, which leads to poor performance of LABs and serious safety issues.",
-      "explanation": "原文说长期运行中电解液被水污染的概率很高，即使痕量的水也会让锂金属负极快速腐蚀，导致电池性能变差并带来严重安全问题，与题干的判断完全相反。",
-      "ref": "S81",
+      "evidence": "即使是微量水，也可能导致锂金属负极快速腐蚀，造成锂空气电池性能下降，并引发严重的安全问题。",
+      "explanation": "原文明确说即使是微量水，也可能导致锂金属负极快速腐蚀，使电池性能下降并引发严重安全问题，与题干“影响很小”相反。",
+      "ref": "S86",
       "difficulty": "easy",
       "bloom": "理解"
     },
     {
       "question": "锂金属表面形成的 SEI 膜在导电性上的表现是电子导电、离子绝缘。",
       "answer": "false",
-      "evidence": "an SEI on the surface, which is ionically-conducting but electronically-insulating.",
-      "explanation": "原文的表述正好相反，SEI 是离子导电而电子绝缘。也正因为多数情况下这层膜不均匀、不能充分钝化锂表面，才会持续发生副反应并同时消耗锂和电解液。",
-      "ref": "S93",
+      "evidence": "锂金属具有很高的反应活性，会与电解液反应，在表面形成一层能够传导离子、但不传导电子的SEI膜。",
+      "explanation": "原文写 SEI 膜能够传导离子、但不传导电子，题干说成“电子导电、离子绝缘”正好相反。也正因为多数情况下 SEI 不均匀、不能充分钝化锂表面，才会持续发生副反应并消耗锂与电解液。",
+      "ref": "S96",
       "difficulty": "easy",
       "bloom": "理解"
     },
     {
       "question": "硫的密度（2.03 g cm-3）高于硫化锂（1.66 g cm-3），因此硫完全锂化为硫化锂时体积约收缩 80%。",
       "answer": "false",
-      "evidence": "(c) Large volumetric expansion of sulfur upon lithiation.Because of the difference in density between sulfur and lithiumsulfide (2.03 vs. 1.66 g cm-3 respectively), sulfur undergoesa large volumetric expansion of ~80% upon full lithiation tolithium sulfide, which can cause pulverization and structuraldamage at the electrode level.",
-      "explanation": "两个密度数值与 80% 这个幅度都取自原文，但结论方向错了：原文写的是完全锂化时发生约 80% 的体积膨胀，并因此造成电极级的粉化与结构破坏，而不是收缩。",
-      "ref": "S90",
+      "evidence": "由于硫与硫化锂的密度不同（分别为2.03和1.66 g·cm⁻³），硫在完全锂化转变为硫化锂后，体积膨胀约 80%，可能导致电极材料粉化和电极结构损坏。",
+      "explanation": "两个密度数值与 80% 这个幅度都取自原文，但结论方向错了：原文写的是完全锂化时体积膨胀约 80%，并可能导致电极材料粉化与结构损坏，而不是收缩。",
+      "ref": "S94",
       "difficulty": "medium",
       "bloom": "分析"
     },
@@ -247,7 +292,7 @@
       "answer": "true",
       "evidence": "Challenges in developing Li-based batteries: formation of harmful Li dendrites, infinite volume change, migratory cathode intermediates, and unstable SEI.",
       "explanation": "题干与原文列举的四项内容逐项对应，顺序也一致，因此正确。需要注意其中 migratory cathode intermediates 指的是正极侧中间产物的迁移，不是电解液的挥发。",
-      "ref": "S105",
+      "ref": "S109",
       "difficulty": "easy",
       "bloom": "记忆"
     },
@@ -256,18 +301,27 @@
       "answer": "false",
       "evidence": "Schematic drawing showing the shape and components of various Li-ion battery configurations. a, Cylindrical; b, coin; c, prismatic; and d, thin and flat.",
       "explanation": "原文只标出 a 到 d 四种构型：圆柱形、扣式、方形与薄而平，没有球形这一种。后续小标题也只分别讲扣式电池、扣式半电池、圆柱电池、18650 与软包电池。",
-      "ref": "S50",
+      "ref": "S55",
       "difficulty": "easy",
       "bloom": "记忆"
     },
     {
       "question": "锂金属被认为是锂空气电池负极最有前景的候选材料之一，依据是它具有 -3.04 V 的很低的负电位和约 4000 mA h/g 的很高的比能量。",
       "answer": "true",
-      "evidence": "Lithium metal is one the most promising and successful candidates for anodes in LABs due to its very low negative potential of -3.04 V and very high specific energy of approximately 4000 mA h/g.",
-      "explanation": "题干的两个数值与结论均与原文一致，故判断为对。同一页随后仍指出它存在枝晶生长导致内部短路、充放电效率偏低两大问题，因此最有前景并不等于已经可用。",
-      "ref": "S80",
+      "evidence": "锂金属具有很低的电极电位（−3.04 V）和很高的理论比容量（约4000 mAh/g），因此是锂空气电池（LABs）极具潜力的负极材料之一。",
+      "explanation": "题干的 −3.04 V 与约 4000 mAh/g 两个数值及结论均与原文一致，故判断为对。同页随后仍指出它存在锂枝晶生长导致内部短路、充放电效率偏低两大问题，因此“极具潜力”并不等于已经可用。",
+      "ref": "S85",
       "difficulty": "medium",
       "bloom": "记忆"
+    },
+    {
+      "question": "隔膜不储锂、也不参与电化学反应，但它的性能会直接影响电池的内阻、倍率与安全底线。",
+      "answer": "true",
+      "difficulty": "easy",
+      "bloom": "理解",
+      "ref": "S47",
+      "evidence": "一句话：隔膜不储锂、不参与反应，却决定电池的内阻、倍率与安全底线。",
+      "explanation": "题干与原文小结句一致。隔膜虽不参与电化学反应，但厚度、孔径、孔隙率、透气度和热稳定性分别影响内阻、离子导通、倍率与安全。"
     }
   ],
   "fill": [
@@ -276,25 +330,25 @@
       "answer": "372.07",
       "evidence": "(3) 理论比容量计算：26789mAh÷(6mol×12g/mol, 6molC的质量)=372.07mAh/g",
       "explanation": "原文把 26789mAh 除以 6 mol C 的质量（6mol×12g/mol），得到 372.07mAh/g。4209.7mAh/g 是按 Li4.4Si 算出的硅的理论比容量，填的时候要区分两个计算对象。",
-      "ref": "S23",
+      "ref": "S24",
       "difficulty": "easy",
       "bloom": "应用"
     },
     {
       "question": "课件指出，锂硫电池的典型策略是用____对硫正极进行包覆，在提高导电性的同时把多硫化锂物理限域在基体内部。",
-      "answer": "导电基体材料",
-      "evidence": "The typical strategy is to encapsulate sulfur cathodes with conductive host materials in order to improve their conductivity as well as physically confine lithium polysulfide species within the host during cycling.",
-      "explanation": "答案就是原文中的 conductive host materials，即导电基体材料，其作用被写成两点：改善导电性、循环中把多硫化锂限域在基体内。若填醚类电解液则错，电解液恰是原文中多硫化锂溶解的目标介质。",
-      "ref": "S95",
+      "answer": "导电宿主材料",
+      "evidence": "一种典型策略是利用导电宿主材料包覆或限域硫活性物质，以提高硫正极的导电性，同时在循环过程中将多硫化锂物种物理限域在宿主内部，减少其溶出和迁移。",
+      "explanation": "答案就是原文中的“导电宿主材料”：一方面提高硫正极导电性，另一方面在循环中把多硫化锂物理限域在宿主内部、减少溶出和迁移。醚类电解液恰是多硫化锂溶解的介质，不能作为答案。",
+      "ref": "S99",
       "difficulty": "medium",
       "bloom": "记忆"
     },
     {
       "question": "在 MnOx 正极的图注中，以 100 mA·ｇ-1 测试的锂空气电池循环性能，其控制容量为____mA·ｇ-1。",
       "answer": "1000",
-      "evidence": "SEM (a~c) and TEM (d~f) images of MnOx；cycling performance of Li-air batteries with MnOx at 100 mA·ｇ-1 with a controlled capacity of 1000 mA·ｇ-1 (g)；Insets: the initial （h）and 315th （i）discharge/charge curve of the MnOx electrode.",
-      "explanation": "图注写明控制容量为 1000 mA·ｇ-1。100 mA·ｇ-1 是测试电流密度，315 是插图对应的圈数，这一页的三个数字不能互相顶替。",
-      "ref": "S73",
+      "evidence": "MnOₓ的扫描电子显微镜（SEM，a–c）和透射电子显微镜（TEM，d–f）图像；采用MnOₓ电极的锂空气电池在电流密度为100 mA·g⁻¹、限定容量为1000 mAh·g⁻¹条件下的循环性能（g）。",
+      "explanation": "图注写明测试电流密度为 100 mA·g⁻¹、限定容量为 1000 mAh·g⁻¹。315 是插图对应的圈数，这三个数字不能互相顶替。",
+      "ref": "S78",
       "difficulty": "easy",
       "bloom": "记忆"
     },
@@ -303,16 +357,16 @@
       "answer": "190—210",
       "evidence": "容量：理论 274 mAh／g ， 实际190—210 mAh／g 。",
       "explanation": "原文给出的镍酸锂实际容量区间是 190—210 mAh／g。钴酸锂的实际容量是 140—155 mAh/g，尖晶石锰酸锂是 100-120mAh／g，两种正极的数值常被拿来误填。",
-      "ref": "S25",
+      "ref": "S26",
       "difficulty": "easy",
       "bloom": "记忆"
     },
     {
       "question": "课件中，自装配苯胺纳米管在分子尺度上限域硫，所得硫-PANI 纳米管的比容量为____mA h gS-1，1C 下循环 500 圈容量保持 76%。",
       "answer": "568",
-      "evidence": "To achieve much longer cycle life, self-assembled polyaniline (PANI) nanotubes were prepared to confine sulfur at the molecular level during cycling. Due to this unique confinement effect, the sulfur–PANI nanotubes displayed a specific capacity of 568 mA h gS-1 with 76% capacity retention over 500 cycles at 1C, which represents an impressive long-term cycling performance.",
-      "explanation": "原文对硫-PANI 纳米管给出的比容量是 568 mA h gS-1。1152 mA h gS-1 属于氮掺杂浸硫结构，约 800 mA h gS-1 属于碳纳米管-硫复合物，500 圈与 76% 这两项条件才是这一体系的标签。",
-      "ref": "S99",
+      "evidence": "硫–聚苯胺纳米管复合材料在 1 C倍率下循环500次后，仍具有568 mAh·gₛ⁻¹的比容量，容量保持率为76%，表现出优良的长期循环性能。",
+      "explanation": "原文对硫–聚苯胺纳米管给出的比容量是 568 mAh·gₛ⁻¹（1 C 循环 500 次、保持率 76%）。1152 mAh·gₛ⁻¹ 属于氮掺杂定向碳纳米管/石墨烯结构，约 800 mAh·gₛ⁻¹ 属于碳纳米管–硫复合物。",
+      "ref": "S103",
       "difficulty": "medium",
       "bloom": "记忆"
     },
@@ -321,56 +375,74 @@
       "answer": "148",
       "evidence": "容量（尖晶石） ：理论 148mAh／g ；\n实际 100-120mAh／g 。",
       "explanation": "原文明确标注尖晶石的理论容量是 148mAh／g。274 是钴酸锂与镍酸锂的理论容量，372.07mAh/g 是石墨负极的理论比容量，填值时注意材料类别。",
-      "ref": "S26",
+      "ref": "S27",
       "difficulty": "easy",
       "bloom": "记忆"
+    },
+    {
+      "question": "课件给出，锂硫电池中硫正极的理论比容量为____mAh·g⁻¹。",
+      "answer": "1673",
+      "difficulty": "easy",
+      "bloom": "识记",
+      "ref": "S91",
+      "evidence": "使锂负极和硫正极分别具有高达 3860和1673 mAh·g⁻¹ 的理论比容量",
+      "explanation": "原文写锂负极和硫正极分别具有 3860 与 1673 mAh·g⁻¹ 的理论比容量，硫正极对应 1673。3860 是锂负极的数值，两个数字常被对调。"
     }
   ],
   "short": [
     {
       "question": "简述课件提出的发展非水系锂空气电池正极的前三条研究方向。",
       "answer": "第一条是通过创新的合成、表征、设计与制备并进行性能验证，探索同时面向 ORR 与 OER 的新型正极材料，包括催化剂与新的正极结构。第二条是开发高活性且稳定的催化材料，例如对 ORR 与 OER 都有效的双功能催化剂，以显著降低充放电过程中大的正极过电位。第三条是高效控制并优化 Li2O2 的生成与分解，涉及其形貌、分布以及它与正极材料和催化剂之间的相互作用。",
-      "evidence": "Exploring new cathode materials including catalysts and new cathode structures for both ORR and OER through innovative synthesis, characterization, design and fabrication as well as performance validation.\nSignificantly reducing the large cathode overpotentials during charge–discharge processes by developing highly active and stable catalytic materials such as bi-functional catalysts towards both ORR and OER.\nEfficiently controlling and optimizing the formation/ decomposition of Li2O2 in terms of morphology and distribution as well as its interaction with the cathode materials/catalysts.",
-      "explanation": "三条要点依次对应新型正极材料与结构、降低正极过电位的双功能催化剂、Li2O2 生成与分解的形貌与分布控制，对象都是正极。把优化正极结构与制备工艺、规范电解液与正极的质量比、理解反应机理、关注部件力学性能这几条也算进来就超纲了，那四条属于同一主题下一页的后四条方向。",
-      "ref": "S82",
+      "evidence": "（1）探索新型正极材料与结构。通过创新的合成、表征、设计与制备方法，以及性能验证，开发适用于氧还原反应（ORR）和析氧反应（OER）的新型催化剂及正极结构。（2）显著降低充放电过电位。开发高活性、高稳定性的催化材料，例如同时促进ORR和OER的双功能催化剂，以降低正极在充放电过程中的过电位。（3）有效调控Li₂O₂的生成与分解。优化Li₂O₂的形貌和分布，并调控其与正极材料及催化剂之间的相互作用，从而改善其生成与分解过程。",
+      "explanation": "三条要点依次对应：探索面向 ORR 与 OER 的新型正极材料与结构；开发高活性、高稳定性的双功能催化剂以降低充放电过电位；优化 Li₂O₂ 的形貌、分布及其与正极材料/催化剂的相互作用。优化正极结构与制备工艺、规范电解液与正极质量比、理解反应机理、关注部件力学性能属于下一页的后四条方向。",
+      "ref": "S87",
       "difficulty": "medium",
       "bloom": "记忆"
     },
     {
       "question": "简述理想 Li–O2 电池正极应具备的三项特征，并说明各自的作用。",
       "answer": "第一是催化活性，催化剂是正极的主要组分之一，作用是降低 ORR 与 OER 两个过程的过电位，常见的多相催化剂包括贵金属、金属氧化物和钙钛矿氧化物。第二是稳定性，既包括材料自身的稳定，也包括对超氧、单线态 O2 等中间体和最终产物 Li2O2 的稳定。第三是多孔结构，正极要承担 O2、Li+ 与放电中间体的传质通道，因此需要足够的空隙空间。",
-      "evidence": "An ideal cathode should possess at least three characteristics:\nCatalytic activity. Catalyst is one of the main components of cathode which plays an important role in reducing overpotential in both ORR and OER process. Both homogeneous electrocatalysts such as redox mediators and heterogeneous electrocatalysts have been studied. The most common heterogeneous catalysts include noble metal catalysts, metal oxides, perovskite oxides.\nStability. It includes the stability of material itself as well as the stability towards the intermediates (e. g. superoxide, singlet O2) and final product Li2O2.\nA porous structure. One of the cathode functions is to serve as the mass transport channels for O2, Li+ and discharge intermediate, e. g. LiO2, etc. Therefore, a cathode with sufficient void space is required and many different porous structure cathodes.",
+      "evidence": "理想的正极应至少具备以下三个特点：\n1. 催化活性\n催化剂是正极的重要组成部分，在降低氧还原反应（ORR）和析氧反应（OER）的过电位方面发挥着重要作用。目前，均相电催化剂（如氧化还原介体）和非均相电催化剂均已得到研究。常见的非均相催化剂包括贵金属催化剂、金属氧化物和钙钛矿氧化物。\n2. 稳定性\n既包括材料自身的稳定性，也包括其面对反应中间体（如超氧物种、单线态氧）及最终放电产物过氧化锂（Li₂O₂）时的化学稳定性。\n3. 多孔结构\n正极的功能之一是为氧气、锂离子及放电中间体（如LiO₂）等提供传质通道。因此，正极需要具有充足的孔隙空间。为此，研究人员开发了多种不同的多孔正极结构。",
       "explanation": "三项特征与各自作用在原文中逐项列出：催化活性针对过电位，稳定性覆盖材料本身、中间体与最终产物，多孔结构针对传质通道与空隙空间。容易漏掉稳定性还包含对 Li2O2 的稳定这一层，也容易把催化活性与多孔结构的作用互换。",
-      "ref": "S71",
+      "ref": "S76",
       "difficulty": "medium",
       "bloom": "理解"
     },
     {
       "question": "简述锂离子电池为什么还需要寻找替代体系，以及锂空气电池受到大量关注的原因。",
       "answer": "可充电锂离子电池在便携式电子设备、电动车辆和储能等方面带来很大便利，但其可达到的最大比能量只有 250 Wh kg-1。这一上限限制了它在要求高能量密度领域的广泛应用，因此最可行的途径是寻找替代电池体系。锂空气电池的理论比能量高达 3500 Wh kg-1，这一数值基于正极反应 O2+2Li++2e-→Li2O2，所以引起了广泛兴趣。",
-      "evidence": "Nevertheless, the maximum achievable specific energy of lithium-ion battery is 250 Wh kg-1, limiting their widespread application in the field that demands high energy density battery. Therefore, the most feasible approach is to seek alternative battery systems. Lithium-air battery has attracted much interest because of its high theoretical specific energy (3500 Wh kg-1 based on cathode reaction: O2+2Li++2e-→Li2O2).",
-      "explanation": "作答要落到三处：现有锂离子电池的瓶颈是 250 Wh kg-1 的最大比能量，应对办法是寻找替代体系，锂空气电池的吸引力来自 3500 Wh kg-1 的理论比能量，其依据是生成 Li2O2 的正极反应。把 3500 Wh kg-1 说成实际比能量，或把它换成锂硫体系的理论数值都是错的。",
-      "ref": "S64",
+      "evidence": "然而，锂离子电池所能达到的最高比能量为250 Wh kg⁻¹，限制了其在高能量密度需求领域的广泛应用。因此，探索替代电池体系成为一种切实可行的途径。锂空气电池因其较高的理论比能量而备受关注，其理论比能量可达3500 Wh kg⁻¹，基于以下正极反应计算：",
+      "explanation": "作答要落到三处：现有锂离子电池的瓶颈是最高比能量只有 250 Wh kg⁻¹，应对办法是寻找替代电池体系，锂空气电池的吸引力来自 3500 Wh kg⁻¹ 的理论比能量，其依据是生成 Li₂O₂ 的正极反应。把 3500 Wh kg⁻¹ 说成实际比能量，或换成锂硫体系的理论数值都是错的。",
+      "ref": "S69",
       "difficulty": "medium",
       "bloom": "分析"
     },
     {
       "question": "简述锂硫电池的工作原理及其高理论能量密度的来源。",
       "answer": "锂硫电池不依靠嵌入反应，而是基于锂负极侧的金属沉积与溶解以及硫正极侧的转化反应。这类反应的非拓扑性质使锂负极和硫正极分别具有 3860 与 1673 mA h g-1 的高理论比容量。再加上 2.15 V 的平均电池电压，锂硫电池的理论能量密度达到约 2500 W h kg-1 或 2800 W h L-1。此外硫在地壳中便宜且储量丰富，使该体系成为极具吸引力的低成本储能技术。",
-      "evidence": "Instead of intercalation, lithium–sulfur batteries operate based on metal plating and stripping on the lithium anode side and a conversion reaction on the sulfur cathode side. The non-topotactic nature of these reactions endows lithium anodes and sulfur cathodes with high theoretical specific capacities of 3860 and 1673 mA h g-1 respectively. Together with an average cell voltage of 2.15 V, this gives lithium–sulfur batteries a high theoretical energy density of ~2500 W h kg-1 or 2800 W h L-1.",
-      "explanation": "采分点为机理（沉积/溶解加转化反应，而非嵌入）、两极理论比容量 3860 与 1673 mA h g-1 及其非拓扑起因、2.15 V 平均电压与由此得到的约 2500 W h kg-1 或 2800 W h L-1。常见错误是把两极容量对调，或用锂离子电池的嵌入脱嵌语言来描述这一体系。",
-      "ref": "S86",
+      "evidence": "锂–硫电池的工作原理不同于嵌入反应：锂负极侧发生金属锂的沉积与剥离，硫正极侧则发生转化反应。这些反应不受保持原有晶体骨架的拓扑化学反应机制限制，使锂负极和硫正极分别具有高达 3860和1673 mAh·g⁻¹ 的理论比容量。结合约 2.15 V 的平均电池电压，锂–硫电池的理论质量能量密度可达约 2500 Wh·kg⁻¹，理论体积能量密度可达约 2800 Wh·L⁻¹。",
+      "explanation": "采分点为机理（沉积/剥离加转化反应，而非嵌入）、两极理论比容量 3860 与 1673 mAh·g⁻¹ 及其非拓扑起因、2.15 V 平均电压与由此得到的约 2500 Wh·kg⁻¹ 或 2800 Wh·L⁻¹。常见错误是把两极容量对调，或用锂离子电池的嵌入脱嵌语言描述这一体系。",
+      "ref": "S91",
       "difficulty": "hard",
       "bloom": "分析"
+    },
+    {
+      "question": "课件认为硅基负极为什么不能直接取代石墨？请简述其主要问题与可能出路。",
+      "answer": "硅靠合金化储锂（Li₄.₄Si），理论比容量约 4200 mAh/g，是石墨的十倍以上；但嵌锂体积膨胀可达 300%，脱锂后难以完全恢复，颗粒粉化并与导电剂、集流体失去电接触，容量快速衰减。同时 SEI 膜反复破裂—重生，持续消耗 Li⁺ 与电解液，首效和循环效率低；硅本征电导率低、倍率性能差，纳米硅比表面积大、易团聚。出路包括纳米化、碳复合（硅碳负极）、预锂化和专用粘结剂；目前商用仍是“石墨 + 少量硅（5~10%）”的硅碳折中方案。",
+      "difficulty": "medium",
+      "bloom": "分析",
+      "ref": "S43",
+      "evidence": "合金化储锂（Li₄.₄Si）：理论约 4200 mAh/g，是石墨的 10 倍以上；但嵌锂体积膨胀可达 300%，脱锂后难以完全恢复",
+      "explanation": "答案按“容量优势—体积效应—界面问题—本征短板—出路—现状”组织。关键数字是理论约 4200 mAh/g 与体积膨胀 300%；常见错误是只答“体积膨胀”而漏掉 SEI 反复破裂、电导率低与纳米硅团聚，或把硅碳复合说成已经完全取代石墨。"
     }
   ],
   "term": [
     {
       "question": "摇椅式电池",
-      "answer": "课件对可充电锂离子电池的称呼。充电与放电被分成两个相反的基本过程来讲解，电极材料发生的是 Li+ 嵌入-脱嵌反应，锂离子在正负两极之间来回移动，形如摇椅的摆动。",
-      "evidence": "Rocking-chair battery",
-      "explanation": "该术语在课件中单列一题，紧接其前的两页分别给出充电与放电的基本原理，碳基负极材料的工作原理又被明确写成 Li+ 嵌入-脱嵌反应，据此可归纳出来回摆动这一命名由来。不要把它理解成外形像摇椅的电池结构。",
-      "ref": "S19",
+      "answer": "充放电时 Li⁺ 在正极与负极之间往返嵌入/脱出，形如摇椅来回摆动，故称“摇椅式电池”（rocking-chair battery）。正负极均为可嵌锂的“锂库”，锂始终以离子态存在、不析出金属锂，这是与锂金属电池的本质区别；其本质是 Li⁺ 在两个锂库间做浓度迁移的浓差电池。",
+      "evidence": "定义：充放电时 Li⁺ 在正极与负极之间往返嵌入 / 脱出，像摇椅来回摆动，故称“摇椅式电池”（rocking-chair battery）。",
+      "explanation": "定义取自新增的摇椅式电池专页：Li⁺ 往返嵌入/脱出、形如摇椅；要点还包括正负极都是可嵌锂的“锂库”、锂不析出，以及浓差电池本质。不要把它理解成外形像摇椅的电池结构。",
+      "ref": "S23",
       "difficulty": "easy",
       "bloom": "理解"
     },
@@ -379,7 +451,7 @@
       "answer": "碳基负极材料的典型代表，工作原理是 Li+ 嵌入-脱嵌反应。锂嵌入后形成 Li-GIC，LixC 中 0<x<1，x=1 时对应完整晶态石墨，理论容量为 372mAh/g；多数碳材料 x 处于 0-0.5，与碳素种类结构、电解质组成、电极结构及嵌入速率有关。",
       "evidence": "典型：石墨层间化合物GIC，嵌入Li形成Li-GIC，LixC中0<x<1。x=1时完整晶态石墨，理论容量为372mAh/g\n多数C材料x=0-0.5，与碳素种类结构、电解质组成、电极结构及嵌入速率有关。",
       "explanation": "定义取自该页的典型例子与取值范围两句，注意 x=1 才有 372mAh/g，多数碳材料只能到 0-0.5。此处的 372mAh/g 与按 LiC6 算出的 372.07mAh/g 是两个不同写法，不能混用。",
-      "ref": "S37",
+      "ref": "S38",
       "difficulty": "easy",
       "bloom": "记忆"
     },
@@ -388,7 +460,7 @@
       "answer": "氧化钛与锂的复合氧化物，具有尖晶石结构 Li4Ti5O12，工作原理是可以嵌入 Li+，反应为 3Li + Li4Ti5O12 → Li7Ti5O12（岩盐结构），充电结束时在尖晶石和岩盐结构两相区出现电压平台。优点是骨架结构稳定、体积变化小、零应变、循环寿命长、充放电效率高且没有 SEI 膜；缺点是电压平台高，1.5V，使组成电池的输出电压偏低。",
       "evidence": "钛酸锂：氧化钛与锂的复合氧化物，尖晶石结构Li4Ti5O12\n工作原理：可以嵌入Li+\n3Li + Li4Ti5O12 → Li7Ti5O12(岩盐结构)\n充电结束：尖晶石和岩盐结构两相区的电压平台出现",
       "explanation": "释义按结构式、嵌锂原理、反应前后物相与优缺点组织，属于负极材料。易错点是把产物写成仍是尖晶石相，或把 1.5V 的高电压平台当成优点。",
-      "ref": "S40",
+      "ref": "S44",
       "difficulty": "medium",
       "bloom": "理解"
     },
@@ -397,16 +469,16 @@
       "answer": "一种层状结构的正极材料，容量为理论 274mAh/g、实际 140—155 mAh/g。优点是高电压（4.0V）、放电平稳、适合大电流放电、循环性能好；缺点是 Co 资源有限、价格高，并存在污染与安全问题。",
       "evidence": "容量：理论 274mAh/g ， 实际140—155 mAh/g 。\n优点：高电压（4.0V），放电平稳 ，适合大电流放电，循环性能好。\n缺点  ：Co资源有限，价格高，污染、安全问题。",
       "explanation": "释义由容量、优点、缺点三部分构成。4.0V 高电压与循环性能好属于钴酸锂，制备条件苛刻与循环性能差属于镍酸锂，两者常被互换；其理论容量与镍酸锂同为 274，实际容量却明显更低。",
-      "ref": "S24",
+      "ref": "S25",
       "difficulty": "easy",
       "bloom": "记忆"
     },
     {
       "question": "多硫化物穿梭效应",
-      "answer": "锂硫电池在锂负极侧面临的挑战。溶入电解液的长链多硫化锂（Li2S4 to Li2S8）扩散到锂负极后被化学还原（而非电化学还原）为低价多硫化物，再扩散回硫正极被重新氧化。这种寄生式的穿梭相当于内部短路，会造成循环中的自放电和低库仑效率。",
-      "evidence": "Long-chain lithium polysulfides (Li2S4 to Li2S8) which dissolve into the electrolyte can diffuse to the lithium anode to be reduced chemically (instead of electrochemically) to form lower-order polysulfides, which can then diffuse back to the sulfur cathode to be re-oxidized. This parasitic polysulfide shuttle effect, which is essentially an internal short, leads to self-discharging and low Coulombic efficiency during cycling.",
-      "explanation": "定义的三个要点是物种（溶解的长链多硫化锂）、负极侧为化学还原、后果是自放电与低库仑效率。不要与同一页之外负极侧的另一挑战 SEI 不均一，或正极侧的多硫化物溶解混为一谈。",
-      "ref": "S91",
+      "answer": "锂硫电池在锂负极侧面临的挑战。溶入电解液的长链多硫化锂（Li₂S₄至Li₂S₈）扩散到锂负极后，被化学还原（而非电化学还原）为低价多硫化物，再扩散回硫正极被重新氧化。这种寄生式穿梭相当于内部氧化还原短路，会造成电池自放电并降低循环库仑效率。",
+      "evidence": "溶解于电解液中的长链多硫化锂（Li₂S₄至Li₂S₈）可以扩散至锂负极，通过化学还原反应（而非电化学还原）生成低阶多硫化物。这些产物随后又可扩散回硫正极，被重新氧化。",
+      "explanation": "定义的三个要点是物种（溶解的长链多硫化锂）、负极侧为化学还原、后果是自放电与低库仑效率。不要与锂负极侧 SEI 不均一、或正极侧多硫化锂溶解混为一谈。",
+      "ref": "S95",
       "difficulty": "medium",
       "bloom": "理解"
     },
@@ -415,7 +487,7 @@
       "answer": "课件在总结与展望中针对不稳定 SEI 问题提出的解决思路，即通过制备人工 SEI 膜来解决这一问题，被认为是一条有前景的路线。与之相对，锂金属与电解液反应自然生成的 SEI 通常不均匀，无法充分钝化锂表面。",
       "evidence": "(4) The fabrication of artificial SEI films is a promising approach to resolve the unstable SEI problem.",
       "explanation": "释义依据总结页第（4）条，并结合前面关于 SEI 不均一、不能充分钝化锂表面的讨论。原文只称其为有前景的办法，并未说它能同时解决枝晶或无限的体积变化问题。",
-      "ref": "S113",
+      "ref": "S117",
       "difficulty": "medium",
       "bloom": "记忆"
     },
@@ -424,18 +496,36 @@
       "answer": "一类同时含镍、钴、锰的正极材料，具有与 LiCoO2 一样的层状结构（R-3m 空间群），常见的有三种配方：LiNi1/3Co1/3Mn1/3O4、LiNi0.4Co0.2Mn0.4O4 和 LiNi0.5Co0.2Mn0.3O4。",
       "evidence": "三元材料--LiNixCoyMnzO4\nLiNi1/3Co1/3Mn1/3O4\nLiNi0.4Co0.2Mn0.4O4\nLiNi0.5Co0.2Mn0.3O4\nLiNixCoyMnzO4具有与LiCoO2一样的层状结构（R-3m空间群）,常见的有三种配方:",
       "explanation": "释义取自该页的标题行、三种配方行与结构说明行。它是层状结构（R-3m 空间群），不要与 LiMn2O4 和 Li4Ti5O12 的尖晶石结构混在一起，也不要把它当作负极材料。",
-      "ref": "S28",
+      "ref": "S29",
       "difficulty": "easy",
       "bloom": "记忆"
     },
     {
       "question": "蛋黄-壳结构（yolk–shell）",
-      "answer": "硫正极无机基体材料的一种形貌设计。课件以硫-二氧化钛体系为例，用 TiO2 壳均匀包覆硫纳米颗粒，并把多硫化锂限域在壳内。",
-      "evidence": "A sulfur–titanium dioxide (TiO2) yolk–shell morphology was designed, using a TiO2 shell to coat sulfur nanoparticles uniformly and confine lithium polysulfides within the shell.",
-      "explanation": "该术语的要点是壳的两项功能：均匀包覆硫纳米颗粒、把多硫化锂限域在壳内，属于无机基体材料一类。不要与导电聚合物的部分容纳体积变化、多孔结构提供传质通道这两种功能混淆。",
-      "ref": "S101",
+      "answer": "硫正极无机基体材料的一种形貌设计。课件以硫–二氧化钛体系为例，用 TiO₂ 壳层均匀包覆硫纳米颗粒，并把多硫化锂限域在壳层内部。",
+      "evidence": "研究人员设计了硫–二氧化钛（TiO₂）蛋黄–壳结构，利用TiO₂壳层均匀包覆硫纳米颗粒，并将多硫化锂限域在壳层内部。",
+      "explanation": "该术语的要点是壳层的两项功能：均匀包覆硫纳米颗粒、把多硫化锂限域在壳层内部，属于无机基体材料一类。不要与导电聚合物的部分容纳体积变化、多孔结构提供传质通道这两种功能混淆。",
+      "ref": "S105",
       "difficulty": "medium",
       "bloom": "理解"
+    },
+    {
+      "question": "SEI 膜",
+      "answer": "固体电解质界面膜。首次充电时电解液在负极表面达到还原电位（约 1.0 V 以下）而分解，产物（Li₂CO₃、LiF、Li₂O、烷基锂及有机低聚物等）沉积成膜。它电子绝缘、离子导通，允许 Li⁺ 通过而阻止电子与溶剂分子穿越，从而抑制电解液持续分解与溶剂共嵌入；但成膜消耗活性 Li⁺，使首次库仑效率仅约 90%。",
+      "difficulty": "medium",
+      "bloom": "理解",
+      "ref": "S41",
+      "evidence": "作用① 电子绝缘、离子导通：允许 Li⁺ 通过而阻止电子与溶剂分子穿越 → 电解液不再被持续还原",
+      "explanation": "释义按形成过程、组成、两项作用与首效代价组织。核心是“电子绝缘、离子导通”，不要写成电子导电；首效约 90% 的原因是不可回收的活性 Li⁺ 被消耗。"
+    },
+    {
+      "question": "氧化还原介体",
+      "answer": "一类可溶于电解液、在电极与反应物之间传递电子的催化剂，与固定在电极表面的催化剂不同。在锂–氧电池中可降低充电过电位；但可溶性介体也可能穿过隔膜到达锂金属负极，产生不利的穿梭反应，因此需要自保护等策略。",
+      "difficulty": "hard",
+      "bloom": "理解",
+      "ref": "S83",
+      "evidence": "将可溶性的氧化还原介体加入电解液，让它在电极与反应物之间传递电子。",
+      "explanation": "释义抓住“可溶、传递电子”两个要点，并补充课件随后指出的穿梭风险：介体可能穿过隔膜到达锂金属负极，因此出现自保护型介体策略。不要把它与固定在正极表面的非均相催化剂混为一谈。"
     }
   ]
 }
