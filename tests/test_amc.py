@@ -18,6 +18,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "tools"))
 
 import build_amc  # noqa: E402
+from check_amc import explanation_ok  # noqa: E402
 from pdfquiz import amcbank  # noqa: E402
 from pdfquiz.courses import find_course, load_courses  # noqa: E402
 from pdfquiz.verify import evidence_ok  # noqa: E402
@@ -54,6 +55,36 @@ class TestDrafts(unittest.TestCase):
             for q in data["questions"]:
                 self.assertTrue(str(q.get("explanation", "")).strip(), q["question"][:20])
                 self.assertNotIn("evidence", q["explanation"])
+
+
+class TestExplanationQuality(unittest.TestCase):
+    def test_rejects_short(self):
+        ok, why = explanation_ok("太短", "原文依据")
+        self.assertFalse(ok)
+        self.assertIn("太短", why)
+
+    def test_rejects_duplicated_punctuation(self):
+        text = "A 把两个数字说反，，B 和原文一致；其余选项也与原文相符。"
+        ok, why = explanation_ok(text, "依据")
+        self.assertFalse(ok)
+        self.assertIn("重复标点", why)
+
+    def test_rejects_source_word(self):
+        text = "课件里说得很清楚，A 与原文相反，B 才是正确答案，其余选项也都能在原文找到依据。"
+        ok, why = explanation_ok(text, "依据")
+        self.assertFalse(ok)
+        self.assertIn("课件", why)
+
+    def test_rejects_evidence_copy(self):
+        text = "锂离子电池的负极材料应当具备较低的嵌锂电位和良好的循环稳定性。"
+        ok, why = explanation_ok(text, text)
+        self.assertFalse(ok)
+        self.assertIn("照抄", why)
+
+    def test_accepts_real_explanation(self):
+        text = "A 把充电和放电的方向说反了；B 与原文的层间距数据不符，C 则混淆了硬碳与石墨。"
+        ok, why = explanation_ok(text, "硬碳的层间距大于石墨。")
+        self.assertTrue(ok, why)
 
 
 class TestStorage(unittest.TestCase):

@@ -26,6 +26,22 @@ CORPUS = ROOT / "corpus_amc"
 KINDS = amcbank.KINDS
 MINIMUM = {"single": 6, "multiple": 3, "truefalse": 4, "fill": 4, "short": 3, "term": 5}
 MAXIMUM = {"single": 12, "multiple": 5, "truefalse": 7, "fill": 7, "short": 5, "term": 10}
+BAD_PUNCT = ("，，", "。。", "；；", "、、")
+
+
+def explanation_ok(explanation: str, evidence: str) -> tuple[bool, str]:
+    """解析是给学生看的，不能是空话、病句或 evidence 的复印件。"""
+    text = str(explanation or "").strip()
+    if len(text) < 30:
+        return False, "explanation 太短，没讲清错在哪、依据哪句"
+    for mark in BAD_PUNCT:
+        if mark in text:
+            return False, f"explanation 有重复标点「{mark}」"
+    if "课件" in text:
+        return False, "explanation 不要用「课件」指代来源"
+    if squash(text) == squash(evidence):
+        return False, "explanation 不能照抄 evidence"
+    return True, ""
 
 
 def load(chapter_file: Path) -> tuple[dict, str]:
@@ -59,6 +75,8 @@ def check(data: dict, corpus: str) -> Report:
             ok, why = evidence_ok(q.get("evidence", ""), corpus)
         if ok and not str(q.get("explanation", "")).strip():
             ok, why = False, "缺 explanation（错在哪、依据哪句）"
+        if ok:
+            ok, why = explanation_ok(q.get("explanation", ""), q.get("evidence", ""))
         if ok:
             key = squash(q.get("question", ""))
             if key in seen:

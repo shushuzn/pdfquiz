@@ -110,7 +110,7 @@ python tools/check_privacy.py
 
 CI 还会在干净检出（没有 `out_*` 目录）上先重跑 `tools/build_amc.py`，再跑 `tools/build_hub.py`，要求 `docs/` 无 diff。前者顺带验证 460 道题的 evidence 仍能在转录稿里逐字找到，后者防止手改页面后忘记同步生成逻辑。AMC 页面不写生成时间，同样的草稿每次构建都逐字节一致，diff 才有意义；临时分发的单份产物仍由 `render_html` 默认填当前时间。
 
-`corpus_amc/` 是从课件逐页转出的文字稿（`### S12` 是第 12 张幻灯片），`papers_amc/ch0N.json` 是分章草稿。草稿采用 v2 存储：顶层只有 `schema`、`chapter`、`questions`，每道题带显式 `type` 和稳定 `id`（如 `ch04-single-003`），增删题不再靠数组下标认人。术语题额外带 `mode`：`explain` 表示中文释义题（自评），默认的 `translate` 表示英文术语翻译（精确比对）。`build_amc.py` 会把每条题的 `evidence` 送回对应章节逐字核对，对不上就整批退回、不生成产物——所以这两份文件是这个课程题库唯一的可信来源。改动草稿后跑一次 `python tools/normalize_amc.py` 归一格式，`--check` 模式供 CI 使用。
+`corpus_amc/` 是从课件逐页转出的文字稿（`### S12` 是第 12 张幻灯片），`papers_amc/ch0N.json` 是分章草稿。草稿采用 v2 存储：顶层只有 `schema`、`chapter`、`questions`，每道题带显式 `type` 和稳定 `id`（如 `ch04-single-003`），增删题不再靠数组下标认人。术语题额外带 `mode`：`explain` 表示中文释义题（自评），默认的 `translate` 表示英文术语翻译（精确比对）。`build_amc.py` 会把每条题的 `evidence` 送回对应章节逐字核对，对不上就整批退回、不生成产物——所以这两份文件是这个课程题库唯一的可信来源。`check_amc.py` 另设解释质量门禁：解析过短、出现重复标点、用「课件」指代来源，或直接照抄 `evidence`，都会被判不合格。改动草稿后跑一次 `python tools/normalize_amc.py` 归一格式，`--check` 模式供 CI 使用。
 
 课程题库目前覆盖十章：第一章至第十章。第八章「传统碳材料」按 77 张幻灯片转录，分活性炭与炭黑两部分。
 
@@ -276,7 +276,7 @@ pdfquiz/
 │   ├── build_materials.py      正文里的材料名 → 中译英默写（配套 materials.tsv）
 │   ├── build_hub.py            课程首页 + 课程页 + 卷子同步
 │   ├── build_amc.py            分章草稿 → 客观题/精练/术语/模拟卷四套题库
-│   ├── check_amc.py            草稿自检：存储格式 + 证据逐字回查 + 题型结构 + 题量上下限
+│   ├── check_amc.py            草稿自检：存储格式 + 证据逐字回查 + 解释质量 + 题型结构 + 题量上下限
 │   ├── normalize_amc.py        把草稿归一成 v2（补 ID / 分组 / 枚举），支持 --check
 │   ├── extract_notes.py        抽 Notes 句子与教材原译
 │   └── restyle.py              用最新模板重渲染已有题库，不重跑解析
@@ -285,7 +285,7 @@ pdfquiz/
 │   ├── test_pipeline.py        19 项单测（切块 / 溯源 / 结构 / 渲染）
 │   ├── test_booktext.py        16 项单测（页标记 / 切句 / 跨页 evidence）
 │   ├── test_courses.py         10 项课程注册表与页面生成测试
-│   ├── test_amc.py             15 项分章题库测试（存储格式 / 证据回查 / 章节分组 / 满分 100）
+│   ├── test_amc.py             20 项分章题库测试（存储格式 / 证据回查 / 解释质量 / 章节分组 / 满分 100）
 │   ├── test_amcbank.py         6 项存储格式测试（v1 迁移 / ID 保留 / 术语 mode 校验 / 非法结构拒绝）
 │   ├── smoke_cli.py            端到端冒烟：离线跑 CLI 并检查产物结构
 │   ├── fake_mcp_server.py      假 MCP 服务器，内含 1 道伪造题
@@ -302,7 +302,7 @@ pdfquiz/
 python -m unittest discover -s tests -v
 ```
 
-覆盖：章节切分、超长切分、碎片合并、逐字命中、空白容错、伪造拒绝、否定翻转拒绝、过短拒绝、重复选项、答案越界、多选单答、多选字符串答案、判断题非法答案、选项标号归一、跨题去重、离线题 100% 可溯源；课程侧覆盖注册表校验、首页不直链卷子、课程页去重课程名、卷子返回链接重定向；分章题库覆盖课件证据逐字回查、幻灯片→小节分组、模拟卷满分 100 且每章都抽到题。
+覆盖：章节切分、超长切分、碎片合并、逐字命中、空白容错、伪造拒绝、否定翻转拒绝、过短拒绝、重复选项、答案越界、多选单答、多选字符串答案、判断题非法答案、选项标号归一、跨题去重、离线题 100% 可溯源；课程侧覆盖注册表校验、首页不直链卷子、课程页去重课程名、卷子返回链接重定向；分章题库覆盖课件证据逐字回查、解释质量（过短 / 重复标点 / 来源措辞 / 照抄证据）、幻灯片→小节分组、模拟卷满分 100 且每章都抽到题。
 
 前端测试直接驱动真实浏览器（本机 Edge / Chrome 以 `--remote-debugging-port=9222` 启动，用 Node 内置 WebSocket 走 CDP，无额外依赖）：
 

@@ -64,7 +64,7 @@
         "Langmuir 单分子层吸附法"
       ],
       "answer": "A",
-      "explanation": "S39 明确写 BET 氮气吸附法即 Brunauer－Emmertt－Teller 法，用多分子层吸附模型计算单分子层吸附量。BJH 是孔径分布算法，Kelvin 公式出现在 S40 的孔容计算中，Langmuir 是单分子层吸附模型，三者都不是 BET 的全称。",
+      "explanation": "原文把 Emmett 拼作 Emmertt，标准写法是 Brunauer–Emmett–Teller，BET 取三位作者姓氏首字母；它用多分子层吸附模型计算单分子层吸附量。BJH 是孔径分布算法，Kelvin 公式出现在 S40 的孔容计算中，Langmuir 是单分子层吸附模型，三者都不是 BET 的全称。",
       "evidence": "普遍接受的测试方法为BET氮气吸附法，即Brunauer－Emmertt－Teller法。",
       "ref": "S39",
       "difficulty": "easy",
