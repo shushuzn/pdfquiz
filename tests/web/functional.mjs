@@ -65,6 +65,8 @@ const skip = (name, why) => console.log("– " + name + "  跳过（" + why + "�
 /* 清掉某道题的作答记录并刷新，用于同一道题反复判对/判错。
    进度按题目 id 存，只有老题库才回退到下标。 */
 const resetOne = async (idx) => {
+  // 页面保存有 120ms 防抖；先等它落盘，否则刚删掉的记录会被旧定时器写回来
+  await sleep(250);
   await evaluate(`(() => {
     const k = 'pdfquiz:' + (window.__QUIZ__.meta.id || 'deck');
     const raw = JSON.parse(localStorage.getItem(k) || '{}');
