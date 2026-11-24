@@ -139,6 +139,23 @@ if (fillType) {
     node.querySelector('[data-act="confirm"]').click();`);
   ok(cn + "答错判负", /verdict bad/.test(r4.cls), `输入 zzzz → ${r4.txt}`);
 
+  const r5 = await evaluate(`(() => {
+    const node = document.querySelector('#stage .q[data-i="${idx}"]');
+    const b = node.querySelector('[data-act="redo"]');
+    if (!b) return { err: '没有重做按钮' };
+    b.click();
+    const after = document.querySelector('#stage .q[data-i="${idx}"]');
+    const f = after.querySelector('.field');
+    return {
+      graded: after.classList.contains('graded'),
+      readOnly: !!(f && f.readOnly),
+      value: f ? f.value : 'x',
+      confirm: !!after.querySelector('[data-act="confirm"]')
+    };
+  })()`);
+  ok(cn + "可重做", !r5.err && !r5.graded && !r5.readOnly && r5.value === "" && r5.confirm,
+    r5.err || `已判=${r5.graded} 只读=${r5.readOnly} 内容=${r5.value || "空"}`);
+
   // 截断前缀不能判对：polymer 与 polymerization 的区别
   if (fillType === "term") {
     // 有多个可接受答案（如 "polyethylene / PE"）的题不能拿来做前缀用例：
@@ -256,6 +273,65 @@ if (allIds) {
 
     const r = await answerBy(idx, answerJs);
     ok("作废后可重新作答", /verdict ok/.test(r.cls), r.txt);
+
+    // 只是增删了题目时，能对上 ID 的记录应保留，只有下标记录被清掉
+    await sleep(300);
+    await evaluate(`(() => {
+      const k = 'pdfquiz:' + window.__QUIZ__.meta.id;
+      const raw = JSON.parse(localStorage.getItem(k) || '{}');
+      raw.answers['0'] = { picked: ['A'], graded: true };
+      raw.marked = [0];
+      raw.sig = 'stale';
+      localStorage.setItem(k, JSON.stringify(raw));
+    })()`);
+    await send("Page.reload");
+    await sleep(1200);
+    // 跳到这道题，让卡片进入已判定态（不同卷子第一题不一定是多选）
+    await evaluate("document.querySelector('#posBtn').click()");
+    await sleep(150);
+    await evaluate(`(() => {
+      const c = document.querySelector('[data-goto="${idx}"]');
+      if (c) c.click();
+    })()`);
+    await sleep(250);
+    const mixed = await evaluate(`(() => {
+      const k = 'pdfquiz:' + window.__QUIZ__.meta.id;
+      const raw = JSON.parse(localStorage.getItem(k) || '{}');
+      const node = document.querySelector('#stage .q[data-i="${idx}"]');
+      const t = document.querySelector('#toast');
+      return {
+        key: window.__QUIZ__.questions[${idx}].id,
+        keys: Object.keys(raw.answers || {}),
+        marked: raw.marked || [],
+        sig: raw.sig || '',
+        graded: node ? node.classList.contains('graded') : false,
+        toast: t ? t.textContent.trim() : ''
+      };
+    })()`);
+    ok("换库保留有效记录", mixed.keys.includes(mixed.key) && !mixed.keys.includes("0") &&
+      mixed.marked.length === 0 && mixed.sig === before.sig && mixed.graded && mixed.toast.includes("保留"),
+      `键=${mixed.keys.join(",")} 标记=${mixed.marked.length} 提示=${mixed.toast || "无"}`);
+
+    const hasRedo = await evaluate(`!!document.querySelector('#stage .q[data-i="${idx}"] [data-act="redo"]')`);
+    await evaluate(`(() => {
+      const b = document.querySelector('#stage .q[data-i="${idx}"] [data-act="redo"]');
+      if (b) b.click();
+    })()`);
+    await sleep(300);
+    const redone = await evaluate(`(() => {
+      const raw = JSON.parse(localStorage.getItem('pdfquiz:' + window.__QUIZ__.meta.id) || '{}');
+      const node = document.querySelector('#stage .q[data-i="${idx}"]');
+      return {
+        graded: node ? node.classList.contains('graded') : true,
+        confirm: !!(node && node.querySelector('[data-act="confirm"]')),
+        keys: Object.keys(raw.answers || {})
+      };
+    })()`);
+    ok("可单题重做", hasRedo && !redone.graded && redone.confirm && !redone.keys.includes(mixed.key),
+      `按钮=${hasRedo} 已判=${redone.graded} 确认键=${redone.confirm}`);
+
+    const r3 = await answerBy(idx, answerJs);
+    ok("重做后可再次提交", /verdict ok/.test(r3.cls), r3.txt);
   } else {
     skip("进度存储", "题库无单选题/多选题");
   }

@@ -340,6 +340,12 @@ textarea.field{min-height:calc(var(--rows,3) * 1.7em + 28px)}
 .verdict.info{color:var(--ink2)}
 .verdict.info .ico{background:var(--ink2)}
 .verdict .sub{font-weight:400;color:var(--muted);font-size:12.5px}
+.verdict .redo{
+  margin-left:auto;flex:0 0 auto;padding:4px 10px;border-radius:8px;
+  border:1px solid var(--line);background:transparent;color:var(--muted);
+  font:inherit;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;
+}
+.verdict .redo:hover{border-color:var(--line2);color:var(--ink)}
 
 .ans{display:none;margin-top:14px;padding:18px 20px;border-radius:14px;background:var(--surface2);border:1px solid var(--line)}
 .q.graded .ans{display:block}
@@ -862,7 +868,8 @@ blockquote.ev::before{
     return (h >>> 0).toString(36);
   }
   const SIG = HAS_IDS ? deckSignature() : "";
-  let staleReset = false;
+  let staleNote = "";
+  let sigMigrated = false;
 
   /* ------------------------------------------------------------ state */
   const BLANK = {
@@ -891,11 +898,34 @@ blockquote.ev::before{
         submitted: !!s.submitted,
         sig: s.sig || ""
       };
-      /* 带 ID 的题库一旦换了题目集合，旧版按数组下标存的答案会错位：
-         表现为某些题「已经判过」、按钮消失。签名对不上就整份作废，宁重做不误导。 */
-      if (SIG && s.sig !== SIG && (Object.keys(answers).length || marked.length)) {
-        staleReset = true;
-        return Object.assign({}, BLANK, s, base, { answers: {}, marked: [], submitted: false, sig: SIG });
+      /* 带 ID 的题库换了题目集合后，旧版按数组下标存的答案会错位：
+         表现为某些题「已经判过」、按钮消失。这里按题目 ID 过滤：
+         能对上当前题目的记录保留，下标或已删除题目的记录清掉。 */
+      if (SIG && s.sig !== SIG) {
+        sigMigrated = true;
+        const ids = new Set(Q.map((q) => q.id).filter(Boolean));
+        const keptAnswers = {};
+        const keptMarked = [];
+        let dropped = 0;
+        Object.keys(answers).forEach((k) => {
+          if (ids.has(k)) keptAnswers[k] = answers[k];
+          else dropped++;
+        });
+        marked.forEach((k) => {
+          if (ids.has(k)) keptMarked.push(k);
+          else dropped++;
+        });
+        if (dropped) {
+          staleNote = Object.keys(keptAnswers).length || keptMarked.length
+            ? "题库已更新，有效答题记录已保留，失效记录已清理"
+            : "题库已更新，旧答题记录已清空，请重新作答";
+        }
+        return Object.assign({}, BLANK, s, base, {
+          answers: keptAnswers,
+          marked: keptMarked,
+          submitted: false,
+          sig: SIG
+        });
       }
       return Object.assign({}, BLANK, s, base, { sig: s.sig || SIG });
     } catch (e) {
@@ -1355,6 +1385,7 @@ blockquote.ev::before{
       v.className = "verdict " + (a && a.correct ? "ok" : "bad");
       v.innerHTML = '<span class="ico">' + (a && a.correct ? "✓" : "✕") + "</span><span>" +
         (a && a.correct ? "已标记为掌握" : "已标记为未掌握") + "</span>";
+      addRedo(v, q);
       return;
     }
 
@@ -1363,6 +1394,19 @@ blockquote.ev::before{
     v.innerHTML = '<span class="ico">' + (good ? "✓" : "✕") + "</span><span>" +
       (good ? "回答正确" : "回答错误") +
       (quiet ? "" : '<span class="sub"> · ' + (good ? "继续保持" : "看一下原文依据") + "</span>") + "</span>";
+    addRedo(v, q);
+  }
+
+  /* 判过就不能再答，想重来只能清空整卷；练习模式给单题一个出口 */
+  function addRedo(v, q) {
+    if (S.mode !== "practice") return;
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "redo";
+    b.dataset.act = "redo";
+    b.dataset.i = q.i;
+    b.textContent = "重做本题";
+    v.appendChild(b);
   }
 
   /* ------------------------------------------------------------ actions */
@@ -1430,6 +1474,28 @@ blockquote.ev::before{
     const pos = view.indexOf(i);
     const next = $("#nextBtn");
     if (pos >= 0 && pos < view.length - 1) next.focus({ preventScroll: true });
+  }
+
+  /* 判过之后想重来，不必清空整卷；只重置这一题，标记与其它题不受影响 */
+  function redoQuestion(i) {
+    const q = Q[i];
+    if (!q || S.mode !== "practice") return;
+    delete S.answers[qkey(i)];
+    if (S.submitted) {
+      S.submitted = false;
+      $("#submitBtn").textContent = "交卷";
+    }
+    save();
+    const node = $('#stage .q[data-i="' + i + '"]');
+    if (node) {
+      const holder = document.createElement("div");
+      holder.innerHTML = questionHTML(q);
+      node.replaceWith(holder.firstElementChild);
+    }
+    applyFilter(true);
+    refreshStats();
+    if ($("#sheet").classList.contains("show")) buildSheet();
+    toast("已重做本题");
   }
 
   function paintChapters() {
@@ -1764,6 +1830,7 @@ blockquote.ev::before{
       const i = Number(act.dataset.i);
       const kind = act.dataset.act;
       if (kind === "confirm") confirmAnswer(i);
+      else if (kind === "redo") redoQuestion(i);
       else if (kind === "mark") {
         toggleMark(i);
         save();
@@ -2003,11 +2070,9 @@ blockquote.ev::before{
       rz = setTimeout(() => $$("textarea.field").forEach(grow), 200);
     });
 
-    // 重置只改内存不够：旧的下标答案仍留在 localStorage 里，刷新一次又会复活
-    if (staleReset) {
-      save();
-      setTimeout(() => toast("题库已更新，旧答题记录已清空，请重新作答"), 400);
-    }
+    // 迁移结果要写回，否则每次打开都拿旧签名重新过滤一遍
+    if (sigMigrated) save();
+    if (staleNote) setTimeout(() => toast(staleNote), 400);
     if (META.mock) toast("这是离线模式产物，题目由陈述句改写，仅供链路演示");
   }
 
