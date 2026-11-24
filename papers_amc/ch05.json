@@ -162,7 +162,7 @@
         "采用锂钴氧 LiCoO2 材料作为负极"
       ],
       "answer": "ABD",
-      "explanation": "原文写 1970 年他在牛津开始固体化学研究，并与 SONY 合作开发出基于碳材料正极和锂钴氧 LiCoO2 材料负极的可充电离子电池，A、B、C 与这三点逐项对应。D 不成立：磷酸铁锂 LixFePO4 是他 1986 年受聘德克萨斯大学奥丁学院期间带领项目组开发的低成本正极材料，与这只电池无关。",
+      "explanation": "原文写 1970 年他在牛津开始固体化学研究，并与 SONY 合作开发出基于碳材料正极和锂钴氧 LiCoO2 材料负极的可充电离子电池，A、B、D 与这三点逐项对应。C 不成立：磷酸铁锂 LixFePO4 是他 1986 年受聘德克萨斯大学奥丁学院期间带领项目组开发的低成本正极材料，与这只电池无关。",
       "evidence": "3. 1970年牛津大学开始固体化学研究，和SONY公司合作开发出了基于碳材料正极和锂钴氧LiCoO2材料负极的可充电离子电池",
       "ref": "S12",
       "difficulty": "medium",
@@ -177,7 +177,7 @@
         "电压平台（3.9和4.1V）高"
       ],
       "answer": "BCD",
-      "explanation": "优点一行依次列出安全性好、耐过充性好、电压平台（3.9和4.1V）高、制备容易、价格便宜、环境友好，对应 A、B、C。D 恰好是原文缺点一行的内容：比容量低、循环性能差、高温容量衰减快；比容量高属于镍酸锂的优点。",
+      "explanation": "优点一行依次列出安全性好、耐过充性好、电压平台（3.9和4.1V）高、制备容易、价格便宜、环境友好，对应 B、C、D。A 恰好是原文缺点一行的内容：比容量低、循环性能差、高温容量衰减快；比容量高属于镍酸锂的优点。",
       "evidence": "优点：安全性好，耐过充性好，电压平台（3.9和4.1V）高，制备容易，价格便宜，环境友好。",
       "ref": "S26",
       "difficulty": "easy",
@@ -192,7 +192,7 @@
         "对 ORR 与 OER 的催化活性差，导致充放电速率低"
       ],
       "answer": "ACD",
-      "explanation": "原文用 (1)(2)(3) 逐条列出催化活性差、碳的副反应与放电孔道堵塞这三项正极挑战，孔道堵塞因此限制了放电容量。D 是锂硫电池部分讲锂金属负极枝晶时的结论，属于负极侧问题，不是 Li–O2 正极的挑战。",
+      "explanation": "原文用 (1)(2)(3) 逐条列出催化活性差、碳的副反应与放电孔道堵塞这三项正极挑战，对应 A、C、D，孔道堵塞因此限制了放电容量。B 是锂硫电池部分讲锂金属负极枝晶时的结论，属于负极侧问题，不是 Li–O2 正极的挑战。",
       "evidence": "Three challenges remain for the present cathodes:(1) Poor catalytic activity towards ORR and OER, resulting in low rate of discharging and charging process.(2) Parasitic reactions of carbon under O2, including the decomposition itself during charging process.(3) Pore clogging occurs during discharging process, which impedes the mass transport of O2, intermediates and products and thus restricts the discharge capacity.",
       "ref": "S69",
       "difficulty": "medium",

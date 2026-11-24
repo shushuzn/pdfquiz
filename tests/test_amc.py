@@ -61,8 +61,11 @@ class TestDrafts(unittest.TestCase):
 class TestSections(unittest.TestCase):
     def test_slide_numbers_map_to_sections(self):
         self.assertEqual(build_amc.section_of("ch02", "S9"), "第二节 仿生的诞生")
+        self.assertEqual(build_amc.section_of("ch02", "S39"), "第五节 仿生材料的设计及举例")
+        self.assertEqual(build_amc.section_of("ch03", "S55"), "5 木材科学与创新发展")
+        self.assertEqual(build_amc.section_of("ch04", "S11"), "评价指标与测试基础")
         self.assertEqual(build_amc.section_of("ch03", "S28"), "4 生物质能源材料")
-        self.assertEqual(build_amc.section_of("ch04", "S99"), "拓展资源")
+        self.assertEqual(build_amc.section_of("ch04", "S98"), "拓展资源")
         self.assertEqual(build_amc.section_of("ch01", "S1"), "课程导入")
         self.assertEqual(build_amc.section_of("ch09", "S3"), "课程导入")
         self.assertEqual(build_amc.section_of("ch10", "S45"), "碳纳米管")
