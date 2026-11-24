@@ -124,6 +124,42 @@ class TestRender(unittest.TestCase):
         self.assertNotIn("A. A、训练损失", md)
 
 
+class TestRenderHtml(unittest.TestCase):
+    """课程题库页面要能逐字节复现：构建时间不能藏在产物里。"""
+
+    Q = {
+        "type": "single",
+        "question": "示例题干",
+        "options": ["甲", "乙"],
+        "answer": "A",
+        "id": "ch01-single-001",
+        "chunk_path": "第一章 > 课程导入",
+    }
+
+    def render(self, generated):
+        from pdfquiz.render_html import render_html
+
+        return render_html(
+            title="示例",
+            engine="测试",
+            source="转录稿",
+            chunks=1,
+            reports=[Report(accepted=[self.Q])],
+            mock=False,
+            generated=generated,
+        )
+
+    def test_generated_time_can_be_omitted(self):
+        html = self.render("")
+        self.assertNotIn("生成于", html)
+        self.assertIn('"generated":""', html)
+
+    def test_generated_time_is_shown_when_given(self):
+        html = self.render("2026-01-01 08:00")
+        self.assertIn("生成于 2026-01-01 08:00", html)
+        self.assertIn('"generated":"2026-01-01 08:00"', html)
+
+
 class TestVerify(unittest.TestCase):
     def test_dedupe_and_reject_mix(self):
         good = {

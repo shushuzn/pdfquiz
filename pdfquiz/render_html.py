@@ -178,12 +178,17 @@ def render_html(
     template: Path | None = None,
     hub: str | None = None,
     hub_label: str = "全部试卷",
+    generated: str | None = None,
 ) -> str:
     """hub 是返回上一层的链接（课程页或总览页）。给了就在侧栏底部放一条入口，
-    没给（例如独立分发的单份题库）整块不渲染。hub_label 决定链接文案。"""
+    没给（例如独立分发的单份题库）整块不渲染。hub_label 决定链接文案。
+
+    generated 留空字符串表示产物应当可逐字节复现（如课程题库在 CI 里重建校验），
+    此时页头不写生成时间；传 None 则取当前时间，供一次性的临时产物使用。"""
     from datetime import datetime
 
-    generated = f"{datetime.now():%Y-%m-%d %H:%M}"
+    if generated is None:
+        generated = f"{datetime.now():%Y-%m-%d %H:%M}"
     payload = build_payload(
         title=title,
         engine=engine,
@@ -197,7 +202,9 @@ def render_html(
     tpl = (template or TEMPLATE).read_text(encoding="utf-8")
     data = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
 
-    subtitle_bits = [f"解析器 {engine}", f"{len(payload['questions'])} 题", f"生成于 {generated}"]
+    subtitle_bits = [f"解析器 {engine}", f"{len(payload['questions'])} 题"]
+    if generated:
+        subtitle_bits.append(f"生成于 {generated}")
     if mock:
         subtitle_bits.insert(0, "离线模式产物")
 

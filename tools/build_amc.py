@@ -296,6 +296,7 @@ def main(argv: list[str]) -> int:
             mock=False,
             hub="amc.html",
             hub_label="返回课程",
+            generated="",
         )
         (OUT / f"{deck['id']}.quiz.html").write_text(html, encoding="utf-8")
         meta.append({

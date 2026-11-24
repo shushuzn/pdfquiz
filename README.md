@@ -61,7 +61,7 @@ pip install -e ".[docling]"       # docling：结构化最好，首次运行需�
 
 ```bash
 pip install -e ".[dev]"
-python -m unittest discover -s tests -v   # 82 项单测
+python -m unittest discover -s tests -v   # 84 项单测
 python tests/smoke_cli.py                 # 端到端冒烟：离线跑一遍 CLI 并检查产物
 ruff check .
 ```
@@ -108,7 +108,7 @@ python tools/check_privacy.py
 
 覆盖教师姓名、括号里的「姓名，单位」署名、办公室、课程负责人、QQ / 微信、手机号、邮箱，以及 Bilibili / UTM 追踪参数；命中任意一条即返回非零退出码。图片与 PDF 里的水印、页脚不在规则范围内，只能靠提交前人工确认。
 
-CI 还会在干净检出（没有 `out_*` 目录）上重跑 `tools/build_hub.py`，要求 `docs/` 无 diff，防止手改页面后忘记同步生成逻辑。
+CI 还会在干净检出（没有 `out_*` 目录）上先重跑 `tools/build_amc.py`，再跑 `tools/build_hub.py`，要求 `docs/` 无 diff。前者顺带验证 460 道题的 evidence 仍能在转录稿里逐字找到，后者防止手改页面后忘记同步生成逻辑。AMC 页面不写生成时间，同样的草稿每次构建都逐字节一致，diff 才有意义；临时分发的单份产物仍由 `render_html` 默认填当前时间。
 
 `corpus_amc/` 是从课件逐页转出的文字稿（`### S12` 是第 12 张幻灯片），`papers_amc/ch0N.json` 是分章草稿。草稿采用 v2 存储：顶层只有 `schema`、`chapter`、`questions`，每道题带显式 `type` 和稳定 `id`（如 `ch04-single-003`），增删题不再靠数组下标认人。术语题额外带 `mode`：`explain` 表示中文释义题（自评），默认的 `translate` 表示英文术语翻译（精确比对）。`build_amc.py` 会把每条题的 `evidence` 送回对应章节逐字核对，对不上就整批退回、不生成产物——所以这两份文件是这个课程题库唯一的可信来源。改动草稿后跑一次 `python tools/normalize_amc.py` 归一格式，`--check` 模式供 CI 使用。
 
@@ -282,7 +282,7 @@ pdfquiz/
 │   └── restyle.py              用最新模板重渲染已有题库，不重跑解析
 ├── pyproject.toml              打包 / 依赖 / ruff / console script
 ├── tests/
-│   ├── test_pipeline.py        17 项单测（切块 / 溯源 / 结构 / 渲染）
+│   ├── test_pipeline.py        19 项单测（切块 / 溯源 / 结构 / 渲染）
 │   ├── test_booktext.py        16 项单测（页标记 / 切句 / 跨页 evidence）
 │   ├── test_courses.py         10 项课程注册表与页面生成测试
 │   ├── test_amc.py             15 项分章题库测试（存储格式 / 证据回查 / 章节分组 / 满分 100）
