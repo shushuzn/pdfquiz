@@ -5,6 +5,8 @@
 
 from __future__ import annotations
 
+import contextlib
+import io
 import json
 import re
 import sys
@@ -107,6 +109,22 @@ class TestPages(unittest.TestCase):
         self.assertIn("返回课程", out)
         self.assertNotIn("全部试卷", out)
         self.assertIn("<svg", out)
+
+
+class TestCli(unittest.TestCase):
+    def test_unknown_course_reports_error(self):
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            code = build_hub.main(["--course", "no-such-course"])
+        self.assertEqual(code, 2)
+        self.assertIn("没有课程", out.getvalue())
+
+    def test_missing_course_argument(self):
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            code = build_hub.main(["--course"])
+        self.assertEqual(code, 2)
+        self.assertIn("--course", out.getvalue())
 
 
 class TestDeckFallback(unittest.TestCase):

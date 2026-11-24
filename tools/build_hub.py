@@ -455,7 +455,11 @@ def main(argv: list[str]) -> int:
             print("--course 后面要跟课程 id")
             return 2
         only = argv[i + 1]
-        find_course(courses, only)
+        try:
+            find_course(courses, only)
+        except KeyError:
+            print(f"courses.json 里没有课程 {only!r}")
+            return 2
         courses = [c for c in courses if c["id"] == only]
 
     decks_by_course = {c["id"]: load_decks(c) for c in courses}
