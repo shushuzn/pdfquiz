@@ -40,11 +40,14 @@ class TestPrivacyRules(unittest.TestCase):
     def test_each_pattern_is_detected(self):
         cases = {
             "教师姓名栏": "主讲" + "教师：" + "某老师",
+            "教师姓名": "主讲" + "：某老师",
             "课程负责人栏": "课程" + "负责人：" + "某老师",
             "办公室门牌": "办公" + "室：A312",
             "QQ 号": "Q" + "Q:12345678",
+            "微信号": "微信" + "号：abcde12345",
             "手机号": "联系电话 138" + "0013" + "8000",
             "邮箱": "mail: user" + "@" + "example.com",
+            "姓名与单位": "（" + "某某" + "，" + "某大学" + "）",
             "追踪参数": "https://example.com/v?utm" + "_source=feed",
         }
         for label, text in cases.items():
@@ -53,6 +56,17 @@ class TestPrivacyRules(unittest.TestCase):
                 write(root, "hit.md", text + "\n")
                 hits = check_privacy.scan(root)
                 self.assertEqual([h[2] for h in hits], [label])
+
+    def test_qq_without_colon(self):
+        root = make_root()
+        write(root, "hit.md", "联系 Q" + "Q532714599\n")
+        self.assertEqual([h[2] for h in check_privacy.scan(root)], ["QQ 号"])
+
+    def test_cover_author_affiliation_is_detected(self):
+        root = make_root()
+        write(root, "corpus_amc/ch01.md",
+              "《某课程》课件（" + "某某" + "，" + "某学院" + "）与课程教学大纲\n")
+        self.assertEqual([h[2] for h in check_privacy.scan(root)], ["姓名与单位"])
 
     def test_location_is_reported(self):
         root = make_root()

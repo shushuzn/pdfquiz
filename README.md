@@ -61,7 +61,7 @@ pip install -e ".[docling]"       # docling：结构化最好，首次运行需�
 
 ```bash
 pip install -e ".[dev]"
-python -m unittest discover -s tests -v   # 68 项单测
+python -m unittest discover -s tests -v   # 70 项单测
 python tests/smoke_cli.py                 # 端到端冒烟：离线跑一遍 CLI 并检查产物
 ruff check .
 ```
@@ -106,7 +106,7 @@ python tools/build_hub.py --course polymer-en   # 只重建一门课
 python tools/check_privacy.py
 ```
 
-覆盖教师姓名/办公室、课程负责人、QQ、手机号、邮箱，以及 Bilibili / UTM 追踪参数；命中任意一条即返回非零退出码。图片与 PDF 里的水印、页脚不在规则范围内，只能靠提交前人工确认。
+覆盖教师姓名、括号里的「姓名，单位」署名、办公室、课程负责人、QQ / 微信、手机号、邮箱，以及 Bilibili / UTM 追踪参数；命中任意一条即返回非零退出码。图片与 PDF 里的水印、页脚不在规则范围内，只能靠提交前人工确认。
 
 CI 还会在干净检出（没有 `out_*` 目录）上重跑 `tools/build_hub.py`，要求 `docs/` 无 diff，防止手改页面后忘记同步生成逻辑。
 
