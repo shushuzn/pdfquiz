@@ -18,10 +18,11 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "tools"))
 
 import build_amc  # noqa: E402
+from pdfquiz import amcbank  # noqa: E402
 from pdfquiz.courses import find_course, load_courses  # noqa: E402
 from pdfquiz.verify import evidence_ok  # noqa: E402
 
-KINDS = ("single", "multiple", "truefalse", "fill", "short", "term")
+KINDS = amcbank.KINDS
 
 
 def load_data(stem: str) -> dict:
@@ -34,28 +35,70 @@ class TestDrafts(unittest.TestCase):
             with self.subTest(stem=stem):
                 data = load_data(stem)
                 self.assertTrue(data.get("chapter", "").startswith("第"))
+                counts = amcbank.counts(data)
                 for kind in KINDS:
-                    self.assertGreaterEqual(
-                        len(data.get(kind) or []), 3, f"{stem} 的 {kind} 太少"
-                    )
+                    self.assertGreaterEqual(counts[kind], 3, f"{stem} 的 {kind} 太少")
 
     def test_every_evidence_is_verbatim(self):
         for stem in build_amc.CHAPTERS:
             corpus = (build_amc.CORPUS / f"{stem}.md").read_text(encoding="utf-8")
             data = load_data(stem)
-            for kind in KINDS:
-                for q in data.get(kind) or []:
-                    with self.subTest(stem=stem, q=q["question"][:20]):
-                        ok, why = evidence_ok(q.get("evidence", ""), corpus)
-                        self.assertTrue(ok, f"{q['question'][:20]} —— {why}")
+            for q in data["questions"]:
+                with self.subTest(stem=stem, q=q["question"][:20]):
+                    ok, why = evidence_ok(q.get("evidence", ""), corpus)
+                    self.assertTrue(ok, f"{q['question'][:20]} —— {why}")
 
     def test_explanations_written(self):
         for stem in build_amc.CHAPTERS:
             data = load_data(stem)
-            for kind in KINDS:
-                for q in data.get(kind) or []:
-                    self.assertTrue(str(q.get("explanation", "")).strip(), q["question"][:20])
-                    self.assertNotIn("evidence", q["explanation"])
+            for q in data["questions"]:
+                self.assertTrue(str(q.get("explanation", "")).strip(), q["question"][:20])
+                self.assertNotIn("evidence", q["explanation"])
+
+
+class TestStorage(unittest.TestCase):
+    def test_flat_schema(self):
+        total = 0
+        for stem in build_amc.CHAPTERS:
+            with self.subTest(stem=stem):
+                data = load_data(stem)
+                self.assertEqual(data.get("schema"), amcbank.SCHEMA_VERSION)
+                self.assertNotIn("single", data)
+                self.assertNotIn("term", data)
+                self.assertEqual(len(data["questions"]), 46)
+                total += len(data["questions"])
+        self.assertEqual(total, 460)
+
+    def test_ids_are_unique_and_typed(self):
+        seen: set[str] = set()
+        for stem in build_amc.CHAPTERS:
+            for q in load_data(stem)["questions"]:
+                with self.subTest(stem=stem, qid=q["id"]):
+                    m = amcbank.ID_RE.fullmatch(q["id"])
+                    self.assertIsNotNone(m, q["id"])
+                    self.assertEqual(m["stem"], stem)
+                    self.assertEqual(m["kind"], q["type"])
+                    self.assertNotIn(q["id"], seen)
+                    seen.add(q["id"])
+
+    def test_metadata_enums(self):
+        for stem in build_amc.CHAPTERS:
+            for q in load_data(stem)["questions"]:
+                with self.subTest(stem=stem, q=q["id"]):
+                    self.assertIn(q["difficulty"], amcbank.DIFFICULTIES)
+                    self.assertIn(q["bloom"], amcbank.BLOOMS)
+
+    def test_questions_grouped_by_type(self):
+        for stem in build_amc.CHAPTERS:
+            order = [amcbank.KINDS.index(q["type"]) for q in load_data(stem)["questions"]]
+            self.assertEqual(order, sorted(order), f"{stem} 的题型分组被打乱")
+
+    def test_files_are_canonical(self):
+        for stem in build_amc.CHAPTERS:
+            path = build_amc.PAPERS / f"{stem}.json"
+            self.assertEqual(
+                amcbank.dumps(load_data(stem)), path.read_text(encoding="utf-8"), stem
+            )
 
 
 class TestSections(unittest.TestCase):

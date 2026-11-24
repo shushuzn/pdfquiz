@@ -98,6 +98,7 @@ def build_payload(
                 "ch": chapter,
                 "sec": section,
                 "code": _section_of(section),
+                "id": str(q.get("id", "") or ""),
                 "t": qtype,
                 "bloom": str(q.get("bloom", "") or ""),
                 "diff": str(q.get("difficulty", "") or ""),

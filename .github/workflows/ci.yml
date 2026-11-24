@@ -55,6 +55,8 @@ jobs:
           python-version: "3.12"
       - run: python -m pip install ruff
       - run: ruff check .
+      - name: 题库存储格式
+        run: python tools/normalize_amc.py --check
       - name: 题库草稿自检
         run: python tools/check_amc.py
       - name: 隐私检查

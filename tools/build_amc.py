@@ -17,6 +17,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from pdfquiz import amcbank  # noqa: E402
 from pdfquiz.render_html import render_html  # noqa: E402
 from pdfquiz.verify import Report, verify  # noqa: E402
 
@@ -172,7 +173,7 @@ def load_chapters() -> tuple[list[dict], dict[str, str]]:
         f = PAPERS / f"{stem}.json"
         if not f.exists():
             raise SystemExit(f"缺草稿：{f}")
-        data = json.loads(f.read_text(encoding="utf-8"))
+        data = amcbank.load(f)
         data["_stem"] = stem
         chapters.append(data)
         corpora[stem] = (CORPUS / f"{stem}.md").read_text(encoding="utf-8")
@@ -183,20 +184,19 @@ def questions_of(data: dict) -> list[dict]:
     out = []
     chapter = data.get("chapter", "")
     stem = data["_stem"]
-    for kind in ("single", "multiple", "truefalse", "fill", "short", "term"):
-        for q in data.get(kind) or []:
-            item = dict(q)
-            item["type"] = kind
-            slide = str(item.get("ref", ""))
-            item["chunk_path"] = f"{chapter} > {section_of(stem, slide)}"
-            # 侧栏与出处都显示「第 N 页」，比 S12 这种内部编号好读
-            num = re.search(r"(\d+)", slide)
-            item["ref"] = f"第 {num.group(1)} 页" if num else slide
-            item.setdefault("score", SCORE[kind])
-            item["_kind"] = kind
-            item["_chapter"] = chapter
-            item["_stem"] = stem
-            out.append(item)
+    for q in data["questions"]:
+        item = dict(q)
+        kind = item["type"]
+        slide = str(item.get("ref", ""))
+        item["chunk_path"] = f"{chapter} > {section_of(stem, slide)}"
+        # 侧栏与出处都显示「第 N 页」，比 S12 这种内部编号好读
+        num = re.search(r"(\d+)", slide)
+        item["ref"] = f"第 {num.group(1)} 页" if num else slide
+        item.setdefault("score", SCORE[kind])
+        item["_kind"] = kind
+        item["_chapter"] = chapter
+        item["_stem"] = stem
+        out.append(item)
     return out
 
 

@@ -11,34 +11,25 @@
 
 from __future__ import annotations
 
-import json
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from pdfquiz import amcbank  # noqa: E402
 from pdfquiz.verify import Report, check_structure, evidence_ok, squash  # noqa: E402
 
 PAPERS = ROOT / "papers_amc"
 CORPUS = ROOT / "corpus_amc"
 
-KINDS = ("single", "multiple", "truefalse", "fill", "short", "term")
+KINDS = amcbank.KINDS
 MINIMUM = {"single": 6, "multiple": 3, "truefalse": 4, "fill": 4, "short": 3, "term": 5}
 MAXIMUM = {"single": 12, "multiple": 5, "truefalse": 7, "fill": 7, "short": 5, "term": 10}
 
-TYPE_OF = {
-    "single": "single",
-    "multiple": "multiple",
-    "truefalse": "truefalse",
-    "fill": "fill",
-    "short": "short",
-    "term": "term",
-}
-
 
 def load(chapter_file: Path) -> tuple[dict, str]:
-    data = json.loads(chapter_file.read_text(encoding="utf-8"))
+    data = amcbank.load(chapter_file)
     stem = chapter_file.stem  # ch02
     corpus = (CORPUS / f"{stem}.md").read_text(encoding="utf-8")
     return data, corpus
@@ -47,18 +38,15 @@ def load(chapter_file: Path) -> tuple[dict, str]:
 def flatten(data: dict) -> list[dict]:
     out: list[dict] = []
     chapter = data.get("chapter", "")
-    for kind in KINDS:
-        for q in data.get(kind) or []:
-            item = dict(q)
-            item["type"] = TYPE_OF[kind]
-            item.setdefault("chunk_path", f"{chapter} > {item.get('ref', '')}")
-            item["_kind"] = kind
-            out.append(item)
+    for q in data["questions"]:
+        item = dict(q)
+        item.setdefault("chunk_path", f"{chapter} > {item.get('ref', '')}")
+        item["_kind"] = item["type"]
+        out.append(item)
     return out
 
 
-def check(chapter_file: Path) -> Report:
-    data, corpus = load(chapter_file)
+def check(data: dict, corpus: str) -> Report:
     questions = flatten(data)
     report = Report()
     seen: set[str] = set()
@@ -86,15 +74,26 @@ def check(chapter_file: Path) -> Report:
 def main(argv: list[str]) -> int:
     picks = argv[1:] or ["ch01", "ch02", "ch03", "ch04", "ch05", "ch06", "ch07", "ch08", "ch09", "ch10"]
     bad = 0
+    seen_ids: set[str] = set()
     for stem in picks:
         f = PAPERS / f"{stem}.json"
         if not f.exists():
             print(f"缺文件：{f}")
             bad += 1
             continue
-        data, _ = load(f)
-        report = check(f)
-        counts = {k: len(data.get(k) or []) for k in KINDS}
+        try:
+            data, corpus = load(f)
+        except amcbank.BankError as exc:
+            print(f"== {stem}\n   存储格式错误：{exc}")
+            bad += 1
+            continue
+        report = check(data, corpus)
+        counts = amcbank.counts(data)
+        for q in data["questions"]:
+            if q["id"] in seen_ids:
+                print(f"   ✗ 全局重复 id：{q['id']}")
+                bad += 1
+            seen_ids.add(q["id"])
         short = [f"{k} {counts[k]}/{MINIMUM[k]}" for k in KINDS if counts[k] < MINIMUM[k]]
         long = [f"{k} {counts[k]}>{MAXIMUM[k]}" for k in KINDS if counts[k] > MAXIMUM[k]]
         print(f"== {stem} {data.get('chapter','')}")

@@ -61,12 +61,12 @@ pip install -e ".[docling]"       # docling：结构化最好，首次运行需�
 
 ```bash
 pip install -e ".[dev]"
-python -m unittest discover -s tests -v   # 70 项单测
+python -m unittest discover -s tests -v   # 80 项单测
 python tests/smoke_cli.py                 # 端到端冒烟：离线跑一遍 CLI 并检查产物
 ruff check .
 ```
 
-CI 在 GitHub Actions 上跑 Python 3.11–3.14（外加 Windows），包含 lint、题库草稿自检、单测、冒烟、隐私检查，并在干净检出上验证 `docs/` 可重建且无 diff。
+CI 在 GitHub Actions 上跑 Python 3.11–3.14（外加 Windows），包含 lint、题库存储格式与草稿自检、单测、冒烟、隐私检查，并在干净检出上验证 `docs/` 可重建且无 diff。
 
 输出两份：`out/过拟合与正则化.quiz.md`（打印/归档）和 `out/过拟合与正则化.quiz.html`（直接在浏览器打开作答）。
 
@@ -110,7 +110,7 @@ python tools/check_privacy.py
 
 CI 还会在干净检出（没有 `out_*` 目录）上重跑 `tools/build_hub.py`，要求 `docs/` 无 diff，防止手改页面后忘记同步生成逻辑。
 
-`corpus_amc/` 是从课件逐页转出的文字稿（`### S12` 是第 12 张幻灯片），`papers_amc/ch0N.json` 是按题型分组的草稿。`build_amc.py` 会把每条题的 `evidence` 送回对应章节逐字核对，对不上就整批退回、不生成产物——所以这两份文件是这个课程题库唯一的可信来源。
+`corpus_amc/` 是从课件逐页转出的文字稿（`### S12` 是第 12 张幻灯片），`papers_amc/ch0N.json` 是分章草稿。草稿采用 v2 存储：顶层只有 `schema`、`chapter`、`questions`，每道题带显式 `type` 和稳定 `id`（如 `ch04-single-003`），增删题不再靠数组下标认人。`build_amc.py` 会把每条题的 `evidence` 送回对应章节逐字核对，对不上就整批退回、不生成产物——所以这两份文件是这个课程题库唯一的可信来源。改动草稿后跑一次 `python tools/normalize_amc.py` 归一格式，`--check` 模式供 CI 使用。
 
 课程题库目前覆盖十章：第一章至第十章。第八章「传统碳材料」按 77 张幻灯片转录，分活性炭与炭黑两部分。
 
@@ -257,6 +257,7 @@ pdfquiz/
 │   ├── render.py               Markdown 导出
 │   ├── render_html.py          网页题库导出
 │   ├── courses.py              课程注册表读取与页面命名
+│   ├── amcbank.py              分章题库存储格式 v2：扁平 questions / 稳定 ID / 校验
 │   ├── templates/quiz.html     单文件网页模板（内联样式与脚本）
 │   └── cli.py                  命令行
 ├── corpus_amc/                 课件逐页转录稿（ch01–ch10，先进材料研究进展C）
@@ -274,7 +275,8 @@ pdfquiz/
 │   ├── build_materials.py      正文里的材料名 → 中译英默写（配套 materials.tsv）
 │   ├── build_hub.py            课程首页 + 课程页 + 卷子同步
 │   ├── build_amc.py            分章草稿 → 客观题/精练/术语/模拟卷四套题库
-│   ├── check_amc.py            草稿自检：证据逐字回查 + 题型结构 + 题量上下限
+│   ├── check_amc.py            草稿自检：存储格式 + 证据逐字回查 + 题型结构 + 题量上下限
+│   ├── normalize_amc.py        把草稿归一成 v2（补 ID / 分组 / 枚举），支持 --check
 │   ├── extract_notes.py        抽 Notes 句子与教材原译
 │   └── restyle.py              用最新模板重渲染已有题库，不重跑解析
 ├── pyproject.toml              打包 / 依赖 / ruff / console script
@@ -282,7 +284,8 @@ pdfquiz/
 │   ├── test_pipeline.py        17 项单测（切块 / 溯源 / 结构 / 渲染）
 │   ├── test_booktext.py        16 项单测（页标记 / 切句 / 跨页 evidence）
 │   ├── test_courses.py         9 项课程注册表与页面生成测试
-│   ├── test_amc.py             10 项分章题库测试（证据回查 / 章节分组 / 满分 100）
+│   ├── test_amc.py             15 项分章题库测试（存储格式 / 证据回查 / 章节分组 / 满分 100）
+│   ├── test_amcbank.py         5 项存储格式测试（v1 迁移 / ID 保留 / 非法结构拒绝）
 │   ├── smoke_cli.py            端到端冒烟：离线跑 CLI 并检查产物结构
 │   ├── fake_mcp_server.py      假 MCP 服务器，内含 1 道伪造题
 │   └── web/
