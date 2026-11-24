@@ -289,7 +289,7 @@ pdfquiz/
 │   ├── smoke_cli.py            端到端冒烟：离线跑 CLI 并检查产物结构
 │   ├── fake_mcp_server.py      假 MCP 服务器，内含 1 道伪造题
 │   └── web/
-│       ├── functional.mjs      前端功能测试（判分 / 自评 / 无异常）
+│       ├── functional.mjs      前端功能测试（判分 / 自评 / 进度存储 / 无异常）
 │       ├── mobile.mjs          移动端交互测试（吸底 / 自增高 / 横滑 / 题号面板）
 │       └── shots.mjs           批量截图
 └── samples/
@@ -306,11 +306,12 @@ python -m unittest discover -s tests -v
 前端测试直接驱动真实浏览器（本机 Edge / Chrome 以 `--remote-debugging-port=9222` 启动，用 Node 内置 WebSocket 走 CDP，无额外依赖）：
 
 ```bash
-node tests/web/functional.mjs "file:///$PWD/docs/exam_a.html" 69   # 判分链路，按题库题型取舍
-node tests/web/mobile.mjs     "file:///$PWD/docs/exam_a.html"      # 移动端交互 13 项
+node tests/web/functional.mjs "file:///$PWD/docs/amc-objective.html" 240  # 判分链路，按题库题型取舍
+node tests/web/functional.mjs "file:///$PWD/docs/amc-practice.html" 120
+node tests/web/mobile.mjs     "file:///$PWD/docs/amc-objective.html"      # 移动端交互 11 项
 ```
 
-`functional.mjs` 按题库里实际存在的题型挑用例：教材卷覆盖术语精确比对与主观题自评，`docs/objective.html` 覆盖单选与填空判分，示例卷（`docs/demo.html`）覆盖多选与判断，缺哪类就跳过哪类，不会误报。
+`functional.mjs` 按题库里实际存在的题型挑用例：客观题卷覆盖单选、判断与多选判分，精练卷覆盖填空精确比对与主观题自评，缺哪类就跳过哪类，不会误报。它还检查答题进度按题目 ID 落盘，并伪造一份旧版按数组下标保存的进度，要求页面自动作废旧记录、提示重做，之后同一道多选题仍能正常确认提交。
 
 移动端那组用 CDP 的 `Input.dispatchTouchEvent` 真发触摸事件，断言底栏吸底、聚焦时收栏、文本框自增高、横滑翻页两个方向、题号面板分组与跳转、字号三档持久化、抽屉不再嵌套滚动。
 

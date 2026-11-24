@@ -62,12 +62,15 @@ const ok = (name, pass, detail) => {
 };
 const skip = (name, why) => console.log("– " + name + "  跳过（" + why + "）");
 
-/* 清掉某道题的作答记录并刷新，用于同一道题反复判对/判错 */
+/* 清掉某道题的作答记录并刷新，用于同一道题反复判对/判错。
+   进度按题目 id 存，只有老题库才回退到下标。 */
 const resetOne = async (idx) => {
   await evaluate(`(() => {
     const k = 'pdfquiz:' + (window.__QUIZ__.meta.id || 'deck');
     const raw = JSON.parse(localStorage.getItem(k) || '{}');
-    if (raw.answers) delete raw.answers[${idx}];
+    const q = window.__QUIZ__.questions[${idx}];
+    const key = q && q.id ? q.id : String(${idx});
+    if (raw.answers) delete raw.answers[key];
     localStorage.setItem(k, JSON.stringify(raw));
   })()`);
   await send("Page.reload");
@@ -196,7 +199,69 @@ const stats = await evaluate(`(() => {
 })()`);
 ok("统计口径一致", stats.consistent, `已完成 ${stats.ring} = 对 ${stats.okN} + 错 ${stats.badN}，未做 ${stats.left}，共 ${stats.n}`);
 
-// ---- 6. JS 无异常
+// ---- 6. 进度按题目 ID 保存；题库换题后旧下标进度必须自动作废
+const allIds = await evaluate("window.__QUIZ__.questions.every(q=>q.id)");
+if (allIds) {
+  const idx = await evaluate(`(() => {
+    const qs = window.__QUIZ__.questions;
+    const m = qs.findIndex(q => q.t === 'multiple');
+    return m >= 0 ? m : qs.findIndex(q => q.t === 'single' || q.t === 'truefalse');
+  })()`);
+  if (idx >= 0) {
+    await resetOne(idx);
+    const q = await evaluate(`window.__QUIZ__.questions[${idx}]`);
+    const answerJs = q.t === "multiple"
+      ? q.a.map((l) => `node.querySelector('.opt[data-l="${l}"]').click();`).join("") +
+        `node.querySelector('[data-act="confirm"]').click();`
+      : `node.querySelector('.opt[data-l="${q.a[0]}"]').click();`;
+
+    await answerBy(idx, answerJs);
+    await sleep(300);
+    const before = await evaluate(`(() => {
+      const k = 'pdfquiz:' + window.__QUIZ__.meta.id;
+      const raw = JSON.parse(localStorage.getItem(k) || '{}');
+      const keys = Object.keys(raw.answers || {});
+      return { key: window.__QUIZ__.questions[${idx}].id, keys, numeric: keys.filter(x => /^\\d+$/.test(x)), sig: raw.sig || '' };
+    })()`);
+    ok("进度按题目 ID 保存", before.keys.includes(before.key) && before.numeric.length === 0 && !!before.sig,
+      `键=${before.keys.join(",") || "空"} 签名=${before.sig || "无"}`);
+
+    // 伪造一份旧版进度：数组下标当键、没有签名
+    await evaluate(`(() => {
+      const k = 'pdfquiz:' + window.__QUIZ__.meta.id;
+      const raw = JSON.parse(localStorage.getItem(k) || '{}');
+      raw.answers = { '0': { picked: ['A'], graded: true } };
+      raw.marked = [0];
+      raw.sig = 'stale';
+      localStorage.setItem(k, JSON.stringify(raw));
+    })()`);
+    await send("Page.reload");
+    await sleep(1200);
+
+    const after = await evaluate(`(() => {
+      const k = 'pdfquiz:' + window.__QUIZ__.meta.id;
+      const raw = JSON.parse(localStorage.getItem(k) || '{}');
+      const t = document.querySelector('#toast');
+      return {
+        keys: Object.keys(raw.answers || {}),
+        marked: raw.marked || [],
+        sig: raw.sig || '',
+        toast: t && t.classList.contains('show') ? t.textContent.trim() : ''
+      };
+    })()`);
+    ok("旧下标进度自动作废", after.keys.length === 0 && after.marked.length === 0 && after.sig === before.sig,
+      `答案=${after.keys.length} 标记=${after.marked.length} 提示=${after.toast || "无"}`);
+
+    const r = await answerBy(idx, answerJs);
+    ok("作废后可重新作答", /verdict ok/.test(r.cls), r.txt);
+  } else {
+    skip("进度存储", "题库无单选题/多选题");
+  }
+} else {
+  skip("进度存储", "题库未带题目 ID");
+}
+
+// ---- 7. JS 无异常
 ok("无 JS 异常", problems.length === 0, problems.slice(0, 3).join(" | "));
 
 console.log("\n通过 " + results.filter((r) => r.pass).length + "/" + results.length);
