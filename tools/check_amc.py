@@ -11,6 +11,7 @@
 
 from __future__ import annotations
 
+import re
 import sys
 from pathlib import Path
 
@@ -27,6 +28,13 @@ KINDS = amcbank.KINDS
 MINIMUM = {"single": 6, "multiple": 3, "truefalse": 4, "fill": 4, "short": 3, "term": 5}
 MAXIMUM = {"single": 12, "multiple": 5, "truefalse": 7, "fill": 7, "short": 5, "term": 10}
 BAD_PUNCT = ("，，", "。。", "；；", "、、")
+# 这些写法在没有上下标的纯文本里会把化学式和指数读错，题干/选项/答案/解析里一律拒绝
+ASCII_FORMULA = re.compile(
+    r"(?:cm3|g/cm3|m2/g|kg-1|Fg-1|CO2|H2O|O2|N2|H2SO4|Li2O2|Na2CO3|Fe3O4|"
+    r"Li4Ti5O12|Li7Ti5O12|Li4\.4Si|V2O5|Mn3O4|MnO2|RuO2|Ni\(OH\)2|LiCoO2|"
+    r"LiMn2O4|LiC6|LixC|LixFePO4|C60|C70|C960|C141|C50Cl10|K3C60|Et4NBF4|"
+    r"Ru1-xGrxO2|Fe3\+|Fe2\+|OH-|Li\+|e-|Pb2\+|Cd2\+|Cu2\+|R4P\+|104~106|10-24)"
+)
 
 
 def explanation_ok(explanation: str, evidence: str) -> tuple[bool, str]:
@@ -41,6 +49,24 @@ def explanation_ok(explanation: str, evidence: str) -> tuple[bool, str]:
         return False, "explanation 不要用「课件」指代来源"
     if squash(text) == squash(evidence):
         return False, "explanation 不能照抄 evidence"
+    return True, ""
+
+
+def notation_ok(question: dict) -> tuple[bool, str]:
+    """上下标写错会直接改变化学式含义，展示字段里不允许残留 ASCII 写法。"""
+    texts = [question.get("question", ""), question.get("explanation", "")]
+    texts += question.get("options") or []
+    answer = question.get("answer")
+    if isinstance(answer, str):
+        texts.append(answer)
+    elif isinstance(answer, list):
+        texts += [str(x) for x in answer]
+    for key in question.get("keys") or []:
+        texts += [key.get("en", ""), key.get("cn", "")]
+    for text in texts:
+        hit = ASCII_FORMULA.search(str(text))
+        if hit:
+            return False, f"「{hit.group(0)}」请写成 Unicode 上下标或 <sub>/<sup>"
     return True, ""
 
 
@@ -77,6 +103,8 @@ def check(data: dict, corpus: str) -> Report:
             ok, why = False, "缺 explanation（错在哪、依据哪句）"
         if ok:
             ok, why = explanation_ok(q.get("explanation", ""), q.get("evidence", ""))
+        if ok:
+            ok, why = notation_ok(q)
         if ok:
             key = squash(q.get("question", ""))
             if key in seen:

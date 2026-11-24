@@ -267,6 +267,9 @@ button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;tou
   padding:1px 5px;border-radius:5px;border:1px solid var(--line);
 }
 .blank{display:inline-block;width:3.4em;border-bottom:1.5px solid var(--line2);vertical-align:-.12em;margin:0 .18em}
+/* 上下标：题干、选项、解析里都可能出现化学式与指数 */
+.stem sup,.opt .txt sup,.ans-row .v sup,.key-row sup,.sheet sup,.wrong-item .qt sup{font-size:.72em;line-height:0;vertical-align:super}
+.stem sub,.opt .txt sub,.ans-row .v sub,.key-row sub,.sheet sub,.wrong-item .qt sub{font-size:.72em;line-height:0;vertical-align:sub}
 
 /* options */
 .opts{display:flex;flex-direction:column;gap:9px}
@@ -1054,6 +1057,23 @@ blockquote.ev::before{
     return String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
   }
 
+  /* 上下标：先转义再只放行 sup/sub 两个固定标签，既支持 <sub>2</sub>，
+     也支持 CO_{2}、10^{24} 这类写法；标签属性会被当成普通文字，不会执行。 */
+  function rich(s) {
+    return esc(s)
+      .replace(/&lt;(\/?)(sup|sub)&gt;/g, "<$1$2>")
+      .replace(/\^\{([^{}]*)\}/g, "<sup>$1</sup>")
+      .replace(/_\{([^{}]*)\}/g, "<sub>$1</sub>");
+  }
+
+  /* 导出错题本时用纯文本，不把上下标标签带进 Markdown */
+  function plain(s) {
+    return String(s == null ? "" : s)
+      .replace(/<\/?(?:sup|sub)>/g, "")
+      .replace(/\^\{([^{}]*)\}/g, "$1")
+      .replace(/_\{([^{}]*)\}/g, "$1");
+  }
+
   function questionHTML(q) {
     const tags = [
       '<span class="tag t">' + (TYPE_CN[q.t] || "题目") + "</span>",
@@ -1067,7 +1087,7 @@ blockquote.ev::before{
         q.o.map((o, k) =>
           '<button class="opt" data-i="' + q.i + '" data-l="' + LTR[k] + '" role="' + (q.t === "single" ? "radio" : "checkbox") + '" aria-checked="false">' +
             '<span class="ltr">' + LTR[k] + "</span>" +
-            '<span class="txt">' + esc(o) + "</span>" +
+            '<span class="txt">' + rich(o) + "</span>" +
             '<span class="flag"></span>' +
           "</button>").join("") + "</div>";
     } else if (q.t === "truefalse") {
@@ -1112,13 +1132,13 @@ blockquote.ev::before{
     const answerHTML = q.t === "truefalse"
       ? "<b>" + (q.a[0] === "T" ? "正确" : "错误") + "</b>"
       : q.t === "single"
-        ? "<b>" + q.a[0] + (q.o[LTR.indexOf(q.a[0])] ? "　" + esc(q.o[LTR.indexOf(q.a[0])]) : "") + "</b>"
+        ? "<b>" + q.a[0] + (q.o[LTR.indexOf(q.a[0])] ? "　" + rich(q.o[LTR.indexOf(q.a[0])]) : "") + "</b>"
         : q.t === "multiple"
           ? "<b>" + q.a.join(" ") + "</b>" + q.a.map((l) => {
               const k = LTR.indexOf(l);
-              return q.o[k] ? '<span class="alt"><i>' + l + "</i>" + esc(q.o[k]) + "</span>" : "";
+              return q.o[k] ? '<span class="alt"><i>' + l + "</i>" + rich(q.o[k]) + "</span>" : "";
             }).join("")
-          : longAns ? esc(q.a[0]) : "<b>" + esc(q.a[0]) + "</b>";
+          : longAns ? rich(q.a[0]) : "<b>" + rich(q.a[0]) + "</b>";
 
     const ansLabel = q.t === "trans_en_cn" ? "参考译文"
       : q.t === "trans_cn_en" ? "参考英文"
@@ -1131,8 +1151,8 @@ blockquote.ev::before{
       ? '<div class="keys">' +
           '<div class="keys-h">采分点 · 关键词必须会写</div>' +
           q.keys.map((k) =>
-            '<div class="key-row"><span class="ke">' + esc(k.en) + "</span>" +
-            (k.cn ? '<span class="kc">' + esc(k.cn) + "</span>" : "") + "</div>").join("") +
+            '<div class="key-row"><span class="ke">' + rich(k.en) + "</span>" +
+            (k.cn ? '<span class="kc">' + rich(k.cn) + "</span>" : "") + "</div>").join("") +
         "</div>"
       : "";
 
@@ -1142,12 +1162,12 @@ blockquote.ev::before{
         '<button class="mark-btn" data-act="mark" data-i="' + q.i + '" aria-pressed="false" title="标记本题 (M)">' +
           '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12v18l-6-4-6 4z"/></svg>标记</button>' +
       "</div>" +
-      '<div class="stem">' + esc(q.q).replace(/＿{2,}/g, '<span class="blank"></span>') + "</div>" + body + actions +
+      '<div class="stem">' + rich(q.q).replace(/＿{2,}/g, '<span class="blank"></span>') + "</div>" + body + actions +
       '<div class="verdict" aria-live="polite"></div>' +
       '<div class="ans">' +
         '<div class="ans-row"><span class="k">' + ansLabel + '</span><span class="v">' + answerHTML + "</span></div>" +
         keysHTML +
-        (q.exp ? '<div class="ans-row"><span class="k">解析</span><span class="v">' + esc(q.exp) + "</span></div>" : "") +
+        (q.exp ? '<div class="ans-row"><span class="k">解析</span><span class="v">' + rich(q.exp) + "</span></div>" : "") +
         (q.ev ? '<blockquote class="ev">' + esc(q.ev) + "</blockquote>" : "") +
         (q.ref ? '<div class="src">出处 · ' + esc(q.ref) + "</div>" : "") +
       "</div>" +
@@ -1688,7 +1708,7 @@ blockquote.ev::before{
             '<button class="wrong-item" data-jump="' + q.i + '">' +
               '<span class="n">' + String(q.n).padStart(2, "0") + "</span>" +
               '<span class="qt"><i class="tk">' + (TYPE_CN[q.t] || "") + "</i>" +
-                esc(q.t === "term" && !isExplainTerm(q) ? q.q + " → 英文术语" : q.q) + "</span></button>").join("") +
+                rich(q.t === "term" && !isExplainTerm(q) ? q.q + " → 英文术语" : q.q) + "</span></button>").join("") +
           "</div></div>"
         : '<div class="res-sec"><h3>需要回看的题</h3><div class="empty" style="padding:28px 0"><b>全部正确</b>这一份可以过了。</div></div>') +
       '<div class="res-actions">' +
@@ -1736,7 +1756,7 @@ blockquote.ev::before{
     list.forEach((q) => {
       const a = ans(q.i) || {};
       L.push("## " + String(q.n).padStart(2, "0") + " · " + (TYPE_CN[q.t] || q.t) + " · " + q.sec, "");
-      L.push("**题目** " + q.q, "");
+      L.push("**题目** " + plain(q.q), "");
       if (isExplainTerm(q) || SUBJECTIVE[q.t]) {
         L.push("- 你的作答：" + (String(a.text || "").trim() || "（未写）"));
       } else if (q.t === "term" || q.t === "fill") {
@@ -1744,10 +1764,10 @@ blockquote.ev::before{
       } else {
         L.push("- 你的选择：" + ((a.picked || []).join("") || "（未选）"));
       }
-      L.push("- " + (isExplainTerm(q) ? "参考释义" : "参考答案") + "：" + (q.a || []).join(" / "));
+      L.push("- " + (isExplainTerm(q) ? "参考释义" : "参考答案") + "：" + (q.a || []).map(plain).join(" / "));
       if (a && a.pending) L.push("- 状态：待自评");
       if (q.keys && q.keys.length) {
-        L.push("- 采分点：" + q.keys.map((k) => k.en + (k.cn ? "（" + k.cn + "）" : "")).join("；"));
+        L.push("- 采分点：" + q.keys.map((k) => plain(k.en) + (k.cn ? "（" + plain(k.cn) + "）" : "")).join("；"));
       }
       if (q.ref) L.push("- 出处：" + q.ref);
       if (q.ev) L.push("- 原文依据：" + q.ev);

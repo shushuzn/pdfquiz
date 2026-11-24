@@ -18,7 +18,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "tools"))
 
 import build_amc  # noqa: E402
-from check_amc import explanation_ok  # noqa: E402
+from check_amc import explanation_ok, notation_ok  # noqa: E402
 from pdfquiz import amcbank  # noqa: E402
 from pdfquiz.courses import find_course, load_courses  # noqa: E402
 from pdfquiz.verify import evidence_ok  # noqa: E402
@@ -84,6 +84,25 @@ class TestExplanationQuality(unittest.TestCase):
     def test_accepts_real_explanation(self):
         text = "A 把充电和放电的方向说反了；B 与原文的层间距数据不符，C 则混淆了硬碳与石墨。"
         ok, why = explanation_ok(text, "硬碳的层间距大于石墨。")
+        self.assertTrue(ok, why)
+
+
+class TestNotation(unittest.TestCase):
+    def test_rejects_ascii_formula(self):
+        for text in ("CO2 还原", "密度 2.26 g/cm3", "Li+ 嵌入", "C60 分子", "10-24"):
+            with self.subTest(text=text):
+                ok, why = notation_ok({"question": text})
+                self.assertFalse(ok, text)
+                self.assertIn("上下标", why)
+
+    def test_accepts_unicode_and_markup(self):
+        for text in ("CO₂ 还原", "密度 2.26 g/cm³", "Li⁺ 嵌入", "C₆₀ 分子", "10<sup>-24</sup>", "CO_{2}"):
+            with self.subTest(text=text):
+                ok, why = notation_ok({"question": text})
+                self.assertTrue(ok, why)
+
+    def test_ignores_evidence(self):
+        ok, why = notation_ok({"question": "CO₂", "evidence": "原文写 CO2 与 cm3"})
         self.assertTrue(ok, why)
 
 

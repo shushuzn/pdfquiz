@@ -497,7 +497,34 @@ if (allIds) {
   skip("进度存储", "题库未带题目 ID");
 }
 
-// ---- 7. JS 无异常
+// ---- 7. 上下标
+try {
+  const notation = await evaluate(`(() => {
+    const q = window.__QUIZ__.questions[0];
+    const before = q.q;
+    q.q = "测试 H<sub>2</sub>O、10^{24}、CO_{2}<sup>3</sup><img src=x onerror=window.__pwn=1>";
+    const stage = document.querySelector('#stage');
+    stage.innerHTML = '';
+    document.querySelector('#scope button[data-scope="all"]').click();
+    const stem = document.querySelector('#stage .q[data-i="0"] .stem');
+    const out = {
+      subs: stem.querySelectorAll('sub').length,
+      sups: stem.querySelectorAll('sup').length,
+      img: stem.querySelectorAll('img').length,
+      text: stem.textContent,
+      pwn: window.__pwn
+    };
+    q.q = before;
+    return out;
+  })()`);
+  ok("上下标渲染", notation.subs === 2 && notation.sups === 2 && notation.img === 0 &&
+    notation.text.includes("H2O") && notation.text.includes("1024") && notation.pwn === undefined,
+    `sub=${notation.subs} sup=${notation.sups} 注入=${notation.img}`);
+} catch (e) {
+  ok("上下标渲染", false, String(e).slice(0, 120));
+}
+
+// ---- 8. JS 无异常
 ok("无 JS 异常", problems.length === 0, problems.slice(0, 3).join(" | "));
 
 console.log("\n通过 " + results.filter((r) => r.pass).length + "/" + results.length);
