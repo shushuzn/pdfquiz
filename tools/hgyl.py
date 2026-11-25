@@ -84,13 +84,25 @@ SECTIONS: dict[str, list[tuple[int, str]]] = {
     ],
 }
 
-# 每章题型下限，低于它 check 直接判不合格；绪论只有 4 页，单独放宽
-MINIMUM = {"single": 8, "multiple": 2, "truefalse": 4, "fill": 2, "short": 1, "term": 4}
-MIN_OVERRIDE = {"ch00": {"single": 4, "multiple": 1, "truefalse": 3, "fill": 1, "short": 1, "term": 3}}
-MAXIMUM = {"single": 20, "multiple": 6, "truefalse": 12, "fill": 8, "short": 6, "term": 14}
+# 每章题型目标：check 以此判合格，build 从这里取题量。目标按页数与知识密度分配，
+# 全书 504 题；绪论只有 4 页，单独定小目标。
+TARGETS: dict[str, dict[str, int]] = {
+    "ch00": {"single": 6, "multiple": 1, "truefalse": 4, "fill": 1, "short": 1, "term": 3},
+    "ch01": {"single": 32, "multiple": 8, "truefalse": 19, "fill": 8, "short": 5, "term": 16},
+    "ch02": {"single": 15, "multiple": 4, "truefalse": 9, "fill": 4, "short": 3, "term": 7},
+    "ch03": {"single": 25, "multiple": 6, "truefalse": 16, "fill": 6, "short": 4, "term": 13},
+    "ch04": {"single": 13, "multiple": 3, "truefalse": 8, "fill": 3, "short": 2, "term": 7},
+    "ch05": {"single": 24, "multiple": 6, "truefalse": 15, "fill": 6, "short": 4, "term": 13},
+    "ch06": {"single": 25, "multiple": 6, "truefalse": 16, "fill": 6, "short": 4, "term": 13},
+    "ch07": {"single": 18, "multiple": 4, "truefalse": 11, "fill": 4, "short": 3, "term": 10},
+    "ch08": {"single": 23, "multiple": 6, "truefalse": 14, "fill": 6, "short": 4, "term": 11},
+}
+
+# 单章题型上限：防止某一章塞得太满、其他章没题
+MAXIMUM = {"single": 40, "multiple": 12, "truefalse": 26, "fill": 12, "short": 8, "term": 22}
 
 
 def minimum(stem: str) -> dict[str, int]:
-    return {**MINIMUM, **MIN_OVERRIDE.get(stem, {})}
+    return dict(TARGETS[stem])
 
 SCORE = {"single": 2, "multiple": 3, "truefalse": 2, "fill": 2, "short": 8, "term": 2}

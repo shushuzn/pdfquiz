@@ -61,7 +61,7 @@ pip install -e ".[docling]"       # docling：结构化最好，首次运行需�
 
 ```bash
 pip install -e ".[dev]"
-python -m unittest discover -s tests -v   # 102 项单测
+python -m unittest discover -s tests -v   # 103 项单测
 python tests/smoke_cli.py                 # 端到端冒烟：离线跑一遍 CLI 并检查产物
 ruff check .
 ```
@@ -297,7 +297,7 @@ pdfquiz/
 │   ├── test_courses.py         18 项课程注册表与页面生成测试
 │   ├── test_amc.py             23 项分章题库测试（存储格式 / 证据回查 / 解释质量 / 上下标 / 章节分组 / 满分 100）
 │   ├── test_amcbank.py         6 项存储格式测试（v1 迁移 / ID 保留 / 术语 mode 校验 / 非法结构拒绝）
-│   ├── test_hgyl.py            10 项化工原理测试：章节配置 / 量纲上下标 / 题量下限 / 证据回查（缺语料自动跳过）
+│   ├── test_hgyl.py            11 项化工原理测试：章节配置 / 量纲上下标 / 题量下限 / 证据逐字与页码回查（缺语料自动跳过）
 │   ├── smoke_cli.py            端到端冒烟：离线跑 CLI 并检查产物结构
 │   ├── fake_mcp_server.py      假 MCP 服务器，内含 1 道伪造题
 │   └── web/

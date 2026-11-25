@@ -17,7 +17,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 import build_hgyl  # noqa: E402
 import hgyl  # noqa: E402
-from check_hgyl import notation_ok  # noqa: E402
+from check_hgyl import notation_ok, page_ok, page_texts  # noqa: E402
 from pdfquiz import amcbank  # noqa: E402
 from pdfquiz.courses import find_course, load_courses  # noqa: E402
 from pdfquiz.verify import evidence_ok  # noqa: E402
@@ -94,6 +94,16 @@ class TestDrafts(unittest.TestCase):
             for q in load(stem)["questions"]:
                 with self.subTest(stem=stem, q=q["question"][:18]):
                     ok, why = evidence_ok(q["evidence"], corpus)
+                    self.assertTrue(ok, f"{stem} {q['id']} —— {why}")
+
+    @unittest.skipUnless(HAS_CORPUS, "教材语料不入库")
+    def test_evidence_on_claimed_page(self):
+        for stem in hgyl.ORDER:
+            corpus = (build_hgyl.CORPUS / f"{stem}.md").read_text(encoding="utf-8")
+            pages = page_texts(corpus)
+            for q in load(stem)["questions"]:
+                with self.subTest(stem=stem, q=q["question"][:18]):
+                    ok, why = page_ok(q, pages)
                     self.assertTrue(ok, f"{stem} {q['id']} —— {why}")
 
     @unittest.skipUnless(HAS_CORPUS, "教材语料不入库")

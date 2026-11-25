@@ -58,6 +58,24 @@ def notation_ok(question: dict) -> tuple[bool, str]:
     return True, ""
 
 
+def page_texts(corpus: str) -> dict[int, str]:
+    parts = re.split(r"^### p(\d+)\s*$", corpus, flags=re.M)
+    return {int(parts[i]): squash(parts[i + 1]) for i in range(1, len(parts), 2)}
+
+
+def page_ok(question: dict, pages: dict[int, str]) -> tuple[bool, str]:
+    """ref 必须与 evidence 所在页一致：站点上写着「第 123 页」，翻过去就得有这句。"""
+    m = re.search(r"(\d+)", str(question.get("ref", "")))
+    if not m:
+        return False, "ref 缺页码"
+    page = int(m.group(1))
+    if page not in pages:
+        return False, f"ref 指向 P{page}，语料里没有这一页"
+    if squash(question.get("evidence", "")) not in pages[page]:
+        return False, f"evidence 不在 P{page} 上（ref 与原文页不一致）"
+    return True, ""
+
+
 def flatten(data: dict) -> list[dict]:
     out = []
     chapter = data.get("chapter", "")
@@ -72,12 +90,15 @@ def flatten(data: dict) -> list[dict]:
 def check(data: dict, corpus: str) -> Report:
     report = Report()
     seen: set[str] = set()
+    pages = page_texts(corpus)
 
     for q in flatten(data):
         kind = q["_kind"]
         ok, why = check_structure(q)
         if ok:
             ok, why = evidence_ok(q.get("evidence", ""), corpus)
+        if ok:
+            ok, why = page_ok(q, pages)
         if ok and not str(q.get("explanation", "")).strip():
             ok, why = False, "缺 explanation（错在哪、依据哪句）"
         if ok:
