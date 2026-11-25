@@ -61,7 +61,7 @@ pip install -e ".[docling]"       # docling：结构化最好，首次运行需�
 
 ```bash
 pip install -e ".[dev]"
-python -m unittest discover -s tests -v   # 106 项单测
+python -m unittest discover -s tests -v   # 108 项单测
 python tests/smoke_cli.py                 # 端到端冒烟：离线跑一遍 CLI 并检查产物
 ruff check .
 ```
@@ -97,6 +97,8 @@ python tools/build_hub.py --course polymer-en   # 只重建一门课
 ```
 
 课程页同时充当元数据缓存：某门课的 `out_*/decks.json` 缺失时（例如 `out_exam/` 依赖未公开的 `.units/`），`build_hub.py` 会从既有的 `docs/<课程>.html` 反推卷子 id、题数、分值与题型，再重建首页。这样重新生成站点不会因为缺一份生成物就整门课消失。
+
+首页和课程页的题数按题库去重统计：模拟卷、客观题、精练、术语之间会复用同一道题，把各套 `count` 直接相加会把同一道题算好几次。`build_hub.py` 读取页面里内嵌的题目，按题干、选项和答案做指纹去重，页面同时标注「套内合计」，两个口径对得上。
 
 ### 发布前检查
 
@@ -296,7 +298,7 @@ pdfquiz/
 ├── tests/
 │   ├── test_pipeline.py        19 项单测（切块 / 溯源 / 结构 / 渲染）
 │   ├── test_booktext.py        16 项单测（页标记 / 切句 / 跨页 evidence）
-│   ├── test_courses.py         18 项课程注册表与页面生成测试
+│   ├── test_courses.py         20 项课程注册表与页面生成测试
 │   ├── test_amc.py             23 项分章题库测试（存储格式 / 证据回查 / 解释质量 / 上下标 / 章节分组 / 满分 100）
 │   ├── test_amcbank.py         6 项存储格式测试（v1 迁移 / ID 保留 / 术语 mode 校验 / 非法结构拒绝）
 │   ├── test_hgyl.py            14 项化工原理测试：章节配置 / 量纲上下标 / 题量下限 / 证据逐字与页码回查 / 配额与节题量（缺语料自动跳过）

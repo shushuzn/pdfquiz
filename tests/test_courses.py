@@ -150,6 +150,21 @@ class TestDeckFallback(unittest.TestCase):
         (tmp / "docs").mkdir()
         return tmp
 
+    def test_bank_total_dedupes_shared_questions(self):
+        root = self.make_root()
+
+        def page(*stems: str) -> str:
+            qs = [{"t": "single", "q": s, "o": ["A", "B"], "a": ["A"]} for s in stems]
+            return ("<script>window.__QUIZ__ = "
+                    + json.dumps({"questions": qs}, ensure_ascii=False)
+                    + ";</script>")
+
+        (root / "docs" / "exam_a.html").write_text(page("q1", "q2"), encoding="utf-8")
+        (root / "docs" / "terms.html").write_text(page("q2", "q3"), encoding="utf-8")
+        self.assertEqual(build_hub.bank_total(COURSE, DECKS, root / "docs"), 3)
+        # 卷子页面缺失时不能瞎猜，返回 None 让调用方退回旧口径
+        self.assertIsNone(build_hub.bank_total(COURSE, DECKS, root / "docs" / "nope"))
+
     def test_course_page_roundtrip(self):
         page = build_hub.render_course(COURSE, DECKS)
         parsed = build_hub.parse_decks(page, COURSE)
@@ -215,8 +230,24 @@ class TestCommittedSite(unittest.TestCase):
                     index, re.S)
                 self.assertIsNotNone(card, f"{course['id']} 未出现在首页")
                 total = sum(d["count"] for d in decks)
+                unique = build_hub.bank_total(course, decks)
+                count = total if unique is None else unique
                 self.assertIn(f"<b>{len(decks)}</b> 套", card.group(1))
-                self.assertIn(f"<b>{total}</b> 题", card.group(1))
+                self.assertIn(f"<b>{count}</b> 题", card.group(1))
+
+    def test_course_page_reports_unique_bank(self):
+        """课程页的「题库 N 题」必须是去重后的题数，不是各套简单相加。"""
+        for course in load_courses(ROOT):
+            page_name = course_page(course)
+            page = ROOT / "docs" / page_name
+            if not page.exists():
+                continue
+            decks = build_hub.parse_decks(page.read_text(encoding="utf-8"), course)
+            unique = build_hub.bank_total(course, decks)
+            if unique is None:
+                continue
+            with self.subTest(course=course["id"]):
+                self.assertIn(f"题库 {unique} 题", page.read_text(encoding="utf-8"))
 
 
 if __name__ == "__main__":
