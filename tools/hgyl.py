@@ -84,22 +84,79 @@ SECTIONS: dict[str, list[tuple[int, str]]] = {
     ],
 }
 
-# 每章题型目标：check 以此判合格，build 从这里取题量。目标按页数与知识密度分配，
-# 全书 504 题；绪论只有 4 页，单独定小目标。
-TARGETS: dict[str, dict[str, int]] = {
-    "ch00": {"single": 6, "multiple": 1, "truefalse": 4, "fill": 1, "short": 1, "term": 3},
-    "ch01": {"single": 32, "multiple": 8, "truefalse": 19, "fill": 8, "short": 5, "term": 16},
-    "ch02": {"single": 15, "multiple": 4, "truefalse": 9, "fill": 4, "short": 3, "term": 7},
-    "ch03": {"single": 25, "multiple": 6, "truefalse": 16, "fill": 6, "short": 4, "term": 13},
-    "ch04": {"single": 13, "multiple": 3, "truefalse": 8, "fill": 3, "short": 2, "term": 7},
-    "ch05": {"single": 24, "multiple": 6, "truefalse": 15, "fill": 6, "short": 4, "term": 13},
-    "ch06": {"single": 25, "multiple": 6, "truefalse": 16, "fill": 6, "short": 4, "term": 13},
-    "ch07": {"single": 18, "multiple": 4, "truefalse": 11, "fill": 4, "short": 3, "term": 10},
-    "ch08": {"single": 23, "multiple": 6, "truefalse": 14, "fill": 6, "short": 4, "term": 11},
+# 配额策略：题量由教材页数、节数和题型配比算出，不再逐章手改。
+# 调 density 或 mix，所有章的目标一起变；新增章节只要登记页范围就自动纳入。
+QUOTA = {
+    "density": 1.5,  # 每印刷页目标题数
+    "section_min": 8,  # 每节至少题数（习题与附录除外）
+    "mix": {  # 题型配比，总和 100
+        "single": 36,
+        "multiple": 9,
+        "truefalse": 22,
+        "fill": 9,
+        "short": 7,
+        "term": 17,
+    },
+    # 页数极少的章按密度算会偏少，给知识密度保底
+    "chapter_floor": {"ch00": 16, "ch04": 36},
+    # 答案分布：判断题正确率区间，防止整章都是「错」而被猜中
+    "answer": {"truefalse_true": (0.40, 0.60)},
 }
 
+APPENDIX = "习题与附录"
+BOOK_LAST_PAGE = 425
+
 # 单章题型上限：防止某一章塞得太满、其他章没题
-MAXIMUM = {"single": 40, "multiple": 12, "truefalse": 26, "fill": 12, "short": 8, "term": 22}
+MAXIMUM = {"single": 60, "multiple": 16, "truefalse": 36, "fill": 16, "short": 12, "term": 30}
+
+
+def chapter_pages(stem: str) -> int:
+    i = ORDER.index(stem)
+    start = CHAPTERS[stem][1]
+    end = CHAPTERS[ORDER[i + 1]][1] - 1 if i + 1 < len(ORDER) else BOOK_LAST_PAGE
+    return end - start + 1
+
+
+def sections(stem: str) -> list[str]:
+    return [name for _, name in SECTIONS[stem] if name != APPENDIX]
+
+
+def section_of(stem: str, page: int) -> str:
+    for limit, name in SECTIONS[stem]:
+        if page <= limit:
+            return name
+    return "未分节"
+
+
+def _apportion(total: int, mix: dict[str, int]) -> dict[str, int]:
+    """按配比取整，余数按最大余数法分配，并保证每种题型至少 1 题。"""
+    keys = list(mix)
+    exact = {k: total * mix[k] / 100 for k in keys}
+    out = {k: int(exact[k]) for k in keys}
+    rest = total - sum(out.values())
+    ranked = sorted(keys, key=lambda k: (-(exact[k] - out[k]), keys.index(k)))
+    for k in ranked[:rest]:
+        out[k] += 1
+    while any(out[k] == 0 for k in keys):
+        zero = next(k for k in keys if out[k] == 0)
+        donor = max(keys, key=lambda k: out[k])
+        out[donor] -= 1
+        out[zero] = 1
+    return out
+
+
+def _targets() -> dict[str, dict[str, int]]:
+    out = {}
+    for stem in ORDER:
+        total = max(
+            round(chapter_pages(stem) * QUOTA["density"]),
+            QUOTA["chapter_floor"].get(stem, 0),
+        )
+        out[stem] = _apportion(total, QUOTA["mix"])
+    return out
+
+
+TARGETS = _targets()
 
 
 def minimum(stem: str) -> dict[str, int]:

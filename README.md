@@ -61,7 +61,7 @@ pip install -e ".[docling]"       # docling：结构化最好，首次运行需�
 
 ```bash
 pip install -e ".[dev]"
-python -m unittest discover -s tests -v   # 103 项单测
+python -m unittest discover -s tests -v   # 106 项单测
 python tests/smoke_cli.py                 # 端到端冒烟：离线跑一遍 CLI 并检查产物
 ruff check .
 ```
@@ -103,6 +103,8 @@ python tools/build_hub.py --course polymer-en   # 只重建一门课
 公开仓库只放转写稿（`corpus_amc/`）、题目草稿（`papers_amc/`、`papers_hgyl/`）与构建后的 `docs/`。原始 PPT/PDF、教务系统截图、`.units/` 等含元数据或内部字段的文件不入库。
 
 《化工原理》的教材 OCR 语料（`corpus_hgyl/`）属于版权文本，同样不入库：仓库里只有题目与每条十几字的原文依据。没有语料时 `check_hgyl.py` 与 `build_hgyl.py` 会打印提示并跳过，CI 依靠已提交的 `docs/` 保持页面不变。要在本机重建，把教材 PDF OCR 成 `corpus_hgyl/chNN.md`（页边界写成 `### p151`）即可。
+
+题库规模不是逐章手写的：`tools/hgyl.py` 的 `QUOTA` 按印刷页数、节数和题型配比生成每章目标（当前密度 1.5 题/页、每节至少 8 题、单选 36% / 多选 9% / 判断 22% / 填空 9% / 简答 7% / 术语 17%）。要整体扩容，只改 `density` 或 `mix`；新增章节只要登记起止页，目标会自动算出来。检查器同时卡章级题型下限、节级下限和判断题正确率（每章 40%~60% 为「对」），避免某章或某节被写空，也避免判断题清一色是「错」而被猜中。
 
 文本类隐私规则可以在提交前自查，CI 也会跑：
 
@@ -297,7 +299,7 @@ pdfquiz/
 │   ├── test_courses.py         18 项课程注册表与页面生成测试
 │   ├── test_amc.py             23 项分章题库测试（存储格式 / 证据回查 / 解释质量 / 上下标 / 章节分组 / 满分 100）
 │   ├── test_amcbank.py         6 项存储格式测试（v1 迁移 / ID 保留 / 术语 mode 校验 / 非法结构拒绝）
-│   ├── test_hgyl.py            11 项化工原理测试：章节配置 / 量纲上下标 / 题量下限 / 证据逐字与页码回查（缺语料自动跳过）
+│   ├── test_hgyl.py            14 项化工原理测试：章节配置 / 量纲上下标 / 题量下限 / 证据逐字与页码回查 / 配额与节题量（缺语料自动跳过）
 │   ├── smoke_cli.py            端到端冒烟：离线跑 CLI 并检查产物结构
 │   ├── fake_mcp_server.py      假 MCP 服务器，内含 1 道伪造题
 │   └── web/

@@ -17,7 +17,7 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 import build_hgyl  # noqa: E402
 import hgyl  # noqa: E402
-from check_hgyl import notation_ok, page_ok, page_texts  # noqa: E402
+from check_hgyl import notation_ok, page_ok, page_texts, section_counts  # noqa: E402
 from pdfquiz import amcbank  # noqa: E402
 from pdfquiz.courses import find_course, load_courses  # noqa: E402
 from pdfquiz.verify import evidence_ok  # noqa: E402
@@ -55,6 +55,19 @@ class TestConfig(unittest.TestCase):
         total = sum(exam["pick"][k] * exam["scores"][k] for k in exam["pick"])
         self.assertEqual(total, 100)
 
+    def test_quota_targets_follow_policy(self):
+        total = sum(sum(t.values()) for t in hgyl.TARGETS.values())
+        self.assertGreaterEqual(total, 600, "配额总量掉回了小题库")
+        for stem in hgyl.ORDER:
+            with self.subTest(stem=stem):
+                target = hgyl.TARGETS[stem]
+                self.assertEqual(set(target), set(KINDS))
+                for kind, n in target.items():
+                    self.assertGreaterEqual(n, 1)
+                    self.assertLessEqual(n, hgyl.MAXIMUM[kind], f"{stem} {kind} 超上限")
+                floors = len(hgyl.sections(stem)) * hgyl.QUOTA["section_min"]
+                self.assertGreaterEqual(sum(target.values()), floors, "章目标低于节下限之和")
+
 
 class TestNotation(unittest.TestCase):
     def test_rejects_ascii_units(self):
@@ -86,6 +99,25 @@ class TestDrafts(unittest.TestCase):
                 floor = hgyl.minimum(stem)
                 for kind in KINDS:
                     self.assertGreaterEqual(counts[kind], floor[kind], f"{stem} 的 {kind} 太少")
+
+    def test_every_section_meets_floor(self):
+        for stem in hgyl.ORDER:
+            counts = section_counts(load(stem), stem)
+            for name in hgyl.sections(stem):
+                with self.subTest(stem=stem, section=name):
+                    self.assertGreaterEqual(
+                        counts[name],
+                        hgyl.QUOTA["section_min"],
+                        f"{stem} {name} 题量不足",
+                    )
+
+    def test_truefalse_answers_are_balanced(self):
+        lo, hi = hgyl.QUOTA["answer"]["truefalse_true"]
+        for stem in hgyl.ORDER:
+            tf = [q for q in load(stem)["questions"] if q["type"] == "truefalse"]
+            share = sum(q["answer"] == "true" for q in tf) / len(tf)
+            with self.subTest(stem=stem):
+                self.assertTrue(lo <= share <= hi, f"{stem} 判断题正确率 {share:.0%} 越界")
 
     @unittest.skipUnless(HAS_CORPUS, "教材语料不入库")
     def test_evidence_is_verbatim(self):

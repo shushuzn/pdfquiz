@@ -87,7 +87,19 @@ def flatten(data: dict) -> list[dict]:
     return out
 
 
-def check(data: dict, corpus: str) -> Report:
+def section_counts(data: dict, stem: str) -> dict[str, int]:
+    counts = {name: 0 for name in hgyl.sections(stem)}
+    for q in data["questions"]:
+        m = re.search(r"(\d+)", str(q.get("ref", "")))
+        if not m:
+            continue
+        name = hgyl.section_of(stem, int(m.group(1)))
+        if name in counts:
+            counts[name] += 1
+    return counts
+
+
+def check(data: dict, corpus: str, stem: str) -> Report:
     report = Report()
     seen: set[str] = set()
     pages = page_texts(corpus)
@@ -143,8 +155,9 @@ def main(argv: list[str]) -> int:
             bad += 1
             continue
         corpus = corpus_file.read_text(encoding="utf-8")
-        report = check(data, corpus)
+        report = check(data, corpus, stem)
         counts = amcbank.counts(data)
+        sec = section_counts(data, stem)
         for q in data["questions"]:
             if q["id"] in seen_ids:
                 print(f"   ✗ 全局重复 id：{q['id']}")
@@ -154,10 +167,28 @@ def main(argv: list[str]) -> int:
         floor = hgyl.minimum(stem)
         short = [f"{k} {counts[k]}/{floor[k]}" for k in KINDS if counts[k] < floor[k]]
         long = [f"{k} {counts[k]}>{hgyl.MAXIMUM[k]}" for k in KINDS if counts[k] > hgyl.MAXIMUM[k]]
+        thin = [
+            f"{name} {sec[name]}/{hgyl.QUOTA['section_min']}"
+            for name in hgyl.sections(stem)
+            if sec[name] < hgyl.QUOTA["section_min"]
+        ]
+        tf = [q for q in data["questions"] if q.get("type") == "truefalse"]
+        tf_true = sum(q.get("answer") == "true" for q in tf)
+        lo, hi = hgyl.QUOTA["answer"]["truefalse_true"]
+        tf_off = bool(tf) and not (lo <= tf_true / len(tf) <= hi)
         print(f"== {stem} {data.get('chapter', '')}")
         print(f"   题量 {counts} 通过 {len(report.accepted)} 退回 {len(report.rejected)}")
         if short:
             print(f"   数量不足：{'、'.join(short)}")
+            bad += 1
+        if thin:
+            print(f"   节题量不足：{'、'.join(thin)}")
+            bad += 1
+        if tf_off:
+            print(
+                f"   判断题失衡：{tf_true}/{len(tf)} 为「对」，"
+                f"应在 {lo:.0%}~{hi:.0%} 之间（约 {round(len(tf) * (lo + hi) / 2)} 题）"
+            )
             bad += 1
         if long:
             print(f"   超出上限：{'、'.join(long)}")

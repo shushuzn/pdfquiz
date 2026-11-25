@@ -60,13 +60,7 @@ DECKS = [
 
 def section_of(stem: str, ref: str) -> str:
     m = re.search(r"(\d+)", str(ref))
-    if not m:
-        return "未分节"
-    n = int(m.group(1))
-    for limit, name in hgyl.SECTIONS.get(stem, []):
-        if n <= limit:
-            return name
-    return "未分节"
+    return hgyl.section_of(stem, int(m.group(1))) if m else "未分节"
 
 
 def load_chapters(skip_missing: bool = False) -> tuple[list[dict], dict[str, str]]:
