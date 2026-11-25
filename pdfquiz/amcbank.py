@@ -37,7 +37,7 @@ BLOOM_ALIASES = {"识记": "记忆"}
 ID_RE = re.compile(
     r"^(?P<stem>ch\d{2})-(?P<kind>single|multiple|truefalse|fill|short|term)-(?P<num>\d{3})$"
 )
-REF_RE = re.compile(r"^S\d+$")
+REF_RE = re.compile(r"^[SP]\d+$")
 
 COMMON_FIELDS = ("id", "type", "question", "answer", "explanation", "evidence", "ref")
 OPTION_KINDS = ("single", "multiple")
@@ -136,7 +136,7 @@ def validate(data: dict, stem: str) -> list[str]:
             if not str(q.get(field, "")).strip():
                 errors.append(f"{where} {field} 为空")
         if not REF_RE.fullmatch(str(q.get("ref", ""))):
-            errors.append(f"{where} ref 应为 S12 这样的幻灯片号")
+            errors.append(f"{where} ref 应为 S12（幻灯片）或 P123（书页）")
         if q.get("difficulty") not in DIFFICULTIES:
             errors.append(f"{where} difficulty 非法：{q.get('difficulty')!r}")
         if q.get("bloom") not in BLOOMS:

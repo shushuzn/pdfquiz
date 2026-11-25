@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>化工原理 · 复习题库</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --sans: system-ui,-apple-system,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --serif: "Iowan Old Style","Source Han Serif SC","Noto Serif SC","Songti SC",Georgia,serif;
+  --paper:#f3f1ec; --surface:#fffefc; --surface2:#f7f4ee;
+  --ink:#1b201e; --ink2:#49524f; --muted:#8a938f;
+  --line:#e6e1d6; --line2:#d3ccbd;
+  --accent:#1f6b5a; --accent-ink:#175246; --accent-soft:#e7f1ed;
+  --shadow:0 1px 2px rgba(27,32,30,.04),0 14px 32px -22px rgba(27,32,30,.35);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#121614; --surface:#1a201e; --surface2:#202724;
+    --ink:#e8ece9; --ink2:#b3bdb8; --muted:#7f8a85;
+    --line:#2a322f; --line2:#38423d;
+    --accent:#5fb79c; --accent-ink:#8fd3bd; --accent-soft:#1e2f2a;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 16px 36px -24px rgba(0,0,0,.8);
+  }
+}
+html,body{margin:0}
+body{
+  background:
+    radial-gradient(1200px 600px at 82% -8%, color-mix(in srgb, var(--accent) 7%, transparent), transparent 70%),
+    var(--paper);
+  color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1080px;margin:0 auto;padding:56px 24px 72px}
+.crumb{
+  display:inline-flex;align-items:center;gap:7px;margin-bottom:20px;
+  font-size:13px;color:var(--ink2);padding:5px 12px 5px 8px;border-radius:999px;
+  border:1px solid transparent;transition:border-color .18s,color .18s,background .18s;
+}
+.crumb svg{width:14px;height:14px;opacity:.7}
+.crumb:hover{color:var(--accent);border-color:var(--line);background:var(--surface)}
+.head{display:flex;flex-direction:column;gap:14px;margin-bottom:38px}
+.kicker{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);
+  font-weight:600;display:flex;align-items:center;gap:10px;
+}
+.kicker::after{content:"";flex:1;height:1px;background:var(--line)}
+h1{
+  font-family:var(--serif);font-size:clamp(28px,4.4vw,42px);line-height:1.25;
+  margin:0;font-weight:600;letter-spacing:-.01em;
+}
+.lede{margin:0;color:var(--ink2);max-width:56ch;font-size:15.5px}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.pill{
+  font-size:12px;padding:4px 10px;border-radius:999px;background:var(--surface2);
+  border:1px solid var(--line);color:var(--ink2);
+}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(316px,1fr));gap:16px}
+.card{
+  display:flex;flex-direction:column;gap:12px;padding:22px 22px 18px;
+  background:var(--surface);border:1px solid var(--line);border-radius:16px;
+  box-shadow:var(--shadow);transition:transform .18s,border-color .18s,box-shadow .18s;
+  position:relative;overflow:hidden;
+}
+.card::before{
+  content:"";position:absolute;inset:0 auto 0 0;width:3px;background:var(--accent);
+  opacity:0;transition:opacity .18s;
+}
+.card:hover{transform:translateY(-2px);border-color:var(--line2)}
+.card:hover::before{opacity:1}
+.card-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.tag{
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);
+  background:var(--accent-soft);border-radius:6px;padding:3px 8px;font-weight:600;
+}
+.nums{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.nums b{color:var(--ink);font-size:15px;font-weight:600}
+.card h2{
+  font-family:var(--serif);font-size:19px;margin:0;font-weight:600;line-height:1.35;
+  letter-spacing:-.005em;
+}
+.card p{margin:0;font-size:13.5px;color:var(--ink2)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.chip{
+  font-size:11.5px;padding:2px 8px;border-radius:6px;background:var(--surface2);
+  border:1px solid var(--line);color:var(--ink2);
+}
+.chip b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+.go{
+  margin-top:auto;padding-top:6px;display:flex;align-items:center;gap:6px;
+  color:var(--accent);font-size:13.5px;font-weight:600;
+}
+.go svg{width:15px;height:15px;transition:transform .18s}
+.card:hover .go svg{transform:translateX(3px)}
+.plan{
+  margin:38px 0 0;padding:20px 22px;border:1px solid var(--line);border-radius:16px;
+  background:var(--surface);box-shadow:var(--shadow);
+}
+.plan h3{
+  font-family:var(--serif);font-size:17px;margin:0 0 4px;font-weight:600;
+}
+.plan .sub{margin:0 0 14px;font-size:13px;color:var(--muted)}
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px 20px;margin:0;padding:0;list-style:none}
+.steps li{display:flex;gap:10px;font-size:13.5px;color:var(--ink2);line-height:1.6;min-width:0}
+.steps li>span:last-child{min-width:0}
+.steps .no{
+  flex:0 0 22px;height:22px;border-radius:50%;background:var(--accent-soft);color:var(--accent-ink);
+  font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px;
+}
+.steps b{color:var(--ink);font-weight:600}
+.foot{
+  margin-top:44px;padding-top:20px;border-top:1px solid var(--line);
+  color:var(--muted);font-size:12.5px;display:flex;flex-wrap:wrap;gap:6px 20px;
+}
+.foot code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;
+  background:var(--surface2);padding:1px 5px;border-radius:4px;
+}
+@media (max-width:760px){
+  .steps{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:560px){
+  .wrap{padding:34px 16px 56px}
+  .grid{grid-template-columns:minmax(0,1fr);gap:12px}
+  .card{padding:18px 16px 15px}
+  h1{font-size:26px}
+  .crumb{margin-bottom:16px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="crumb" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>全部课程</a>
+  <header class="head">
+    <div class="kicker">课程题库 · 共 4 套</div>
+    <h1>化工原理<br>复习题库</h1>
+    <p class="lede">题目出自《化工原理》（第四版）教材：每道题的原文依据都能翻回页码逐字核对，公式只考物理意义与适用条件，不考生僻数值。范围覆盖 绪论、流体流动与输送机械、非均相物系分离、传热、气体吸收、蒸馏、固体干燥、蒸发、其他分离技术。</p>
+    <div class="meta-row">
+      <span class="pill">教材复习 · 4 套题库 · 九章</span><span class="pill">共 281 题</span><span class="pill">离线可用 · 单文件</span><span class="pill">答题记录存在本机</span><span class="pill">支持手机与打印</span>
+    </div>
+  </header>
+
+  <main class="grid">
+      <a class="card" href="hgyl-exam.html" data-deck="exam" data-count="39" data-score="100" data-short="">
+        <div class="card-top"><span class="tag">模拟考</span><span class="nums"><b>39</b> 题 · <b>100</b> 分</span></div>
+        <h2>期末模拟卷</h2>
+        <p>单选 20、多选 4、判断 8、填空 4、简答 3 题，满分 100，限时 120 分钟，按章轮转抽题。</p>
+        <div class="chips"><span class="chip">单选 <b>20</b></span><span class="chip">多选 <b>4</b></span><span class="chip">判断 <b>8</b></span><span class="chip">填空 <b>4</b></span><span class="chip">简答 <b>3</b></span></div>
+        <span class="go">限时自测<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+      <a class="card" href="hgyl-objective.html" data-deck="objective" data-count="157" data-score="0" data-short="">
+        <div class="card-top"><span class="tag">客观题</span><span class="nums"><b>157</b> 题</span></div>
+        <h2>客观题专练</h2>
+        <p>单选、多选、判断按章排，覆盖流体流动、分离、传热、吸收、蒸馏、干燥与蒸发。每题都能翻回教材页码核对原句。</p>
+        <div class="chips"><span class="chip">单选 <b>85</b></span><span class="chip">多选 <b>22</b></span><span class="chip">判断 <b>50</b></span></div>
+        <span class="go">刷选择填空<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+      <a class="card" href="hgyl-practice.html" data-deck="practice" data-count="37" data-score="0" data-short="">
+        <div class="card-top"><span class="tag">精练</span><span class="nums"><b>37</b> 题</span></div>
+        <h2>分章精练</h2>
+        <p>填空加简答：先填公式里的关键量，再用人话把机理、设备与操作要点讲一遍。</p>
+        <div class="chips"><span class="chip">填空 <b>21</b></span><span class="chip">简答 <b>16</b></span></div>
+        <span class="go">按单元练<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+      <a class="card" href="hgyl-terms.html" data-deck="terms" data-count="48" data-score="0" data-short="">
+        <div class="card-top"><span class="tag">释义</span><span class="nums"><b>48</b> 题</span></div>
+        <h2>术语与概念</h2>
+        <p>把沉降、过滤、传热、吸收、精馏、干燥的核心名词逐个过：先自己写释义，再对照教材原句自评。</p>
+        <div class="chips"><span class="chip">术语 <b>48</b></span></div>
+        <span class="go">写释义<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span>
+      </a>
+  </main>
+
+  <section class="plan">
+    <h3>按这个顺序刷，最省时间</h3>
+    <p class="sub">九章里流体流动与传热占分最多，公式也最密；吸收与蒸馏靠同一套传质思路，放在一起记更省力。题目按章归档，哪章错得多就回哪章。</p>
+    <ol class="steps"><li><span class="no">1</span><span>先做<b>期末模拟卷</b>，看清 100 分里哪一章在丢分</span></li><li><span class="no">2</span><span><b>客观题专练</b>按章刷，判断和单选最能暴露概念混淆</span></li><li><span class="no">3</span><span><b>分章精练</b>写简答，写完对着参考答案数采分点</span></li><li><span class="no">4</span><span><b>术语与概念</b>每天一轮，沉降、过滤、传热的定义最容易记串</span></li><li><span class="no">5</span><span>考前只看错题，翻回教材对应页码把图和公式看一遍</span></li></ol>
+  </section>
+
+  <footer class="foot">
+    <span>每套题库都是单个 HTML，双击即可作答，无需联网。</span>
+    <span>进度存在浏览器 <code>localStorage</code>，换设备不同步。</span>
+    <span>主观题无法自动判分，走「对照参考答案 → 自己标记」。</span>
+  </footer>
+</div>
+</body>
+</html>

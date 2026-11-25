@@ -1,0 +1,2152 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" id="tcMeta" content="#f3f1ec">
+<meta name="format-detection" content="telephone=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="化工原理 · 客观题专练">
+<title>化工原理 · 客观题专练 · 复习题库</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%231f6b5a'/%3E%3Cpath d='M11 22V10h5a4 4 0 0 1 0 8h-5m5 0 4 4' stroke='%23fff' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+/* ---------------------------------------------------------------- tokens */
+:root{
+  --sans: system-ui,-apple-system,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --serif: "Iowan Old Style","Source Han Serif SC","Noto Serif SC","Songti SC",Georgia,serif;
+  --mono: ui-monospace,SFMono-Regular,"JetBrains Mono",Menlo,Consolas,monospace;
+
+  --paper:#f3f1ec;
+  --surface:#fffefc;
+  --surface2:#f7f4ee;
+  --ink:#1b201e;
+  --ink2:#49524f;
+  --muted:#8a938f;
+  --line:#e6e1d6;
+  --line2:#d3ccbd;
+  --accent:#1f6b5a;
+  --accent-ink:#175246;
+  --accent-soft:#e7f1ed;
+  --ok:#187a55;
+  --ok-soft:#e6f4ee;
+  --bad:#b23a30;
+  --bad-soft:#fbeae7;
+  --shadow-sm:0 1px 2px rgba(27,32,30,.05);
+  --shadow:0 1px 2px rgba(27,32,30,.04),0 14px 32px -20px rgba(27,32,30,.35);
+  --r:16px;
+  /* 可调字号：题干与选项、输入框跟随，正文其它元素保持不变 */
+  --stem:18.5px;
+  --body:15px;
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-t:env(safe-area-inset-top,0px);
+}
+html[data-fs="sm"]{--stem:16.5px;--body:13.8px}
+html[data-fs="md"]{--stem:18.5px;--body:15px}
+html[data-fs="lg"]{--stem:21px;--body:17px}
+[data-theme="dark"]{
+  --paper:#0f1214;
+  --surface:#171b1e;
+  --surface2:#1d2226;
+  --ink:#e9edeb;
+  --ink2:#b8c1be;
+  --muted:#7d8885;
+  --line:#272f33;
+  --line2:#374247;
+  --accent:#5ec0a5;
+  --accent-ink:#8ad8c2;
+  --accent-soft:#13302a;
+  --ok:#57c496;
+  --ok-soft:#122f29;
+  --bad:#f08a7e;
+  --bad-soft:#321a1a;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 18px 40px -24px rgba(0,0,0,.9);
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+/* 横滑翻页不能被浏览器当成「后退」手势吃掉 */
+html{overscroll-behavior-x:none}
+body{
+  margin:0;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, color-mix(in srgb, var(--accent) 6%, transparent), transparent 70%),
+    var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:15px;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  -webkit-text-size-adjust:100%;
+  -webkit-tap-highlight-color:transparent;
+  overscroll-behavior-y:contain;
+}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer;touch-action:manipulation}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+::selection{background:color-mix(in srgb, var(--accent) 22%, transparent)}
+
+/* ---------------------------------------------------------------- shell */
+.app{display:grid;grid-template-columns:296px minmax(0,1fr);min-height:100vh;min-height:100dvh}
+
+/* ---------------------------------------------------------------- side */
+.side{
+  position:sticky;top:0;height:100vh;overflow-y:auto;overscroll-behavior:contain;
+  padding:26px 18px 20px;
+  background:color-mix(in srgb, var(--surface) 72%, transparent);
+  border-right:1px solid var(--line);
+  display:flex;flex-direction:column;gap:22px;
+  backdrop-filter:blur(8px);
+}
+.brand{display:flex;gap:12px;align-items:flex-start;padding:0 4px}
+.mark{
+  width:34px;height:34px;flex:0 0 34px;border-radius:10px;
+  background:var(--accent);color:#fff;display:grid;place-items:center;
+  font-family:var(--serif);font-size:17px;font-weight:600;letter-spacing:.02em;
+  box-shadow:0 2px 8px -2px color-mix(in srgb, var(--accent) 55%, transparent);
+}
+.brand-t h1{
+  margin:0;font-family:var(--serif);font-size:15.5px;font-weight:600;line-height:1.45;
+  letter-spacing:.01em;
+}
+.brand-t p{margin:3px 0 0;font-size:11.5px;color:var(--muted);letter-spacing:.02em}
+
+.panel{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+  padding:16px;display:flex;gap:16px;align-items:center;box-shadow:var(--shadow-sm);
+}
+.ring{position:relative;width:72px;height:72px;flex:0 0 72px}
+.ring svg{transform:rotate(-90deg);display:block}
+.ring .track{stroke:var(--line2);opacity:.55}
+.ring .bar{stroke:var(--accent);stroke-linecap:round;transition:stroke-dashoffset .5s cubic-bezier(.2,.8,.2,1)}
+.ring-t{
+  position:absolute;inset:0;display:grid;place-content:center;text-align:center;line-height:1.1;
+}
+.ring-t b{font-size:18px;font-weight:600;letter-spacing:-.02em}
+.ring-t span{display:block;font-size:10px;color:var(--muted);margin-top:2px}
+.ring-meta{display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--ink2)}
+.ring-meta div{display:flex;align-items:center;gap:6px}
+.ring-meta b{font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums}
+.dot{width:6px;height:6px;border-radius:50%;flex:0 0 6px}
+.dot.ok{background:var(--ok)}.dot.bad{background:var(--bad)}.dot.mut{background:var(--line2)}
+
+.filters{display:flex;flex-direction:column;gap:8px}
+.flabel{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding:0 4px}
+.seg{
+  display:flex;background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:3px;gap:2px;
+}
+.seg button{
+  flex:1;padding:5px 8px;border-radius:7px;font-size:12.5px;color:var(--ink2);
+  transition:background .16s,color .16s,box-shadow .16s;white-space:nowrap;
+}
+.seg button:hover{color:var(--ink)}
+.seg button[aria-pressed="true"]{
+  background:var(--surface);color:var(--ink);font-weight:600;box-shadow:var(--shadow-sm);
+}
+.seg.small button{padding:4px 10px;font-size:12px}
+.chips{display:flex;flex-wrap:wrap;gap:5px;padding:0 2px}
+.chips button{
+  padding:4px 9px;border-radius:999px;border:1px solid var(--line);font-size:12px;color:var(--ink2);
+  background:var(--surface);transition:all .16s;
+}
+.chips button:hover{border-color:var(--line2);color:var(--ink)}
+.chips button[aria-pressed="true"]{
+  background:var(--accent);border-color:var(--accent);color:#fff;font-weight:500;
+}
+
+.chapters{display:flex;flex-direction:column;gap:12px;overflow-y:auto;margin:0 -6px;padding:0 6px}
+.grp-t{
+  font-size:11.5px;font-weight:600;color:var(--muted);letter-spacing:.04em;
+  padding:0 8px 6px;text-transform:none;
+}
+.nav-item{
+  width:100%;display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:9px;
+  font-size:12.5px;color:var(--ink2);text-align:left;transition:background .15s,color .15s;
+  border-left:2px solid transparent;
+}
+.nav-item:hover{background:var(--surface2);color:var(--ink)}
+.nav-item[aria-current="true"]{
+  background:var(--accent-soft);color:var(--accent-ink);font-weight:600;border-left-color:var(--accent);
+}
+.nav-item .cnt{margin-left:auto;font-size:10.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+.nav-item[aria-current="true"] .cnt{color:var(--accent-ink);opacity:.75}
+
+.side-foot{margin-top:auto;display:flex;flex-direction:column;gap:6px;padding-top:12px;border-top:1px solid var(--line)}
+.side-foot button,.side-foot .hub-link{
+  display:flex;align-items:center;gap:8px;padding:7px 9px;border-radius:9px;
+  font-size:12.5px;color:var(--ink2);text-align:left;transition:background .15s,color .15s;
+}
+.side-foot button:hover,.side-foot .hub-link:hover{background:var(--surface2);color:var(--ink)}
+.side-foot svg{width:14px;height:14px;opacity:.7}
+.side-foot .hub-link{margin-bottom:2px;color:var(--accent);font-weight:600}
+.side-foot .hub-link:hover{background:color-mix(in srgb, var(--accent) 10%, transparent)}
+
+/* ---------------------------------------------------------------- main */
+.main{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh;position:relative}
+.progress{position:sticky;top:0;height:2px;background:transparent;z-index:30}
+.progress i{
+  display:block;height:100%;width:0;background:var(--accent);
+  transition:width .4s cubic-bezier(.2,.8,.2,1);
+}
+.topbar{
+  position:sticky;top:0;z-index:20;
+  display:flex;align-items:center;gap:14px;
+  padding:14px 26px;
+  background:color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid color-mix(in srgb, var(--line) 70%, transparent);
+}
+.crumb{font-size:12.5px;color:var(--muted);display:flex;gap:7px;align-items:center;min-width:0;white-space:nowrap}
+.crumb span:first-child{overflow:hidden;text-overflow:ellipsis;max-width:180px}
+.crumb span:last-child{color:var(--ink2);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.crumb .sep{opacity:.45}
+.top-right{margin-left:auto;display:flex;align-items:center;gap:10px}
+.timer{
+  font-family:var(--mono);font-size:12.5px;color:var(--ink2);
+  font-variant-numeric:tabular-nums;padding:4px 9px;border-radius:8px;
+  background:var(--surface2);border:1px solid var(--line);
+}
+.icon-btn{
+  width:32px;height:32px;border-radius:9px;display:grid;place-items:center;color:var(--ink2);
+  transition:background .15s,color .15s;
+}
+.icon-btn:hover{background:var(--surface2);color:var(--ink)}
+.icon-btn svg{width:16px;height:16px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  padding:7px 15px;border-radius:9px;font-size:13px;font-weight:500;
+  transition:all .16s;white-space:nowrap;
+}
+.btn.ghost{border:1px solid var(--line2);color:var(--ink2);background:var(--surface)}
+.btn.ghost:hover{border-color:var(--ink2);color:var(--ink)}
+.btn.primary{
+  background:var(--accent);color:#fff;border:1px solid var(--accent);
+  box-shadow:0 1px 2px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+.btn.primary:hover{background:var(--accent-ink);border-color:var(--accent-ink)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.btn.primary:disabled:hover{background:var(--accent);border-color:var(--accent)}
+.only-mobile{display:none}
+
+/* ---------------------------------------------------------------- stage */
+.stage{
+  flex:1;width:100%;max-width:860px;margin:0 auto;
+  padding:38px 26px 28px;
+}
+.q{display:none;animation:rise .32s cubic-bezier(.2,.8,.2,1)}
+.q.active{display:block}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.qhead{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.num{
+  font-family:var(--serif);font-size:26px;font-weight:600;color:var(--ink);
+  letter-spacing:-.02em;line-height:1;margin-right:2px;font-variant-numeric:tabular-nums;
+}
+.tag{
+  font-size:11px;padding:3px 8px;border-radius:6px;letter-spacing:.02em;
+  background:var(--surface2);color:var(--ink2);border:1px solid var(--line);
+}
+.tag.t{background:var(--accent-soft);color:var(--accent-ink);border-color:transparent;font-weight:500}
+.tag.lv-easy{color:var(--ok);border-color:color-mix(in srgb,var(--ok) 25%, transparent)}
+.tag.lv-hard{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 25%, transparent)}
+.mark-btn{
+  margin-left:auto;display:inline-flex;align-items:center;gap:5px;
+  font-size:11.5px;color:var(--muted);padding:4px 8px;border-radius:7px;
+  transition:all .15s;
+}
+.mark-btn:hover{background:var(--surface2);color:var(--ink2)}
+.mark-btn[aria-pressed="true"]{color:var(--accent);font-weight:600}
+.mark-btn svg{width:13px;height:13px}
+
+.stem{
+  font-size:var(--stem);line-height:1.85;font-weight:500;letter-spacing:.005em;color:var(--ink);
+  margin:0 0 26px;max-width:64ch;overflow-wrap:break-word;
+}
+.stem code,.ans code{
+  font-family:var(--mono);font-size:.88em;background:var(--surface2);
+  padding:1px 5px;border-radius:5px;border:1px solid var(--line);
+}
+.blank{display:inline-block;width:3.4em;border-bottom:1.5px solid var(--line2);vertical-align:-.12em;margin:0 .18em}
+/* 上下标：题干、选项、解析里都可能出现化学式与指数 */
+.stem sup,.opt .txt sup,.ans-row .v sup,.key-row sup,.sheet sup,.wrong-item .qt sup{font-size:.72em;line-height:0;vertical-align:super}
+.stem sub,.opt .txt sub,.ans-row .v sub,.key-row sub,.sheet sub,.wrong-item .qt sub{font-size:.72em;line-height:0;vertical-align:sub}
+
+/* options */
+.opts{display:flex;flex-direction:column;gap:9px}
+.opt{
+  display:flex;align-items:flex-start;gap:12px;width:100%;text-align:left;
+  padding:13px 15px;border:1px solid var(--line);border-radius:12px;
+  background:var(--surface);color:var(--ink);
+  font-size:var(--body);line-height:1.65;
+  transition:border-color .16s,background .16s,transform .16s,box-shadow .16s;
+  box-shadow:var(--shadow-sm);
+}
+.opt:hover:not(.locked){border-color:var(--line2);transform:translateY(-1px);box-shadow:var(--shadow)}
+.opt:active:not(.locked){transform:translateY(0) scale(.995);border-color:var(--accent)}
+.opt .ltr{
+  flex:0 0 24px;width:24px;height:24px;border-radius:7px;display:grid;place-items:center;
+  font-family:var(--mono);font-size:12px;font-weight:600;
+  background:var(--surface2);color:var(--ink2);border:1px solid var(--line);
+  transition:all .16s;margin-top:1px;
+}
+.opt .txt{flex:1;min-width:0}
+.opt[aria-checked="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.opt[aria-checked="true"] .ltr{background:var(--accent);border-color:var(--accent);color:#fff}
+.opt.is-ok{border-color:var(--ok);background:var(--ok-soft)}
+.opt.is-ok .ltr{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.is-bad{border-color:var(--bad);background:var(--bad-soft)}
+.opt.is-bad .ltr{background:var(--bad);border-color:var(--bad);color:#fff}
+.opt.locked{cursor:default}
+.opt .flag{font-size:11px;color:var(--muted);margin-left:6px;white-space:nowrap;align-self:center}
+.opt.is-ok .flag{color:var(--ok);font-weight:600}
+.opt.is-bad .flag{color:var(--bad);font-weight:600}
+
+/* text inputs */
+.field{
+  width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:12px;
+  background:var(--surface);color:var(--ink);font:inherit;font-size:var(--body);line-height:1.7;
+  transition:border-color .16s,box-shadow .16s;resize:vertical;
+}
+/* 多行作答区按 rows 给初始高度；单行填空框保持一行高，别撑成大方块 */
+textarea.field{min-height:calc(var(--rows,3) * 1.7em + 28px)}
+.field::placeholder{color:var(--muted)}
+.field:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.field[readonly]{background:var(--surface2);color:var(--ink2)}
+.hint{font-size:12px;color:var(--muted);margin:8px 2px 0;display:flex;gap:6px;align-items:center}
+
+/* actions under question */
+.q-actions{display:flex;align-items:center;gap:10px;margin-top:20px;flex-wrap:wrap}
+.q-actions .spacer{flex:1}
+.self-grade{display:flex;gap:8px}
+.self-grade button{
+  padding:7px 14px;border-radius:9px;font-size:13px;border:1px solid var(--line2);
+  color:var(--ink2);transition:all .16s;
+}
+.self-grade button:hover{border-color:var(--ink2);color:var(--ink)}
+.self-grade button[data-self="yes"]:hover{border-color:var(--ok);color:var(--ok);background:var(--ok-soft)}
+.self-grade button[data-self="no"]:hover{border-color:var(--bad);color:var(--bad);background:var(--bad-soft)}
+
+/* verdict + answer */
+.verdict{
+  display:none;align-items:center;gap:9px;margin-top:22px;
+  font-size:14px;font-weight:600;
+}
+.q.graded .verdict{display:flex}
+.verdict .ico{
+  width:20px;height:20px;border-radius:50%;display:grid;place-items:center;
+  font-size:11px;color:#fff;flex:0 0 20px;
+}
+.verdict.ok{color:var(--ok)}
+.verdict.ok .ico{background:var(--ok)}
+.verdict.bad{color:var(--bad)}
+.verdict.bad .ico{background:var(--bad)}
+.verdict.info{color:var(--ink2)}
+.verdict.info .ico{background:var(--ink2)}
+.verdict .sub{font-weight:400;color:var(--muted);font-size:12.5px}
+.verdict .redo{
+  margin-left:auto;flex:0 0 auto;padding:4px 10px;border-radius:8px;
+  border:1px solid var(--line);background:transparent;color:var(--muted);
+  font:inherit;font-size:12px;font-weight:500;cursor:pointer;transition:all .15s;
+}
+.verdict .redo:hover{border-color:var(--line2);color:var(--ink)}
+
+.ans{display:none;margin-top:14px;padding:18px 20px;border-radius:14px;background:var(--surface2);border:1px solid var(--line)}
+.q.graded .ans{display:block}
+.ans-row{display:flex;gap:10px;font-size:13.5px;line-height:1.8;margin-bottom:8px}
+.ans-row:last-child{margin-bottom:0}
+.ans-row .k{
+  flex:0 0 auto;min-width:46px;white-space:nowrap;
+  font-size:11.5px;color:var(--muted);letter-spacing:.06em;padding-top:2px;
+}
+.ans-row .v{flex:1;color:var(--ink);min-width:0}
+.ans-row .v b{color:var(--accent-ink);font-weight:600}
+
+/* 翻译题：输入框下的操作提示 */
+.typeline{margin-top:8px;font-size:11.5px;color:var(--muted);line-height:1.7}
+
+/* 采分点：英文术语与中文释义分开排版，别挤成一串 */
+.keys{margin:12px 0 10px;padding:11px 13px;border-radius:9px;background:var(--surface2)}
+.keys-h{font-size:10px;letter-spacing:.12em;color:var(--muted);margin-bottom:7px}
+.key-row{display:flex;gap:8px;align-items:baseline;line-height:2}
+.key-row .ke{font-family:var(--mono);font-size:12.5px;color:var(--accent-ink);font-weight:600}
+.key-row .kc{font-size:12.5px;color:var(--ink2)}
+.key-row .kc::before{content:"·";margin-right:8px;color:var(--muted)}
+/* 出处 */
+.src{margin-top:10px;font-size:11.5px;color:var(--muted);letter-spacing:.02em}
+blockquote.ev{
+  margin:10px 0 0;padding:2px 0 2px 14px;border-left:2px solid var(--accent);
+  font-size:12.5px;line-height:1.85;color:var(--ink2);
+}
+blockquote.ev::before{
+  content:"原文依据";display:block;font-size:10px;letter-spacing:.12em;
+  color:var(--muted);margin-bottom:2px;
+}
+.alt{display:block;margin-top:3px;color:var(--ink2);font-size:13px}
+.alt i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--muted);margin-right:6px}
+
+/* navbar */
+.navbar{
+  position:sticky;bottom:0;z-index:20;
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  padding:14px 26px 30px;
+  background:linear-gradient(to top, var(--paper) 62%, transparent);
+}
+.kbd-hint{
+  position:absolute;bottom:8px;left:50%;transform:translateX(-50%);
+  font-size:11px;color:var(--muted);white-space:nowrap;display:flex;gap:12px;align-items:center;
+}
+.kbd-hint kbd{
+  font-family:var(--mono);font-size:10px;padding:0 4px;border:1px solid var(--line);
+  border-radius:4px;background:var(--surface);color:var(--ink2);
+}
+@media (max-width:1100px){.kbd-hint{display:none}}
+.pos{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;min-width:64px;text-align:center}
+.pos b{color:var(--ink);font-weight:600}
+
+/* ---------------------------------------------------------------- result */
+.result{display:none;flex:1;max-width:860px;width:100%;margin:0 auto;padding:44px 26px 60px}
+.result.show{display:block;animation:rise .3s ease}
+.res-head{display:flex;gap:34px;align-items:center;flex-wrap:wrap;margin-bottom:34px}
+.big-ring{position:relative;width:132px;height:132px;flex:0 0 132px}
+.big-ring svg{transform:rotate(-90deg);display:block}
+.big-ring .t{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.big-ring .t b{font-family:var(--serif);font-size:34px;font-weight:600;letter-spacing:-.03em;line-height:1}
+.big-ring .t span{display:block;font-size:11px;color:var(--muted);margin-top:4px;letter-spacing:.06em}
+.res-title h2{margin:0 0 6px;font-family:var(--serif);font-size:24px;font-weight:600;letter-spacing:.01em}
+.res-title p{margin:0;color:var(--ink2);font-size:13.5px}
+.res-title p.res-meta{margin-top:3px;font-size:12px;color:var(--muted);letter-spacing:.02em}
+.res-title p b.sc{font-family:var(--mono);font-size:19px;color:var(--accent-ink);font-weight:600;margin:0 1px}
+.res-stats{display:flex;gap:26px;margin-top:16px;flex-wrap:wrap}
+.res-stats div{font-size:12.5px;color:var(--muted)}
+.res-stats b{display:block;font-size:21px;color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums;margin-bottom:1px}
+.res-sec{margin-top:30px}
+.res-sec h3{
+  font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
+  margin:0 0 12px;font-weight:600;
+}
+.bars{display:flex;flex-direction:column;gap:13px;max-width:640px}
+/* 单元名长短悬殊（最长 60 字符），单行三段式必然截断，改成上下两行 */
+.bar-row{display:flex;flex-direction:column;gap:6px;font-size:12.5px}
+.bar-row .top{display:flex;align-items:baseline;gap:12px;justify-content:space-between}
+.bar-row .lbl{color:var(--ink2);min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-row .frac{flex:0 0 auto;font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums}
+/* 轨道用可见的浅色：surface2 与纸底几乎同色，0% 的行看上去会像没有轨道 */
+.bar-row .track{display:block;width:100%;height:6px;border-radius:99px;background:color-mix(in srgb,var(--line2) 62%,transparent);overflow:hidden}
+.bar-row .fill{display:block;height:100%;background:var(--accent);border-radius:99px;transition:width .5s ease}
+.wrong-list{display:flex;flex-direction:column;gap:8px}
+.wrong-item{
+  display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:11px;
+  background:var(--surface);border:1px solid var(--line);text-align:left;width:100%;
+  transition:border-color .16s,transform .16s;
+}
+.wrong-item:hover{border-color:var(--line2);transform:translateX(2px)}
+.wrong-item .n{font-family:var(--mono);font-size:11.5px;color:var(--muted);flex:0 0 26px;padding-top:2px}
+.wrong-item .qt{font-size:13.5px;line-height:1.6;color:var(--ink);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.wrong-item .qt .tk{font-style:normal;font-size:10.5px;letter-spacing:.04em;color:var(--accent-ink);
+  background:color-mix(in srgb,var(--accent) 9%,transparent);border-radius:4px;padding:1px 5px;margin-right:7px;vertical-align:1px}
+.res-actions{display:flex;gap:10px;margin-top:32px;flex-wrap:wrap}
+.empty{text-align:center;padding:80px 20px;color:var(--muted)}
+.empty b{display:block;font-size:16px;color:var(--ink);margin-bottom:6px;font-weight:600}
+
+.scrim{display:none}
+.toast{
+  position:fixed;left:50%;bottom:28px;transform:translate(-50%,12px);z-index:100;
+  background:var(--ink);color:var(--paper);font-size:12.5px;padding:8px 16px;border-radius:99px;
+  opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;
+  box-shadow:0 10px 30px -10px rgba(0,0,0,.5);
+}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* ---------------------------------------------------------------- 题号跳转 */
+.pos-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:1px;
+  min-width:66px;padding:7px 10px;border-radius:9px;border:1px solid transparent;
+  font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;
+  transition:background .15s,border-color .15s,color .15s;
+}
+.pos-btn:hover{background:var(--surface2);border-color:var(--line);color:var(--ink2)}
+.pos-btn b{color:var(--ink);font-weight:600;font-size:13px}
+.pos-btn svg{width:13px;height:13px;flex:0 0 13px;opacity:.5;margin-right:5px}
+.pos-btn:hover svg{opacity:.75}
+
+.sheet-scrim{
+  display:none;position:fixed;inset:0;z-index:70;
+  background:rgba(12,14,13,.38);backdrop-filter:blur(2px);
+}
+.sheet-scrim.show{display:block;animation:fade .18s ease}
+.sheet{
+  display:none;position:fixed;left:0;right:0;bottom:0;z-index:75;
+  max-height:76vh;max-height:76dvh;flex-direction:column;
+  background:var(--surface);border-top:1px solid var(--line);
+  border-radius:20px 20px 0 0;
+  box-shadow:0 -14px 44px -14px rgba(0,0,0,.45);
+  padding-bottom:var(--safe-b);
+}
+.sheet.show{display:flex;animation:sheetUp .26s cubic-bezier(.2,.8,.2,1)}
+@keyframes sheetUp{from{transform:translateY(100%)}to{transform:none}}
+.sheet-h{
+  display:flex;align-items:center;gap:10px;padding:14px 16px 12px;
+  border-bottom:1px solid var(--line);
+}
+.sheet-h b{font-size:13.5px;font-weight:600;letter-spacing:.01em}
+.sheet-h .legend{margin-left:auto;display:flex;gap:11px;font-size:10.5px;color:var(--muted)}
+.sheet-h .legend span{display:inline-flex;align-items:center;gap:4px}
+.sheet-h .legend i{width:8px;height:8px;border-radius:2.5px;background:var(--line2)}
+.sheet-h .legend i.ok{background:var(--ok)}
+.sheet-h .legend i.bad{background:var(--bad)}
+.sheet-tools{padding:11px 16px 0;display:flex;align-items:center}
+.sheet-tools .seg{max-width:210px;width:100%}
+.sheet-body{
+  overflow-y:auto;overscroll-behavior:contain;-webkit-overflow-scrolling:touch;
+  padding:14px 16px calc(20px + var(--safe-b));
+}
+.qgrid-grp{margin-bottom:15px}
+.qgrid-grp:last-child{margin-bottom:0}
+.qgrid-t{
+  font-size:10.5px;color:var(--muted);letter-spacing:.06em;margin:0 0 8px 2px;
+  display:flex;align-items:center;gap:8px;line-height:1.5;
+}
+.qgrid-t i{flex:1 1 12px;height:1px;background:var(--line);font-style:normal}
+.qgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(46px,1fr));gap:7px}
+.qcell{
+  position:relative;height:44px;border-radius:10px;
+  border:1px solid var(--line);background:var(--surface2);
+  font-family:var(--mono);font-size:12.5px;color:var(--ink2);
+  display:grid;place-items:center;transition:transform .12s,border-color .12s;
+}
+.qcell:active{transform:scale(.94)}
+.qcell.ok{background:var(--ok-soft);border-color:color-mix(in srgb,var(--ok) 42%,transparent);color:var(--ok);font-weight:600}
+.qcell.bad{background:var(--bad-soft);border-color:color-mix(in srgb,var(--bad) 42%,transparent);color:var(--bad);font-weight:600}
+.qcell.pending{background:var(--accent-soft);border-color:var(--accent);color:var(--accent-ink);font-weight:600}
+.qcell.cur{outline:2px solid var(--accent);outline-offset:1px}
+.qcell.marked::after{
+  content:"";position:absolute;top:5px;right:5px;width:5px;height:5px;
+  border-radius:50%;background:var(--accent);
+}
+.qcell.cur.marked::after{background:var(--accent-ink)}
+
+/* 翻页方向：左滑进入新题从右侧滑入，右滑返回从左侧 */
+.stage[data-dir="l"] .q.active{animation:slideL .28s cubic-bezier(.2,.8,.2,1)}
+.stage[data-dir="r"] .q.active{animation:slideR .28s cubic-bezier(.2,.8,.2,1)}
+@keyframes slideL{from{opacity:0;transform:translateX(18px)}to{opacity:1;transform:none}}
+@keyframes slideR{from{opacity:0;transform:translateX(-18px)}to{opacity:1;transform:none}}
+
+/* 桌面端别让面板横贯整屏，收成居中浮层 */
+@media (min-width:981px){
+  .sheet{
+    left:0;right:0;margin:0 auto;width:min(680px,92vw);
+    bottom:28px;border:1px solid var(--line);border-radius:18px;
+    padding-bottom:0;max-height:72vh;
+  }
+  .sheet-body{padding-bottom:18px}
+  .sheet-scrim{background:rgba(12,14,13,.26)}
+}
+
+/* 超长英文单词（化学名）在窄屏会顶破容器 */
+.stem,.opt .txt,.ans-row .v,blockquote.ev,.key-row,.wrong-item .qt{overflow-wrap:break-word}
+
+/* ---------------------------------------------------------------- responsive */
+@media (max-width:980px){
+  /* 小屏上直接放大字号会溢出，按断点重算三档 */
+  html[data-fs="sm"]{--stem:15.8px;--body:13.6px}
+  html[data-fs="md"]{--stem:17.4px;--body:15.4px}
+  html[data-fs="lg"]{--stem:20px;--body:17.4px}
+
+  .app{grid-template-columns:minmax(0,1fr)}
+  .side{
+    position:fixed;left:0;top:0;z-index:60;
+    width:min(86vw,318px);height:100vh;height:100dvh;
+    padding:calc(20px + var(--safe-t)) 16px calc(16px + var(--safe-b));
+    transform:translateX(-100%);
+    transition:transform .26s cubic-bezier(.2,.8,.2,1);
+    background:var(--surface);box-shadow:var(--shadow);
+  }
+  .side.open{transform:none}
+  .scrim.show{
+    display:block;position:fixed;inset:0;z-index:55;background:rgba(0,0,0,.34);
+    animation:fade .2s ease;
+  }
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .only-mobile{display:grid}
+
+  .topbar{
+    padding:calc(8px + var(--safe-t)) 14px 8px;gap:10px;
+    background:color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter:blur(14px) saturate(1.15);
+  }
+  .stage{padding:20px 16px calc(94px + var(--safe-b))}
+
+  /* 底栏贴住视口底部：长页面滚动时始终可点，且不遮住正文末段 */
+  .navbar{
+    position:fixed;left:0;right:0;bottom:0;
+    justify-content:space-between;gap:10px;
+    padding:10px 14px calc(10px + var(--safe-b));
+    background:color-mix(in srgb, var(--surface) 93%, transparent);
+    backdrop-filter:blur(14px) saturate(1.15);
+    border-top:1px solid var(--line);
+    box-shadow:0 -10px 28px -22px rgba(0,0,0,.55);
+  }
+  .nav-prev{min-height:44px;padding:10px 16px;font-size:13.5px}
+  .nav-next{min-height:44px;padding:10px 16px;font-size:13.5px;flex:1;max-width:200px}
+  .pos-btn{min-height:44px;min-width:60px}
+
+  /* 键盘弹出时收起底栏，别压在输入框上 */
+  body.kbd .navbar{display:none}
+  body.kbd .stage{padding-bottom:32px}
+  .toast{bottom:calc(84px + var(--safe-b))}
+
+  /* 抽屉整体滚动，章节列表别再套一层滚动区，否则手机上只剩三行可视 */
+  .chapters{overflow:visible;flex:0 0 auto}
+  .side-foot{margin-top:12px}
+  .result{padding:26px 16px calc(48px + var(--safe-b))}
+  .res-head{gap:20px}
+}
+
+@media (max-width:640px){
+  #mode{display:none}
+  .topbar{gap:8px}
+  .crumb{font-size:11.5px}
+  .crumb span:first-child,.crumb .sep{display:none}
+  .timer{display:block;font-size:11px;padding:3px 7px}
+  .btn{padding:8px 12px;font-size:13px;min-height:40px}
+  .icon-btn{width:40px;height:40px}
+  .icon-btn svg{width:18px;height:18px}
+
+  .qhead{gap:7px;margin-bottom:16px}
+  .num{font-size:22px}
+  .tag{font-size:10.5px;padding:3px 7px}
+  .mark-btn{padding:6px 4px}
+
+  .stem{line-height:1.9;margin-bottom:18px}
+  .opts{gap:10px}
+  .opt{padding:14px;border-radius:13px;min-height:54px;flex-wrap:wrap}
+  .opt .ltr{width:26px;height:26px;flex-basis:26px;margin-top:0}
+  /* 判定标注换行到正文下方，避免把选项文字挤成窄条 */
+  .opt .flag{flex:1 1 100%;margin:5px 0 0 38px;font-size:11px}
+  .opt .flag:empty{display:none}
+
+  .field{padding:13px 14px;font-size:max(16px, var(--body))}
+  .q-actions{gap:8px;margin-top:16px}
+  .q-actions .btn{flex:1;min-height:44px}
+  .q-actions .hint{flex:1 1 100%;margin:0}
+  .self-grade{display:flex;gap:8px;width:100%}
+  .self-grade button{flex:1;min-height:46px;font-size:13.5px}
+
+  .verdict{margin-top:18px;font-size:13.5px}
+  .ans{padding:15px 14px;border-radius:13px;margin-top:12px}
+  .ans-row{font-size:13px;gap:8px}
+  .ans-row .k{min-width:42px;font-size:11px}
+  .keys{padding:10px 12px}
+  .key-row{line-height:1.9}
+  blockquote.ev{font-size:12.5px;line-height:1.9;padding-left:12px}
+
+  /* 结果页：环形缩小、数据两列、按钮整宽堆叠 */
+  .res-head{flex-direction:column;align-items:flex-start;gap:16px;margin-bottom:26px}
+  .big-ring{width:104px;height:104px;flex-basis:104px}
+  .big-ring svg{width:104px;height:104px}
+  .big-ring .t b{font-size:27px}
+  .res-title h2{font-size:20px}
+  .res-title p{font-size:12.5px;line-height:1.8}
+  .res-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px;width:100%;margin-top:14px}
+  .res-stats b{font-size:19px}
+  .res-actions{flex-direction:column;gap:8px;margin-top:24px}
+  .res-actions .btn{width:100%;min-height:46px}
+  .wrong-item{padding:11px 12px}
+  .wrong-item .qt{-webkit-line-clamp:3}
+  .bar-row .lbl{white-space:normal;line-height:1.5}
+}
+
+@media (max-width:400px){
+  .topbar{padding-left:10px;padding-right:10px;gap:6px}
+  .crumb{max-width:96px}
+  .num{font-size:20px}
+  .qgrid{grid-template-columns:repeat(auto-fill,minmax(42px,1fr));gap:6px}
+  .qcell{height:42px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+}
+
+/* ---------------------------------------------------------------- print */
+@media print{
+  body{background:#fff}
+  .side,.topbar,.navbar,.scrim,.toast,.progress,.q-actions,.mark-btn,
+  .sheet,.sheet-scrim,.pos-btn{display:none!important}
+  .app{display:block}
+  .stage{max-width:none;padding:0}
+  .q{display:block!important;page-break-inside:avoid;margin-bottom:26px;padding-bottom:20px;border-bottom:1px solid #ddd}
+  .ans,.verdict{display:block!important}
+  .opt{box-shadow:none;break-inside:avoid}
+  .result{display:none!important}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <aside class="side" id="side">
+    <div class="brand">
+      <div class="mark">Q</div>
+      <div class="brand-t">
+        <h1>化工原理 · 客观题专练</h1>
+        <p>解析器 教材 OCR 全文 + 逐字回查 · 157 题</p>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="ring">
+        <svg width="72" height="72" viewBox="0 0 72 72" aria-hidden="true">
+          <circle class="track" cx="36" cy="36" r="30" fill="none" stroke-width="5"/>
+          <circle class="bar" id="ringBar" cx="36" cy="36" r="30" fill="none" stroke-width="5"
+                  stroke-dasharray="188.5" stroke-dashoffset="188.5"/>
+        </svg>
+        <div class="ring-t"><b id="ringNum">0</b><span id="ringAll">/ 0</span></div>
+      </div>
+      <div class="ring-meta">
+        <div><span class="dot ok"></span><b id="okNum">0</b> 答对</div>
+        <div><span class="dot bad"></span><b id="badNum">0</b> 答错</div>
+        <div><span class="dot mut"></span><b id="leftNum">0</b> 未做</div>
+      </div>
+    </div>
+
+    <div class="filters">
+      <div class="flabel">范围</div>
+      <div class="seg" id="scope">
+        <button data-scope="all" aria-pressed="true">全部</button>
+        <button data-scope="todo" aria-pressed="false">未做</button>
+        <button data-scope="wrong" aria-pressed="false">错题</button>
+        <button data-scope="marked" aria-pressed="false">标记</button>
+      </div>
+      <div class="flabel" style="margin-top:6px">题型</div>
+      <div class="chips" id="types"></div>
+      <div class="flabel" style="margin-top:10px">模式</div>
+      <div class="seg small" id="mode2">
+        <button data-mode="practice">练习</button>
+        <button data-mode="exam">考试</button>
+      </div>
+      <div class="flabel" style="margin-top:10px">正文字号</div>
+      <div class="seg small" id="fsSeg">
+        <button data-fs-btn="sm">小</button>
+        <button data-fs-btn="md">标准</button>
+        <button data-fs-btn="lg">大</button>
+      </div>
+    </div>
+
+    <nav class="chapters" id="chapters" aria-label="章节导航"></nav>
+
+    <div class="side-foot">
+      <a class="hub-link" href="hgyl.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>返回课程</a>
+      <button id="printBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>
+        打印 / 存为 PDF
+      </button>
+      <button id="resetBtn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+        清空答题记录
+      </button>
+    </div>
+  </aside>
+
+  <div class="scrim" id="scrim"></div>
+
+  <main class="main">
+    <div class="progress"><i id="progBar"></i></div>
+    <header class="topbar">
+      <button class="icon-btn only-mobile" id="menuBtn" aria-label="打开目录">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <div class="crumb">
+        <span id="crumbCh">—</span><span class="sep">/</span><span id="crumbSec">—</span>
+      </div>
+      <div class="top-right">
+        <div class="timer" id="timer">00:00</div>
+        <div class="seg small" id="mode">
+          <button data-mode="practice">练习</button>
+          <button data-mode="exam">考试</button>
+        </div>
+        <button class="btn ghost" id="submitBtn">交卷</button>
+        <button class="icon-btn" id="themeBtn" aria-label="切换深浅色"></button>
+      </div>
+    </header>
+
+    <div class="stage" id="stage"></div>
+
+    <div class="result" id="result"></div>
+
+    <footer class="navbar" id="navbar">
+      <button class="btn ghost nav-prev" id="prevBtn" disabled>上一题</button>
+      <button class="pos-btn" id="posBtn" aria-label="打开题目列表，快速跳转" aria-haspopup="dialog">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <rect x="3" y="3" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="2"/>
+          <rect x="3" y="13.5" width="7.5" height="7.5" rx="2"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="2"/>
+        </svg>
+        <b id="posNow">1</b><span>/</span><span id="posAll">0</span>
+      </button>
+      <button class="btn primary nav-next" id="nextBtn">下一题</button>
+      <div class="kbd-hint">
+        <span><kbd>1</kbd>–<kbd>4</kbd> 选择</span>
+        <span><kbd>←</kbd><kbd>→</kbd> 翻页</span>
+        <span><kbd>M</kbd> 标记</span>
+        <span><kbd>T</kbd> 主题</span>
+      </div>
+    </footer>
+  </main>
+</div>
+
+<div class="sheet-scrim" id="sheetScrim"></div>
+<section class="sheet" id="sheet" role="dialog" aria-modal="true" aria-label="题目列表">
+  <header class="sheet-h">
+    <b>题目列表</b>
+    <div class="legend">
+      <span><i class="ok"></i>对</span>
+      <span><i class="bad"></i>错</span>
+      <span><i></i>未做</span>
+    </div>
+    <button class="icon-btn" id="sheetClose" aria-label="关闭">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </header>
+  <div class="sheet-tools">
+    <div class="seg small" id="sheetScope">
+      <button data-sheet-scope="unit" aria-pressed="true">按单元</button>
+      <button data-sheet-scope="type" aria-pressed="false">按题型</button>
+    </div>
+  </div>
+  <div class="sheet-body" id="sheetBody"></div>
+</section>
+
+<div class="toast" id="toast"></div>
+
+<script>window.__QUIZ__ = {"meta":{"id":"化工原理客观题专练","title":"化工原理 · 客观题专练","engine":"教材 OCR 全文 + 逐字回查","source":"《化工原理》（第四版），杨祖荣主编，刘丽英、刘伟副主编，化学工业出版社，2021","generated":"","chunks":9,"accepted":157,"rejected":[],"mock":false},"questions":[{"i":0,"n":1,"ch":"绪论","sec":"绪论","code":"","id":"ch00-single-001","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"化工产品的生产过程再复杂，归纳起来都由哪三个基本环节组成？","o":["原料预处理、化学反应、反应产物后处理","原料运输、反应器设计、产品包装","物料衡算、热量衡算、经济核算","分离、提纯、干燥"],"a":["A"],"exp":"教材开篇把种类繁多的化工生产归纳为三步：反应前要对原料进行预处理，避免催化剂中毒；然后是化学反应；反应后还要把未反应的原料与副产物分离，得到合格产品。B、D 只是其中某个环节的具体操作，C 是分析问题的工具而不是生产环节。","ev":"均可视为由原料预处理过程、化学反应过程和反应产物后处理 3 个基本环节组成。","keys":[],"ref":"第 1 页","hint":"","score":2},{"i":1,"n":2,"ch":"绪论","sec":"绪论","code":"","id":"ch00-single-002","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"工程上把流体输送、沉降、过滤、换热、蒸馏等具有共性的基本操作称为什么？","o":["反应工程","传递过程","单元操作","化工过程"],"a":["C"],"exp":"教材先指出一种产品的生产往往包含几十个物理加工过程，再按操作原理和特点把这些有共性的操作归纳起来，统一命名为单元操作。单元操作既讲过程原理，也讲实现它的设备，是全书的主线。","ev":"工程上将这些具有共性的基本操作称为单元操作(unit operation)。","keys":[],"ref":"第 1 页","hint":"","score":2},{"i":2,"n":3,"ch":"绪论","sec":"绪论","code":"","id":"ch00-single-004","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"教材把化工原理课程的任务具体化为四个方面，下列哪一项不属于这四项要求？","o":["根据工艺要求与物料特性合理选择单元操作及设备","根据选定的单元操作进行工艺计算和设备设计","熟悉操作原理、操作方法与调节参数，能处理常见故障","独立承担整个化工厂的总体设计与经济核算"],"a":["D"],"exp":"教材列出的四项要求是选型、设计计算、操作、开发创新，都围绕单元操作与设备本身。化工厂总体设计与全厂经济核算超出本课程范围，属于后续设计类课程的内容。","ev":"化工原理的任务是培养学生运用本学科基础理论及技能(如电算技能等)分析和解决化工","keys":[],"ref":"第 2 页","hint":"","score":2},{"i":3,"n":4,"ch":"绪论","sec":"绪论","code":"","id":"ch00-multiple-001","t":"multiple","mode":"","bloom":"记忆","diff":"medium","q":"教材指出，分析单元操作问题时贯穿全课程的「四个基本概念和一个观点」包括哪些？","o":["物料衡算","能量衡算","过程平衡与过程速率","经济核算的观点"],"a":["A","B","C","D"],"exp":"教材列出的是物料衡算、能量衡算、过程平衡、速率四个概念，再加一个经济核算的观点。四者分别解决「量守恒」「能守恒」「过程往哪走、走到哪为止」「过程走多快」的问题，经济核算则用于在可行方案中选最省的那个。","ev":"经常会用到下列 4 个基本概念和一个观点，即物料衡算、能量衡算、过程平衡和速率这 4 个基本概念和建立一个经济核算的观点","keys":[],"ref":"第 3 页","hint":"","score":3},{"i":4,"n":5,"ch":"绪论","sec":"绪论","code":"","id":"ch00-single-003","t":"single","mode":"","bloom":"理解","diff":"medium","q":"按教材的归纳，蒸发、蒸馏、吸收这些单元操作分别属于哪一类传递过程？","o":["蒸发属传质过程，蒸馏与吸收属传热过程","蒸发属传热过程，蒸馏与吸收属传质过程","三者都属于传质过程","三者都属于传热过程"],"a":["B"],"exp":"教材按理论基础把单元操作分成四类：蒸发靠加热汽化使溶液浓缩，理论基础是热量传递；蒸馏靠组分挥发度差异、吸收靠溶解度差异，理论基础都是质量传递。混淆点在于蒸发也涉及汽化，但它的目的是浓缩而不是分离组分。","ev":"传热过程 ”包括换热、蒸发等单元操作;","keys":[],"ref":"第 3 页","hint":"","score":2},{"i":5,"n":6,"ch":"绪论","sec":"绪论","code":"","id":"ch00-truefalse-003","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"做物料衡算时，物料量一般用体积表示，因为气体体积便于测量。","o":["正确","错误"],"a":["F"],"exp":"教材特意提醒一般不用体积表示，因为体积会随温度和压强改变，衡算结果跟着漂。物料量应当用质量或物质的量表示，并把单位统一；只有在对温度压力都固定的系统里，体积才勉强可用。","ev":"物料量可用质量或物质的量表示，但一般不用体积表示。","keys":[],"ref":"第 3 页","hint":"","score":2},{"i":6,"n":7,"ch":"绪论","sec":"绪论","code":"","id":"ch00-truefalse-001","t":"truefalse","mode":"","bloom":"理解","diff":"easy","q":"物系的平衡关系可以用来判断过程能否进行、进行的方向以及能够达到的极限。","o":["正确","错误"],"a":["T"],"exp":"平衡是过程推进的终点：两相温度相等时不再有净热量传递，气液达到平衡时不再有净质量传递。所以平衡关系既给出方向（从偏离平衡的一侧指向平衡），也给出极限（最多能走到平衡为止），判断依据就是实际状态与平衡状态的差距。","ev":"物系的平衡关系是指物系的传热或传质过程进行的方向和能达到的极限。","keys":[],"ref":"第 4 页","hint":"","score":2},{"i":7,"n":8,"ch":"绪论","sec":"绪论","code":"","id":"ch00-truefalse-002","t":"truefalse","mode":"","bloom":"理解","diff":"easy","q":"传热过程的推动力是温度差，传质过程的推动力是实际浓度与平衡浓度之差。","o":["正确","错误"],"a":["T"],"exp":"教材把推动力定义为过程在某一瞬间距平衡状态的差值：传热看温差，传质看浓度偏离平衡的程度。推动力越大速率越快，这也是后面传热与传质计算共同的基本思路。","ev":"如传热推动力为温度差，传质推动力为实际浓度与平衡浓度之差。","keys":[],"ref":"第 4 页","hint":"","score":2},{"i":8,"n":9,"ch":"绪论","sec":"绪论","code":"","id":"ch00-truefalse-004","t":"truefalse","mode":"","bloom":"理解","diff":"easy","q":"过程传递速率只取决于推动力，与过程阻力无关。","o":["正确","错误"],"a":["F"],"exp":"教材给出的关系是速率等于推动力除以阻力，两者共同决定快慢：提高推动力或减小阻力都能加快过程。阻力由过程机理、操作条件和物性决定，忽视阻力就无法解释为什么同样的温差下换热量会差很多。","ev":"显然提高推动力和减少过程阻力均可提高过程传递速率，但各有什么","keys":[],"ref":"第 4 页","hint":"","score":2},{"i":9,"n":10,"ch":"第1章 流体流动与输送机械","sec":"1.1 流体物性与静力学","code":"1.1","id":"ch01-single-001","t":"single","mode":"","bloom":"理解","diff":"easy","q":"关于流体黏度随温度的变化规律，下列说法正确的是哪一项？","o":["液体和气体的黏度都随温度升高而增大","液体和气体的黏度都随温度升高而降低","液体的黏度随温度升高而降低，气体的黏度随温度升高而增大","液体的黏度随温度升高而增大，气体的黏度随温度升高而减小"],"a":["C"],"exp":"液体分子间距小，升温使分子间引力减弱，故液体黏度下降；气体分子热运动随升温加剧，动量交换增强，故气体黏度上升。B 把两者的变化方向都弄反，C、D 则把它们当成同一种变化趋势，均不符合流体黏度的实际规律。","ev":"黏度也是流体的物性之一，其值由实验测定。流体的黏度不仅与流体的种类有关，还与温度、压力有关。液体的黏度随温度的升高而降低，压力对其影响可忽略不计; 气体的黏度随温度的升高而增大， 一般情况下也可忽略压力的影响,但在极高或极低的压力条件下需考虑其影响。","keys":[],"ref":"第 10 页","hint":"","score":2},{"i":10,"n":11,"ch":"第1章 流体流动与输送机械","sec":"1.1 流体物性与静力学","code":"1.1","id":"ch01-truefalse-001","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"牛顿黏性定律不仅适用于层流，也适用于管内高度湍流的主体流动。","o":["正确","错误"],"a":["F"],"exp":"牛顿黏性定律描述的是流体层间分子黏性造成的剪应力，前提是流体分层流动，因此只适用于层流。湍流主体中质点脉动引起的动量传递远大于分子黏性，剪应力需引入湍流黏度按类似形式表达，不能直接用牛顿黏性定律。","ev":"应当指出，牛顿黏性定律适用于流体分层流动的情形(称为层流，见 1.4)。","keys":[],"ref":"第 10 页","hint":"","score":2},{"i":11,"n":12,"ch":"第1章 流体流动与输送机械","sec":"1.3 连续性方程与机械能衡算","code":"1.3","id":"ch01-single-002","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"静止流体中同一点处不同方向上的静压力在数值上有什么关系？","o":["竖直方向最大，水平方向最小","数值均相等，静压力各向同性","随作用面方位不同而各不相同","只在与器壁垂直的方向上相等"],"a":["B"],"exp":"静止流体内部同一点处，无论作用面取什么方位，静压力大小都相同，这一性质称为静压力各向同性；压力方向始终垂直于作用面并指向作用面。A 把压力大小与方位挂钩，C 认为随方位不同而不同，D 把各向同性误解为只对器壁成立，都不正确。","ev":"静压力与其作用面在空间的方位无关，只与该点位置有关，即作用于任意点处不同方向上的压力在数值上均相同，静压力各向同性。","keys":[],"ref":"第 11 页","hint":"","score":2},{"i":12,"n":13,"ch":"第1章 流体流动与输送机械","sec":"1.3 连续性方程与机械能衡算","code":"1.3","id":"ch01-single-003","t":"single","mode":"","bloom":"理解","diff":"medium","q":"不可压缩性流体在圆形管道中定态流动时，任意截面的流速与管内径呈什么关系？","o":["与管内径无关","与管内径成反比","与管内径的平方成正比","与管内径的平方成反比"],"a":["D"],"exp":"由连续性方程，不可压缩流体体积流量不变，流速与流通截面积成反比；圆管截面积与内径平方成正比，所以流速与内径平方成反比。A 漏掉了平方关系，B 把反比说成正比，D 忽略了管径变化对流速的影响。","ev":"即不可压缩性流体在圆形管道中任意截面的流速与管内径的平方成反比。","keys":[],"ref":"第 17 页","hint":"","score":2},{"i":13,"n":14,"ch":"第1章 流体流动与输送机械","sec":"1.3 连续性方程与机械能衡算","code":"1.3","id":"ch01-truefalse-002","t":"truefalse","mode":"","bloom":"应用","diff":"medium","q":"不可压缩流体在圆形管道中定态流动，若管径减小一半，流速也随之减小一半。","o":["正确","错误"],"a":["F"],"exp":"连续性方程要求体积流量不变，流速与流通截面积成反比。圆管截面积与内径平方成正比，管径减半时截面积变为原来的四分之一，流速应增大到原来的四倍，而不是减半。该说法把流速与管径误当成了正比关系。","ev":"式(1-20c)表明不可压缩性流体流经各截面时的体积流量也不变，流速 x 与管截面积成反比，截面积越小，流速越大;反之亦然。","keys":[],"ref":"第 17 页","hint":"","score":2},{"i":14,"n":15,"ch":"第1章 流体流动与输送机械","sec":"1.3 连续性方程与机械能衡算","code":"1.3","id":"ch01-single-004","t":"single","mode":"","bloom":"理解","diff":"medium","q":"引入能量损失和外加功后的伯努利方程式，适用于下列哪类流体？","o":["不可压缩实际流体","任何压力变化下的可压缩气体","只能用于理想流体","只能用于静止流体"],"a":["A"],"exp":"实际流体伯努利方程是在理想流体机械能衡算的基础上，扣除黏性造成的能量损失并计入输送机械的外加功得到的，因此适用于不可压缩实际流体。可压缩气体只有在两截面绝对压力变化率小于 20% 时才可近似按不可压缩处理，故 A 错；B 忽略了方程已包含损失项，C 把运动方程误当成静力学方程。","ev":"式(1-23)、式(1-23a)为不可压缩实际流体的机械能衔算式，是理想流体伯努利方程的引申，习惯上也称为伯努利方程式。","keys":[],"ref":"第 19 页","hint":"","score":2},{"i":15,"n":16,"ch":"第1章 流体流动与输送机械","sec":"1.3 连续性方程与机械能衡算","code":"1.3","id":"ch01-multiple-001","t":"multiple","mode":"","bloom":"分析","diff":"medium","q":"关于伯努利方程所反映的能量关系，下列说法正确的有哪些？","o":["理想流体在流动过程中总机械能沿程保持不变","位能、动能和静压能之间可以相互转换","实际流体因黏性产生能量损失，方程中需计入压头损失","流体静止时伯努利方程不再成立"],"a":["A","B","C"],"exp":"理想流体无黏性、无外加功时，各截面总机械能相等，但这三种能量可以互相转换，例如管径变大处动能减小、静压能增大。实际流体有黏性，必须计入能量损失，有输送机械时还要加外加功。流体静止时流速为零、无损失，伯努利方程退化为静力学基本方程，因此 D 错误。","ev":"但各截面上每种形式的能量并不一定相等，它们之间可以相互转换。","keys":[],"ref":"第 20 页","hint":"","score":3},{"i":16,"n":17,"ch":"第1章 流体流动与输送机械","sec":"1.4 流动型态与速度分布","code":"1.4","id":"ch01-single-005","t":"single","mode":"","bloom":"理解","diff":"easy","q":"雷诺数的物理意义是什么？","o":["压力与重力的比值","动能与静压能的比值","惯性力与黏性力的比值","黏性力与惯性力的比值"],"a":["C"],"exp":"雷诺数由流速、管径、密度和黏度组成，其中密度与流速体现惯性效应、黏度体现黏性效应，故 Re 表示惯性力与黏性力的对比，Re 越大流动越湍动。B 把分子分母颠倒，C、D 把 Re 误认为其他力或能量的比值。","ev":"雷诺数有明确的物理意义，它表示流体流动中惯性力与黏性力的对比关系","keys":[],"ref":"第 25 页","hint":"","score":2},{"i":17,"n":18,"ch":"第1章 流体流动与输送机械","sec":"1.4 流动型态与速度分布","code":"1.4","id":"ch01-truefalse-003","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"雷诺数越大，说明黏性力相对惯性力越强，流动越接近层流。","o":["正确","错误"],"a":["F"],"exp":"雷诺数表示惯性力与黏性力的对比，Re 越大意味着惯性力相对黏性力越强，扰动不易被黏性抑制，流动越容易发展为湍流。层流对应低 Re，湍流对应高 Re，该说法把分子分母的关系说反了，结论也随之相反。","ev":"雷诺数有明确的物理意义，它表示流体流动中惯性力与黏性力的对比关系","keys":[],"ref":"第 25 页","hint":"","score":2},{"i":18,"n":19,"ch":"第1章 流体流动与输送机械","sec":"1.4 流动型态与速度分布","code":"1.4","id":"ch01-truefalse-004","t":"truefalse","mode":"","bloom":"理解","diff":"easy","q":"流体在圆管内流动时，无论层流还是湍流，管壁处流速均为零，管中心处流速最大。","o":["正确","错误"],"a":["T"],"exp":"壁面处的流体黏附在静止壁面上，速度为零；越靠近管中心，黏性阻滞越弱，速度越大，到管中心达到最大。层流时速度分布为抛物线，湍流时中心区域较平坦，但管壁为零、管中心最大的基本关系不变。","ev":"无论是层流或是湍流，管壁处质点速度均为零，越靠近管中心速度越大，到管中心处为最大。","keys":[],"ref":"第 26 页","hint":"","score":2},{"i":19,"n":20,"ch":"第1章 流体流动与输送机械","sec":"1.4 流动型态与速度分布","code":"1.4","id":"ch01-single-006","t":"single","mode":"","bloom":"理解","diff":"medium","q":"流体沿固体壁面流动时，流动边界层指的是哪个区域？","o":["离壁面较远、流速基本不变的主流区域","壁面附近流速变化较大、存在明显速度梯度的薄层","管中心流速最大的区域","整个管截面上的流动区域"],"a":["B"],"exp":"边界层是壁面黏性阻滞形成的薄层，层内速度从壁面处的零迅速增大到接近主体流速，速度梯度大，流动阻力主要集中在这里。A 描述的是边界层外的主流区，C 是速度最大的管轴附近，D 把边界层扩大成了整个截面。","ev":"由于边界层的形成将流体沿壁面的流动分成两个区域: 一个是壁面附近流速变化较大的边界层区域，一个是离壁面较远、流速基本不变的主流区域。","keys":[],"ref":"第 28 页","hint":"","score":2},{"i":20,"n":21,"ch":"第1章 流体流动与输送机械","sec":"1.5 管路阻力","code":"1.5","id":"ch01-single-007","t":"single","mode":"","bloom":"应用","diff":"medium","q":"流体在圆管内作层流流动时，直管阻力（单位质量流体的能量损失）与流速的几次方成正比？","o":["与流速无关","二次方","1.75 次方","一次方"],"a":["D"],"exp":"层流时摩擦系数等于 64/Re，而 Re 与流速的一次方成正比，代回范宁公式后阻力与流速的一次方成正比。A 的二次方对应完全湍流粗糙管的阻力平方区，B 的 1.75 次方是光滑管湍流的近似，D 显然与阻力随流量增大的事实不符。","ev":"式(1-39)表明层流时阻力与速度的一次方成正比。","keys":[],"ref":"第 31 页","hint":"","score":2},{"i":21,"n":22,"ch":"第1章 流体流动与输送机械","sec":"1.5 管路阻力","code":"1.5","id":"ch01-multiple-002","t":"multiple","mode":"","bloom":"分析","diff":"hard","q":"关于直管阻力和局部阻力的计算，下列说法正确的有哪些？","o":["层流时摩擦系数只与雷诺数有关","同一管件可同时用阻力系数法和当量长度法叠加计算","局部阻力可用阻力系数法或当量长度法计算","范宁公式对层流和湍流均适用，只是摩擦系数取值不同"],"a":["A","C","D"],"exp":"范宁公式把阻力表示成动能的倍数，形式对层流和湍流通用，差别在摩擦系数的求法；层流时摩擦系数为 64/Re，只随雷诺数变化。局部阻力的两种算法本质是同一件事的两种表达，同一管件只能选其中一种，C 的叠加计算会把阻力算大，故 C 错。","ev":"计算局部阻力时，可用阻力系数法，亦可用当量长度法。对同一管件，可用任一种计算，但不能用两种方法重复计算","keys":[],"ref":"第 41 页","hint":"","score":3},{"i":22,"n":23,"ch":"第1章 流体流动与输送机械","sec":"1.6 管路计算","code":"1.6","id":"ch01-single-008","t":"single","mode":"","bloom":"应用","diff":"medium","q":"某简单管路由几段不同内径的管子串联而成，流体在其中定态流动，整个管路的总能量损失应如何确定？","o":["等于各管段能量损失之和","等于各管段中最大的一段","等于各管段能量损失的平均值","只按管径最小的一段计算"],"a":["A"],"exp":"简单管路没有分支和汇合，各管段依次串联，流体逐段消耗机械能，因此总能量损失等于各段直管阻力与局部阻力损失之和。管径不同时各段流速不同，必须分段计算后再相加；A、B 分别取最大段和平均值，C 只算最小管径段，都会漏算或少算阻力。","ev":"整个管路的总能量损失等于各段能量损失之和","keys":[],"ref":"第 42 页","hint":"","score":2},{"i":23,"n":24,"ch":"第1章 流体流动与输送机械","sec":"1.6 管路计算","code":"1.6","id":"ch01-single-009","t":"single","mode":"","bloom":"应用","diff":"medium","q":"计算并联管路的阻力时，正确的做法是什么？","o":["取各支管阻力的平均值作为并联管路阻力","只按管径最大的支管计算，忽略其他支管","任选一根支管计算，各支管能量损失相等，不能把各支管阻力相加","把各支管的阻力逐段相加作为并联管路的总阻力"],"a":["C"],"exp":"并联管路的分流点与汇合点之间，流体无论走哪根支管，单位质量流体的能量损失都相等，所以任选一根支管计算即可。若把各支管阻力相加，等于让流体同时走完所有支管，与实际并联流动不符；取平均值或只取最大管径支管都没有依据。","ev":"所以，计算并联管路阻力时，可任选一根支管计算，但绝不能将各支管阻力加合在一起作为并联管路的阻力。","keys":[],"ref":"第 46 页","hint":"","score":2},{"i":24,"n":25,"ch":"第1章 流体流动与输送机械","sec":"1.7 流量测量","code":"1.7","id":"ch01-truefalse-005","t":"truefalse","mode":"","bloom":"分析","diff":"hard","q":"分支管路中，各支管流量之和等于总管流量，但各支管的能量损失不一定相等。","o":["正确","错误"],"a":["T"],"exp":"分支管路的总管流量确实等于各支管流量之和；分支点处总机械能为定值，各支管终了时的总机械能与该支管能量损失之和相等。各支管终点的高度和压力可以不同，所以损失和流量不一定相等；只有并联管路的各支管损失才相等。","ev":"虽然各支管的流量不等，但在分支处 O 点的总机械能为一定值，表明流体在各支管流动终了时的总机械能与能量损失之和必相等","keys":[],"ref":"第 47 页","hint":"","score":2},{"i":25,"n":26,"ch":"第1章 流体流动与输送机械","sec":"1.7 流量测量","code":"1.7","id":"ch01-single-010","t":"single","mode":"","bloom":"理解","diff":"medium","q":"在相同压差计读数下，文丘里流量计的流量比孔板流量计大，主要原因是什么？","o":["文丘里管的喉管面积一定大于孔板开孔面积","文丘里管渐缩渐扩，能量损失小，流量系数较大","文丘里流量计不需要流量系数","文丘里流量计的压差计读数被放大了"],"a":["B"],"exp":"文丘里管用渐缩、渐扩段代替孔板，流道变化平缓、涡流少，能量损失小，流量系数明显大于孔板，故同样压差下流量更大。A 与流量大小无必然关系，C 错在文丘里同样要引入流量系数，D 混淆了压差计读数与流量系数的区别。","ev":"由于文丘里流量计的能量损失较小，其流量系数较孔板大，因此相同压差计读数尺 时流量比孔板大。","keys":[],"ref":"第 53 页","hint":"","score":2},{"i":26,"n":27,"ch":"第1章 流体流动与输送机械","sec":"1.7 流量测量","code":"1.7","id":"ch01-truefalse-006","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"转子流量计属于差压式流量计，其转子两端压差随流量增大而增大。","o":["正确","错误"],"a":["F"],"exp":"转子流量计在转子稳定悬浮时，升力始终与转子重力平衡，因此转子两端压差为常数，与流量大小无关。流量增大时转子升高、环隙面积增大，属于恒压差、变流通面积的截面式流量计；压差随流量变化的是孔板等差压式流量计。","ev":"当流量变化时，力平衡关系式(1-70)并未改变，也即转子上、下两端面的压差为常数，所以转子流量计的特点为恒压差、恒环隙流速而变流通面积，属截面式流量计","keys":[],"ref":"第 54 页","hint":"","score":2},{"i":27,"n":28,"ch":"第1章 流体流动与输送机械","sec":"1.8 流体输送机械","code":"1.8","id":"ch01-truefalse-007","t":"truefalse","mode":"","bloom":"理解","diff":"easy","q":"离心泵具有自吸能力，启动前不灌泵也能正常输送液体。","o":["正确","错误"],"a":["F"],"exp":"离心泵启动前若泵壳内存有空气，空气密度远小于液体，旋转产生的离心力很小，叶轮中心形成的低压不足以把液体吸入泵内，这种现象称为气缚。因此离心泵无自吸能力，启动前必须先灌泵，使泵壳和吸入管路充满液体。","ev":"此种现象称为气缚(air binding)，表明离心泵无自吸能力。","keys":[],"ref":"第 56 页","hint":"","score":2},{"i":28,"n":29,"ch":"第1章 流体流动与输送机械","sec":"1.8 流体输送机械","code":"1.8","id":"ch01-single-011","t":"single","mode":"","bloom":"理解","diff":"medium","q":"离心泵发生汽蚀的根本原因是什么？","o":["叶轮叶片数目太少，扬程不够","泵内压力高于大气压，液体被压出过快","泵的转速低于额定转速，流量不足","泵内最低压力降至操作温度下液体的饱和蒸气压，液体汽化或溶解气体析出"],"a":["D"],"exp":"当泵内叶轮入口附近的最低压力降到输送温度下的饱和蒸气压时，液体汽化形成气泡，气泡进入高压区迅速凝结，周围液体高速撞击叶片，造成汽蚀。A 与实际压力过低相反，B、D 可能使工况偏离但不能解释气泡的产生，不是根本原因。","ev":"离心泵发生汽蚀的原因是泵内最低压力等于操作温度下液体的饱和营气压。","keys":[],"ref":"第 66 页","hint":"","score":2},{"i":29,"n":30,"ch":"第1章 流体流动与输送机械","sec":"1.8 流体输送机械","code":"1.8","id":"ch01-multiple-003","t":"multiple","mode":"","bloom":"理解","diff":"medium","q":"关于往复泵和离心式通风机，下列说法正确的有哪些？","o":["离心通风机的全风压等于静风压与动风压之和","往复泵的理论流量取决于活塞面积、冲程和往复次数","往复泵可以像离心泵那样关小出口阀门来调节流量","往复泵的流量只与泵特性有关，压头只取决于管路状况"],"a":["A","B","D"],"exp":"往复泵是容积式泵，活塞扫过的体积决定理论流量，活塞面积、冲程和往复次数一定则流量一定，具有正位移特性，压头由管路需求决定。通风机全风压为静风压与动风压之和。关小出口阀门不能调节往复泵流量，反而会使泵缸压力急升，故 A 错。","ev":"往复和泵的流量仅与泵特性有关，而提供的压头只取决于管路状况，这种特性称为正位移特性，具有这种特性的泵称为正位移式和泵。","keys":[],"ref":"第 71 页","hint":"","score":3},{"i":30,"n":31,"ch":"第1章 流体流动与输送机械","sec":"1.8 流体输送机械","code":"1.8","id":"ch01-single-012","t":"single","mode":"","bloom":"理解","diff":"medium","q":"与离心泵相比，计算离心式通风机的全风压时为什么不能忽略动风压？","o":["气体出口速度很大，动风压在总风压中占相当比例","气体密度很小，静风压恒为零","通风机叶轮转速很低，静风压无法建立","通风机输送的是液体，不存在静风压"],"a":["A"],"exp":"离心泵进、出口动能差很小，常可忽略；通风机输送气体，出口速度很大，动风压在全风压中占比不可忽视，因此全风压必须取静风压与动风压之和。A、B 错在静风压并非为零，C 把通风机输送的介质说成了液体。","ev":"泵进、出口处的动能差很小,可以忽略，但在离心通风机中, 气体出口速度很大，故动风压不能忽略。","keys":[],"ref":"第 75 页","hint":"","score":2},{"i":31,"n":32,"ch":"第2章 非均相物系分离","sec":"2.1 颗粒与颗粒群特性","code":"2.1","id":"ch02-single-001","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"非均相物系中，处于分散状态的物质与处于连续状态的物质分别称为什么？","o":["滤饼、滤液","分散相、连续相","连续相、分散相","分散介质、分散相"],"a":["B"],"exp":"分散相是被分散在物系中的颗粒或液滴，如含尘气体中的固体颗粒；连续相是连成整体的介质，如气体或液体。B 把两者颠倒，C 的分散介质是连续相的另一种叫法，D 是过滤得到的滤饼与滤液，都不符合定义。","ev":"在非均相物系内，处于分散状态的物质称为分散相，如悬浮液和含尘气体中的固体颗粒; 处于连续状态的物质称为连续相，如悬浮液中的液体和含尘气体中的气体。","keys":[],"ref":"第 89 页","hint":"","score":2},{"i":32,"n":33,"ch":"第2章 非均相物系分离","sec":"2.1 颗粒与颗粒群特性","code":"2.1","id":"ch02-single-002","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"工业上遇到的大多数固体颗粒为非球形颗粒，通常用哪两个参数表示其特性？","o":["比表面积和孔隙率","真密度和堆积密度","筛分目数和筛余量","当量直径和球形度"],"a":["D"],"exp":"非球形颗粒形状不规则，难以用单一尺寸说明，教材用体积当量直径或表面积当量直径表示其大小，再用球形度表示形状与球形的差异程度。孔隙率属于颗粒床层参数，真密度和堆积密度是密度概念，筛分目数与筛余量用于测定粒径分布。","ev":"工业上遇到的固体颗粒大多是非球形颗粒，非球形颗粒虽然不像球形颗粒那样容易地求出体积、表面积和比表面积，但可以用当量直径和球形度来表示其特性。","keys":[],"ref":"第 89 页","hint":"","score":2},{"i":33,"n":34,"ch":"第2章 非均相物系分离","sec":"2.1 颗粒与颗粒群特性","code":"2.1","id":"ch02-truefalse-003","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"设计颗粒贮存设备和加工设备时，应以颗粒的真密度为准。","o":["正确","错误"],"a":["F"],"exp":"贮存和加工时颗粒自然堆积，颗粒之间的空隙也占据体积，设备容积要与堆积体积相匹配，所以应以堆积密度为准。真密度只计入颗粒本身体积，数值大于堆积密度，用它估算会低估所需容积。","ev":"设计颗粒贮存设备及加工设备时，要以堆积密度为准。","keys":[],"ref":"第 91 页","hint":"","score":2},{"i":34,"n":35,"ch":"第2章 非均相物系分离","sec":"2.2 沉降","code":"2.2","id":"ch02-single-003","t":"single","mode":"","bloom":"理解","diff":"medium","q":"进行沉降计算时，在什么条件下可近似按自由沉降处理？","o":["颗粒含量较少且设备尺寸足够大","颗粒浓度大且颗粒间距很小","容器直径与颗粒直径相接近","颗粒形状不规则且粒径很细"],"a":["A"],"exp":"自由沉降指颗粒沉降时不受周围颗粒和器壁的影响。颗粒含量少、设备尺寸远大于颗粒时，颗粒间干扰和器壁效应都可忽略，才能按自由沉降计算；B 属于干扰沉降，C 会产生明显的器壁效应，D 只影响阻力系数，并不等于自由沉降条件。","ev":"一般来说，当颗粒含量较少，设备尺寸又足够大的情况下可认为自由沉降。","keys":[],"ref":"第 92 页","hint":"","score":2},{"i":35,"n":36,"ch":"第2章 非均相物系分离","sec":"2.2 沉降","code":"2.2","id":"ch02-single-005","t":"single","mode":"","bloom":"理解","diff":"easy","q":"含尘气体进入降尘室后能够实现分离，主要依靠什么？","o":["气体穿过滤布被过滤","流通截面扩大、流速减小，颗粒有足够停留时间沉降","气体被加热后尘粒升华","尘粒在室内发生化学反应而凝聚"],"a":["B"],"exp":"降尘室借重力沉降除尘：气体进入后流通截面扩大，水平气速降低，颗粒在重力作用下向室底沉降，只要气体停留时间不小于颗粒沉降至底所需时间，尘粒就能被除去。升温升华、化学反应凝聚和滤布过滤分别属于其他转化或分离过程，不是降尘室的原理。","ev":"含尘气体进入降尘室后,流通截面扩大，流速减小，颗粒在重力作用下沉降。","keys":[],"ref":"第 95 页","hint":"","score":2},{"i":36,"n":37,"ch":"第2章 非均相物系分离","sec":"2.2 沉降","code":"2.2","id":"ch02-single-004","t":"single","mode":"","bloom":"理解","diff":"medium","q":"当分散相与连续相密度差较小或颗粒细小时，为什么常改用离心沉降？","o":["离心沉降不需要任何分离设备","离心沉降只能用于气体除尘","重力沉降速度太低，离心力可显著加快沉降","离心力场中颗粒不再受流体阻力"],"a":["C"],"exp":"密度差小或颗粒细时，重力提供的推动力有限，沉降速度很低，设备会变得庞大；离心加速度可远大于重力加速度，使沉降速度成倍提高，设备尺寸也随之减小。离心沉降同样受阻力作用，也需要旋液分离器、离心机等设备，且液固与气固体系都有应用。","ev":"当分散相与连续相密度差较小或颗粒细小时，在重力作用下沉降速度很低。","keys":[],"ref":"第 97 页","hint":"","score":2},{"i":37,"n":38,"ch":"第2章 非均相物系分离","sec":"2.2 沉降","code":"2.2","id":"ch02-truefalse-004","t":"truefalse","mode":"","bloom":"分析","diff":"medium","q":"旋风分离器的出灰口或集尘室即使密封不严，也只是漏入少量气体，对分离效果影响不大。","o":["正确","错误"],"a":["F"],"exp":"旋风分离器器壁处静压最高、中心处最低，出灰口密封不严时外部气体容易被吸入，把已经收集在锥底的粉尘重新卷起并带出，严重降低分离效果。因此运行中必须保证出灰口和集尘室严密。","ev":"因此，如果出灰口或集尘室密封不严，很容易漏入气体，将已收集在锥底的粉尘重新卷起，严重降低分离效果。","keys":[],"ref":"第 99 页","hint":"","score":2},{"i":38,"n":39,"ch":"第2章 非均相物系分离","sec":"2.2 沉降","code":"2.2","id":"ch02-single-006","t":"single","mode":"","bloom":"分析","diff":"medium","q":"为什么旋风分离器的总效率不能准确代表其分离性能？","o":["总效率在工业上无法测定","总效率只与压降大小有关","总效率恒等于粒级效率","总效率随含尘气体粒径分布而变，未反映各粒级的分离效果"],"a":["D"],"exp":"总效率是进出口总尘量之比，测定方便，但含尘气体粒径分布不同时，同一设备会得到不同总效率，不能说明它对各粒径颗粒的分离能力。粒级效率按粒径分段表示分离效果，更能反映性能；总效率可以测定，也不等于粒级效率，更不只由压降决定。","ev":"总效率是工程计算中常用的,也是最容易测定的分离效率，但是它却不能准确代表该分离器的分离性能。","keys":[],"ref":"第 100 页","hint":"","score":2},{"i":39,"n":40,"ch":"第2章 非均相物系分离","sec":"2.3 过滤","code":"2.3","id":"ch02-multiple-001","t":"multiple","mode":"","bloom":"理解","diff":"medium","q":"良好的过滤介质除满足分离要求外，还应具备哪些性能？","o":["足够的机械强度","尽可能小的流过阻力","较高的耐腐蚀性和一定的耐热性","表面越粗糙越好，以便把滤饼牢牢挂住"],"a":["A","B","C"],"exp":"过滤介质要承受两侧压强差，所以需要足够的机械强度；阻力小可降低能耗、提高过滤速率；耐腐蚀性和耐热性决定其适用范围。教材还要求表面光滑，使滤饼容易剥离，故 D 恰好说反了。","ev":"良好的过滤介质除能达到所需分离要求外，还应具有足够的机械强度、尽可能小的流过阻力、较高的耐腐蚀性和一定的耐热性，最好表面光滑，使滤饼剥离容易。","keys":[],"ref":"第 103 页","hint":"","score":3},{"i":40,"n":41,"ch":"第2章 非均相物系分离","sec":"2.3 过滤","code":"2.3","id":"ch02-single-007","t":"single","mode":"","bloom":"理解","diff":"medium","q":"深层过滤适用于处理什么样的悬浮液？","o":["处理量大、颗粒小且固含量低","固含量高且颗粒较粗","含纤维状杂质很多的料浆","需要回收滤饼作产品的场合"],"a":["A"],"exp":"深层过滤时颗粒不形成滤饼，而是被截留在较厚介质的孔隙内，因此适合处理量大、颗粒细、固含量低的悬浮液，如自来水净化和纺丝液除杂。固含量高的悬浮液很快堵塞孔隙，工业上多用滤饼过滤；需要回收滤饼时也以滤饼过滤为主。","ev":"这种过滤常用于处理量大而悬浮液中颗粒小、固含量低(体积百分数小于0.1%%)的情况。","keys":[],"ref":"第 103 页","hint":"","score":2},{"i":41,"n":42,"ch":"第2章 非均相物系分离","sec":"2.3 过滤","code":"2.3","id":"ch02-truefalse-001","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"滤饼过滤刚开始时得到的滤液往往浑浊，可以直接作为产品收集。","o":["正确","错误"],"a":["F"],"exp":"过滤初期介质孔道尚未被颗粒架桥封堵，细小颗粒会穿过介质使滤液浑浊，这部分滤液应返回重滤，待滤饼形成后滤液才变清净。滤饼本身才是真正有效的过滤介质，不能把初期浑浊滤液直接当产品。","ev":"通常操作初期得到的浑浊滤液在滤饼形成之后应返回重滤。","keys":[],"ref":"第 103 页","hint":"","score":2},{"i":42,"n":43,"ch":"第2章 非均相物系分离","sec":"2.3 过滤","code":"2.3","id":"ch02-truefalse-002","t":"truefalse","mode":"","bloom":"分析","diff":"medium","q":"恒速过滤保持过滤速率不变，因此只要不断加大压强差，任何滤饼都能把恒速过滤进行到底。","o":["正确","错误"],"a":["F"],"exp":"对可压缩滤饼，压强差增大会使滤饼空隙率下降、流动阻力急剧增加，为维持恒定速率所需的压强差会升得很高，设备和操作都难以承受，所以恒速过滤往往无法进行到底。实际中常采用先恒速后恒压的操作方式。","ev":"但对于可压缩滤饼，随着过滤时间的延长， 压强差会增加许多，因此. 恒速过滤无法进行到底。","keys":[],"ref":"第 104 页","hint":"","score":2},{"i":43,"n":44,"ch":"第2章 非均相物系分离","sec":"2.3 过滤","code":"2.3","id":"ch02-single-008","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"板框压滤机的主要优点是什么？","o":["真空吸滤且滤饼含液量低","转速高且离心分离因数大","结构简单、过滤面积大、承受压强差较高","连续操作且生产能力大"],"a":["C"],"exp":"板框压滤机由滤板和滤框交替排列，结构简单、制造方便，过滤面积大，还能承受较高的压强差，适合过滤细小颗粒和黏度较高的料浆。它的缺点是间歇操作、生产效率低、劳动强度大；连续操作、真空吸滤和高转速分别属于转鼓真空过滤机和离心机的特点。","ev":"板框压滤机的优点是结构简单、制造方便、过滤面积大、承受压强差较高，因此可用于过滤细小颗粒及黏度较高的料浆。","keys":[],"ref":"第 108 页","hint":"","score":2},{"i":44,"n":45,"ch":"第2章 非均相物系分离","sec":"2.3 过滤","code":"2.3","id":"ch02-single-009","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"转鼓真空过滤机的主要优点是什么？","o":["可在任意高温下操作","连续操作、生产能力大，适于处理量大而容易过滤的料浆","间歇操作且过滤面积大","结构简单且不需要附属设备"],"a":["B"],"exp":"转鼓真空过滤机靠分配头使各扇形格依次完成过滤、洗涤、吸干、吹松和卸饼，转鼓每转一周即完成一个周期，因此能连续操作、生产能力大。它的附属设备较多、投资高、滤饼含液量高，而且真空操作下料浆温度不能过高，所以其余选项都不成立。","ev":"转鼓真空过滤机的优点是连续操作，生产能力大，适于处理量大而容易过滤的料浆。","keys":[],"ref":"第 109 页","hint":"","score":2},{"i":45,"n":46,"ch":"第2章 非均相物系分离","sec":"2.3 过滤","code":"2.3","id":"ch02-truefalse-005","t":"truefalse","mode":"","bloom":"分析","diff":"medium","q":"过滤离心机与沉降离心机的转鼓都没有孔，二者都靠离心力使固体沉积在鼓壁上。","o":["正确","错误"],"a":["F"],"exp":"沉降离心机的转鼓确实无孔，固体沉到鼓壁后定期排出；过滤离心机的转鼓上开有许多小孔，内壁附有过滤介质，离心力使滤液穿过滤布和小孔排出，固体被截留在介质上。二者结构不同，不能混为一谈。","ev":"过滤离心机(filtration centrifuge)与转鼓沉降离心机非常相似，所不同的是，过滤离心机转鼓上开有许多小孔，内壁附以过滤介质,，在离心力作用下进行过滤。","keys":[],"ref":"第 110 页","hint":"","score":2},{"i":46,"n":47,"ch":"第2章 非均相物系分离","sec":"2.4 过程强化与展望","code":"2.4","id":"ch02-multiple-002","t":"multiple","mode":"","bloom":"记忆","diff":"medium","q":"加入混凝剂或絮凝剂强化沉降时，常用的作用机理包括哪些？","o":["吸附电中和","吸附架桥","降低颗粒密度使颗粒上浮","压缩双电层"],"a":["A","B","D"],"exp":"教材把化学药剂强化沉降的机理归为压缩双电层、吸附电中和、吸附架桥和沉淀物网捕四种：前三种分别通过减薄扩散层、中和表面电荷和长链架桥使细颗粒聚集。降低颗粒密度会使颗粒更难下沉，与沉降强化的目的相反。","ev":"加入这些化学药剂后的沉降机理可分为压缩双电层、吸附电中和、吸附架桥、沉淀物网捕4种。","keys":[],"ref":"第 111 页","hint":"","score":3},{"i":47,"n":48,"ch":"第3章 传热","sec":"3.1-3.2 概述与热传导","code":"3.1","id":"ch03-single-001","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"下列哪一项不属于传热的三种基本方式？","o":["热传导","热对流","热辐射","热扩散"],"a":["D"],"exp":"教材指出，有温差时热能会以热传导、热对流和热辐射三种方式中的一种或多种从高温处传向低温处。热扩散描述的是浓度梯度引起的物质迁移，属于传质范畴，不是热量传递方式。","ev":"由热力学第二定律可知，只要在物体内部或物体间有温度差存在，热能就必然以热传导(heat conduction) 、热对流(heat convection)和热辐射(heat radiation) 三种方式中的一种或多种从高温处向低温处传递。","keys":[],"ref":"第 117 页","hint":"","score":2},{"i":48,"n":49,"ch":"第3章 传热","sec":"3.1-3.2 概述与热传导","code":"3.1","id":"ch03-single-002","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"工业生产中换热器内两种流体的接触方式有哪三种？","o":["直接接触式、蓄热式、间壁式","逆流、并流、折流","管程、壳程、错流","夹套式、蛇管式、套管式"],"a":["A"],"exp":"按两流体是否混合及换热方式，教材把接触方式分为直接接触式、蓄热式和间壁式，其中间壁式在工业上最常用。逆流、并流、折流是流动型式，管程与壳程是列管式换热器的流道，夹套、蛇管、套管则是间壁式换热器的具体结构。","ev":"换热器中两流体接触方式有以下三种。","keys":[],"ref":"第 118 页","hint":"","score":2},{"i":49,"n":50,"ch":"第3章 传热","sec":"3.1-3.2 概述与热传导","code":"3.1","id":"ch03-single-003","t":"single","mode":"","bloom":"理解","diff":"medium","q":"傅里叶定律表达式中负号的含义是什么？","o":["温度沿传热方向升高","导热速率一定为负值","传热方向与温度梯度方向相反","热导率取负值"],"a":["C"],"exp":"温度梯度规定沿温度升高的方向为正，而热量总是从高温传向低温，所以导热方向与温度梯度方向相反，表达式前加负号正是表示这一点。热导率是正值物性，导热速率的大小也取正值。","ev":"导热速率与微元所在处的温度梯度成正比，其中负号的含义是传热方向与温度梯度的方向相反。","keys":[],"ref":"第 119 页","hint":"","score":2},{"i":50,"n":51,"ch":"第3章 传热","sec":"3.1-3.2 概述与热传导","code":"3.1","id":"ch03-single-004","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"一般情况下，金属、液体和气体的热导率从大到小的顺序是什么？","o":["金属、气体、液体","金属、液体、气体","气体、液体、金属","液体、金属、气体"],"a":["B"],"exp":"教材指出一般金属的热导率最大，液体较小，气体最小。这是因为金属靠自由电子导热，液体靠分子振动，气体分子间距大、碰撞传能能力弱；气体热导率小对导热不利，却因此常被用作保温材料中的隔热介质。","ev":"一般说来，金属的热导率最大，液体的较小，气体的最小。","keys":[],"ref":"第 120 页","hint":"","score":2},{"i":51,"n":52,"ch":"第3章 传热","sec":"3.1-3.2 概述与热传导","code":"3.1","id":"ch03-single-005","t":"single","mode":"","bloom":"理解","diff":"medium","q":"单层平壁定态导热，若热导率按常数处理，壁内温度沿壁厚如何分布？","o":["按对数规律分布","按抛物线规律分布","壁内温度处处相等","按线性规律分布"],"a":["D"],"exp":"定态下通过各等温面的热通量相同，热导率又取常数，因此温度梯度为常数，温度沿壁厚按线性规律变化。按对数规律分布是圆筒壁的特征；抛物线分布和温度处处相等都不符合一维定态平壁导热的条件。","ev":"可见，平壁定态热传导中，若材料热导率按常数处理，则平壁内温度按线性规律分布。","keys":[],"ref":"第 122 页","hint":"","score":2},{"i":52,"n":53,"ch":"第3章 传热","sec":"3.1-3.2 概述与热传导","code":"3.1","id":"ch03-single-006","t":"single","mode":"","bloom":"分析","diff":"medium","q":"单层圆筒壁定态导热中，通过各等温面的导热速率和热通量如何变化？","o":["导热速率相等，热通量随半径增大而减小","导热速率和热通量都随半径增大而减小","导热速率随半径增大而增大，热通量不变","导热速率和热通量都保持不变"],"a":["A"],"exp":"定态下没有热量积累，通过各等温面的导热速率必然相等；但等温面面积随半径增大，热通量等于导热速率除以面积，所以热通量随半径增大而减小。平壁面积不变，热通量才保持不变，不要把两者混淆。","ev":"在圆筒壁的一维定态热传导中,通过各等温面的导热速率亦相等，但导热热通量随等温面半径的增大而减小。","keys":[],"ref":"第 123 页","hint":"","score":2},{"i":53,"n":54,"ch":"第3章 传热","sec":"3.1-3.2 概述与热传导","code":"3.1","id":"ch03-truefalse-002","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"多层平壁定态导热时，各层的温度降相同，与各层热阻大小无关。","o":["正确","错误"],"a":["F"],"exp":"定态下通过各层的导热速率相等，每层温度降等于导热速率乘以该层热阻，所以热阻越大的层温度降越大，总温差按各层热阻分配。各层温度降相同只在各层热阻相等时才成立，不能一概而论。","ev":"另外,也正是因为各层的导热速率相等，哪层的温差(推动力)越大，哪层的热阻也越大，反之亦然。","keys":[],"ref":"第 125 页","hint":"","score":2},{"i":54,"n":55,"ch":"第3章 传热","sec":"3.1-3.2 概述与热传导","code":"3.1","id":"ch03-single-007","t":"single","mode":"","bloom":"理解","diff":"medium","q":"对流传热中，热阻主要集中在哪里？","o":["过渡区","管道中心","紧邻壁面的层流内层","湍流主体"],"a":["C"],"exp":"湍流主体中流体质点剧烈混合，温度趋于均匀，热阻很小；紧邻壁面的层流内层只能靠导热传递热量，而流体热导率通常不大，所以该层虽然很薄，热阻和温度梯度却很大。强化对流传热的关键之一就是减薄层流内层。","ev":"尽管层流内层很薄，但由于其中发生的是借分子热运动的导热且流体热导率往往不大，所以该区域热阻很大，温度梯度很大。","keys":[],"ref":"第 126 页","hint":"","score":2},{"i":55,"n":56,"ch":"第3章 传热","sec":"3.1-3.2 概述与热传导","code":"3.1","id":"ch03-truefalse-001","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"对流传热就是热对流，二者都是指流体内部因温度不同而产生的环流。","o":["正确","错误"],"a":["F"],"exp":"热对流是流体内部质点相对运动引起的热量传递，而对流传热特指流动着的流体与固体壁面之间的传热过程。工程上讨论的对流传热系数描述的是流体与壁面之间的换热，二者概念范围不同，不能等同。","ev":"对流传热不同于一般意义上的热对流，而是特指流动着的流体与固体壁面之间的热量传递过程。","keys":[],"ref":"第 126 页","hint":"","score":2},{"i":56,"n":57,"ch":"第3章 传热","sec":"3.3 对流传热","code":"3.3","id":"ch03-multiple-001","t":"multiple","mode":"","bloom":"记忆","diff":"easy","q":"影响对流传热系数的主要因素包括哪些？","o":["引起流动的原因","流体的性质","传热面的情况","换热器的安装高度"],"a":["A","B","C"],"exp":"教材把影响因素归为四类：强制对流还是自然对流、流体的密度黏度热导率比热容等性质、传热面的形状尺寸与摆放方式、以及流动型态和湍动程度。安装高度并不直接进入关联式，故 D 不属于主要因素。","ev":"影响对流传热系数的因素包括: 引起流动的原因、流体本身的性质、传热面的情况和流体流动状况等方面。","keys":[],"ref":"第 127 页","hint":"","score":3},{"i":57,"n":58,"ch":"第3章 传热","sec":"3.3 对流传热","code":"3.3","id":"ch03-single-008","t":"single","mode":"","bloom":"理解","diff":"medium","q":"在自然对流传热的特征数关联式中，代表自然对流影响的是哪个准数？","o":["Pr","Gr","Nu","Re"],"a":["B"],"exp":"Re 代表流动型态与湍动程度，Pr 代表流体物性对传热的影响，Gr 代表自然对流的影响，Nu 是包含对流传热系数的待定特征数。自然对流靠密度差引起的环流，Gr 越大环流越强，故应选 Gr。","ev":"Gr 为格拉晓夫(Grashof)数，代表自然对流对对流传热的影响。","keys":[],"ref":"第 128 页","hint":"","score":2},{"i":58,"n":59,"ch":"第3章 传热","sec":"3.3 对流传热","code":"3.3","id":"ch03-single-009","t":"single","mode":"","bloom":"理解","diff":"medium","q":"滴状冷凝的传热系数比膜状冷凝大很多，工业冷凝器为什么仍按膜状冷凝设计？","o":["膜状冷凝的传热系数更大","滴状冷凝在工业上根本无法出现","膜状冷凝不需要冷凝液膜","滴状冷凝难以持久维持，运行一段时间后一般转为膜状冷凝"],"a":["D"],"exp":"滴状冷凝时液滴不能润湿壁面，壁面可直接暴露给蒸气，热阻小、传热系数大；但这种状态难以长期保持，运行一段时间后一般发展为膜状冷凝。因此工业冷凝器按膜状冷凝设计，强化方向是设法减薄液膜。","ev":"所以工业冷凝器的设计皆按膜状冷凝来处理。","keys":[],"ref":"第 137 页","hint":"","score":2},{"i":59,"n":60,"ch":"第3章 传热","sec":"3.3 对流传热","code":"3.3","id":"ch03-truefalse-004","t":"truefalse","mode":"","bloom":"分析","diff":"medium","q":"由于滴状冷凝传热系数高，工业冷凝器设计时应按滴状冷凝计算。","o":["正确","错误"],"a":["F"],"exp":"滴状冷凝虽热阻小、传热系数大，但工业上难以持久维持，运行一段时间后一般转为膜状冷凝，所以冷凝器按膜状冷凝设计。膜状冷凝的热阻几乎全部集中在液膜内，减薄液膜才是强化方向。","ev":"因而滴状冷凝的传热系数比膜状冷凝时大很多。","keys":[],"ref":"第 137 页","hint":"","score":2},{"i":60,"n":61,"ch":"第3章 传热","sec":"3.4 传热计算","code":"3.4","id":"ch03-multiple-002","t":"multiple","mode":"","bloom":"理解","diff":"medium","q":"间壁式换热器的总热阻由哪些热阻组成？","o":["管壁导热热阻","管外污垢热阻与管外对流传热热阻","换热器外壳向环境的辐射热阻","管内对流传热热阻与管内污垢热阻"],"a":["A","B","D"],"exp":"以换热管外表面为基准时，总热阻是五项基本热阻的加和：管外对流传热、管外污垢、管壁导热、管内污垢和管内对流传热，A、B、C 已把它们列全。外壳向环境的散热属于设备热损失，不在两流体间传热的总热阻之内。","ev":"由式(3-63)可以看出，实际上两流体通过换热管的换热过程总热阻是 5 项基本热阻的加和，即管外流体的对流传热热阻、管外表面的污垢热阻、管壁热阻、管内表面污垢热阻、管内流体的对流传热热阻。","keys":[],"ref":"第 145 页","hint":"","score":3},{"i":61,"n":62,"ch":"第3章 传热","sec":"3.4 传热计算","code":"3.4","id":"ch03-truefalse-005","t":"truefalse","mode":"","bloom":"分析","diff":"medium","q":"总传热系数总是接近两侧对流传热系数中较大的那个。","o":["正确","错误"],"a":["F"],"exp":"总热阻由两侧对流传热热阻、污垢热阻和管壁热阻串联而成，总传热系数小于任一侧的对流传热系数，并接近其中较小的那个，因为小对流传热系数对应大热阻、占总热阻的份额大。要提高总传热系数，应优先提高较小的一侧。","ev":"总传热系数小于两侧流体的对流传热系数，且总是接近于较小的对流传热系数。","keys":[],"ref":"第 145 页","hint":"","score":2},{"i":62,"n":63,"ch":"第3章 传热","sec":"3.4 传热计算","code":"3.4","id":"ch03-single-010","t":"single","mode":"","bloom":"理解","diff":"medium","q":"冷、热流体进出口温度一定时，下列流型中平均传热温差最大的是哪一种？","o":["逆流","并流","折流","错流"],"a":["A"],"exp":"逆流时换热器两端温差都较大，对数平均温差最高；并流时一端温差很小，平均温差最小；折流和错流的平均温差介于两者之间，需在逆流基础上乘以小于1的温差校正系数。因此在同样任务下逆流所需传热面积最小。","ev":"在流体进、出口温度一定的情况下，逆流的平均温差最大","keys":[],"ref":"第 150 页","hint":"","score":2},{"i":63,"n":64,"ch":"第3章 传热","sec":"3.4 传热计算","code":"3.4","id":"ch03-truefalse-006","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"工艺上要求冷流体被加热时不得超过某一温度，此时宜采用并流操作。","o":["正确","错误"],"a":["T"],"exp":"并流时冷流体出口温度受热流体出口温度限制，不会超过热流体出口温度，可避免冷流体局部过热；这正是并流相对逆流的优点。代价是平均传热温差较小，完成同样任务需要更大的传热面积。","ev":"例如，工艺上要求冷流体被加热时不得超过某一温度或热流体被冷却时不得低于某一温度，则宜采用并流。","keys":[],"ref":"第 150 页","hint":"","score":2},{"i":64,"n":65,"ch":"第3章 传热","sec":"3.5 热辐射","code":"3.5","id":"ch03-multiple-003","t":"multiple","mode":"","bloom":"理解","diff":"medium","q":"为消除或减小热应力，列管式换热器可采用哪些结构型式？","o":["U形管式","夹套式","带补偿圈的固定管板式","浮头式"],"a":["A","C","D"],"exp":"固定管板式靠补偿圈的弹性变形吸收部分热膨胀；浮头式让一端管板自由伸缩，可彻底消除热应力并便于抽出管束；U 形管式使每根管子两端固定在同一管板上、可自由伸缩。夹套式是容器外壁加热结构，不属于热补偿型式。","ev":"因此，必须在换热器结构设计上采取消除或减小热应力的措施，称之为热补偿。","keys":[],"ref":"第 162 页","hint":"","score":3},{"i":65,"n":66,"ch":"第3章 传热","sec":"3.6 换热器","code":"3.6","id":"ch03-single-011","t":"single","mode":"","bloom":"理解","diff":"medium","q":"板式换热器的主要缺点是什么？","o":["不能通过增减板片调节传热面积","单位体积提供的传热面积小","允许操作压力较低，操作温度不能太高","传热系数低且结构不紧凑"],"a":["C"],"exp":"板式换热器板片压成波纹，湍动强、总传热系数大，结构紧凑，还可增减板片调节面积，所以 B、C、D 都说反了。它的短板是垫片耐压耐温有限，操作压力一般不超过 2 MPa，温度过高时垫圈易损坏渗漏。","ev":"其主要缺点是允许的操作压力较低，一般不允许超过 2MPa，操作温度不能太高","keys":[],"ref":"第 165 页","hint":"","score":2},{"i":66,"n":67,"ch":"第3章 传热","sec":"3.6 换热器","code":"3.6","id":"ch03-truefalse-003","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"列管式换热器中，黏度较大或流量较小的流体宜走壳程，以便在较低 Re 下达到湍流。","o":["正确","错误"],"a":["T"],"exp":"壳程装有折流挡板，流体反复错流通过管束，湍动程度高，在较小 Re 下即可达到湍流，从而提高对流传热系数。黏度大或流量小的流体若走管程往往长期处于层流，所以宜安排在壳程。","ev":"黏度大的液体或流量较小的流体宜走壳程，使在低 Re 值下达到湍流，以提高对流传热系数;","keys":[],"ref":"第 167 页","hint":"","score":2},{"i":67,"n":68,"ch":"第4章 蒸发","sec":"4.1 概述","code":"4.1","id":"ch04-single-001","t":"single","mode":"","bloom":"理解","diff":"easy","q":"关于蒸发操作的过程本质，下列说法正确的是哪一项？","o":["蒸发属于机械分离过程，靠过滤介质截留溶质","蒸发操作属于传热过程，蒸发设备为传热设备","蒸发属于纯粹的化学变化过程，加热是为了引发溶质分解","蒸发属于输送过程，主要设备是离心泵"],"a":["B"],"exp":"蒸发是使溶剂汽化、溶质留在溶液中的分离操作，其速率取决于溶剂的汽化速率，而汽化速率又由传热速率决定，所以蒸发操作属于传热过程，蒸发设备是传热设备。机械分离靠过滤或离心实现，化学变化会生成新物质，输送过程由泵完成，三者都不是蒸发的本质。工业上蒸发广泛应用于化工、轻工、食品、医药等领域，主要用于浓缩稀溶液制取产品、浓缩同时回收溶剂以及制备纯净溶剂。","ev":"此种蒸发过程即是间壁两侧恒温的传热过程。","keys":[],"ref":"第 181 页","hint":"","score":2},{"i":68,"n":69,"ch":"第4章 蒸发","sec":"4.2 单效与多效计算","code":"4.2","id":"ch04-single-008","t":"single","mode":"","bloom":"理解","diff":"medium","q":"单效蒸发装置中，分离室出来的二次蒸汽在进入混合冷凝器之前，先经过哪个设备？","o":["顶部除沫器","中央循环管","大气腿","真空泵"],"a":["A"],"exp":"二次蒸汽从分离室顶部排出时夹带液滴，先经顶部除沫器除去雾沫，再进入混合冷凝器与冷水直接接触冷凝，冷凝水最后经大气腿排出。中央循环管是蒸发器内部的溶液循环通道，大气腿位于冷凝器底部，真空泵抽除的是不凝性气体，它们都不在二次蒸汽进入冷凝器之前的流程上。","ev":"分离室分离出的蒸汽(又称二次蒸汽，以区别于加热蒸汽或生蒸汽)，先经顶部除沫器除沫，再进入混合冷凝器 3 与冷水相混，被直接冷凝后，通过大气腿 7 排出。","keys":[],"ref":"第 182 页","hint":"","score":2},{"i":69,"n":70,"ch":"第4章 蒸发","sec":"4.2 单效与多效计算","code":"4.2","id":"ch04-single-002","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"单效蒸发器传热面积的设计计算依据是下列哪一项？","o":["溶质的物料衡算方程","离心泵的特性曲线","传热速率方程","填料塔的泛点气速关联式"],"a":["C"],"exp":"单效蒸发设计计算通常包括蒸发水量、加热蒸汽消耗量和传热面积三项，其中传热面积由传热速率方程求得，热负荷由热量衡算得到，总传热系数和传热平均温度差按蒸发操作的特点确定。物料衡算用来求蒸发水量和完成液浓度，泵特性曲线用于选泵，泛点气速关联式用于填料塔设计，都不能直接求出传热面积。","ev":"蒸发器的传热面积可通过传热速率方程求得","keys":[],"ref":"第 183 页","hint":"","score":2},{"i":70,"n":71,"ch":"第4章 蒸发","sec":"4.2 单效与多效计算","code":"4.2","id":"ch04-truefalse-001","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"计算蒸发器传热温度差时，可以不考虑溶液浓度和液位深度的影响，直接按纯水沸点计算。","o":["正确","错误"],"a":["F"],"exp":"溶液的沸点除受液面压力影响外，还受浓度和液位深度影响：浓度引起沸点升高，液位深度引起液柱静压头损失，两者都使溶液沸点高于纯水沸点、有效温度差减小。因此计算传热温度差时必须计入各项温度差损失，不能直接按纯水沸点计算。","ev":"应该指出,溶液的沸点不仅受蒸发吉内液面压力影响，而且受溶液浓度、液位深度等因素影响。","keys":[],"ref":"第 183 页","hint":"","score":2},{"i":71,"n":72,"ch":"第4章 蒸发","sec":"4.2 单效与多效计算","code":"4.2","id":"ch04-single-007","t":"single","mode":"","bloom":"理解","diff":"medium","q":"采用真空蒸发的主要目的之一是下列哪一项？","o":["提高溶液沸点，从而增大传热温度差","降低溶液沸点，增大传热推动力，并可利用低温位水蒸气作热源","取消冷凝器，把二次蒸汽直接排入大气","提高加热蒸汽的压力等级"],"a":["B"],"exp":"真空蒸发降低分离室压力，使溶液沸点下降，加热蒸汽温度与溶液沸点之差增大，传热推动力提高，同时可降低对加热热源的要求、利用低温位水蒸气。提高沸点与真空操作相反，真空系统必须保留冷凝器和真空装置而不能直接排空，提高加热蒸汽压力属于提高热源温度的措施，不是真空蒸发的目的。","ev":"另外，真空蒸发可降低对加热热源的要求，即可利用低温位的水蒸气作热源。","keys":[],"ref":"第 186 页","hint":"","score":2},{"i":72,"n":73,"ch":"第4章 蒸发","sec":"4.2 单效与多效计算","code":"4.2","id":"ch04-truefalse-004","t":"truefalse","mode":"","bloom":"分析","diff":"medium","q":"真空蒸发降低溶液沸点后，溶液的黏度会随之降低，因此传热系数一定增大。","o":["正确","错误"],"a":["F"],"exp":"真空蒸发虽能降低沸点、增大传热推动力，但沸点降低会使溶液黏度增高，传热系数可能下降，这是真空蒸发不利的一面。因此不能认为沸点降低后黏度降低、传热系数一定增大，设计时须综合考虑推动力与传热系数两方面的影响。","ev":"但是，应该指出,溶液沸点降低，其黏度会增高","keys":[],"ref":"第 186 页","hint":"","score":2},{"i":73,"n":74,"ch":"第4章 蒸发","sec":"4.2 单效与多效计算","code":"4.2","id":"ch04-multiple-002","t":"multiple","mode":"","bloom":"分析","diff":"medium","q":"为使蒸发器保持在高强度下操作，可采取的措施有哪些？","o":["合理设计蒸发器，实现良好的溶液循环流动","及时排除加热室中的不凝性气体","定期清洗蒸发器加热室内管","尽量提高完成液的浓度"],"a":["A","B","C"],"exp":"良好的溶液循环能提高对流传热系数，及时排除不凝性气体可避免其在加热表面形成气膜，定期清洗加热管可除去垢层，三者都能提高总传热系数，从而保持较高的生产强度。提高完成液浓度会使溶液黏度增大、沸点升高，传热条件变差，生产强度反而下降，故D错误。","ev":"这些已在前面论述，因此，合理设计蒸发器以实现良好的溶液循环流动、及时排除加热室中不凝性气体、定期清洗蒸发器(加热室内管)均是提高和保持阁发器在高强度下操作的重要措施。","keys":[],"ref":"第 187 页","hint":"","score":3},{"i":74,"n":75,"ch":"第4章 蒸发","sec":"4.2 单效与多效计算","code":"4.2","id":"ch04-single-003","t":"single","mode":"","bloom":"理解","diff":"medium","q":"多效蒸发并流加料流程中，料液能从前一效自动流入后一效，主要依靠什么？","o":["外加循环泵的扬程","压缩机的压缩作用","真空泵的抽吸作用","相邻两效之间的压强差"],"a":["D"],"exp":"并流流程中各效的操作压强依次降低，料液借相邻两效的压强差自动流入后一效，不需要用泵输送。循环泵是强制循环蒸发器的部件，压缩机用于热泵蒸发，真空泵用于抽除不凝性气体、维持末效真空，都不能作为并流输料的动力。","ev":"料液可借相邻两效的压强差自动流入后一效，而不需用泵输送","keys":[],"ref":"第 188 页","hint":"","score":2},{"i":75,"n":76,"ch":"第4章 蒸发","sec":"4.2 单效与多效计算","code":"4.2","id":"ch04-single-004","t":"single","mode":"","bloom":"理解","diff":"medium","q":"平流加料三效蒸发流程最适用于处理哪类溶液？","o":["蒸发过程中有结晶析出的溶液","热敏性很强、允许停留时间极短的溶液","黏度随温度变化很大、必须采用逆流加热的溶液","需要把二次蒸汽逐效利用的溶液"],"a":["A"],"exp":"平流流程中各效都加入原料液并分别排出完成液，高浓度溶液不必在效间输送，从而避免因降温而析出结晶，所以适用于易结晶物料。热敏性物料宜用单程型蒸发器，黏度随温度变化大的场合宜用逆流流程，二次蒸汽逐效利用是并流流程的特点。","ev":"这种流程适用于处理易结晶物料，例如食盐水溶液等的蒸发。","keys":[],"ref":"第 188 页","hint":"","score":2},{"i":76,"n":77,"ch":"第4章 蒸发","sec":"4.2 单效与多效计算","code":"4.2","id":"ch04-truefalse-002","t":"truefalse","mode":"","bloom":"理解","diff":"easy","q":"蒸发器加热室排出的高温冷凝水应返回锅炉房重新使用，这样既节省能源又节省水源。","o":["正确","错误"],"a":["T"],"exp":"加热蒸汽冷凝水温度高、水质好，返回锅炉房可回收其显热，同时减少软化水的消耗，既节能又节水。回用时应监测水质，防止蒸发器损坏或阀门泄漏污染锅炉补水系统，但回收利用本身是正确的。","ev":"这些水理应返回锅炉房重新使用，这样既节省能源又节省水源。","keys":[],"ref":"第 188 页","hint":"","score":2},{"i":77,"n":78,"ch":"第4章 蒸发","sec":"4.2 单效与多效计算","code":"4.2","id":"ch04-truefalse-005","t":"truefalse","mode":"","bloom":"记忆","diff":"medium","q":"平流加料三效蒸发流程中，蒸汽的走向与并流流程相同，而原料液和完成液分别从各效加入和排出。","o":["正确","错误"],"a":["T"],"exp":"平流流程各效都通入加热蒸汽，蒸汽总体走向与并流相同，但原料液分别加入各效、完成液也分别从各效排出，各效浓度都较高。正因如此，它适用于易结晶物料，可避免高浓度溶液在效间输送时因降温而析出晶体。","ev":"其特点是蒸汽的走向与并流相同，但原料液和完成液则分别从各效加入和排出。","keys":[],"ref":"第 188 页","hint":"","score":2},{"i":78,"n":79,"ch":"第4章 蒸发","sec":"4.4 蒸发器与附属设备","code":"4.4","id":"ch04-multiple-001","t":"multiple","mode":"","bloom":"分析","diff":"medium","q":"多效蒸发中，随着效数增加，下列变化正确的有哪些？","o":["单位蒸汽消耗量减少","操作费用降低","有效温度差减小、设备投资费用增大","总传热系数按效数成比例增大"],"a":["A","B","C"],"exp":"效数增加后，蒸发同样水量所需的加热蒸汽量减少，单位蒸汽消耗量下降，操作费用随之降低；但温度差损失增大、有效温度差减小，增加一效还要增加设备，投资费用上升，因此存在最佳效数。总传热系数取决于溶液性质、沸腾状况和蒸发器结构，不会随效数成比例增大，D错误。单位蒸汽消耗量越小，说明加热蒸汽的经济性越好，这也是多效蒸发的意义所在。","ev":"由表 4-2 并综合前述情况后可知，随着效数的增加，单位蒸汽的消耗量会减少，即操作费用降低，但是有效温度差也会减少(即温度差损失增大)，使设备投资费用增大。","keys":[],"ref":"第 194 页","hint":"","score":3},{"i":79,"n":80,"ch":"第4章 蒸发","sec":"4.4 蒸发器与附属设备","code":"4.4","id":"ch04-single-005","t":"single","mode":"","bloom":"理解","diff":"medium","q":"中央循环管式蒸发器中，溶液自然循环的流动方向是下列哪一种？","o":["加热管束内向下、中央循环管内向上","加热管束和中央循环管内均向上","加热管束内向上、中央循环管内向下","加热管束和中央循环管内均向下"],"a":["C"],"exp":"加热管束内单位体积溶液的受热面积大、汽化率高，气液混合物密度小，因而向上流动；中央循环管直径大、受热面积小，其中混合物密度大，因而向下流动，两者形成自然循环。其余选项的方向与实际相反或两管同向，无法形成密度差推动的循环。","ev":"这样造成了混合液在管束中向上、在中央循环管向下的自然循环流动。","keys":[],"ref":"第 194 页","hint":"","score":2},{"i":80,"n":81,"ch":"第4章 蒸发","sec":"4.4 蒸发器与附属设备","code":"4.4","id":"ch04-truefalse-003","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"循环型蒸发器内溶液滞留量大、物料在高温下停留时间长，因此特别适合处理热敏性物料。","o":["正确","错误"],"a":["F"],"exp":"循环型蒸发器溶液滞留量大、物料在高温下停留时间长，热敏性物料容易分解变质，所以并不适合。处理热敏性物料应采用单程型蒸发器，物料一次通过加热管，停留时间仅数秒至十几秒，离开加热器后还能及时冷却。","ev":"循环型蒸发器有一个共同的缺点，即蒸发器内溶液的滞留量大，物料在高温下停留时间长，这对处理热敏性物料甚为不利。","keys":[],"ref":"第 195 页","hint":"","score":2},{"i":81,"n":82,"ch":"第4章 蒸发","sec":"4.4 蒸发器与附属设备","code":"4.4","id":"ch04-single-006","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"单程型蒸发器特别适用于蒸发哪类物料？","o":["易结晶物料","高黏度物料","易结垢物料","热敏性物料"],"a":["D"],"exp":"单程型蒸发器中物料沿加热管壁成膜流动，一次通过即达到浓缩要求，停留时间仅数秒至十几秒，离开加热器后又及时冷却，所以特别适用于热敏性物料。易结晶、易结垢和高黏度物料需要较长的停留时间与强制流动，更适合强制循环型等循环型蒸发器。","ev":"另外，离开加热器的物料又得到及时冷却，故特别适用于热敏性物料的蒸发。","keys":[],"ref":"第 196 页","hint":"","score":2},{"i":82,"n":83,"ch":"第5章 气体吸收","sec":"5.1 概述与吸收剂","code":"5.1","id":"ch05-single-001","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"关于化学吸收，下列说法正确的是哪一项？","o":["化学吸收中溶质仅靠溶解度差异实现分离","溶质与溶剂发生明显化学反应的吸收操作称为化学吸收","化学吸收不需要吸收剂再生","化学吸收的选择性比物理吸收差"],"a":["B"],"exp":"化学吸收是溶质与溶剂发生明显化学反应的吸收操作，反应可大幅度提高吸收能力，并使吸收具有较高的选择性；物理吸收才是主要靠溶解度差异实现分离。化学吸收剂通常要求反应可逆以便再生，若反应不可逆则吸收剂消耗大，只用于溶质含量很低又需彻底去除的场合，故其余三项均错误。按溶质与溶剂是否发生明显化学反应，吸收分为物理吸收和化学吸收；按溶质组分数还可分为单组分吸收和多组分吸收。吸收在化工、医药、冶金等领域广泛用于分离回收有用组分、除去有害组分、制备气体溶液和治理工业废气。","ev":"如果在吸收过程中, 溶质与溶剂发生明显化学反应，则此吸收操作称为化学吸收(chemical absorption) 。","keys":[],"ref":"第 208 页","hint":"","score":2},{"i":83,"n":84,"ch":"第5章 气体吸收","sec":"5.1 概述与吸收剂","code":"5.1","id":"ch05-single-002","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"选择吸收剂时，对吸收剂挥发度的要求是下列哪一项？","o":["操作温度下吸收剂的蒸气压要高，便于汽化","挥发度越大越好，可加快传质速率","操作温度下吸收剂的蒸气压要低，不易挥发","挥发度对吸收过程没有影响，可不考虑"],"a":["C"],"exp":"吸收剂应不易挥发，即操作温度下蒸气压要低。这样既可减少吸收过程中吸收剂的损失，又可避免在气体中引入新的杂质。挥发度高会使吸收剂随气体流失并污染产品，并不会加快传质；挥发度是选用吸收剂的重要指标，并非与过程无关。","ev":"吸收剂应不易挥发，即操作温度下吸收剂的蒸气压要低。","keys":[],"ref":"第 208 页","hint":"","score":2},{"i":84,"n":85,"ch":"第5章 气体吸收","sec":"5.2 相平衡与亨利定律","code":"5.2","id":"ch05-single-003","t":"single","mode":"","bloom":"理解","diff":"medium","q":"当物系一定时，亨利系数随温度升高的一般变化规律是下列哪一项？","o":["亨利系数减小，气体溶解度增大","亨利系数不变，气体溶解度不变","亨利系数先减小后增大，气体溶解度先增大后减小","亨利系数增大，气体溶解度减小"],"a":["D"],"exp":"亨利系数只是温度的函数，大多数物系温度上升时亨利系数增大；由亨利定律可知，平衡分压一定时液相摩尔分数减小，即气体溶解度降低。温度降低则亨利系数减小、溶解度增大，这正是低温有利于吸收的原因。温度降低时亨利系数减小、溶解度增大，方向与升高温度相反；认为亨利系数不变或先减后增的说法都不符合其随温度单调变化的一般规律。","ev":"当物系一定时，亨利系数仅是温度的函数，对于大多数物系，温度上升, 巨 值增大，气体溶解度减少。","keys":[],"ref":"第 211 页","hint":"","score":2},{"i":85,"n":86,"ch":"第5章 气体吸收","sec":"5.2 相平衡与亨利定律","code":"5.2","id":"ch05-single-004","t":"single","mode":"","bloom":"理解","diff":"easy","q":"气液两相接触时，传质方向由什么决定？","o":["两相实际浓度与平衡浓度的相对偏离方向","气体的总压高低","吸收塔内填料的类型","吸收剂的黏度大小"],"a":["A"],"exp":"传质方向总是使系统向达到平衡的方向进行：气相实际组成高于与液相平衡的气相组成时发生吸收，反之则发生解吸，因此判据是实际浓度与平衡浓度的相对大小，两者之差即为传质推动力，差值越大推动力越大、传质速率越快。总压和温度通过改变平衡关系间接影响方向，填料类型和吸收剂黏度只影响传质速率，不能决定传质方向。","ev":"总之，传质方向使系统向达到平衡的方向进行。","keys":[],"ref":"第 214 页","hint":"","score":2},{"i":86,"n":87,"ch":"第5章 气体吸收","sec":"5.2 相平衡与亨利定律","code":"5.2","id":"ch05-truefalse-001","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"吸收过程的极限是气液两相浓度最终相等。","o":["正确","错误"],"a":["F"],"exp":"传质过程的极限是平衡状态，但平衡时气液两相浓度并不相等，而是满足相平衡关系。相平衡关系限制了吸收液离塔的最高浓度和气体离塔的最低浓度：吸收液最高浓度只能达到与进塔气体平衡的液相浓度，出塔气体最低浓度只能达到与吸收剂入口平衡的气相浓度；只有吸收剂入口溶质为零时，理论上才能实现完全吸收。","ev":"平衡状态是传质过程的极限。相平衡关系限制了吸收液离塔时的最高浓度和气体混合物离塔时的最低浓度。","keys":[],"ref":"第 214 页","hint":"","score":2},{"i":87,"n":88,"ch":"第5章 气体吸收","sec":"5.3 分子扩散与对流传质","code":"5.3","id":"ch05-single-005","t":"single","mode":"","bloom":"理解","diff":"medium","q":"菲克定律表达式中的负号表示什么？","o":["扩散通量一定为负值，表示溶质反向传递","扩散方向与浓度梯度方向相反，扩散沿浓度降低的方向进行","扩散系数为负值","负号没有物理意义，只是数学书写习惯"],"a":["B"],"exp":"浓度梯度指向浓度升高的方向，而扩散总是从高浓度向低浓度进行，所以扩散通量与浓度梯度方向相反，负号正是表示这一方向关系。扩散通量的正负取决于所取坐标方向，并非一定为负；扩散系数是物性参数，恒为正值；负号具有明确的物理意义，不是书写习惯。","ev":"式(5-27)中的负号表示扩散方向与浓度梯度方向相反， 扩散沿着浓度降低的方向进行。","keys":[],"ref":"第 216 页","hint":"","score":2},{"i":88,"n":89,"ch":"第5章 气体吸收","sec":"5.3 分子扩散与对流传质","code":"5.3","id":"ch05-single-006","t":"single","mode":"","bloom":"理解","diff":"medium","q":"在等摩尔反向扩散过程中，组分A的浓度沿扩散方向如何分布？","o":["呈抛物线分布","呈指数分布","呈线性分布","先增大后减小"],"a":["C"],"exp":"等摩尔反向扩散时A、B两组分以相等的量反向传递，总浓度处处不变，扩散通量为常数，积分后组分A的浓度沿扩散方向呈线性分布。单向扩散时由于存在总体流动，浓度分布为曲线，这是两种扩散形式的重要区别；抛物线、指数和先增后减都不符合等摩尔反向扩散的结论。","ev":"从式(5-31)可以看出，在等摩尔反向扩散过程中,组分 A 的浓度沿扩散方向呈线性分布。","keys":[],"ref":"第 218 页","hint":"","score":2},{"i":89,"n":90,"ch":"第5章 气体吸收","sec":"5.3 分子扩散与对流传质","code":"5.3","id":"ch05-truefalse-002","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"单向扩散中的漂流因子小于1，说明总体流动使传质速率比单纯分子扩散减小。","o":["正确","错误"],"a":["F"],"exp":"漂流因子是单向扩散时总体流动使传质速率较单纯分子扩散增大的倍数，其值总是大于1。因为主体流动带着溶质一起向界面运动，使传质速率增大；溶质浓度越高，总体流动的影响越大、漂流因子越偏离1；浓度很低时漂流因子接近1，总体流动可忽略。","ev":"其值为单向扩散时总体流动使传质速率较单纯分子扩散增大的倍数。","keys":[],"ref":"第 219 页","hint":"","score":2},{"i":90,"n":91,"ch":"第5章 气体吸收","sec":"5.3 分子扩散与对流传质","code":"5.3","id":"ch05-single-007","t":"single","mode":"","bloom":"理解","diff":"medium","q":"液体的扩散系数比气体的扩散系数小得多，其主要原因是什么？","o":["液体的温度一定比气体低","液体的黏度比气体小","液体中溶质的浓度总是很低","液体中的分子比气体中的分子密集得多"],"a":["D"],"exp":"液体中分子排列密集、分子间作用力大，溶质分子在液体中迁移受到的阻碍远大于在气体中，因此液体扩散系数一般比气体小几个数量级。温度低不是根本原因，而且液体黏度通常比气体大而不是小；浓度高低只影响扩散系数的数值，不是两者相差悬殊的根源。","ev":"这主要是由于液体中的分子比气体中的分子密集得多的缘故。","keys":[],"ref":"第 223 页","hint":"","score":2},{"i":91,"n":92,"ch":"第5章 气体吸收","sec":"5.4 双膜理论与总传质速率","code":"5.4","id":"ch05-multiple-003","t":"multiple","mode":"","bloom":"理解","diff":"medium","q":"双膜理论的基本假设包括下列哪些内容？","o":["相界面两侧分别存在稳定的气膜和液膜","膜内流体为层流，溶质以分子扩散方式连续通过两膜","气液主体中溶质浓度均匀，主要以涡流扩散形式传质","相界面不断破灭更新，溶质靠涡流扩散穿过界面"],"a":["A","B","C"],"exp":"双膜理论假设：气液两相间存在稳定相界面，界面两侧分别为稳定的气膜和液膜；膜内为层流，溶质以分子扩散连续通过两膜；膜外主体充分湍动、浓度均匀，以涡流扩散传质；界面处达到平衡且无扩散阻力。界面不断更新是溶质渗透理论等模型的观点，正是双膜理论未考虑的局限，故D错误。","ev":"相互接触的气液两相之间存在一个稳定的相界面，相界面两侧分别存在着稳定的气膜和液膜。膜内流体流动状态为层流，溶质 A 以分子扩散方式连续通过气膜和液膜，由气相主体传递到液相主体。","keys":[],"ref":"第 226 页","hint":"","score":3},{"i":92,"n":93,"ch":"第5章 气体吸收","sec":"5.4 双膜理论与总传质速率","code":"5.4","id":"ch05-single-008","t":"single","mode":"","bloom":"理解","diff":"medium","q":"双膜理论在什么条件下与实际对流传质情况较为符合？","o":["流体流速不太高、两相界面稳定时","流体流速很大、界面不断更新时","气液两相剧烈湍动、没有稳定界面时","系统在真空条件下操作时"],"a":["A"],"exp":"双膜理论假设界面两侧存在稳定的气膜和液膜，膜内为层流、溶质以分子扩散通过，因此只在流速不太高、相界面稳定时与实际较为符合。流速很大时界面不断破灭和更新，实际传质结果与双膜理论不一致，这正是该理论的局限性；真空操作与界面是否稳定没有必然联系。","ev":"当流体流速不太高时，两相有一稳定相界面，用双膜理论描述两流体间的对流传质与实际情况较为符合。","keys":[],"ref":"第 226 页","hint":"","score":2},{"i":93,"n":94,"ch":"第5章 气体吸收","sec":"5.4 双膜理论与总传质速率","code":"5.4","id":"ch05-single-009","t":"single","mode":"","bloom":"理解","diff":"medium","q":"根据双膜理论，当界面阻力为零时，总传质阻力等于什么？","o":["气相传质阻力与液相传质阻力之差","气相传质阻力与液相传质阻力之和","仅等于气相传质阻力","仅等于液相传质阻力"],"a":["B"],"exp":"双膜理论把相际传质阻力看作气膜阻力和液膜阻力串联叠加，界面无阻力时总传质阻力等于气相传质阻力与液相传质阻力之和，这就是双阻力概念。两项是串联相加而不是相减；只有当一相阻力远大于另一相时，才可近似忽略小的一项，但不能由此认为总阻力只等于某一相阻力。总传质速率可用总传质系数乘以对应的总推动力表示，总传质系数与总阻力的关系正好互为倒数。","ev":"从以上总传质系数与单相传质系数的关系式可以看出，当界面阻力为零或界面处达到气-液平衡时，总传质阻力等于气相传质阻力与液相传质阻力之和","keys":[],"ref":"第 228 页","hint":"","score":2},{"i":94,"n":95,"ch":"第5章 气体吸收","sec":"5.5 吸收塔计算","code":"5.5","id":"ch05-single-010","t":"single","mode":"","bloom":"理解","diff":"medium","q":"逆流吸收操作线的位置和斜率由什么决定？","o":["由系统的平衡关系决定","由塔型和操作温度、压力决定","仅由液-气比及塔底、塔顶溶质组成决定","由填料的比表面积决定"],"a":["C"],"exp":"操作线由全塔和塔段的物料衡算导出，因此只与吸收操作的液-气比以及塔底、塔顶溶质组成有关，与平衡关系、塔型及操作温度、压力无关。平衡关系决定平衡线的位置，用于计算推动力；塔型和填料比表面积影响传质系数与塔高，但不改变操作线。","ev":"因逆流吸收操作线是通过物料衡算获得的，故此操作线仅与吸收操作的液-气比、塔底及塔顶溶质组成有关","keys":[],"ref":"第 232 页","hint":"","score":2},{"i":95,"n":96,"ch":"第5章 气体吸收","sec":"5.5 吸收塔计算","code":"5.5","id":"ch05-truefalse-006","t":"truefalse","mode":"","bloom":"分析","diff":"medium","q":"吸收剂用量越大，操作费用越低，因此液-气比越大越经济。","o":["正确","错误"],"a":["F"],"exp":"增大吸收剂用量可降低操作线斜率、增大推动力、减小塔高，但液-气比增大到一定程度后，塔高减小的幅度已不显著，而吸收剂消耗量过大，输送和再生等操作费用剧增。因此存在适宜的液-气比，通常取最小液-气比的1.1至2.0倍，并非越大越经济。","ev":"但液-气比增加到一定程度后，塔高减小的幅度就不显著，而吸收剂消耗量却过大，造成输送及吸收剂再生等操作费用剧增。","keys":[],"ref":"第 233 页","hint":"","score":2},{"i":96,"n":97,"ch":"第5章 气体吸收","sec":"5.5 吸收塔计算","code":"5.5","id":"ch05-truefalse-005","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"传质单元数越大，说明吸收过程越难进行，完成一定分离任务所需的填料层越高。","o":["正确","错误"],"a":["T"],"exp":"传质单元数的分子是气相或液相组成变化即分离要求，分母是吸收推动力，因此它反映了吸收过程的难易程度：推动力越小、分离要求越高，传质单元数越大。填料层高度等于传质单元高度与传质单元数的乘积，传质单元数越大，所需填料层越高。","ev":"所以传质单元数反映了吸收过程的难易程度。","keys":[],"ref":"第 236 页","hint":"","score":2},{"i":97,"n":98,"ch":"第5章 气体吸收","sec":"5.5 吸收塔计算","code":"5.5","id":"ch05-single-011","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"计算吸收塔塔径时，气体体积流量应如何选取？","o":["取全塔中最小值，通常以出塔气量为依据","取进塔与出塔气量的算术平均值","取塔顶气量的二分之一","取全塔中最大值，通常以进塔气量为依据"],"a":["D"],"exp":"塔径按空塔气速和气体体积流量计算，气量沿塔高逐渐变化，设计时取全塔最大值，通常以进塔气量为依据，以保证全塔各截面都能顺利通过。取最小值或平均值会使塔径偏小、塔内气速过高，甚至引起液泛；取塔顶气量的一半没有依据。","ev":"计算时气量通常取全塔中最大值，即以进塔气量为设计塔径的依据。","keys":[],"ref":"第 241 页","hint":"","score":2},{"i":98,"n":99,"ch":"第5章 气体吸收","sec":"5.5 吸收塔计算","code":"5.5","id":"ch05-truefalse-003","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"在X-Y图上，解吸操作线位于平衡线的上方。","o":["正确","错误"],"a":["F"],"exp":"吸收时气相实际组成高于平衡组成，故吸收操作线在平衡线上方；解吸是吸收的逆过程，溶质由液相向气相转移，气相实际组成低于平衡组成，故解吸操作线在平衡线下方。解吸的推动力为平衡组成与实际组成之差，方向与吸收相反。","ev":"在 XY图上，吸收过程的操作线在平衡线的上方，解吸过程的操作线在平衡线的下方.","keys":[],"ref":"第 245 页","hint":"","score":2},{"i":99,"n":100,"ch":"第5章 气体吸收","sec":"5.6 填料塔","code":"5.6","id":"ch05-multiple-002","t":"multiple","mode":"","bloom":"记忆","diff":"easy","q":"填料塔的流体力学性能通常包括下列哪些内容？","o":["填料层的持液量","填料层压降","液泛气速","填料的比表面积"],"a":["A","B","C"],"exp":"填料塔的流体力学性能通常包括持液量、填料层压降和液泛气速，它们分别用于设计填料支承板、选择气体输送设备以及确定操作气速和塔径。比表面积是填料的几何特性，属于填料性能参数，用于计算传质面积，不属于流体力学性能，故D不选。","ev":"填料塔的流体力学性能通常包括填料层的持液量、填料层压降、液泛气速等。","keys":[],"ref":"第 251 页","hint":"","score":3},{"i":100,"n":101,"ch":"第5章 气体吸收","sec":"5.6 填料塔","code":"5.6","id":"ch05-truefalse-004","t":"truefalse","mode":"","bloom":"记忆","diff":"easy","q":"泛点是填料塔操作的极限气速，泛点对应的气速称为泛点气速。","o":["正确","错误"],"a":["T"],"exp":"气速增大到泛点时，液体向下流动严重受阻、在填料层内积聚并扩展到整个塔截面，塔的正常操作被破坏，因此泛点是填料塔操作的极限气速。设计时操作气速应低于泛点气速，通常取泛点气速的0.6至0.8倍，正常操作范围在载点气速与泛点气速之间。","ev":"所以，泛点是填料塔操作的极限气速，泛点对应的气速为泛点气速。","keys":[],"ref":"第 252 页","hint":"","score":2},{"i":101,"n":102,"ch":"第5章 气体吸收","sec":"5.6 填料塔","code":"5.6","id":"ch05-multiple-001","t":"multiple","mode":"","bloom":"分析","diff":"medium","q":"强化吸收过程可从下列哪些方面着手？","o":["提高吸收过程的推动力","降低吸收过程的传质阻力","提高吸收剂温度以增大溶解度","增大吸收剂黏度以延长接触时间"],"a":["A","B"],"exp":"吸收速率等于推动力与阻力之比，强化吸收一是提高推动力，如采用逆流操作、增大吸收剂流量、降低吸收剂温度和入口浓度；二是降低传质阻力，如提高流体的湍动程度。提高吸收剂温度会使溶解度下降、推动力减小，增大黏度会增大液膜阻力，二者都使吸收变差，故C、D错误。","ev":"吸收速率为吸收推动力与吸收阻力之比，故强化吸收过程从以下两个方面考虑: 一是提高吸收过程的推动力; 二是降低吸收过程的传质阻力。","keys":[],"ref":"第 256 页","hint":"","score":3},{"i":102,"n":103,"ch":"第6章 蒸馏","sec":"6.1-6.2 概述与汽液平衡","code":"6.1","id":"ch06-single-001","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"蒸馏能够把液体混合物中的各组分分离开来，其分离依据是什么？","o":["各组分化学性质的差异","各组分挥发性的差异","各组分密度的差异","各组分溶解度的差异"],"a":["B"],"exp":"蒸馏靠的是组分挥发性的差异：相同温度下饱和蒸气压大的组分更易进入气相，部分汽化时气相被易挥发组分富集，冷凝后便得到组成不同的产品。密度差用于沉降分离，溶解度差用于吸收或萃取，化学性质差异则属于化学反应，都不是蒸馏的依据。","ev":"蒸馏是利用液体混合物中各组分挥发性的差异将其分离的化工单元操作。","keys":[],"ref":"第 264 页","hint":"","score":2},{"i":103,"n":104,"ch":"第6章 蒸馏","sec":"6.1-6.2 概述与汽液平衡","code":"6.1","id":"ch06-single-002","t":"single","mode":"","bloom":"理解","diff":"medium","q":"泡点方程描述的是哪两个量之间的关系？","o":["一定压力下平衡物系的温度与气相组成","总压与液相组成","挥发度与温度","一定压力下平衡物系的温度与液相组成"],"a":["D"],"exp":"泡点方程由拉乌尔定律和道尔顿分压定律联立导出，给出一定总压下液相组成所对应的泡点温度，即加热时出现第一个气泡的温度。描述温度与气相组成关系的是露点方程，故 B 错；C、D 都不是泡点方程所描述的关系。","ev":"式(6-4)称为泡点方程。该方程描述在一定压力下平衡物系的温度与液相组成的关系。","keys":[],"ref":"第 265 页","hint":"","score":2},{"i":104,"n":105,"ch":"第6章 蒸馏","sec":"6.1-6.2 概述与汽液平衡","code":"6.1","id":"ch06-single-003","t":"single","mode":"","bloom":"理解","diff":"medium","q":"相对挥发度的大小表示什么？","o":["气相中两组分的浓度比是液相中浓度比的倍数","液相中两组分的浓度比是气相中浓度比的倍数","两组分饱和蒸气压之和","两组分摩尔质量之比"],"a":["A"],"exp":"相对挥发度等于两组分挥发度之比，也可写成气相浓度比与液相浓度比之比，因此它表示气相浓度比是液相浓度比的倍数。该值越大，平衡线离对角线越远，越易分离；等于 1 时气液相组成相同，普通精馏无法分离。B 把比值说反，C、D 与定义无关。","ev":"相对挥发度 值的大小表示两组分在气相中的浓度比是液相中浓度比的倍数","keys":[],"ref":"第 268 页","hint":"","score":2},{"i":105,"n":106,"ch":"第6章 蒸馏","sec":"6.3-6.4 简单蒸馏与精馏原理","code":"6.3","id":"ch06-single-004","t":"single","mode":"","bloom":"理解","diff":"easy","q":"简单蒸馏的操作特点是什么？","o":["只适用于大批量、高纯度分离","必须设置塔顶回流和塔釜再沸器","非定态过程，馏出液组成随操作进行不断降低","连续定态过程，馏出液组成始终不变"],"a":["C"],"exp":"简单蒸馏是一次加料，随着蒸气不断引出，釜液中易挥发组分浓度下降，产生的蒸气组成也随之降低，所以馏出液要按不同组成范围分罐收集。它是非定态过程，只适合挥发度相差较大而分离要求不高的粗分离；连续定态是平衡蒸馏的特点。","ev":"可见简单蒸馏是一个非定态过程，适合于混合物的粗分离，特别适合于挥发度相差较大而分离要求不高的场合，例如原油或煤油的初馏。","keys":[],"ref":"第 272 页","hint":"","score":2},{"i":106,"n":107,"ch":"第6章 蒸馏","sec":"6.3-6.4 简单蒸馏与精馏原理","code":"6.3","id":"ch06-single-005","t":"single","mode":"","bloom":"理解","diff":"easy","q":"平衡蒸馏（闪蒸）属于哪种操作？","o":["只能处理少量物料的间歇过程","连续定态过程，料液一次部分汽化后气液分离","间歇非定态过程，馏出液分批收集","只靠回流实现分离的过程"],"a":["B"],"exp":"闪蒸中料液先被加热到高于闪蒸器压力下泡点的温度，再经节流阀骤然减压成为过热液体，一次部分汽化后气液两相及时分离，过程连续定态，适合大批量粗分离。间歇分批收集馏出液是简单蒸馏，靠回流分离则是精馏的特征。","ev":"平衡蒸馏又称闪蒸(flash distillation) ，是一个连续定态过程","keys":[],"ref":"第 272 页","hint":"","score":2},{"i":107,"n":108,"ch":"第6章 蒸馏","sec":"6.3-6.4 简单蒸馏与精馏原理","code":"6.3","id":"ch06-single-006","t":"single","mode":"","bloom":"理解","diff":"medium","q":"经过多次部分汽化和多次部分冷凝，最终能得到什么结果？","o":["产品纯度提高的同时产量也不断增大","只能提高重组分的纯度","过程不需要加热剂和冷却剂","可获得几乎纯态的轻、重组分，但气相量和液相量越来越少"],"a":["D"],"exp":"每进行一次部分汽化或部分冷凝都会产生中间物流，轻组分在气相中逐级增浓、重组分在液相中逐级增浓，故两端可接近纯态；但中间物料增多使高纯产品收率很低、气液相量越来越少。B 与收率低的事实相反，C 只说了一半，D 与需要加热、冷却不符。","ev":"通过多次部分汽化和多次部分冷凝，最终可以获得几乎纯态的易挥发组分和难挥发组分，但得到的气相量和液相量却越来越少。","keys":[],"ref":"第 272 页","hint":"","score":2},{"i":108,"n":109,"ch":"第6章 蒸馏","sec":"6.3-6.4 简单蒸馏与精馏原理","code":"6.3","id":"ch06-single-007","t":"single","mode":"","bloom":"理解","diff":"medium","q":"精馏塔回流的主要作用是什么？","o":["提供不平衡的气液两相，构成气液接触传质的必要条件","提高塔釜温度","使所需理论板数降为零","代替再沸器提供上升蒸气"],"a":["A"],"exp":"塔顶回流液轻组分含量高、温度低，与自下而上的蒸气在塔板上接触，形成不平衡的气液两相，传热与传质才能持续进行；没有回流，板上液体无法维持，精馏分离就无从实现。回流不承担加热塔釜或产生上升蒸气的作用，更不能把理论板数降为零。","ev":"因此回流的主要作用就是提供不平衡的气液两相，从而构成气液两相接触传质的必要条件。","keys":[],"ref":"第 275 页","hint":"","score":2},{"i":109,"n":110,"ch":"第6章 蒸馏","sec":"6.3-6.4 简单蒸馏与精馏原理","code":"6.3","id":"ch06-multiple-001","t":"multiple","mode":"","bloom":"理解","diff":"medium","q":"恒摩尔流假设的成立需要满足哪些条件？","o":["两组分的摩尔汽化相变焓相等","气液两相接触时因温度不同交换的热量可忽略不计","设备热损失可忽略不计","各层塔板的操作压力必须相等"],"a":["A","B","C"],"exp":"恒摩尔流假设是为了让同一塔段内上升蒸气与下降液体的摩尔流量保持恒定，因此要求两组分摩尔汽化焓相近、两相因温差交换的热量可忽略、设备散热可忽略。操作压力相等并不是该假设的条件，塔内各板压力本来就有差异。","ev":"为了简化精馏计算，引入恒摩尔流假设。该假设应满足以下条件。","keys":[],"ref":"第 276 页","hint":"","score":3},{"i":110,"n":111,"ch":"第6章 蒸馏","sec":"6.3-6.4 简单蒸馏与精馏原理","code":"6.3","id":"ch06-single-010","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"理论板的含义是什么？","o":["塔内实际安装的塔板","只在提馏段设置的塔板","板效率为百分之百的实际塔板","离开塔板的气液两相达到平衡的塔板"],"a":["D"],"exp":"理论板是便于研究塔板传质而人为假定的理想化塔板，不论进入该板的两相组成如何，离开时气液两相在传热、传质两方面都达到平衡、温度相等。实际板受接触时间和非理想流动影响达不到平衡，所以实际板数总多于理论板数，B、D 把两者混为一谈。","ev":"理论板(theoretical plate)是指离开塔板的蒸气和液体呈平衡的塔板。","keys":[],"ref":"第 276 页","hint":"","score":2},{"i":111,"n":112,"ch":"第6章 蒸馏","sec":"6.3-6.4 简单蒸馏与精馏原理","code":"6.3","id":"ch06-single-008","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"全塔物料衡算中，回收率的含义是什么？","o":["回流液流量与塔顶产品流量之比","塔釜产品中重组分的摩尔分数","回收的某组分数量占原料中该组分数量的百分数","塔顶产品流量与进料流量之比"],"a":["C"],"exp":"回收率针对某一组分而言，用产品中该组分的量除以原料中该组分的量再乘百分之百，用来衡量该组分被回收的程度。塔顶产品流量与进料流量之比是采出率，回流液流量与塔顶产品流量之比是回流比，塔釜组成只是浓度而不是回收率。","ev":"回收率是指回收原料中易挥发或难挥发组分的百分数。","keys":[],"ref":"第 277 页","hint":"","score":2},{"i":112,"n":113,"ch":"第6章 蒸馏","sec":"6.3-6.4 简单蒸馏与精馏原理","code":"6.3","id":"ch06-truefalse-001","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"按恒摩尔流假设，精馏段与提馏段上升蒸气的摩尔流量必定相等。","o":["正确","错误"],"a":["F"],"exp":"恒摩尔流假设只说明同一塔段内没有进料和出料时，各板上升蒸气与下降液体的摩尔流量恒定；两段之间由于进料热状况不同，上升蒸气和下降液体的流量可以不等，冷液或气液混合进料时差别更明显。","ev":"由于进料状态的影响，两段上升的蒸气摩尔流量不一定相同，下降的液体摩尔流量也不一定相同。","keys":[],"ref":"第 277 页","hint":"","score":2},{"i":113,"n":114,"ch":"第6章 蒸馏","sec":"6.3-6.4 简单蒸馏与精馏原理","code":"6.3","id":"ch06-single-009","t":"single","mode":"","bloom":"理解","diff":"medium","q":"进料热状况参数 q 等于 0 时，对应的进料状态是哪一种？","o":["气液混合进料","饱和蒸气进料","饱和液体进料","冷液进料"],"a":["B"],"exp":"q 表示每摩尔原料汽化为饱和蒸气所需热量与摩尔相变焓之比。饱和蒸气进料的温度等于露点，q 等于 0，此时提馏段下降液量不变而上升蒸气量增加 F。饱和液体进料 q 等于 1，冷液进料 q 大于 1，气液混合进料 q 介于 0 与 1 之间。","ev":"饱和蒸气进料，即进料温度为露点的饱和蒸气","keys":[],"ref":"第 280 页","hint":"","score":2},{"i":114,"n":115,"ch":"第6章 蒸馏","sec":"6.5 精馏计算","code":"6.5","id":"ch06-truefalse-002","t":"truefalse","mode":"","bloom":"应用","diff":"medium","q":"图解法求理论板数时，梯级跨过两操作线交点后仍应继续沿精馏段操作线画下去。","o":["正确","错误"],"a":["F"],"exp":"梯级跨过两操作线交点的那块板就是进料板，从这块板起应改在提馏段操作线与平衡线之间作梯级，直到梯级达到或跨过塔釜组成点。若过了交点仍沿用精馏段操作线，各梯级的增浓、减浓程度都会变小，算出的理论板数偏多。","ev":"当某梯级跨越两操作线交点 g 时(此梯级为进料板) ，应及时更换操作线","keys":[],"ref":"第 285 页","hint":"","score":2},{"i":115,"n":116,"ch":"第6章 蒸馏","sec":"6.5 精馏计算","code":"6.5","id":"ch06-multiple-003","t":"multiple","mode":"","bloom":"分析","diff":"medium","q":"在分离任务和进料条件一定时，增大回流比会带来哪些影响？","o":["两操作线远离平衡线，每块理论板的分离程度加大","塔顶产品组成必然达到百分之百","理论板数减少，设备费用降低","冷凝器与再沸器负荷增大，操作费用增加"],"a":["A","C","D"],"exp":"回流比增大使精馏段与提馏段操作线都远离平衡线，梯级变大，完成同样分离所需理论板数减少，设备费用下降；但上升蒸气量随回流比增大而增加，冷凝器和再沸器负荷上升，操作费用增加。产品组成还受理论板数和全塔物料衡算限制，不可能任意达到百分之百。","ev":"回流比增大，精馅段操作线与提馅段操作线均远离平衡线，每一梯级的水平线段与垂直线段都增长，说明每层理论板的分离程度加大，为完成一定的分离任务所需的理论板数减少","keys":[],"ref":"第 290 页","hint":"","score":3},{"i":116,"n":117,"ch":"第6章 蒸馏","sec":"6.5 精馏计算","code":"6.5","id":"ch06-truefalse-004","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"全回流是回流比的下限，此时所需的理论板数最多。","o":["正确","错误"],"a":["F"],"exp":"全回流时操作线与对角线重合，距平衡曲线最远，每块理论板的分离程度最大，所需理论板数最少，因此它是回流比的上限而不是下限。最小回流比才是下限，此时两操作线交点落在平衡线上，所需理论板数为无穷多。题目把上下限说反了。","ev":"全回流时操作线距平衡曲线最远，说明每块理论板的分离程度最大，为完成同样的分离任务，所需理论板数可以最少，故是回流比的上限。","keys":[],"ref":"第 291 页","hint":"","score":2},{"i":117,"n":118,"ch":"第6章 蒸馏","sec":"6.7-6.8 特殊精馏与板式塔","code":"6.7","id":"ch06-multiple-002","t":"multiple","mode":"","bloom":"分析","diff":"medium","q":"关于液泛的成因和后果，下列说法正确的有哪些？","o":["液体流量过大使降液管阻力增大，可能引起降液管液泛","液沫夹带把大量液体带到上层塔板，会加重降液管负荷并可能导致液泛","液泛发生时塔板效率会显著提高","气体流量过大使塔板压降增大，可能抬高降液管液位而引发液泛"],"a":["A","B","D"],"exp":"降液管液泛主要有两条途径：液量过大使降液管阻力增大、液位上升，或气速过大使板压降增大、液沫夹带增多，同样抬高降液管液位。液泛是气液两相流动的极限，发生时塔内压降急剧增大、塔效率急剧减小，所以 D 把结果说反了。","ev":"液体流量或气体流量过大均会引起降液管液泛。","keys":[],"ref":"第 310 页","hint":"","score":3},{"i":118,"n":119,"ch":"第6章 蒸馏","sec":"6.7-6.8 特殊精馏与板式塔","code":"6.7","id":"ch06-truefalse-003","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"液泛只能由液体流量过大引起，与气速大小无关。","o":["正确","错误"],"a":["F"],"exp":"液泛有两条成因：液量过大使降液管阻力增大、液位上升，或气速过大使塔板压降增大、液沫夹带增多，把液体带到上层塔板并抬高降液管液位。因此气速过大同样能引发液泛，题目把成因说成只与液量有关是错误的。","ev":"当塔内气速过大时，气体将大量的液体带到上一层塔板，从而增加降液管的负荷，使降液管中的液位升高，最后导致液泛。","keys":[],"ref":"第 310 页","hint":"","score":2},{"i":119,"n":120,"ch":"第6章 蒸馏","sec":"6.7-6.8 特殊精馏与板式塔","code":"6.7","id":"ch06-truefalse-005","t":"truefalse","mode":"","bloom":"理解","diff":"easy","q":"同一块塔板上，气相默弗里效率与液相默弗里效率的数值必然相等。","o":["正确","错误"],"a":["F"],"exp":"默弗里效率分气相与液相两种，气相效率用气相组成的变化与理论板上的变化相比，液相效率用液相组成的变化相比，两者的基准不同，同一块板上数值一般不相等。全塔效率才是反映全塔平均传质效果的指标。","ev":"由计算可知，同一塔板，其气相单板效率与液相单板效率不同。","keys":[],"ref":"第 312 页","hint":"","score":2},{"i":120,"n":121,"ch":"第6章 蒸馏","sec":"6.7-6.8 特殊精馏与板式塔","code":"6.7","id":"ch06-single-011","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"工业上应用最早的板式塔塔板是哪一种？","o":["泡罩塔板","筛孔塔板","浮阀塔板","舌形塔板"],"a":["A"],"exp":"泡罩塔板以泡罩和升气管作为气体通道，是气液传质设备中应用最早的板型之一。筛板虽出现较早，但长期因担心漏液而未推广；浮阀塔板到二十世纪五十年代才出现，舌形塔板属于后起的喷射型塔板。","ev":"泡罩塔板(bubble-cap tray)是气液传质设备中应用最早的板型之一","keys":[],"ref":"第 316 页","hint":"","score":2},{"i":121,"n":122,"ch":"第6章 蒸馏","sec":"6.7-6.8 特殊精馏与板式塔","code":"6.7","id":"ch06-truefalse-006","t":"truefalse","mode":"","bloom":"理解","diff":"easy","q":"泡罩塔板结构简单、造价低廉，因此在大规模工业装置中广泛应用。","o":["正确","错误"],"a":["F"],"exp":"泡罩塔板虽然不易漏液、操作弹性较大，但结构复杂、制造成本高、安装检修不便，且气相通道曲折、塔板压降大、液泛气速低、生产能力小，目前已很少采用。结构简单、造价低廉的是筛孔塔板，题目把两者的特点弄反了。","ev":"但泡罩塔板结构复杂，制造成本高，安装检修不便。","keys":[],"ref":"第 316 页","hint":"","score":2},{"i":122,"n":123,"ch":"第7章 固体干燥","sec":"7.1 概述","code":"7.1","id":"ch07-single-001","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"采用过滤、离心分离等机械方法去湿，其特点是什么？","o":["去湿彻底，但能量消耗很大","只能除去少量水分","依靠干燥剂吸附水分","可除去大量湿分、能量消耗较少，但去湿程度不高"],"a":["D"],"exp":"机械去湿靠过滤、离心分离等把大量游离湿分脱除，能耗较低，但达不到产品要求的最终含水量，所以工业上常先用机械去湿再用干燥。去湿彻底而能耗大是热能去湿，只能除去少量水分是吸附去湿，依靠干燥剂吸附也属于吸附法。","ev":"即采用过滤、离心分离等机械方法去湿。此法一般可除去大量的湿分，能量消耗较少，但去湿程度不高。","keys":[],"ref":"第 328 页","hint":"","score":2},{"i":123,"n":124,"ch":"第7章 固体干燥","sec":"7.2 湿空气性质与湿度图","code":"7.2","id":"ch07-single-002","t":"single","mode":"","bloom":"理解","diff":"medium","q":"在对流干燥中，热空气起什么作用？","o":["既提供热量又带走汽化水分，是载热体也是载湿体","只提供热量，不带走水分","只带走水分，不提供热量","只起惰性保护作用"],"a":["A"],"exp":"预热后的空气与湿物料直接接触，以对流方式把热量传给物料使表面水分汽化，同时把产生的水汽带走；物料内部水分则在浓度梯度推动下迁至表面。因此空气既是载热体又是载湿体，干燥是传热与传质同时进行、方向相反的过程。","ev":"可见，空气既是载热体，也是载湿体，干燥是传热、传质同时进行的过程","keys":[],"ref":"第 329 页","hint":"","score":2},{"i":124,"n":125,"ch":"第7章 固体干燥","sec":"7.2 湿空气性质与湿度图","code":"7.2","id":"ch07-multiple-001","t":"multiple","mode":"","bloom":"理解","diff":"medium","q":"关于湿空气的焓，下列说法正确的是（ ）。","o":["湿空气的焓等于其中干空气的焓与水汽的焓之和","计算湿空气的焓时必须规定基准状态和基准温度","以0 ℃干空气和液态水为基准时，湿空气的焓随温度和湿度的增大而增大","湿空气的焓只与干球温度有关，与湿度无关"],"a":["A","B","C"],"exp":"湿空气是干空气与水汽的混合物，其焓按两组分的焓值相加得到，这是第一项的依据。焓是相对值，不规定基准状态和基准温度就无法取数，故第二项正确。以0 ℃干空气和液态水为基准时，焓的表达式中既有温度项，又有乘以湿度的汽化项，温度或湿度增大都会使焓增大，第三项正确。第四项漏掉了湿度的贡献，与焓的表达式不符。","ev":"湿空气的焓(Centhalpy)为其中干空气的焓及水汽的焓之和。","keys":[],"ref":"第 331 页","hint":"","score":3},{"i":125,"n":126,"ch":"第7章 固体干燥","sec":"7.2 湿空气性质与湿度图","code":"7.2","id":"ch07-single-004","t":"single","mode":"","bloom":"应用","diff":"medium","q":"将不饱和湿空气等湿加热，其相对湿度如何变化？","o":["先增大后减小","减小，吸收水汽的能力增强","增大，吸收水汽的能力减弱","保持不变"],"a":["B"],"exp":"等湿加热时水汽分压和湿度都不变，但同温度下水的饱和蒸气压随温度升高而增大，相对湿度是水汽分压与饱和蒸气压之比，因此必然减小。相对湿度越小说明空气偏离饱和越远、吸湿能力越强，这正是干燥前要先预热空气的原因之一。","ev":"由例题可见，此湿空气温度提高后，湿度不变，但相对湿度减小，又可作为干燥介质。","keys":[],"ref":"第 331 页","hint":"","score":2},{"i":126,"n":127,"ch":"第7章 固体干燥","sec":"7.2 湿空气性质与湿度图","code":"7.2","id":"ch07-single-005","t":"single","mode":"","bloom":"理解","diff":"medium","q":"湿球温度实际代表的是什么温度？","o":["空气的真实温度","空气的露点温度","空气的绝热饱和温度","湿纱布表面水层的温度"],"a":["D"],"exp":"湿球温度计感温球包有润湿纱布，不饱和空气吹过时水分汽化使纱布水温下降，直到空气传给纱布的热量恰好等于水分汽化所需热量，纱布表面水温恒定，该平衡温度就是湿球温度。它并不代表空气真实温度，对空气水系统在数值上近似等于绝热饱和温度，但两者意义不同。","ev":"湿球温度并不代表空气的真实温度，而是湿纱布表面水层的温度","keys":[],"ref":"第 332 页","hint":"","score":2},{"i":127,"n":128,"ch":"第7章 固体干燥","sec":"7.2 湿空气性质与湿度图","code":"7.2","id":"ch07-single-006","t":"single","mode":"","bloom":"理解","diff":"easy","q":"关于露点温度，下列表述正确的是（ ）。","o":["一定压力下，将不饱和空气等湿降温至饱和、出现第一滴露珠时的温度","一定压力下，将不饱和空气等压升温至饱和时的温度","湿纱布表面水层在空气流中达到稳定时的温度","空气与大量水绝热接触达到饱和时的温度"],"a":["A"],"exp":"露点温度对应等湿冷却到饱和的状态，降温过程中湿度不变，温度降到饱和值时才析出露珠。空气升温只会使相对湿度降低，不可能升到饱和，故第二项把方向说反了。湿纱布表面温度是湿球温度，与大量水绝热接触达到的是绝热饱和温度，两者都与露点不是同一个概念，所以只有第一项正确。","ev":"一定压力下，将不饱和空气等湿降温至饱和，出现第一滴露珠时的温度称为该空气的露点温度","keys":[],"ref":"第 333 页","hint":"","score":2},{"i":128,"n":129,"ch":"第7章 固体干燥","sec":"7.2 湿空气性质与湿度图","code":"7.2","id":"ch07-single-003","t":"single","mode":"","bloom":"理解","diff":"medium","q":"在总压一定时，确定湿空气的状态需要几个独立参数？","o":["3 个","4 个","2 个","1 个"],"a":["C"],"exp":"湿度图中的任意一点都代表一个确定的湿空气状态，只要给出两个独立参数即可唯一确定，例如干球温度与相对湿度、干球温度与湿度、干球温度与露点或湿球温度。湿度与露点不独立，两者落在同一条等湿线上，不能同时用来确定状态点。","ev":"只要规定其中任意两个独立的参数，湿空气的状态就被唯一确定。","keys":[],"ref":"第 335 页","hint":"","score":2},{"i":129,"n":130,"ch":"第7章 固体干燥","sec":"7.2 湿空气性质与湿度图","code":"7.2","id":"ch07-truefalse-001","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"湿空气的相对湿度越大，其湿度也一定越大。","o":["正确","错误"],"a":["F"],"exp":"湿度只由水汽质量与绝干空气质量之比决定，而相对湿度是水汽分压与同温度下饱和蒸气压之比，后者随温度明显变化。湿度不变的空气升温后饱和蒸气压增大，相对湿度反而下降，所以相对湿度大并不代表湿度大，该说法把两个不同参数混为一谈。","ev":"由图中可见，当湿空气的湿度一定时，温度愈高，其相对湿度愈低","keys":[],"ref":"第 335 页","hint":"","score":2},{"i":130,"n":131,"ch":"第7章 固体干燥","sec":"7.3 物料水分与平衡","code":"7.3","id":"ch07-truefalse-002","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"物料中的平衡水分可以在该空气状态下用干燥方法除去。","o":["正确","错误"],"a":["F"],"exp":"平衡水分是在一定空气状态下与空气长期接触后仍残留在物料中的水分，它恰好与空气的湿度相对应，继续用同状态空气干燥无法使其降低。能被干燥除去的是超过平衡水分的自由水分，题目把平衡水分当成了可除去的水分，混淆了两者的界限。","ev":"物料的平衡含水量是一定空气状态下物料被干燥的极限 。","keys":[],"ref":"第 338 页","hint":"","score":2},{"i":131,"n":132,"ch":"第7章 固体干燥","sec":"7.3 物料水分与平衡","code":"7.3","id":"ch07-single-007","t":"single","mode":"","bloom":"理解","diff":"medium","q":"在某空气状态下，可用干燥方法从物料中除去的水分是（ ）。","o":["物料中所含的全部结合水分","物料中所含的全部非结合水分","超过平衡水分的那一部分水分","低于平衡水分的那一部分水分"],"a":["C"],"exp":"平衡水分是该空气状态下物料被干燥的极限，只有超出这一极限的部分才能继续被空气带走，故自由水分等于物料含水量与平衡含水量之差。低于平衡水分的部分无论干燥多久都除不掉；结合与非结合水分是按水分和物料的结合方式划分的，非结合水分中仍有一部分会留作平衡水分，故后三项均不正确。","ev":"物料中所含大于平衡水分的那一部分水分，它可在该空气状态下用干燥方法除去，称为自由水分(free moisture) 。","keys":[],"ref":"第 339 页","hint":"","score":2},{"i":132,"n":133,"ch":"第7章 固体干燥","sec":"7.4-7.5 干燥计算","code":"7.4","id":"ch07-truefalse-003","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"结合水分与非结合水分的划分会随干燥介质状态的改变而改变。","o":["正确","错误"],"a":["F"],"exp":"结合水分与非结合水分是按水分与物料的结合方式划分的，只取决于物料本身的性质，与空气状态无关。会随空气状态改变的是平衡水分与自由水分之间的界限，两者的划分依据不同，题目把这两组概念张冠李戴了。","ev":"而结合水分与非结合水分是依据物料与水分的结合方式(或物料中所含水分去除的难易)而划分，仅与物料的性质有关，而与空气的状态无关。","keys":[],"ref":"第 340 页","hint":"","score":2},{"i":133,"n":134,"ch":"第7章 固体干燥","sec":"7.4-7.5 干燥计算","code":"7.4","id":"ch07-truefalse-004","t":"truefalse","mode":"","bloom":"分析","diff":"hard","q":"实际干燥过程都可以按等焓过程处理，空气的焓值保持不变。","o":["正确","错误"],"a":["F"],"exp":"等焓过程是在忽略热损失、物料升温吸热等项后得到的简化模型，故又称理想干燥过程。实际干燥器中存在向环境散热、物料带走热量以及中间补充加热等情况，空气的焓一般并不守恒，只能在特定条件下近似按等焓计算，说所有实际过程都可按等焓处理是错误的。","ev":"即说明空气通过干燥器时经历等焓的变化过程。而实际操作中很难实现此过程，故等过程又称为理想干燥过程。","keys":[],"ref":"第 344 页","hint":"","score":2},{"i":134,"n":135,"ch":"第7章 固体干燥","sec":"7.4-7.5 干燥计算","code":"7.4","id":"ch07-single-008","t":"single","mode":"","bloom":"应用","diff":"easy","q":"下列措施中能够提高恒速干燥阶段干燥速率的是（ ）。","o":["只增大湿物料的厚度","提高空气温度、降低空气湿度并提高空气流速","降低空气温度、提高空气湿度并降低空气流速","提高空气湿度并降低空气流速"],"a":["B"],"exp":"恒速阶段的干燥速率由物料表面水分的汽化控制，属于外部条件控制的过程，提高气温、降低湿度、加大流速都能增大传热与传质的推动力，从而加快表面汽化。第二、第三项方向相反，只会使干燥变慢；增大物料厚度影响的是内部水分迁移和降速阶段，对单位面积的恒速干燥速率没有提高作用。","ev":"显然，提高空气的温度 、降低空气的湿度或提高空气的流速，均能提高恒速干燥阶段的干燥速率。","keys":[],"ref":"第 348 页","hint":"","score":2},{"i":135,"n":136,"ch":"第7章 固体干燥","sec":"7.4-7.5 干燥计算","code":"7.4","id":"ch07-truefalse-005","t":"truefalse","mode":"","bloom":"分析","diff":"hard","q":"物料的临界含水量越低，转入降速干燥阶段越早，所需干燥时间越长。","o":["正确","错误"],"a":["F"],"exp":"临界含水量是恒速段结束、降速段开始时的含水量。临界含水量越大，物料越早进入降速阶段，降速段需要除去的水分更多，完成相同任务的时间越长；临界含水量低意味着恒速段更长、总时间更短，题目把大小关系说反了。","ev":"临界含水量 Xec越大，则转入降速阶段越早，完成相同的干燥任务所需的干燥时间越长。","keys":[],"ref":"第 349 页","hint":"","score":2},{"i":136,"n":137,"ch":"第7章 固体干燥","sec":"7.6-7.7 干燥器与强化","code":"7.6","id":"ch07-multiple-002","t":"multiple","mode":"","bloom":"理解","diff":"medium","q":"关于常用干燥器的特点，下列说法正确的是（ ）。","o":["洞道式干燥器适用于体积大、干燥时间长的物料","转筒式干燥器可连续操作，生产能力大，机械化程度高","喷雾干燥器热效率高、能耗小，适合处理量很大的物料","厢式干燥器结构简单、装卸灵活，适用于小批量、多品种物料的干燥"],"a":["A","B","D"],"exp":"厢式干燥器结构简单、装卸灵活、适应性强，正好适合小批量多品种生产；洞道式干燥器是厢式的连续化发展，物料随小车在长通道内前进，适合体积大、干燥时间长的物料；转筒式干燥器连续运转、生产能力大且机械化程度高。喷雾干燥器虽然干燥极快并适合热敏物料，但能量消耗大、热效率较低，第四项把缺点说成了优点。","ev":"厢式干燥器的优点是结构简单，装御灵活、方便，对各种物料的适应性强，适用于小批量、多品种物料的干燥","keys":[],"ref":"第 353 页","hint":"","score":3},{"i":137,"n":138,"ch":"第7章 固体干燥","sec":"7.6-7.7 干燥器与强化","code":"7.6","id":"ch07-single-009","t":"single","mode":"","bloom":"记忆","diff":"easy","q":"气流干燥器的主要优点是（ ）。","o":["物料停留时间均匀可控，特别适合降速干燥","热效率高且尾气不需回收","膏状物料可直接干燥且能耗很低","气固接触面积大、传热传质系数高、干燥速率大"],"a":["D"],"exp":"气流干燥器中颗粒悬浮在高速热气流内，气固接触面积大，传热系数和传质系数都高，因此干燥速率大、干燥时间短。其缺点是停留时间短且不够均匀，不适合需要较长降速干燥的物料；尾气夹带粉尘多、必须回收，热效率也不算高；膏状物料难以在气流中分散，所以后三项都不是它的优点。","ev":"气流干燥器的优点是气相、固相接触面积大，传热系数、传质系数高，干燥速率大","keys":[],"ref":"第 354 页","hint":"","score":2},{"i":138,"n":139,"ch":"第8章 其他分离技术","sec":"8.1 结晶","code":"8.1","id":"ch08-single-001","t":"single","mode":"","bloom":"应用","diff":"medium","q":"某物质的溶解度随温度变化很大，按溶解度曲线的特征，应优先采用哪种结晶方法？","o":["变温（冷却）结晶","蒸发结晶","升华结晶","沉淀结晶"],"a":["A"],"exp":"溶解度随温度变化大的物系，只要降温就能产生足够大的过饱和度，因此采用变温结晶最经济；蒸发结晶适用于溶解度随温度变化不大的物系，靠蒸掉溶剂来浓缩；升华结晶和沉淀结晶属于其他结晶方式，与溶解度曲线这条选择依据无关。","ev":"物质的溶解度曲线的特征会对结晶方法的选择起决定作用。例如，对于溶解度随温度变化大的物质，可采用变温方法来结晶分离，对于溶解度随温度变化不大的物质，则可采用蒸发结晶的方法来分离。","keys":[],"ref":"第 365 页","hint":"","score":2},{"i":139,"n":140,"ch":"第8章 其他分离技术","sec":"8.1 结晶","code":"8.1","id":"ch08-truefalse-001","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"溶液处于介稳区时一定会自发产生大量晶核，因此无法通过加入晶种来控制产品粒度。","o":["正确","错误"],"a":["F"],"exp":"介稳区的特点正是溶液不会自发成核，只有越过超溶解度曲线进入不稳区，才会立即爆发成核；在介稳区内加入晶种，晶种可以作为现成表面继续长大，工业结晶正是利用这一点控制晶核数量和产品粒度。","ev":"介稳区内,溶液不会自发地产生晶核，但加入晶种(inoculation crystal) ，可使品种长大。","keys":[],"ref":"第 366 页","hint":"","score":2},{"i":140,"n":141,"ch":"第8章 其他分离技术","sec":"8.1 结晶","code":"8.1","id":"ch08-multiple-001","t":"multiple","mode":"","bloom":"理解","diff":"medium","q":"按结晶方法划分，结晶器可分为下列哪几种？","o":["冷却结晶器","蒸发结晶器","真空结晶器","多级型结晶器"],"a":["A","B","C"],"exp":"按结晶方法，教材把结晶器分为冷却、蒸发、真空三类，分别对应降温、蒸发浓缩和真空绝热冷却产生过饱和度；多级型结晶器是按流动方式划分的类别，与混合型、母液循环型并列，不属于按结晶方法的分类。","ev":"结晶器的种类很多，按结晶方法可分为冷却结晶器、蒸发结品器、真空结晶器: 按操作方式可分为间鞭式结晶器和连续式结晶器; 按流动方式可分为混合型结晶器、多级型结晶器、母液循环型结晶器。","keys":[],"ref":"第 367 页","hint":"","score":3},{"i":141,"n":142,"ch":"第8章 其他分离技术","sec":"8.1 结晶","code":"8.1","id":"ch08-single-002","t":"single","mode":"","bloom":"理解","diff":"medium","q":"外循环式冷却结晶器的主要优点是什么？","o":["循环泵对晶体的破碎作用小，产品粒度更均匀","器内不需要搅拌，晶体靠重力自然悬浮","冷却换热器面积大、传热速率大，便于控制溶液过饱和度","可在结晶器内直接完成过滤和干燥"],"a":["C"],"exp":"外循环式把冷却换热器移到釜外，换热面积和传热速率都比内循环式大，能及时移走结晶热，避免局部过饱和度过高；它的缺点恰恰是循环泵容易破碎晶体，所以 A 说反了，B 和 D 也不是它的结构特点。","ev":"图 8-4 为外循环式结晶器，它的优点是冷却换热器面积大，传热速率大，有利于溶液过饱和度的控制。","keys":[],"ref":"第 367 页","hint":"","score":2},{"i":142,"n":143,"ch":"第8章 其他分离技术","sec":"8.1 结晶","code":"8.1","id":"ch08-single-003","t":"single","mode":"","bloom":"理解","diff":"medium","q":"与冷却结晶相比，蒸发结晶在产生过饱和度上的根本不同点是什么？","o":["靠降低溶液温度、减小溶解度来达到过饱和","将溶液加热到沸点，靠溶剂汽化浓缩达到过饱和","靠加入晶种，使晶核在介稳区内大量生成","靠两种溶液混合发生化学反应生成沉淀"],"a":["B"],"exp":"蒸发结晶要先把溶液加热到沸点，溶剂不断汽化、溶液被浓缩，浓度超过溶解度后才析出晶体；冷却结晶才是靠降温减小溶解度。加入晶种只是控制粒度的辅助手段，化学反应析出属于沉淀结晶，都不是两者的根本区别。","ev":"蒸发结晶与冷却结品的不同之处在于前者需将溶液加热到沸点，并浓缩达过饱和而产生结晶。","keys":[],"ref":"第 367 页","hint":"","score":2},{"i":143,"n":144,"ch":"第8章 其他分离技术","sec":"8.1 结晶","code":"8.1","id":"ch08-truefalse-002","t":"truefalse","mode":"","bloom":"分析","diff":"medium","q":"结晶过程中若搅拌或循环速率过大，晶粒容易被破碎，反而不利于晶体成长。","o":["正确","错误"],"a":["T"],"exp":"搅拌和循环能强化传热传质，使溶液温度和浓度均匀，但速率必须控制在合适范围；速率过大时晶粒会被打碎，过大的速率本身也不利于晶体成长，所以不能认为搅拌越强越好。","ev":"但是应该注意控制速率，和否则晶粒易被破碎，过大的速率也不利于品体成长。","keys":[],"ref":"第 368 页","hint":"","score":2},{"i":144,"n":145,"ch":"第8章 其他分离技术","sec":"8.2 吸附","code":"8.2","id":"ch08-truefalse-003","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"化学吸附与物理吸附一样都可以反复解吸再生，所以化学吸附也是可逆过程。","o":["正确","错误"],"a":["F"],"exp":"物理吸附靠分子间作用力，结合弱、解吸容易、过程可逆，工业吸附分离正是利用这一可逆性回收吸附剂；化学吸附靠化学键，吸附热大、速度慢，过程往往不可逆，不能像物理吸附那样轻易再生。","ev":"化学吸附仅为单分子层吸附，吸附速度慢，其过程往往是不可逆的，如加氨催化过程中催化剂对氢的吸附。","keys":[],"ref":"第 369 页","hint":"","score":2},{"i":145,"n":146,"ch":"第8章 其他分离技术","sec":"8.2 吸附","code":"8.2","id":"ch08-truefalse-004","t":"truefalse","mode":"","bloom":"理解","diff":"medium","q":"气相吸附中，升高温度或降低压力，平衡吸附量都会减小。","o":["正确","错误"],"a":["T"],"exp":"吸附是放热过程，升温使吸附质更容易脱附，平衡吸附量下降；降低压力使气相中吸附质的分压减小，平衡吸附量同样下降。两个方向都指向吸附量减小，这与升温加压有利于吸附的直觉相反，但符合平衡规律。","ev":"通常情况下, 温度升高、压力下降会使吸附量下降","keys":[],"ref":"第 372 页","hint":"","score":2},{"i":146,"n":147,"ch":"第8章 其他分离技术","sec":"8.2 吸附","code":"8.2","id":"ch08-multiple-002","t":"multiple","mode":"","bloom":"记忆","diff":"easy","q":"下列哪些属于吸附操作的形式？","o":["移动床吸附操作","错流式吸附操作","模拟移动床吸附操作","固定床吸附操作"],"a":["A","C","D"],"exp":"教材把吸附操作分为接触过滤式、固定床、移动床、流化床和模拟移动床等形式，固定床、移动床和模拟移动床都在其中；错流式吸附不是教材列出的操作形式，只是按字面拼凑的干扰项。","ev":"吸附分离过程包括吸附过程和解吸过程。因要处理的流体浓度、性质及要求吸附的程度不同，故吸附操作有多种形式，如接触过滤式吸附操作、固定床吸附操作、移动床吸附操作、流化床吸附操作和模拟移动床吸附操作等。","keys":[],"ref":"第 374 页","hint":"","score":3},{"i":147,"n":148,"ch":"第8章 其他分离技术","sec":"8.2 吸附","code":"8.2","id":"ch08-single-004","t":"single","mode":"","bloom":"理解","diff":"medium","q":"下列哪一项是固定床吸附操作的主要缺点？","o":["吸附剂在塔内连续移动，磨损严重","操作范围窄，高流量下容易发生液泛","吸附剂与流体返混严重，分离效率低","传热性能差，颗粒较小时床层压降大，吸附与再生交替使生产效率较低"],"a":["D"],"exp":"固定床的吸附剂静止不动，流体穿过床层的压降随颗粒减小而增大，而且吸附、再生和冷却要分阶段切换，所以传热差、生产效率低；A 是移动床或流化床的磨损问题，C 描述的是某些气液接触设备在高流量下的液泛问题，与固定床吸附无关，B 则与固定床返混小的特点相反。","ev":"但固定床吸附操作的传热性能差，且当吸附剂颗粒较小时，流体通过床层的压降较大，因吸附、再生及冷却等操作需要一定的时间，故生产效率较低。","keys":[],"ref":"第 375 页","hint":"","score":2},{"i":148,"n":149,"ch":"第8章 其他分离技术","sec":"8.2 吸附","code":"8.2","id":"ch08-single-005","t":"single","mode":"","bloom":"记忆","diff":"medium","q":"模拟移动床吸附塔一般由哪四个段组成？","o":["吸附段、第一精馏段、解吸段、第二精馏段","预饱和段、吸附段、洗涤段、熔融段","吸附段、再生段、冷却段、干燥段","进料段、反应段、分离段、回收段"],"a":["A"],"exp":"模拟移动床靠各段分工实现连续分离：吸附段吸附易吸附的组分，一精段对组分 A 精制并置换 B，解吸段用解吸剂把 A 解吸出来，二精段回收解吸剂；其余三组段名都不是该装置的组成部分。","ev":"模拟移动床的吸附塔一般由 4 个段组成: 吸附段、第一精馏段(简称一精段) 、解吸段和二精段","keys":[],"ref":"第 377 页","hint":"","score":2},{"i":149,"n":150,"ch":"第8章 其他分离技术","sec":"8.2 吸附","code":"8.2","id":"ch08-truefalse-005","t":"truefalse","mode":"","bloom":"分析","diff":"medium","q":"强化吸附过程只能靠加大吸附塔尺寸，与吸附剂性能和吸附工艺的开发无关。","o":["正确","错误"],"a":["F"],"exp":"吸附速率与吸附剂性能密切相关，吸附操作是否经济、能否大型连续化又与吸附工艺有关，所以强化吸附应从开发新型吸附剂、改进吸附剂性能和开发新吸附工艺三方面入手；单纯加大塔尺寸只会让设备更庞大。","ev":"吸附速率与吸附剂的性能密切相关，吸附操作是否经济、大型并连续化等又与吸附工艺有关，所以强化吸附过程可从开发新型吸附剂、改进吸附剂性能和开发新的吸附工艺等方面从事。","keys":[],"ref":"第 377 页","hint":"","score":2},{"i":150,"n":151,"ch":"第8章 其他分离技术","sec":"8.3 膜分离","code":"8.3","id":"ch08-multiple-003","t":"multiple","mode":"","bloom":"记忆","diff":"easy","q":"下列哪些膜过程属于以压力差为推动力的膜过程？","o":["纳滤","超滤","反渗透","电渗析"],"a":["A","B","C"],"exp":"反渗透、纳滤、超滤、微滤都靠膜两侧压力差推动溶剂和小分子透过，只是膜孔结构和操作压力不同：反渗透膜几乎无孔、压力最高，微滤孔径最大、压力最低；电渗析靠电位差驱动离子迁移，不属于压力推动的膜过程。","ev":"反渗透、纳滤、超滤、微滤均为压力推动的膜过程，即在压力差的作用下，溶剂及小分子通过膜，而盐、大分子、微粒等被截留，其截留程度取决于膜结构。","keys":[],"ref":"第 381 页","hint":"","score":3},{"i":151,"n":152,"ch":"第8章 其他分离技术","sec":"8.3 膜分离","code":"8.3","id":"ch08-single-006","t":"single","mode":"","bloom":"理解","diff":"medium","q":"反渗透膜能够截留大多数溶质（包括离子）而使溶剂通过，主要原因是什么？","o":["操作温度高，使盐分结晶析出而被挡住","膜孔带同种电荷，靠静电排斥挡住所有离子","致密皮层几乎无孔，溶剂和溶质在膜中的溶解、扩散速率差别大","膜孔径远大于水合离子，靠筛分截留离子"],"a":["C"],"exp":"反渗透膜的分离层是几乎无孔的致密皮层，溶剂和溶质在其中溶解、扩散的速率差别很大，溶剂优先透过；反渗透操作还要施加高于溶液渗透压的压差，溶剂才能反向透过。膜孔远大于离子就谈不上截留，静电排斥也不是反渗透膜的主要机理，升温更不会靠盐析出来截留。","ev":"反渗透膜的致密皮层几乎无孔，因此可以截留大多数溶质(包括离子)而使溶剂通过。","keys":[],"ref":"第 384 页","hint":"","score":2},{"i":152,"n":153,"ch":"第8章 其他分离技术","sec":"8.3 膜分离","code":"8.3","id":"ch08-single-007","t":"single","mode":"","bloom":"理解","diff":"medium","q":"结构简单、安装操作方便、流动状态好但装填密度较小的膜组件是哪种？","o":["中空纤维膜组件","管式膜组件","板框式膜组件","螺旋卷式膜组件"],"a":["B"],"exp":"管式组件把膜做在支撑管内或外，管径较大，流动状态好、清洗方便，教材明确指出其装填密度较小；板框式组装简单、膜易更换，螺旋卷式结构紧凑，中空纤维装填密度最大，它们的结构特点或流动状态与题干不符。膜材料本身分高分子聚合物膜和无机膜两类，与膜组件的型式不是一回事。","ev":"管式膜组件的结构简单， 安装、操作方便，流动状态好,但装填密度较小","keys":[],"ref":"第 384 页","hint":"","score":2},{"i":153,"n":154,"ch":"第8章 其他分离技术","sec":"8.3 膜分离","code":"8.3","id":"ch08-truefalse-006","t":"truefalse","mode":"","bloom":"分析","diff":"medium","q":"浓差极化对膜分离是有利因素，因为它提高了膜面处的浓度，增大了传质推动力。","o":["正确","错误"],"a":["F"],"exp":"浓差极化使被截留组分在膜面累积、膜面浓度升高，渗透压随之增大，在同样压差下溶剂透过速率下降；同时膜面浓度升高又使溶质更容易透过，截留率降低。膜污染也会使通量下降，二者都是需要设法减轻的不利因素。","ev":"由此可见，浓差极化与膜污染均使膜透过速率下降，是操作过程的不利因素，应设法降低。","keys":[],"ref":"第 386 页","hint":"","score":2},{"i":154,"n":155,"ch":"第8章 其他分离技术","sec":"8.3 膜分离","code":"8.3","id":"ch08-single-008","t":"single","mode":"","bloom":"理解","diff":"medium","q":"气体在均质膜中靠溶解-扩散传递，渗透速率主要取决于什么？","o":["气体在膜表面的化学反应速率","气体的分子量和临界温度","膜两侧的电位差和电流密度","气体在膜中的溶解度和扩散系数"],"a":["D"],"exp":"均质膜没有明显的孔道，气体先溶解在膜上游表面，再在压差作用下扩散通过膜，最后在下游脱附，因此溶解度和扩散系数共同决定渗透快慢；电位差是电渗析的推动力，表面化学反应不是气体膜分离的控制因素。","ev":"在膜下游表面脱附，此时渗透速率主要取决于气体在膜中的溶解度和扩散系数。","keys":[],"ref":"第 387 页","hint":"","score":2},{"i":155,"n":156,"ch":"第8章 其他分离技术","sec":"8.3 膜分离","code":"8.3","id":"ch08-single-010","t":"single","mode":"","bloom":"分析","diff":"hard","q":"膜吸收采用疏水膜、膜孔被气体充满时，为把气液界面固定在膜的液相侧，两相压力应怎样控制？","o":["液相侧抽真空，气相侧保持常压","气相压力高于液相压力，以防止液体进入膜孔","液相压力高于气相压力，但压差不能大到使气体鼓泡或液体被压入膜孔","两相压力必须完全相等"],"a":["C"],"exp":"膜孔被气体充满时，只有液相压力高于气相压力，气液界面才会停在膜的液相侧；但压差过大会把液体压入膜孔或使气体在液体中鼓泡，所以要选合适压差。气相压力高于液相压力是膜孔被液体充满时的控制方式，两者不要混淆。","ev":"在这种情况下，液相的压力应高于气相的压力，选择合适的压差使气体不在液体中鼓泡，也不能把液体压入膜孔，而将气液界面固定在膜的液相侧。","keys":[],"ref":"第 388 页","hint":"","score":2},{"i":156,"n":157,"ch":"第8章 其他分离技术","sec":"8.3 膜分离","code":"8.3","id":"ch08-single-009","t":"single","mode":"","bloom":"理解","diff":"medium","q":"膜蒸馏过程的推动力是什么？","o":["膜两侧的水蒸气压差，通常由两侧温度差实现","膜两侧的总压差，靠高压泵提供","膜两侧的电位差","膜两侧的溶质浓度差"],"a":["A"],"exp":"膜蒸馏用不被料液润湿的微孔疏水膜，液态水不能直接穿过膜孔，只有水蒸气在蒸气压差作用下从热侧扩散到冷侧并冷凝，所以它属于热推动膜过程；总压差推动的是反渗透等压力驱动过程，电位差则对应电渗析。","ev":"膜蒸馏过程的推动力是水蒸气压差,一般是通过膜两侧的温度差来实现， 所以膜蒸馏属于热推动膜过程。","keys":[],"ref":"第 389 页","hint":"","score":2}]};</script>
+<script>
+(function () {
+  "use strict";
+
+  const D = window.__QUIZ__ || { meta: {}, questions: [] };
+  const META = D.meta || {};
+  const Q = Array.isArray(D.questions) ? D.questions : [];
+  const N = Q.length;
+  const KEY = "pdfquiz:" + (META.id || "deck");
+  const TKEY = "pdfquiz:theme";
+  const FKEY = "pdfquiz:fs";
+
+  const $ = (s, r) => (r || document).querySelector(s);
+  const $$ = (s, r) => Array.from((r || document).querySelectorAll(s));
+
+  const TYPE_CN = {
+    single: "单选题", multiple: "多选题", truefalse: "判断题", fill: "填空题", short: "简答题",
+    trans_en_cn: "英译中", trans_cn_en: "中译英", describe: "描述题", qa: "问答题", term: "术语翻译"
+  };
+  /* 题型固定顺序：侧栏、结果页统计都按这个排，免得随出题顺序抖动 */
+  const TYPE_ORDER = ["trans_en_cn", "trans_cn_en", "describe", "qa",
+    "single", "multiple", "truefalse", "fill", "short", "term"];
+  const typeRank = (t) => { const i = TYPE_ORDER.indexOf(t); return i < 0 ? 99 : i; };
+  /* 从 "UNIT 17 …" 取出单元号，用于稳定排序；取不到排最后 */
+  const unitKey = (s) => { const m = String(s || "").match(/UNIT\s*(\d+)/i); return m ? +m[1] : 999; };
+  /* 主观题：无法自动判分，一律「作答 → 对照参考答案 → 自评」 */
+  const SUBJECTIVE = { short: 1, trans_en_cn: 1, trans_cn_en: 1, describe: 1, qa: 1 };
+  /* 术语题有两种：英文术语翻译要精确输入；中文概念释义是长答案，只能自评 */
+  function isExplainTerm(q) { return !!q && q.t === "term" && q.mode === "explain"; }
+  function isSubjective(q) { return !!q && (SUBJECTIVE[q.t] === 1 || isExplainTerm(q)); }
+  if (Q.some(isExplainTerm)) {
+    TYPE_CN.term = Q.some((q) => q.t === "term" && !isExplainTerm(q)) ? "术语" : "术语释义";
+  }
+  /* 可自动判分的填空题型：术语题答案唯一，比对时忽略大小写、空格与连字符 */
+  const FILLABLE = { fill: 1, term: 1 };
+  /* 需要输入框的作答区提示语 */
+  const PLACEHOLDER = {
+    short: "写下你的回答，再对照参考答案自评",
+    trans_en_cn: "先在此译成中文，再展开参考答案逐句比对",
+    trans_cn_en: "用英文写出译文，注意关键词拼写",
+    describe: "用英文描述，尽量写全要点",
+    qa: "用英文作答，先给结论再展开",
+    term: "写出对应的英文术语"
+  };
+  const DIFF_CN = { easy: "简单", medium: "中等", hard: "困难" };
+  const LTR = "ABCDEFGH";
+
+  /* 题目 ID 是稳定身份：答题记录按 ID 存，题库增删或重排后不会把记录套到别的题上。
+     老题库没有 ID（如教材卷），退回用下标，行为与之前一致。 */
+  const HAS_IDS = Q.length > 0 && Q.every((q) => q.id);
+  function hashText(s) {
+    let h = 2166136261;
+    for (let i = 0; i < s.length; i++) {
+      h ^= s.charCodeAt(i);
+      h = Math.imul(h, 16777619);
+    }
+    return (h >>> 0).toString(36);
+  }
+  /* 题干、选项、答案共同决定这道题是否还是原来那道题。
+     只改解析或难度不算，改了答案就必须让旧作答失效。 */
+  function qFingerprint(q) {
+    if (!q) return "";
+    return hashText([
+      q.t || "",
+      q.mode || "",
+      q.q || "",
+      (q.o || []).join("\u0001"),
+      (q.a || []).join("\u0001")
+    ].join("\u0002"));
+  }
+  function deckSignature() {
+    return hashText(Q.map((q) => q.id).join("|"));
+  }
+  const SIG = HAS_IDS ? deckSignature() : "";
+  let staleNote = "";
+  let stateMigrated = false;
+
+  /* ------------------------------------------------------------ state */
+  const BLANK = {
+    mode: "practice",
+    answers: {},
+    marked: [],
+    cur: 0,
+    filter: { scope: "all", type: "all" },
+    started: Date.now(),
+    submitted: false,
+    sig: ""
+  };
+
+  function load() {
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (!raw) return null;
+      const s = JSON.parse(raw);
+      if (!s || typeof s !== "object") return null;
+      const answers = s.answers && typeof s.answers === "object" ? s.answers : {};
+      const marked = Array.isArray(s.marked) ? s.marked.map(String) : [];
+      const base = {
+        answers,
+        marked,
+        filter: Object.assign({ scope: "all", type: "all" }, s.filter || {}),
+        submitted: !!s.submitted,
+        sig: s.sig || ""
+      };
+      /* 带 ID 的题库换了题目集合后，旧版按数组下标存的答案会错位：
+         表现为某些题「已经判过」、按钮消失。这里按题目 ID 过滤：
+         能对上当前题目的记录保留，下标或已删除题目的记录清掉。
+         同一 ID 但题干/选项/答案改过时，旧作答也不再可信，一并清掉。 */
+      let keptAnswers = answers;
+      let keptMarked = marked;
+      let dropped = 0;
+      let changed = 0;
+      let backfilled = 0;
+      const idChanged = !!(SIG && s.sig !== SIG);
+      if (HAS_IDS) {
+        const current = new Map();
+        Q.forEach((q) => { if (q.id) current.set(q.id, qFingerprint(q)); });
+        keptAnswers = {};
+        Object.keys(answers).forEach((k) => {
+          const fp = current.get(k);
+          if (fp === undefined) { dropped++; return; }
+          const rec = answers[k] && typeof answers[k] === "object" ? answers[k] : {};
+          if (rec.fp && rec.fp !== fp) { changed++; return; }
+          if (!rec.fp) { rec.fp = fp; backfilled++; }
+          keptAnswers[k] = rec;
+        });
+        keptMarked = [];
+        marked.forEach((k) => {
+          if (current.has(k)) keptMarked.push(k);
+          else dropped++;
+        });
+      }
+      if (backfilled || idChanged || changed) stateMigrated = true;
+      if (idChanged || changed) {
+        const kept = Object.keys(keptAnswers).length || keptMarked.length;
+        if (changed && !idChanged) {
+          staleNote = kept
+            ? "题库已更新，未变题目的记录已保留，改动题目的作答已清理"
+            : "题库已更新，改动题目的作答已清理，请重新作答";
+        } else if (dropped) {
+          staleNote = kept
+            ? "题库已更新，有效答题记录已保留，失效记录已清理"
+            : "题库已更新，旧答题记录已清空，请重新作答";
+        }
+        return Object.assign({}, BLANK, s, base, {
+          answers: keptAnswers,
+          marked: keptMarked,
+          submitted: false,
+          sig: SIG
+        });
+      }
+      return Object.assign({}, BLANK, s, base, {
+        answers: keptAnswers,
+        marked: keptMarked,
+        sig: s.sig || SIG
+      });
+    } catch (e) {
+      return null;
+    }
+  }
+
+  let S = load() || Object.assign({}, BLANK);
+  if (SIG) S.sig = SIG;
+
+  let saveTimer = null;
+  function save() {
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(() => {
+      try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* 隐私模式 */ }
+    }, 120);
+  }
+
+  function qkey(i) { const q = Q[i]; return q && q.id ? q.id : String(i); }
+  function ans(i) { return S.answers[qkey(i)] || null; }
+  function setAns(i, value) {
+    const k = qkey(i);
+    S.answers[k] = Object.assign({}, value, { fp: qFingerprint(Q[i]) });
+    return S.answers[k];
+  }
+  function updateAns(i, patch) {
+    const k = qkey(i);
+    S.answers[k] = Object.assign({}, S.answers[k], patch, { fp: qFingerprint(Q[i]) });
+    return S.answers[k];
+  }
+  function isMarked(i) { return S.marked.includes(qkey(i)); }
+  function toggleMark(i) {
+    const k = qkey(i);
+    S.marked = isMarked(i) ? S.marked.filter((x) => x !== k) : S.marked.concat(k);
+  }
+  function isGraded(i) { const a = ans(i); return !!(a && a.graded); }
+  function isCorrect(i) { const a = ans(i); return !!(a && a.correct === true); }
+
+  /* ------------------------------------------------------------ grading */
+  function norm(s) {
+    return String(s == null ? "" : s)
+      .normalize("NFKC")
+      .replace(/[\s，。！？、；：""''（）()\[\]【】《》·.,!?;:"'`~…—\-_/\\*#]/g, "")
+      .toLowerCase();
+  }
+
+  function sameSet(a, b) {
+    if (a.length !== b.length) return false;
+    const sb = new Set(b);
+    return a.every((x) => sb.has(x));
+  }
+
+  function gradeChoice(q, picked) {
+    return sameSet(picked.slice().sort(), q.a.slice().sort());
+  }
+
+  function gradeFill(q, text) {
+    const got = norm(text);
+    if (!got) return null;
+    const alts = String(q.a[0] || "").split(/[\/／|｜；;、]/).map(norm).filter(Boolean);
+    if (!alts.length) return null;
+    return alts.some((alt) => got === alt || (alt.length >= 2 && (got.includes(alt) || alt.includes(got))));
+  }
+
+  /* 术语题答案唯一，不能用「包含」判对，否则 poly 会被判成 polymerization。
+     归一化已抹平大小写、连字符与空格，这里再容忍单复数。 */
+  function gradeTerm(q, text) {
+    const stem = (s) => s.replace(/ies$/, "y").replace(/(es|s)$/, "");
+    const alts = String(q.a[0] || "").split(/[\/／|｜；;、]/).map(norm).filter(Boolean);
+    if (!alts.length) return null;
+    /* 允许多写：polyethylene / PE 全抄回来、只写缩写、只写全称，都算对 */
+    const gots = String(text).split(/[\/／|｜；;、]/).map(norm).filter(Boolean);
+    if (!gots.length) return null;
+    return gots.some((got) => alts.some((alt) => got === alt || stem(got) === stem(alt)));
+  }
+
+  /* 需要键入文字的题型统一走这里 */
+  function gradeText(q, text) {
+    return q.t === "term" ? gradeTerm(q, text) : gradeFill(q, text);
+  }
+
+  /* ------------------------------------------------------------ render */
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+  }
+
+  /* 上下标：先转义再只放行 sup/sub 两个固定标签，既支持 <sub>2</sub>，
+     也支持 CO_{2}、10^{24} 这类写法；标签属性会被当成普通文字，不会执行。 */
+  function rich(s) {
+    return esc(s)
+      .replace(/&lt;(\/?)(sup|sub)&gt;/g, "<$1$2>")
+      .replace(/\^\{([^{}]*)\}/g, "<sup>$1</sup>")
+      .replace(/_\{([^{}]*)\}/g, "<sub>$1</sub>");
+  }
+
+  /* 导出错题本时用纯文本，不把上下标标签带进 Markdown */
+  function plain(s) {
+    return String(s == null ? "" : s)
+      .replace(/<\/?(?:sup|sub)>/g, "")
+      .replace(/\^\{([^{}]*)\}/g, "$1")
+      .replace(/_\{([^{}]*)\}/g, "$1");
+  }
+
+  function questionHTML(q) {
+    const tags = [
+      '<span class="tag t">' + (TYPE_CN[q.t] || "题目") + "</span>",
+      q.bloom ? '<span class="tag">' + esc(q.bloom) + "</span>" : "",
+      q.diff ? '<span class="tag lv-' + esc(q.diff) + '">' + (DIFF_CN[q.diff] || esc(q.diff)) + "</span>" : ""
+    ].join("");
+
+    let body = "";
+    if (q.t === "single" || q.t === "multiple") {
+      body = '<div class="opts" role="' + (q.t === "single" ? "radiogroup" : "group") + '">' +
+        q.o.map((o, k) =>
+          '<button class="opt" data-i="' + q.i + '" data-l="' + LTR[k] + '" role="' + (q.t === "single" ? "radio" : "checkbox") + '" aria-checked="false">' +
+            '<span class="ltr">' + LTR[k] + "</span>" +
+            '<span class="txt">' + rich(o) + "</span>" +
+            '<span class="flag"></span>' +
+          "</button>").join("") + "</div>";
+    } else if (q.t === "truefalse") {
+      body = '<div class="opts" role="radiogroup">' +
+        [["T", "正确"], ["F", "错误"]].map(([l, t]) =>
+          '<button class="opt" data-i="' + q.i + '" data-l="' + l + '" role="radio" aria-checked="false">' +
+            '<span class="ltr">' + l + "</span>" +
+            '<span class="txt">' + t + "</span>" +
+            '<span class="flag"></span>' +
+          "</button>").join("") + "</div>";
+    } else if (FILLABLE[q.t] && !isExplainTerm(q)) {
+      body = '<input class="field" data-i="' + q.i + '" type="text" autocomplete="off" spellcheck="false" ' +
+        'placeholder="' + (q.t === "term" ? "写出英文术语，回车确认" : "在此填写答案，回车确认") + '">';
+    } else {
+      const ph = isExplainTerm(q) ? "用自己的话写出释义，再对照参考答案自评" : (PLACEHOLDER[q.t] || "写下你的回答，再对照参考答案自评");
+      const rows = (q.t === "trans_en_cn" || q.t === "describe" || q.t === "qa") ? 5 : 3;
+      body = '<textarea class="field" data-i="' + q.i + '" rows="' + rows + '" style="--rows:' + rows + '" placeholder="' + esc(ph) + '"></textarea>' +
+        (q.t === "trans_en_cn" || q.t === "trans_cn_en"
+          ? '<div class="typeline">' + (q.t === "trans_en_cn"
+              ? '译完再点开参考答案，逐句比对是否漏译、误译'
+              : '先写关键词，再连成完整句子；拼写错误在考试中同样扣分') + "</div>"
+          : "");
+    }
+
+    let actions = "";
+    if (q.t === "multiple") {
+      actions = '<div class="q-actions"><button class="btn primary" data-act="confirm" data-i="' + q.i + '" disabled>确认作答</button>' +
+        '<span class="hint">可选多项，选完点确认</span></div>';
+    } else if (FILLABLE[q.t] && !isExplainTerm(q)) {
+      actions = '<div class="q-actions"><button class="btn primary" data-act="confirm" data-i="' + q.i + '" disabled>确认作答</button>' +
+        '<span class="hint">' + (q.t === "term"
+          ? "只需写英文术语本身，不区分大小写与连字符"
+          : "文字按去空格与标点后比对，近似匹配即算对") + "</span></div>";
+    } else if (isSubjective(q)) {
+      actions = '<div class="q-actions"><button class="btn ghost" data-act="reveal" data-i="' + q.i + '">对照参考答案</button>' +
+        '<span class="hint">' + (q.t === "trans_en_cn" ? "翻译题按要点自评" : isExplainTerm(q) ? "先自己写，再对照参考答案；意思对即可" : "答到要点即算通过") + "</span></div>";
+    }
+
+    /* 长答案（描述题/问答题的整段参考答案）不加粗，否则整段发黑难读 */
+    const longAns = isSubjective(q) && String(q.a[0] || "").length > 60;
+
+    const answerHTML = q.t === "truefalse"
+      ? "<b>" + (q.a[0] === "T" ? "正确" : "错误") + "</b>"
+      : q.t === "single"
+        ? "<b>" + q.a[0] + (q.o[LTR.indexOf(q.a[0])] ? "　" + rich(q.o[LTR.indexOf(q.a[0])]) : "") + "</b>"
+        : q.t === "multiple"
+          ? "<b>" + q.a.join(" ") + "</b>" + q.a.map((l) => {
+              const k = LTR.indexOf(l);
+              return q.o[k] ? '<span class="alt"><i>' + l + "</i>" + rich(q.o[k]) + "</span>" : "";
+            }).join("")
+          : longAns ? rich(q.a[0]) : "<b>" + rich(q.a[0]) + "</b>";
+
+    const ansLabel = q.t === "trans_en_cn" ? "参考译文"
+      : q.t === "trans_cn_en" ? "参考英文"
+      : q.t === "term" ? (isExplainTerm(q) ? "参考释义" : "英文术语")
+      : q.t === "describe" || q.t === "qa" ? "参考答案"
+      : "答案";
+
+    /* 采分点：术语中英对照，翻译题与问答题靠它判断答到几分 */
+    const keysHTML = (q.keys && q.keys.length)
+      ? '<div class="keys">' +
+          '<div class="keys-h">采分点 · 关键词必须会写</div>' +
+          q.keys.map((k) =>
+            '<div class="key-row"><span class="ke">' + rich(k.en) + "</span>" +
+            (k.cn ? '<span class="kc">' + rich(k.cn) + "</span>" : "") + "</div>").join("") +
+        "</div>"
+      : "";
+
+    return '<article class="q" data-i="' + q.i + '" data-sec="' + esc(q.sec) + '">' +
+      '<div class="qhead">' +
+        '<span class="num">' + String(q.n).padStart(2, "0") + "</span>" + tags +
+        '<button class="mark-btn" data-act="mark" data-i="' + q.i + '" aria-pressed="false" title="标记本题 (M)">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12v18l-6-4-6 4z"/></svg>标记</button>' +
+      "</div>" +
+      '<div class="stem">' + rich(q.q).replace(/＿{2,}/g, '<span class="blank"></span>') + "</div>" + body + actions +
+      '<div class="verdict" aria-live="polite"></div>' +
+      '<div class="ans">' +
+        '<div class="ans-row"><span class="k">' + ansLabel + '</span><span class="v">' + answerHTML + "</span></div>" +
+        keysHTML +
+        (q.exp ? '<div class="ans-row"><span class="k">解析</span><span class="v">' + rich(q.exp) + "</span></div>" : "") +
+        (q.ev ? '<blockquote class="ev">' + esc(q.ev) + "</blockquote>" : "") +
+        (q.ref ? '<div class="src">出处 · ' + esc(q.ref) + "</div>" : "") +
+      "</div>" +
+    "</article>";
+  }
+
+  function buildStage() {
+    $("#stage").innerHTML = Q.map(questionHTML).join("") ||
+      '<div class="empty"><b>没有题目</b>这份题库是空的，先回到命令行重新生成。</div>';
+  }
+
+  function buildSidebar() {
+    // 题型筛选
+    const counts = {};
+    Q.forEach((q) => { counts[q.t] = (counts[q.t] || 0) + 1; });
+    const types = TYPE_ORDER.filter((t) => counts[t]);
+    Object.keys(counts).forEach((t) => { if (!types.includes(t)) types.push(t); });
+    $("#types").innerHTML =
+      '<button data-type="all" aria-pressed="' + (S.filter.type === "all") + '">全部 ' + N + "</button>" +
+      types.map((t) => '<button data-type="' + t + '" aria-pressed="' + (S.filter.type === t) + '">' +
+        (TYPE_CN[t] || t) + " " + counts[t] + "</button>").join("");
+
+    // 章节导航（按单元号排序，否则只有术语题的单元会掉到列表末尾）
+    const groups = [];
+    Q.forEach((q) => {
+      let g = groups.find((x) => x.ch === q.ch);
+      if (!g) { g = { ch: q.ch, items: [] }; groups.push(g); }
+      let it = g.items.find((x) => x.sec === q.sec);
+      if (!it) { it = { sec: q.sec, qs: [] }; g.items.push(it); }
+      it.qs.push(q.i);
+    });
+    groups.sort((a, b) => unitKey(a.ch + " " + a.items[0].sec) - unitKey(b.ch + " " + b.items[0].sec));
+    groups.forEach((g) => g.items.sort((a, b) => unitKey(a.sec) - unitKey(b.sec)));
+    $("#chapters").innerHTML = groups.map((g) =>
+      '<div class="grp"><div class="grp-t">' + esc(g.ch) + "</div>" +
+      g.items.map((it) =>
+        '<button class="nav-item" data-sec="' + esc(it.sec) + '">' +
+          "<span>" + esc(it.sec) + "</span>" +
+          '<span class="cnt" data-cnt="' + esc(it.sec) + '">' + it.qs.length + "</span>" +
+        "</button>").join("") +
+      "</div>").join("");
+  }
+
+  /* ------------------------------------------------------------ 题号面板
+     手机上侧栏要点两下才到得了某道题，底栏中间的数字点开就是全部题号，
+     颜色直接标出对 / 错 / 未做，比翻页快得多。 */
+  let sheetScope = "unit";
+
+  function buildSheet() {
+    const byType = sheetScope === "type";
+    const groups = [];
+    Q.forEach((q) => {
+      const key = byType ? q.t : q.sec;
+      let g = groups.find((x) => x.key === key);
+      if (!g) { g = { key: key, items: [] }; groups.push(g); }
+      g.items.push(q);
+    });
+
+    if (byType) {
+      const rank = (k) => { const i = TYPE_ORDER.indexOf(k); return i < 0 ? 99 : i; };
+      groups.sort((a, b) => rank(a.key) - rank(b.key));
+    } else {
+      groups.sort((a, b) => unitKey(a.key) - unitKey(b.key));
+    }
+    /* 组内按卷面题号排，读起来是 01、02…；题号由题型决定顺序，
+       所以跨题型混排时数字会跳，这是卷面本身的结构，不是错乱 */
+    groups.forEach((g) => g.items.sort((a, b) => a.n - b.n));
+
+    const title = (g) => byType
+      ? (TYPE_CN[g.key] || g.key) + " · " + g.items.length + " 题"
+      : g.key + " · " + g.items.length + " 题";
+
+    $("#sheetBody").innerHTML = groups.map((g) =>
+      '<div class="qgrid-grp"><div class="qgrid-t">' + esc(title(g)) + "<i></i></div><div class=\"qgrid\">" +
+      g.items.map((q) => {
+        const a = ans(q.i);
+        let cls = "";
+        if (a && a.graded) cls = a.pending ? " pending" : (a.correct === true ? " ok" : " bad");
+        if (isMarked(q.i)) cls += " marked";
+        if (q.i === S.cur) cls += " cur";
+        return '<button class="qcell' + cls + '" data-goto="' + q.i + '" ' +
+          'aria-label="第 ' + q.n + " 题，" + esc(TYPE_CN[q.t] || "") + '" ' +
+          'title="' + esc((TYPE_CN[q.t] || "") + " · " + q.sec) + '">' +
+          String(q.n).padStart(2, "0") + "</button>";
+      }).join("") +
+      "</div></div>").join("");
+
+    $$("[data-sheet-scope]").forEach((b) =>
+      b.setAttribute("aria-pressed", b.dataset.sheetScope === sheetScope ? "true" : "false"));
+  }
+
+  function openSheet() {
+    if (!N) return;
+    buildSheet();
+    $("#sheet").classList.add("show");
+    $("#sheetScrim").classList.add("show");
+    const body = $("#sheetBody");
+    const cur = body.querySelector(".qcell.cur");
+    if (cur) {
+      const r = cur.getBoundingClientRect();
+      const br = body.getBoundingClientRect();
+      body.scrollTop += r.top - br.top - br.height / 2 + r.height / 2;
+    }
+  }
+
+  function closeSheet() {
+    $("#sheet").classList.remove("show");
+    $("#sheetScrim").classList.remove("show");
+  }
+
+  /* 输入框跟随内容长高：手机上翻译题写三五句，固定 3 行要一直抠着滚 */
+  function grow(f) {
+    if (!f || f.tagName !== "TEXTAREA" || f.readOnly) return;
+    f.style.height = "auto";
+    const max = Math.round(window.innerHeight * 0.55);
+    f.style.height = Math.min(f.scrollHeight + 2, max) + "px";
+    f.style.overflowY = f.scrollHeight > max ? "auto" : "hidden";
+  }
+
+  /* ------------------------------------------------------------ filtering */
+  function visible() {
+    const f = S.filter;
+    return Q.filter((q) => {
+      if (f.type !== "all" && q.t !== f.type) return false;
+      if (f.scope === "todo") return !isGraded(q.i);
+      if (f.scope === "wrong") return isGraded(q.i) && !isCorrect(q.i);
+      if (f.scope === "marked") return isMarked(q.i);
+      return true;
+    }).map((q) => q.i);
+  }
+
+  let view = [];
+
+  function applyFilter(keepCurrent) {
+    view = visible();
+    const stage = $("#stage");
+    if (!view.length) {
+      stage.innerHTML = '<div class="empty"><b>这个筛选下没有题目</b>换一个范围或题型试试。</div>';
+      $("#navbar").style.visibility = "hidden";
+      $("#posAll").textContent = "0";
+      $("#posNow").textContent = "0";
+      $("#prevBtn").disabled = true;
+      $("#nextBtn").disabled = true;
+      return;
+    }
+    $("#navbar").style.visibility = "";
+    if (!stage.querySelector(".q")) buildStage();
+    if (!keepCurrent || !view.includes(S.cur)) S.cur = view[0];
+    $("#posAll").textContent = view.length;
+    paint();
+  }
+
+  /* ------------------------------------------------------------ paint */
+  function paint() {
+    const cur = S.cur;
+    $$("#stage .q").forEach((n) => n.classList.toggle("active", Number(n.dataset.i) === cur));
+
+    const q = Q[cur];
+    if (q) {
+      $("#crumbCh").textContent = q.ch;
+      $("#crumbSec").textContent = q.sec;
+      const pos = view.indexOf(cur);
+      $("#posNow").textContent = pos < 0 ? "–" : pos + 1;
+      $("#prevBtn").disabled = pos <= 0;
+      $("#nextBtn").disabled = pos < 0 || pos >= view.length - 1;
+      $("#nextBtn").textContent = pos >= view.length - 1 ? "完成" : "下一题";
+
+      $$("#chapters .nav-item").forEach((n) =>
+        n.setAttribute("aria-current", n.dataset.sec === q.sec ? "true" : "false"));
+    }
+    refreshStats();
+    restoreQuestion(cur);
+  }
+
+  function refreshStats() {
+    let ok = 0, bad = 0;
+    Object.keys(S.answers).forEach((k) => {
+      const a = S.answers[k];
+      if (!a || !a.graded) return;
+      if (a.correct === true) ok++;
+      else if (a.correct === false) bad++;
+    });
+    const done = ok + bad;
+    $("#ringNum").textContent = done;
+    $("#ringAll").textContent = "/ " + N;
+    $("#okNum").textContent = ok;
+    $("#badNum").textContent = bad;
+    $("#leftNum").textContent = Math.max(0, N - done);
+    const C = 2 * Math.PI * 30;
+    $("#ringBar").setAttribute("stroke-dashoffset", String(C - (N ? done / N : 0) * C));
+    $("#progBar").style.width = (N ? (done / N) * 100 : 0) + "%";
+
+    // 章节计数
+    $$("#chapters .nav-item").forEach((n) => {
+      const sec = n.dataset.sec;
+      const qs = Q.filter((x) => x.sec === sec);
+      const d = qs.filter((x) => isGraded(x.i)).length;
+      const el = n.querySelector(".cnt");
+      if (el) el.textContent = d ? d + "/" + qs.length : String(qs.length);
+    });
+  }
+
+  function restoreQuestion(i) {
+    const q = Q[i];
+    const node = $('#stage .q[data-i="' + i + '"]');
+    if (!q || !node) return;
+    const a = ans(i);
+
+    // 标记
+    const markBtn = node.querySelector('[data-act="mark"]');
+    if (markBtn) markBtn.setAttribute("aria-pressed", isMarked(i) ? "true" : "false");
+
+    // 选项态
+    node.querySelectorAll(".opt").forEach((btn) => {
+      btn.classList.remove("is-ok", "is-bad", "locked");
+      btn.setAttribute("aria-checked", "false");
+      const flag = btn.querySelector(".flag");
+      if (flag) flag.textContent = "";
+      if (a && Array.isArray(a.picked) && a.picked.includes(btn.dataset.l)) {
+        btn.setAttribute("aria-checked", "true");
+      }
+    });
+
+    if (q.t === "fill" || q.t === "term" || SUBJECTIVE[q.t]) {
+      const f = node.querySelector(".field");
+      if (f && a && typeof a.text === "string" && f.value !== a.text) f.value = a.text;
+      if (f && isGraded(i)) f.readOnly = true;
+      if (f) grow(f);
+    }
+
+    const confirm = node.querySelector('[data-act="confirm"]');
+    if (confirm) confirm.disabled = !(a && ((a.picked && a.picked.length) || (a.text && a.text.trim())));
+
+    if (isGraded(i)) reveal(node, q, a, true);
+  }
+
+  /* ------------------------------------------------------------ reveal */
+  function reveal(node, q, a, quiet) {
+    node.classList.add("graded");
+    node.querySelectorAll(".opt").forEach((btn) => btn.classList.add("locked"));
+    // 判定后收起作答按钮，避免重复提交
+    node.querySelectorAll(".q-actions").forEach((row) => {
+      if (!row.classList.contains("self-grade")) row.style.display = "none";
+    });
+
+    const v = node.querySelector(".verdict");
+    const correctSet = new Set(q.a);
+
+    if (q.t === "single" || q.t === "multiple" || q.t === "truefalse") {
+      node.querySelectorAll(".opt").forEach((btn) => {
+        const l = btn.dataset.l;
+        const flag = btn.querySelector(".flag");
+        const picked = a && Array.isArray(a.picked) && a.picked.includes(l);
+        if (correctSet.has(l)) {
+          btn.classList.add("is-ok");
+          if (flag) flag.textContent = picked ? "你的选择 · 正确" : "正确答案";
+        } else if (picked) {
+          btn.classList.add("is-bad");
+          if (flag) flag.textContent = "你的选择";
+        }
+      });
+    }
+
+    if (a && a.pending) {
+      v.className = "verdict info";
+      v.innerHTML = '<span class="ico">?</span><span>请对照下方参考答案自评<span class="sub"> · 答到要点就选「记住了」</span></span>';
+      if (!node.querySelector(".self-grade")) {
+        const bar = document.createElement("div");
+        bar.className = "q-actions self-grade";
+        bar.innerHTML = '<button data-self="yes" data-i="' + q.i + '">记住了</button>' +
+                        '<button data-self="no" data-i="' + q.i + '">没答到</button>';
+        const anchor = node.querySelector(".ans");
+        anchor.parentNode.insertBefore(bar, anchor);
+      }
+      return;
+    }
+    const sg = node.querySelector(".self-grade");
+    if (sg) sg.remove();
+
+    if (isSubjective(q)) {
+      v.className = "verdict " + (a && a.correct ? "ok" : "bad");
+      v.innerHTML = '<span class="ico">' + (a && a.correct ? "✓" : "✕") + "</span><span>" +
+        (a && a.correct ? "已标记为掌握" : "已标记为未掌握") + "</span>";
+      addRedo(v, q);
+      return;
+    }
+
+    const good = a && a.correct === true;
+    v.className = "verdict " + (good ? "ok" : "bad");
+    v.innerHTML = '<span class="ico">' + (good ? "✓" : "✕") + "</span><span>" +
+      (good ? "回答正确" : "回答错误") +
+      (quiet ? "" : '<span class="sub"> · ' + (good ? "继续保持" : "看一下原文依据") + "</span>") + "</span>";
+    addRedo(v, q);
+  }
+
+  /* 判过就不能再答，想重来只能清空整卷；练习模式给单题一个出口 */
+  function addRedo(v, q) {
+    if (S.mode !== "practice") return;
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "redo";
+    b.dataset.act = "redo";
+    b.dataset.i = q.i;
+    b.textContent = "重做本题";
+    v.appendChild(b);
+  }
+
+  /* ------------------------------------------------------------ actions */
+  function pick(i, letter) {
+    const q = Q[i];
+    if (!q || isGraded(i)) return;
+    let picked = (ans(i) && ans(i).picked) ? ans(i).picked.slice() : [];
+
+    if (q.t === "multiple") {
+      picked = picked.includes(letter) ? picked.filter((x) => x !== letter) : picked.concat(letter);
+    } else {
+      picked = [letter];
+    }
+
+    const a = updateAns(i, { picked: picked, type: "choice" });
+
+    const node = $('#stage .q[data-i="' + i + '"]');
+    node.querySelectorAll(".opt").forEach((b) => b.setAttribute("aria-checked", picked.includes(b.dataset.l) ? "true" : "false"));
+    const confirm = node.querySelector('[data-act="confirm"]');
+    if (confirm) confirm.disabled = !picked.length;
+
+    if (q.t !== "multiple" && S.mode === "practice") {
+      a.correct = gradeChoice(q, picked);
+      a.graded = true;
+      reveal(node, q, a, false);
+      refreshStats();
+      paintChapters();
+      afterGrade(i);
+    } else {
+      save();
+      refreshStats();
+    }
+  }
+
+  function confirmAnswer(i) {
+    const q = Q[i];
+    const a = ans(i);
+    if (!q || !a || isGraded(i) || isSubjective(q)) return;
+    const node = $('#stage .q[data-i="' + i + '"]');
+
+    if (q.t === "multiple") {
+      if (!a.picked || !a.picked.length) return;
+      a.correct = gradeChoice(q, a.picked);
+    } else if (q.t === "fill" || q.t === "term") {
+      const text = (node.querySelector(".field").value || "").trim();
+      if (!text) return;
+      a.text = text;
+      a.correct = gradeText(q, text);
+      if (a.correct === null) a.correct = false;
+    }
+    a.graded = true;
+    a.type = "choice";
+    save();
+    reveal(node, q, a, false);
+    refreshStats();
+    paintChapters();
+    afterGrade(i);
+  }
+
+  function afterGrade(i) {
+    save();
+    const node = $('#stage .q[data-i="' + i + '"]');
+    if (node) scrollToVerdict(node);
+    if ($("#sheet").classList.contains("show")) buildSheet();
+    const pos = view.indexOf(i);
+    const next = $("#nextBtn");
+    if (pos >= 0 && pos < view.length - 1) next.focus({ preventScroll: true });
+  }
+
+  /* 判过之后想重来，不必清空整卷；只重置这一题，标记与其它题不受影响 */
+  function redoQuestion(i) {
+    const q = Q[i];
+    if (!q || S.mode !== "practice") return;
+    delete S.answers[qkey(i)];
+    if (S.submitted) {
+      S.submitted = false;
+      $("#submitBtn").textContent = "交卷";
+    }
+    save();
+    const node = $('#stage .q[data-i="' + i + '"]');
+    if (node) {
+      const holder = document.createElement("div");
+      holder.innerHTML = questionHTML(q);
+      node.replaceWith(holder.firstElementChild);
+    }
+    applyFilter(true);
+    refreshStats();
+    if ($("#sheet").classList.contains("show")) buildSheet();
+    toast("已重做本题");
+  }
+
+  function paintChapters() {
+    // refreshStats 已包含章节计数，这里只是保持接口对称
+  }
+
+  function go(delta, dir) {
+    const pos = view.indexOf(S.cur);
+    const target = pos + delta;
+    if (target < 0 || target >= view.length) return;
+    S.cur = view[target];
+    save();
+    $("#stage").dataset.dir = dir || (delta > 0 ? "l" : "r");
+    paint();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  /* 判定后把解析顶到视口上方，省得手机上还能看见半屏空白 */
+  function scrollToVerdict(node) {
+    if (window.innerWidth > 980) return;
+    const v = node.querySelector(".verdict");
+    if (!v) return;
+    const r = v.getBoundingClientRect();
+    if (r.top > window.innerHeight * 0.55) {
+      window.scrollTo({ top: r.top + window.scrollY - 72, behavior: "smooth" });
+    }
+  }
+
+  function jump(i) {
+    if (!view.includes(i)) {
+      S.filter = { scope: "all", type: "all" };
+      syncFilterUI();
+      applyFilter(true);
+    }
+    S.cur = i;
+    save();
+    paint();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  /* ------------------------------------------------------------ result */
+  function showResult() {
+    // 交卷时把所有已作答但未判定的题判掉；未作答的保持未做
+    Q.forEach((q) => {
+      const a = ans(q.i);
+      if (!a || a.graded) return;
+      if (isSubjective(q)) {
+        a.graded = true; a.pending = true; a.correct = null;
+      } else if (q.t === "fill" || q.t === "term") {
+        if (!String(a.text || "").trim()) return;
+        a.correct = gradeText(q, a.text) === true;
+        a.graded = true;
+      } else {
+        if (!a.picked || !a.picked.length) return;
+        a.correct = gradeChoice(q, a.picked);
+        a.graded = true;
+      }
+    });
+    S.submitted = true;
+    save();
+
+    // 让回看时每道题都处于已判定状态
+    Q.forEach((q) => {
+      const a = ans(q.i);
+      const node = document.querySelector('#stage .q[data-i="' + q.i + '"]');
+      if (a && a.graded && node) reveal(node, q, a, true);
+    });
+
+    const graded = Q.filter((q) => isGraded(q.i));
+    const ok = graded.filter((q) => isCorrect(q.i));
+    const pending = graded.filter((q) => { const a = ans(q.i); return a && a.pending; });
+    const bad = graded.filter((q) => !isCorrect(q.i) && !(ans(q.i) && ans(q.i).pending));
+    const unanswered = N - graded.length;
+    const base = ok.length + bad.length;
+    const rate = base ? Math.round((ok.length / base) * 100) : 0;
+
+    const C = 2 * Math.PI * 54;
+    const chapters = [];
+    Q.forEach((q) => {
+      let c = chapters.find((x) => x.sec === q.sec);
+      if (!c) { c = { sec: q.sec, ok: 0, total: 0 }; chapters.push(c); }
+      c.total++;
+      if (isCorrect(q.i)) c.ok++;
+    });
+    chapters.sort((a, b) => unitKey(a.sec) - unitKey(b.sec));
+
+    /* 按题型统计：题多的卷子里，章节分布看不出「哪类题弱」，题型更直观 */
+    const byType = [];
+    Q.forEach((q) => {
+      let t = byType.find((x) => x.t === q.t);
+      if (!t) { t = { t: q.t, ok: 0, total: 0 }; byType.push(t); }
+      t.total++;
+      if (isCorrect(q.i)) t.ok++;
+    });
+    byType.sort((a, b) => typeRank(a.t) - typeRank(b.t));
+
+    const barsHTML = (rows, label) =>
+      '<div class="bars">' + rows.map((c) => {
+        const p = c.total ? Math.round((c.ok / c.total) * 100) : 0;
+        const name = label(c);
+        return '<div class="bar-row"><div class="top"><span class="lbl" title="' + esc(name) + '">' + esc(name) + '</span>' +
+          '<span class="frac">' + c.ok + "/" + c.total + '</span></div>' +
+          '<span class="track"><i class="fill" style="width:' + p + '%"></i></span></div>';
+      }).join("") + "</div>";
+
+    const wrongs = bad.concat(pending);
+
+    // 按分值算分：正卷 100 分，术语速记属于附加分，单独注明
+    const scored = Q.filter((q) => (q.score || 0) > 0);
+    const totalScore = scored.reduce((s, q) => s + q.score, 0);
+    const gotScore = scored.reduce((s, q) => s + (isCorrect(q.i) ? q.score : 0), 0);
+    const bonusScore = scored.filter((q) => q.t === "term").reduce((s, q) => s + q.score, 0);
+
+    $("#result").innerHTML =
+      '<div class="res-head">' +
+        '<div class="big-ring"><svg width="132" height="132" viewBox="0 0 132 132">' +
+          '<circle cx="66" cy="66" r="54" fill="none" stroke="var(--line2)" stroke-width="9" opacity=".5"/>' +
+          '<circle cx="66" cy="66" r="54" fill="none" stroke="var(--accent)" stroke-width="9" stroke-linecap="round" ' +
+            'stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + (C - (rate / 100) * C).toFixed(1) + '"/>' +
+        "</svg><div class=\"t\"><b>" + rate + "%</b><span>正确率</span></div></div>" +
+        '<div class="res-title"><h2>' + (rate >= 85 ? "掌握得不错" : rate >= 60 ? "还有提升空间" : "需要回头重看这一章") + "</h2>" +
+          "<p>得分 <b class=\"sc\">" + gotScore + "</b> / " + totalScore +
+          (bonusScore ? "（含术语附加 " + bonusScore + " 分，正卷 " + (totalScore - bonusScore) + " 分）" : "") +
+          "</p>" +
+          '<p class="res-meta">' + (S.mode === "exam" ? "考试模式" : "练习模式") + " · 用时 " + elapsed() + "</p>" +
+          '<div class="res-stats">' +
+            "<div><b>" + ok.length + "</b>答对</div>" +
+            "<div><b>" + bad.length + "</b>答错</div>" +
+            "<div><b>" + pending.length + "</b>待自评</div>" +
+            "<div><b>" + unanswered + "</b>未作答</div>" +
+          "</div></div>" +
+      "</div>" +
+      '<div class="res-sec"><h3>分章节表现</h3>' +
+        barsHTML(chapters, (c) => c.sec) +
+      "</div>" +
+      (byType.length > 1
+        ? '<div class="res-sec"><h3>分题型表现</h3>' +
+          barsHTML(byType, (c) => TYPE_CN[c.t] || c.t) +
+          "</div>"
+        : "") +
+      (wrongs.length
+        ? '<div class="res-sec"><h3>需要回看的题（' + wrongs.length + "）</h3><div class=\"wrong-list\">" +
+          wrongs.map((q) =>
+            '<button class="wrong-item" data-jump="' + q.i + '">' +
+              '<span class="n">' + String(q.n).padStart(2, "0") + "</span>" +
+              '<span class="qt"><i class="tk">' + (TYPE_CN[q.t] || "") + "</i>" +
+                rich(q.t === "term" && !isExplainTerm(q) ? q.q + " → 英文术语" : q.q) + "</span></button>").join("") +
+          "</div></div>"
+        : '<div class="res-sec"><h3>需要回看的题</h3><div class="empty" style="padding:28px 0"><b>全部正确</b>这一份可以过了。</div></div>') +
+      '<div class="res-actions">' +
+        (wrongs.length ? '<button class="btn primary" id="redoWrong">只做错题（' + wrongs.length + "）</button>" : "") +
+        (wrongs.length ? '<button class="btn ghost" id="exportWrong">导出错题</button>' : "") +
+        '<button class="btn ghost" id="reviewAll">回看全部题目</button>' +
+        '<button class="btn ghost" id="restart">重新开始</button>' +
+      "</div>";
+
+    $("#stage").style.display = "none";
+    $("#navbar").style.visibility = "hidden";
+    $("#submitBtn").textContent = "查看结果";
+    $("#result").classList.add("show");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    const redo = $("#redoWrong");
+    if (redo) redo.addEventListener("click", () => {
+      S.filter = { scope: "wrong", type: "all" };
+      syncFilterUI();
+      closeResult();
+      applyFilter(false);
+    });
+    $("#reviewAll").addEventListener("click", () => {
+      S.filter = { scope: "all", type: "all" };
+      syncFilterUI();
+      closeResult();
+      applyFilter(false);
+    });
+    $("#restart").addEventListener("click", resetAll);
+    const expBtn = $("#exportWrong");
+    if (expBtn) expBtn.addEventListener("click", () => exportWrong(wrongs));
+    $$("#result [data-jump]").forEach((b) =>
+      b.addEventListener("click", () => { closeResult(); jump(Number(b.dataset.jump)); }));
+  }
+
+  /* 错题导出成 Markdown：手机上直接存文件，存不了就退回复制到剪贴板。
+     内容按「题干 / 你的答案 / 参考答案 / 采分点 / 出处 / 原文依据」排，
+     复制到笔记软件里就是一份能背的错题本。 */
+  function exportWrong(list) {
+    const L = [];
+    L.push("# " + (META.title || "题库") + " · 错题整理", "");
+    L.push("- 导出时间：" + new Date().toLocaleString());
+    L.push("- 模式：" + (S.mode === "exam" ? "考试" : "练习") + "，用时 " + elapsed());
+    L.push("- 共 " + list.length + " 题", "");
+    list.forEach((q) => {
+      const a = ans(q.i) || {};
+      L.push("## " + String(q.n).padStart(2, "0") + " · " + (TYPE_CN[q.t] || q.t) + " · " + q.sec, "");
+      L.push("**题目** " + plain(q.q), "");
+      if (isExplainTerm(q) || SUBJECTIVE[q.t]) {
+        L.push("- 你的作答：" + (String(a.text || "").trim() || "（未写）"));
+      } else if (q.t === "term" || q.t === "fill") {
+        L.push("- 你的答案：" + (a.text || "（未填）"));
+      } else {
+        L.push("- 你的选择：" + ((a.picked || []).join("") || "（未选）"));
+      }
+      L.push("- " + (isExplainTerm(q) ? "参考释义" : "参考答案") + "：" + (q.a || []).map(plain).join(" / "));
+      if (a && a.pending) L.push("- 状态：待自评");
+      if (q.keys && q.keys.length) {
+        L.push("- 采分点：" + q.keys.map((k) => plain(k.en) + (k.cn ? "（" + plain(k.cn) + "）" : "")).join("；"));
+      }
+      if (q.ref) L.push("- 出处：" + q.ref);
+      if (q.ev) L.push("- 原文依据：" + q.ev);
+      L.push("");
+    });
+    const text = L.join("\n");
+    const fname = "错题-" + (META.id || "deck") + ".md";
+    try {
+      const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = fname;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 5000);
+      toast("已导出 " + list.length + " 道错题");
+    } catch (e) {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(
+          () => toast("已复制到剪贴板"),
+          () => toast("导出失败，请用打印功能")
+        );
+      } else {
+        toast("导出失败，请用打印功能");
+      }
+    }
+  }
+
+  function closeResult() {
+    $("#result").classList.remove("show");
+    $("#stage").style.display = "";
+    $("#navbar").style.visibility = "";
+    $("#submitBtn").textContent = "交卷";
+  }
+
+  function resetAll() {
+    if (!confirm("清空所有答题记录并重新开始？")) return;
+    S = Object.assign({}, BLANK, { started: Date.now(), filter: S.filter, mode: S.mode, sig: SIG });
+    save();
+    closeResult();
+    $$("#stage .q").forEach((n) => {
+      n.classList.remove("graded");
+      n.querySelectorAll(".opt").forEach((b) => {
+        b.classList.remove("is-ok", "is-bad", "locked");
+        b.setAttribute("aria-checked", "false");
+        const f = b.querySelector(".flag"); if (f) f.textContent = "";
+      });
+      const f = n.querySelector(".field");
+      if (f) { f.value = ""; f.readOnly = false; f.style.height = ""; }
+      const c = n.querySelector('[data-act="confirm"]');
+      if (c) c.disabled = true;
+      const v = n.querySelector(".verdict"); if (v) v.innerHTML = "";
+      const sg = n.querySelector(".self-grade"); if (sg) sg.remove();
+    });
+    applyFilter(false);
+    toast("已清空，从第一题重新开始");
+  }
+
+  /* ------------------------------------------------------------ misc ui */
+  function elapsed() {
+    const s = Math.max(0, Math.floor((Date.now() - (S.started || Date.now())) / 1000));
+    const m = Math.floor(s / 60);
+    return m ? m + " 分 " + (s % 60) + " 秒" : s + " 秒";
+  }
+
+  function tick() {
+    const s = Math.max(0, Math.floor((Date.now() - (S.started || Date.now())) / 1000));
+    const m = String(Math.floor(s / 60)).padStart(2, "0");
+    const ss = String(s % 60).padStart(2, "0");
+    $("#timer").textContent = m + ":" + ss;
+  }
+
+  let toastTimer = null;
+  function toast(msg) {
+    const t = $("#toast");
+    t.textContent = msg;
+    t.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove("show"), 1800);
+  }
+
+  function syncFilterUI() {
+    $$("#scope button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.scope === S.filter.scope ? "true" : "false"));
+    $$("#types button").forEach((b) => b.setAttribute("aria-pressed", b.dataset.type === S.filter.type ? "true" : "false"));
+    $$("[data-mode]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.mode === S.mode ? "true" : "false"));
+  }
+
+  /* 顶栏与抽屉里各有一套模式切换，统一由这里改状态 */
+  function setMode(m) {
+    if (S.mode === m) return;
+    S.mode = m;
+    syncFilterUI();
+    save();
+    toast(S.mode === "exam" ? "考试模式：作答后不立即判定" : "练习模式：作答后立即判定");
+    applyFilter(true);
+  }
+
+  /* 正文字号：长英文题干在手机上按默认字号读起来偏累，给三档 */
+  function setFs(v) {
+    if (v !== "sm" && v !== "md" && v !== "lg") v = "md";
+    document.documentElement.setAttribute("data-fs", v);
+    try { localStorage.setItem(FKEY, v); } catch (e) {}
+    $$("[data-fs-btn]").forEach((b) => b.setAttribute("aria-pressed", b.dataset.fsBtn === v ? "true" : "false"));
+    $$("textarea.field").forEach(grow);
+  }
+
+  function setTheme(t) {
+    document.documentElement.setAttribute("data-theme", t);
+    try { localStorage.setItem(TKEY, t); } catch (e) {}
+    const tc = $("#tcMeta");
+    if (tc) tc.setAttribute("content", t === "dark" ? "#0f1214" : "#f3f1ec");
+    $("#themeBtn").innerHTML = t === "dark"
+      ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>'
+      : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+  }
+
+  /* ------------------------------------------------------------ events */
+  document.addEventListener("click", (e) => {
+    const opt = e.target.closest(".opt");
+    if (opt) { pick(Number(opt.dataset.i), opt.dataset.l); return; }
+
+    const act = e.target.closest("[data-act]");
+    if (act) {
+      const i = Number(act.dataset.i);
+      const kind = act.dataset.act;
+      if (kind === "confirm") confirmAnswer(i);
+      else if (kind === "redo") redoQuestion(i);
+      else if (kind === "mark") {
+        toggleMark(i);
+        save();
+        const btn = document.querySelector('[data-act="mark"][data-i="' + i + '"]');
+        if (btn) btn.setAttribute("aria-pressed", isMarked(i) ? "true" : "false");
+        if (S.filter.scope === "marked") applyFilter(true);
+      } else if (kind === "reveal") {
+        const a = setAns(i, { picked: [], graded: true, pending: true, correct: null, type: "short" });
+        save();
+        const node = document.querySelector('#stage .q[data-i="' + i + '"]');
+        reveal(node, Q[i], a, false);
+        refreshStats();
+        scrollToVerdict(node);
+      }
+      return;
+    }
+
+    const self = e.target.closest("[data-self]");
+    if (self) {
+      const i = Number(self.dataset.i);
+      const a = updateAns(i, {
+        graded: true, pending: false, correct: self.dataset.self === "yes"
+      });
+      save();
+      const node = document.querySelector('#stage .q[data-i="' + i + '"]');
+      reveal(node, Q[i], a, false);
+      refreshStats();
+      if ($("#sheet").classList.contains("show")) buildSheet();
+      return;
+    }
+
+    const cell = e.target.closest("[data-goto]");
+    if (cell) {
+      closeSheet();
+      jump(Number(cell.dataset.goto));
+      return;
+    }
+
+    const sScope = e.target.closest("[data-sheet-scope]");
+    if (sScope) {
+      sheetScope = sScope.dataset.sheetScope;
+      buildSheet();
+      return;
+    }
+
+    const modeBtn = e.target.closest("[data-mode]");
+    if (modeBtn) { setMode(modeBtn.dataset.mode); return; }
+
+    const fsBtn = e.target.closest("[data-fs-btn]");
+    if (fsBtn) { setFs(fsBtn.dataset.fsBtn); return; }
+
+    const nav = e.target.closest(".nav-item");
+    if (nav) {
+      const sec = nav.dataset.sec;
+      const first = Q.find((q) => q.sec === sec);
+      if (first) {
+        closeMobile();
+        if (!view.includes(first.i)) { S.filter = { scope: "all", type: "all" }; syncFilterUI(); applyFilter(true); }
+        jump(first.i);
+      }
+      return;
+    }
+  });
+
+  document.addEventListener("input", (e) => {
+    const f = e.target.closest(".field");
+    if (!f) return;
+    const i = Number(f.dataset.i);
+    const q = Q[i];
+    if (!q || isGraded(i)) return;
+    updateAns(i, { text: f.value });
+    const c = document.querySelector('[data-act="confirm"][data-i="' + i + '"]');
+    if (c) c.disabled = !f.value.trim();
+    if (f.tagName === "TEXTAREA") grow(f);
+    save();
+  });
+
+  /* 手机软键盘弹出后会盖住固定底栏，聚焦输入时先把它收起来 */
+  document.addEventListener("focusin", (e) => {
+    if (e.target.closest(".field")) document.body.classList.add("kbd");
+  });
+  document.addEventListener("focusout", (e) => {
+    if (!e.target.closest(".field")) return;
+    setTimeout(() => {
+      if (!document.activeElement || !document.activeElement.closest(".field")) {
+        document.body.classList.remove("kbd");
+      }
+    }, 90);
+  });
+
+  /* 横滑翻页：位移超过 55px 且明显偏水平才认，避免和竖滑滚动打架 */
+  (function swipe() {
+    const stage = $("#stage");
+    let from = null;
+    stage.addEventListener("touchstart", (e) => {
+      if (e.touches.length !== 1 || e.target.closest("input,textarea")) { from = null; return; }
+      const t = e.touches[0];
+      from = { x: t.clientX, y: t.clientY, at: Date.now() };
+    }, { passive: true });
+    stage.addEventListener("touchend", (e) => {
+      if (!from) return;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - from.x;
+      const dy = t.clientY - from.y;
+      const dt = Date.now() - from.at;
+      from = null;
+      if (dt > 700 || Math.abs(dx) < 55 || Math.abs(dx) < Math.abs(dy) * 1.8) return;
+      go(dx < 0 ? 1 : -1, dx < 0 ? "l" : "r");
+    }, { passive: true });
+    stage.addEventListener("touchcancel", () => { from = null; }, { passive: true });
+  })();
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      if ($("#sheet").classList.contains("show")) { closeSheet(); return; }
+      if ($("#side").classList.contains("open")) { closeMobile(); return; }
+    }
+    if (e.target.matches("input,textarea")) {
+      if (e.key === "Enter" && !e.shiftKey && e.target.dataset.i) {
+        const qq = Q[Number(e.target.dataset.i)];
+        // 主观题与释义题要能换行，不能把回车当成提交
+        if (isSubjective(qq)) return;
+        e.preventDefault();
+        confirmAnswer(Number(e.target.dataset.i));
+      }
+      return;
+    }
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+
+    const cur = S.cur;
+    const q = Q[cur];
+    if (!q) return;
+
+    if (/^[1-8]$/.test(e.key)) {
+      const idx = Number(e.key) - 1;
+      if (q.t === "truefalse") { if (idx < 2) pick(cur, idx === 0 ? "T" : "F"); }
+      else if (q.o && idx < q.o.length) pick(cur, LTR[idx]);
+      e.preventDefault();
+      return;
+    }
+    if (e.key === "ArrowRight" || e.key === "Enter") {
+      if (e.key === "Enter" && !isGraded(cur) && (q.t === "multiple" || q.t === "fill" || (q.t === "term" && !isExplainTerm(q)))) { confirmAnswer(cur); e.preventDefault(); return; }
+      if (e.key === "Enter" && !isGraded(cur) && (q.t === "short" || isExplainTerm(q))) return;
+      go(1); e.preventDefault(); return;
+    }
+    if (e.key === "ArrowLeft") { go(-1); e.preventDefault(); return; }
+    if (e.key.toLowerCase() === "m") {
+      const i = cur;
+      toggleMark(i);
+      save();
+      const btn = document.querySelector('[data-act="mark"][data-i="' + i + '"]');
+      if (btn) btn.setAttribute("aria-pressed", isMarked(i) ? "true" : "false");
+      toast(isMarked(i) ? "已标记" : "已取消标记");
+    }
+    if (e.key.toLowerCase() === "t") {
+      setTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark");
+    }
+  });
+
+  $("#prevBtn").addEventListener("click", () => go(-1));
+  $("#nextBtn").addEventListener("click", () => go(1));
+  $("#submitBtn").addEventListener("click", () => {
+    const done = Q.filter((q) => isGraded(q.i)).length;
+    if (done < N && !confirm("还有 " + (N - done) + " 题未作答，确定交卷？")) return;
+    showResult();
+  });
+  $("#themeBtn").addEventListener("click", () =>
+    setTheme(document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark"));
+  $("#printBtn").addEventListener("click", () => window.print());
+  $("#resetBtn").addEventListener("click", resetAll);
+
+  $("#scope").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-scope]");
+    if (!b) return;
+    S.filter.scope = b.dataset.scope;
+    syncFilterUI();
+    save();
+    applyFilter(false);
+  });
+
+  $("#types").addEventListener("click", (e) => {
+    const b = e.target.closest("button[data-type]");
+    if (!b) return;
+    S.filter.type = b.dataset.type;
+    syncFilterUI();
+    save();
+    applyFilter(false);
+  });
+
+  $("#posBtn").addEventListener("click", openSheet);
+  $("#sheetClose").addEventListener("click", closeSheet);
+  $("#sheetScrim").addEventListener("click", closeSheet);
+
+  function closeMobile() { $("#side").classList.remove("open"); $("#scrim").classList.remove("show"); }
+  $("#menuBtn").addEventListener("click", () => {
+    $("#side").classList.add("open");
+    $("#scrim").classList.add("show");
+  });
+  $("#scrim").addEventListener("click", closeMobile);
+
+  /* ------------------------------------------------------------ boot */
+  function boot() {
+    const saved = localStorage.getItem(TKEY);
+    const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+    setTheme(saved || (prefersDark ? "dark" : "light"));
+
+    let fs = "md";
+    try { fs = localStorage.getItem(FKEY) || "md"; } catch (e) {}
+    setFs(fs);
+
+    buildSidebar();
+    buildStage();
+    syncFilterUI();
+    applyFilter(true);
+
+    // 侧栏副标题改短，避免长路径换行挤压标题
+    const h1 = document.querySelector(".brand-t h1");
+    if (h1) {
+      // 标题在 190px 宽的侧栏里会从词语中间折断（“专业英 / 语”），改在“·”处换行
+      const parts = h1.textContent.split("·").map((s) => s.trim()).filter(Boolean);
+      if (parts.length > 1) h1.innerHTML = parts.map(esc).join("<br>");
+    }
+    const sub = document.querySelector(".brand-t p");
+    if (sub) {
+      const secs = new Set(Q.map((q) => q.sec)).size;
+      sub.textContent = N + " 题 · " + secs + " 节";
+      sub.title = (META.engine || "") + " · " + (META.source || "");
+    }
+
+    // 恢复已交卷状态：显示结果页按钮提示
+    if (S.submitted) $("#submitBtn").textContent = "查看结果";
+
+    tick();
+    setInterval(tick, 1000);
+
+    // 旋屏或改窗口宽度后，行高变了，文本框要重新量一次
+    let rz = null;
+    window.addEventListener("resize", () => {
+      clearTimeout(rz);
+      rz = setTimeout(() => $$("textarea.field").forEach(grow), 200);
+    });
+
+    // 迁移结果要写回，否则每次打开都拿旧签名重新过滤一遍
+    if (stateMigrated) save();
+    if (staleNote) setTimeout(() => toast(staleNote), 400);
+    if (META.mock) toast("这是离线模式产物，题目由陈述句改写，仅供链路演示");
+  }
+
+  boot();
+})();
+</script>
+</body>
+</html>

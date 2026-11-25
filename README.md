@@ -61,7 +61,7 @@ pip install -e ".[docling]"       # docling：结构化最好，首次运行需�
 
 ```bash
 pip install -e ".[dev]"
-python -m unittest discover -s tests -v   # 92 项单测
+python -m unittest discover -s tests -v   # 102 项单测
 python tests/smoke_cli.py                 # 端到端冒烟：离线跑一遍 CLI 并检查产物
 ruff check .
 ```
@@ -90,6 +90,8 @@ docs/<卷>.html         单份题库，侧栏「返回课程」回到课程页
 python tools/build_exam.py                      # 生成 out_exam/decks.json 与各卷
 python tools/check_amc.py                       # 先进材料研究进展C：草稿自检
 python tools/build_amc.py                       # 生成 out_amc/ 的四套题库与 decks.json
+python tools/check_hgyl.py                      # 化工原理：草稿自检（缺教材语料时跳过）
+python tools/build_hgyl.py                      # 生成 out_hgyl/ 的四套题库与 decks.json
 python tools/build_hub.py                       # 同步卷子到 docs/，生成课程页与首页
 python tools/build_hub.py --course polymer-en   # 只重建一门课
 ```
@@ -98,7 +100,9 @@ python tools/build_hub.py --course polymer-en   # 只重建一门课
 
 ### 发布前检查
 
-公开仓库只放转写稿（`corpus_amc/`）、题目草稿（`papers_amc/`）与构建后的 `docs/`。原始 PPT/PDF、教务系统截图、`.units/` 等含元数据或内部字段的文件不入库。
+公开仓库只放转写稿（`corpus_amc/`）、题目草稿（`papers_amc/`、`papers_hgyl/`）与构建后的 `docs/`。原始 PPT/PDF、教务系统截图、`.units/` 等含元数据或内部字段的文件不入库。
+
+《化工原理》的教材 OCR 语料（`corpus_hgyl/`）属于版权文本，同样不入库：仓库里只有题目与每条十几字的原文依据。没有语料时 `check_hgyl.py` 与 `build_hgyl.py` 会打印提示并跳过，CI 依靠已提交的 `docs/` 保持页面不变。要在本机重建，把教材 PDF OCR 成 `corpus_hgyl/chNN.md`（页边界写成 `### p151`）即可。
 
 文本类隐私规则可以在提交前自查，CI 也会跑：
 
@@ -271,12 +275,17 @@ pdfquiz/
 │   ├── notes.json              教材 Notes 重点句
 │   └── units/unitNN.json       分单元精练稿
 ├── papers_amc/                 先进材料研究进展C 的分章题库草稿（ch01–ch10）
+├── papers_hgyl/                化工原理的分章题库草稿（ch00–ch08）
+├── corpus_hgyl/                化工原理教材 OCR 语料（版权文本，不入库，见下）
 ├── tools/
 │   ├── build_exam.py           试卷 + 词汇表 → 题库（校验、去重、导出）
 │   ├── build_objective.py      原句挖空 + 词汇表四选一 → 客观题
 │   ├── build_materials.py      正文里的材料名 → 中译英默写（配套 materials.tsv）
 │   ├── build_hub.py            课程首页 + 课程页 + 卷子同步
 │   ├── build_amc.py            分章草稿 → 客观题/精练/术语/模拟卷四套题库
+│   ├── hgyl.py                 化工原理的章、节、题量配置（build 与 check 共用）
+│   ├── build_hgyl.py           化工原理：分章草稿 → 四套题库
+│   ├── check_hgyl.py           化工原理草稿自检：逐字回查 + 解析质量 + 量纲上下标
 │   ├── check_amc.py            草稿自检：存储格式 + 证据逐字回查 + 解释质量 + 上下标写法 + 题型结构 + 题量上下限
 │   ├── normalize_amc.py        把草稿归一成 v2（补 ID / 分组 / 枚举），支持 --check
 │   ├── extract_notes.py        抽 Notes 句子与教材原译
@@ -285,9 +294,10 @@ pdfquiz/
 ├── tests/
 │   ├── test_pipeline.py        19 项单测（切块 / 溯源 / 结构 / 渲染）
 │   ├── test_booktext.py        16 项单测（页标记 / 切句 / 跨页 evidence）
-│   ├── test_courses.py         10 项课程注册表与页面生成测试
+│   ├── test_courses.py         18 项课程注册表与页面生成测试
 │   ├── test_amc.py             23 项分章题库测试（存储格式 / 证据回查 / 解释质量 / 上下标 / 章节分组 / 满分 100）
 │   ├── test_amcbank.py         6 项存储格式测试（v1 迁移 / ID 保留 / 术语 mode 校验 / 非法结构拒绝）
+│   ├── test_hgyl.py            10 项化工原理测试：章节配置 / 量纲上下标 / 题量下限 / 证据回查（缺语料自动跳过）
 │   ├── smoke_cli.py            端到端冒烟：离线跑 CLI 并检查产物结构
 │   ├── fake_mcp_server.py      假 MCP 服务器，内含 1 道伪造题
 │   └── web/
