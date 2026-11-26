@@ -8,9 +8,11 @@
 
 from __future__ import annotations
 
+import base64
 import html
 import re
 import sys
+from functools import lru_cache
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -116,6 +118,30 @@ h1{
 .ref{margin-left:auto;font-size:12px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
 .text{white-space:pre-wrap;overflow-wrap:break-word}
 .problem{font-size:15px;line-height:1.85;color:var(--ink)}
+.figbox{
+  margin:14px 0 2px;padding:10px 10px 8px;background:var(--surface2);
+  border:1px solid var(--line);border-radius:10px;text-align:center;
+}
+.figbox img{
+  display:block;max-width:100%;max-height:320px;width:auto;height:auto;
+  margin:0 auto;border-radius:4px;background:#fff;cursor:zoom-in;
+}
+.figbox figcaption{margin-top:6px;font-size:12px;color:var(--muted)}
+.lightbox{
+  position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;
+  padding:22px;background:rgba(12,16,14,.92);
+}
+.lightbox[hidden]{display:none}
+.lightbox img{
+  max-width:min(100%,1100px);max-height:calc(100vh - 44px);width:auto;height:auto;
+  background:#fff;border-radius:6px;box-shadow:0 22px 64px rgba(0,0,0,.45);
+}
+.lb-close{
+  position:absolute;top:14px;right:14px;width:38px;height:38px;border:0;border-radius:50%;
+  font:inherit;font-size:22px;line-height:1;color:#fff;background:rgba(255,255,255,.14);cursor:pointer;
+}
+.lb-close:hover{background:rgba(255,255,255,.26)}
+body.lock{overflow:hidden}
 .text sup,.text sub{font-size:.72em;line-height:0}
 .text sup{vertical-align:super}
 .text sub{vertical-align:sub}
@@ -151,6 +177,8 @@ h1{
   .wrap{padding:30px 15px 52px}
   .ex{padding:15px 15px 13px}
   .problem{font-size:14.5px}
+  .figbox{padding:8px 6px 6px}
+  .figbox img{max-height:260px}
   .ch-head h2{font-size:19px}
   .topic{font-size:14.5px}
   .ref{flex-basis:100%;margin-left:0;font-size:11.5px}
@@ -162,6 +190,9 @@ h1{
   .crumb,.toc,.tools,.ex-actions{display:none}
   .ex{box-shadow:none;break-inside:avoid;border-color:#ccc}
   .sol[hidden]{display:block!important}
+  .figbox{break-inside:avoid;background:#fff}
+  .figbox img{max-height:none;cursor:default}
+  .lightbox{display:none!important}
 }
 """
 
@@ -176,6 +207,11 @@ def rich(text: str) -> str:
     s = re.sub(r"\^\{([^{}]*)\}", r"<sup>\1</sup>", s)
     s = re.sub(r"_\{([^{}]*)\}", r"<sub>\1</sub>", s)
     return s
+
+
+@lru_cache(maxsize=128)
+def data_uri(path: str) -> str:
+    return "data:image/webp;base64," + base64.b64encode(Path(path).read_bytes()).decode("ascii")
 
 
 def short_name(stem: str) -> str:
@@ -193,13 +229,25 @@ def render(chapters: list[tuple[str, dict]]) -> str:
     )
     parts: list[str] = []
     for stem, data in chapters:
+        fig_index = examples.load_figures(stem).get("figures", {})
         cards = []
         for item in data["examples"]:
-            fig = (
-                f'<span class="fig">附图 {html.escape(str(item.get("figure")))}</span>'
-                if str(item.get("figure", "")).strip()
-                else ""
-            )
+            fig_key = str(item.get("figure", "")).strip()
+            img_html = ""
+            fig = ""
+            if fig_key:
+                meta = fig_index.get(fig_key)
+                if meta:
+                    uri = data_uri(str(examples.FIGDIR / str(meta["file"])))
+                    cap = f'{fig_key} · 教材 {meta["page"]}'
+                    img_html = (
+                        f'<figure class="figbox"><img src="{uri}" '
+                        f'width="{meta["width"]}" height="{meta["height"]}" '
+                        f'loading="lazy" decoding="async" alt="{html.escape(cap)}">'
+                        f'<figcaption>{html.escape(cap)} · 点击放大</figcaption></figure>'
+                    )
+                else:
+                    fig = f'<span class="fig">附图 {html.escape(fig_key)}</span>'
             note = (
                 f'<div class="note text">注：{rich(item["note"])}</div>'
                 if str(item.get("note", "")).strip()
@@ -212,6 +260,7 @@ def render(chapters: list[tuple[str, dict]]) -> str:
           <span class="ref">教材 {html.escape(item['ref'])}</span>
         </div>
         <div class="problem text">{rich(item['problem'])}</div>
+        {img_html}
         <div class="ex-actions">
           <button class="toggle" type="button" aria-expanded="false">展开解答</button>
           {fig}
@@ -251,7 +300,7 @@ def render(chapters: list[tuple[str, dict]]) -> str:
       <span class="pill">{span}</span>
       <span class="pill">离线可用 · 单文件</span>
     </div>
-    <p class="bank-note">例题转写自教材，公式按网页排版做了线性化整理；个别数值如受扫描清晰度影响，以教材原页为准。例题不计入题库题数。</p>
+    <p class="bank-note">例题转写自教材，公式按网页排版做了线性化整理；有附图的例题直接给出教材原图，点击可放大。个别数值如受扫描清晰度影响，以教材原页为准。例题不计入题库题数。</p>
   </header>
 
   <nav class="toc" aria-label="章节目录">{toc}</nav>
@@ -267,9 +316,13 @@ def render(chapters: list[tuple[str, dict]]) -> str:
   </main>
 
   <footer class="foot">
-    <span>来源：《化工原理》（第四版），杨祖荣主编，化学工业出版社。例题文字与解题思路转写自教材，仅供课程复习。</span><br>
+    <span>来源：《化工原理》（第四版），杨祖荣主编，化学工业出版社。例题文字与解题思路转写自教材，插图裁自教材原页，仅供课程复习。</span><br>
     <span>页码为印刷页码；PDF 页码 = 印刷页码 + 9。数据在 <code>papers_hgyl/examples/</code>，校验用 <code>tools/check_examples.py</code>。</span>
   </footer>
+</div>
+<div class="lightbox" id="lightbox" hidden role="dialog" aria-label="查看大图">
+  <button class="lb-close" type="button" aria-label="关闭">×</button>
+  <img alt="">
 </div>
 <script>
 (function () {{
@@ -330,6 +383,34 @@ def render(chapters: list[tuple[str, dict]]) -> str:
   }});
   search.addEventListener('input', filter);
   filter();
+
+  var lb = document.getElementById('lightbox');
+  var lbImg = lb ? lb.querySelector('img') : null;
+
+  function closeLb() {{
+    if (!lb || lb.hidden) return;
+    lb.hidden = true;
+    lbImg.removeAttribute('src');
+    document.body.classList.remove('lock');
+  }}
+
+  document.addEventListener('click', function (e) {{
+    var trigger = e.target.closest ? e.target.closest('.figbox img') : null;
+    if (trigger && lb && lbImg) {{
+      lbImg.src = trigger.src;
+      lbImg.alt = trigger.alt;
+      lb.hidden = false;
+      document.body.classList.add('lock');
+      return;
+    }}
+    if (lb && !lb.hidden && (e.target === lb || (e.target.closest && e.target.closest('.lb-close')))) {{
+      closeLb();
+    }}
+  }});
+
+  document.addEventListener('keydown', function (e) {{
+    if (e.key === 'Escape') closeLb();
+  }});
 }})();
 </script>
 </body>

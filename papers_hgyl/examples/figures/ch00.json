@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "chapter": "绪论",
+  "figures": {
+    "图0-2": {
+      "file": "ch00-fig0-02.webp",
+      "page": "P4",
+      "width": 502,
+      "height": 760
+    }
+  }
+}

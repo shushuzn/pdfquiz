@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "chapter": "第3章 传热",
+  "figures": {
+    "图3-7": {
+      "file": "ch03-fig3-07.webp",
+      "page": "P122",
+      "width": 681,
+      "height": 722
+    },
+    "图3-11": {
+      "file": "ch03-fig3-11.webp",
+      "page": "P125",
+      "width": 588,
+      "height": 631
+    },
+    "图3-12": {
+      "file": "ch03-fig3-12.webp",
+      "page": "P125",
+      "width": 575,
+      "height": 411
+    }
+  }
+}

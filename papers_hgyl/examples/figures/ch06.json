@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "chapter": "第6章 蒸馏",
+  "figures": {
+    "图6-1": {
+      "file": "ch06-fig6-01.webp",
+      "page": "P267",
+      "width": 708,
+      "height": 604
+    },
+    "图6-3": {
+      "file": "ch06-fig6-03.webp",
+      "page": "P267",
+      "width": 720,
+      "height": 362
+    },
+    "图6-31": {
+      "file": "ch06-fig6-31.webp",
+      "page": "P287",
+      "width": 720,
+      "height": 667
+    },
+    "图6-32(a)(b)": {
+      "file": "ch06-fig6-32ab.webp",
+      "page": "P287",
+      "width": 720,
+      "height": 336
+    },
+    "图6-33": {
+      "file": "ch06-fig6-33.webp",
+      "page": "P288",
+      "width": 563,
+      "height": 786
+    },
+    "图6-34": {
+      "file": "ch06-fig6-34.webp",
+      "page": "P290",
+      "width": 720,
+      "height": 466
+    },
+    "图6-40(a)(b)": {
+      "file": "ch06-fig6-40ab.webp",
+      "page": "P296",
+      "width": 720,
+      "height": 320
+    },
+    "图6-41": {
+      "file": "ch06-fig6-41.webp",
+      "page": "P297",
+      "width": 668,
+      "height": 671
+    },
+    "图6-45": {
+      "file": "ch06-fig6-45.webp",
+      "page": "P302",
+      "width": 616,
+      "height": 647
+    },
+    "图6-65": {
+      "file": "ch06-fig6-65.webp",
+      "page": "P314",
+      "width": 720,
+      "height": 530
+    }
+  }
+}

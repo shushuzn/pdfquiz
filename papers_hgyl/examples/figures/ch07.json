@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "chapter": "第7章 固体干燥",
+  "figures": {
+    "图7-8": {
+      "file": "ch07-fig7-08.webp",
+      "page": "P337",
+      "width": 720,
+      "height": 621
+    },
+    "图7-15": {
+      "file": "ch07-fig7-15.webp",
+      "page": "P347",
+      "width": 720,
+      "height": 681
+    }
+  }
+}

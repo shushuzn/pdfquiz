@@ -61,7 +61,7 @@ pip install -e ".[docling]"       # docling：结构化最好，首次运行需�
 
 ```bash
 pip install -e ".[dev]"
-python -m unittest discover -s tests -v   # 126 项单测
+python -m unittest discover -s tests -v   # 129 项单测
 python tests/smoke_cli.py                 # 端到端冒烟：离线跑一遍 CLI 并检查产物
 ruff check .
 ```
@@ -94,6 +94,7 @@ python tools/check_hgyl.py                      # 化工原理：草稿自检（
 python tools/build_hgyl.py                      # 生成 out_hgyl/ 的四套题库与 decks.json
 python tools/check_examples.py                  # 化工原理教材例题：数量、编号、页码、上下标
 python tools/build_examples.py                  # 生成 out_hgyl/examples.quiz.html（例题精解页）
+python tools/check_figures.py                   # 例题插图：索引、图片文件、页码、尺寸
 python tools/normalize_examples.py --check      # 检查例题上下标是否规范
 python tools/build_hub.py                       # 同步卷子到 docs/，生成课程页与首页
 python tools/build_hub.py --course polymer-en   # 只重建一门课
@@ -103,7 +104,7 @@ python tools/build_hub.py --course polymer-en   # 只重建一门课
 
 首页和课程页的题数按题库去重统计：模拟卷、客观题、精练、术语之间会复用同一道题，把各套 `count` 直接相加会把同一道题算好几次。`build_hub.py` 读取页面里内嵌的题目，按题干、选项和答案做指纹去重，页面同时标注「套内合计」，两个口径对得上。
 
-《化工原理》正文里的 93 道例题另有一套数据（`papers_hgyl/examples/chNN.json`），由 `build_examples.py` 生成「教材例题精解」页：按章列出题干，解答默认折叠，展开后是整理过的关键步骤、最终答案和印刷页码。例题单独成册，不参与组卷，也不计入题库题数；课程页会把它显示成「例题 93 例」，与四套题库分开。
+《化工原理》正文里的 93 道例题另有一套数据（`papers_hgyl/examples/chNN.json`），由 `build_examples.py` 生成「教材例题精解」页：按章列出题干，解答默认折叠，展开后是整理过的关键步骤、最终答案和印刷页码。其中 36 道例题依赖教材插图，原图裁自扫描页，存在 `papers_hgyl/examples/figures/` 并按章建立 `chNN.json` 索引；构建时以 WebP base64 内嵌，缩略图下方可点击全屏放大，页面仍是单文件、离线可用。例题单独成册，不参与组卷，也不计入题库题数；课程页会把它显示成「例题 93 例」，与四套题库分开。
 
 ### 发布前检查
 
@@ -286,6 +287,7 @@ pdfquiz/
 ├── papers_amc/                 先进材料研究进展C 的分章题库草稿（ch01–ch10）
 ├── papers_hgyl/                化工原理的分章题库草稿（ch00–ch08）
 │   └── examples/               教材例题（ch00–ch07，题干/解答/印刷页码）
+│       └── figures/            例题插图 WebP + 每章索引 chNN.json
 ├── corpus_hgyl/                化工原理教材 OCR 语料（版权文本，不入库，见下）
 ├── tools/
 │   ├── build_exam.py           试卷 + 词汇表 → 题库（校验、去重、导出）
@@ -296,9 +298,11 @@ pdfquiz/
 │   ├── hgyl.py                 化工原理的章、节、题量配置（build 与 check 共用）
 │   ├── build_hgyl.py           化工原理：分章草稿 → 四套题库
 │   ├── check_hgyl.py           化工原理草稿自检：逐字回查 + 解析质量 + 量纲上下标
-│   ├── examples.py             教材例题数据加载与校验（数量/编号/页码/上下标）
-│   ├── build_examples.py       教材例题 → 单文件「例题精解」页
+│   ├── examples.py             教材例题数据加载与校验（数量/编号/页码/上下标/插图）
+│   ├── build_examples.py       教材例题 → 单文件「例题精解」页（插图内嵌 + 点击放大）
 │   ├── check_examples.py       教材例题自检
+│   ├── check_figures.py        例题插图索引与图片文件自检
+│   ├── crop_figure.py          教材扫描页 → 去白边、限宽、转 WebP 的裁图脚本
 │   ├── normalize_examples.py   例题上下标写法归一，支持 --check
 │   ├── check_amc.py            草稿自检：存储格式 + 证据逐字回查 + 解释质量 + 上下标写法 + 题型结构 + 题量上下限
 │   ├── normalize_amc.py        把草稿归一成 v2（补 ID / 分组 / 枚举），支持 --check
@@ -312,7 +316,7 @@ pdfquiz/
 │   ├── test_amc.py             23 项分章题库测试（存储格式 / 证据回查 / 解释质量 / 上下标 / 章节分组 / 满分 100）
 │   ├── test_amcbank.py         6 项存储格式测试（v1 迁移 / ID 保留 / 术语 mode 校验 / 非法结构拒绝）
 │   ├── test_hgyl.py            15 项化工原理测试：章节配置 / 量纲上下标 / 题量下限 / 证据逐字与页码回查 / 配额与节题量（缺语料自动跳过）
-│   ├── test_examples.py        13 项教材例题测试：数据完整性 / 编号页码 / 页面生成 / 转义与确定性
+│   ├── test_examples.py        16 项教材例题测试：数据完整性 / 编号页码 / 页面生成 / 插图索引与内嵌 / 转义与确定性
 │   ├── smoke_cli.py            端到端冒烟：离线跑 CLI 并检查产物结构
 │   ├── fake_mcp_server.py      假 MCP 服务器，内含 1 道伪造题
 │   └── web/

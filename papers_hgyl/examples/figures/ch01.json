@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "chapter": "第1章 流体流动与输送机械",
+  "figures": {
+    "图1-8": {
+      "file": "ch01-fig1-08.webp",
+      "page": "P13",
+      "width": 510,
+      "height": 532
+    },
+    "图1-9": {
+      "file": "ch01-fig1-09.webp",
+      "page": "P13",
+      "width": 432,
+      "height": 487
+    },
+    "图1-11": {
+      "file": "ch01-fig1-11.webp",
+      "page": "P14",
+      "width": 709,
+      "height": 462
+    },
+    "图1-13": {
+      "file": "ch01-fig1-13.webp",
+      "page": "P15",
+      "width": 720,
+      "height": 395
+    },
+    "图1-17": {
+      "file": "ch01-fig1-17.webp",
+      "page": "P17",
+      "width": 694,
+      "height": 270
+    },
+    "图1-21": {
+      "file": "ch01-fig1-21.webp",
+      "page": "P21",
+      "width": 606,
+      "height": 439
+    },
+    "图1-22": {
+      "file": "ch01-fig1-22.webp",
+      "page": "P22",
+      "width": 612,
+      "height": 596
+    },
+    "图1-23": {
+      "file": "ch01-fig1-23.webp",
+      "page": "P23",
+      "width": 617,
+      "height": 483
+    },
+    "图1-24": {
+      "file": "ch01-fig1-24.webp",
+      "page": "P23",
+      "width": 720,
+      "height": 597
+    },
+    "图1-38": {
+      "file": "ch01-fig1-38.webp",
+      "page": "P35",
+      "width": 538,
+      "height": 610
+    },
+    "图1-44": {
+      "file": "ch01-fig1-44.webp",
+      "page": "P41",
+      "width": 388,
+      "height": 586
+    },
+    "图1-48": {
+      "file": "ch01-fig1-48.webp",
+      "page": "P44",
+      "width": 597,
+      "height": 679
+    },
+    "图1-49": {
+      "file": "ch01-fig1-49.webp",
+      "page": "P45",
+      "width": 618,
+      "height": 410
+    },
+    "图1-53": {
+      "file": "ch01-fig1-53.webp",
+      "page": "P47",
+      "width": 720,
+      "height": 593
+    },
+    "图1-67": {
+      "file": "ch01-fig1-67.webp",
+      "page": "P59",
+      "width": 583,
+      "height": 824
+    },
+    "图1-72": {
+      "file": "ch01-fig1-72.webp",
+      "page": "P63",
+      "width": 615,
+      "height": 530
+    },
+    "图1-80": {
+      "file": "ch01-fig1-80.webp",
+      "page": "P69",
+      "width": 550,
+      "height": 632
+    }
+  }
+}

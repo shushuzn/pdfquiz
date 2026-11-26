@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "chapter": "第5章 气体吸收",
+  "figures": {
+    "图5-24": {
+      "file": "ch05-fig5-24.webp",
+      "page": "P239",
+      "width": 720,
+      "height": 853
+    },
+    "图5-26": {
+      "file": "ch05-fig5-26.webp",
+      "page": "P243",
+      "width": 462,
+      "height": 571
+    },
+    "图5-34": {
+      "file": "ch05-fig5-34.webp",
+      "page": "P252",
+      "width": 720,
+      "height": 685
+    }
+  }
+}

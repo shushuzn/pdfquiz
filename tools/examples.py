@@ -14,6 +14,7 @@ import hgyl
 
 ROOT = Path(__file__).resolve().parent.parent
 EXAMPLES = ROOT / "papers_hgyl" / "examples"
+FIGDIR = EXAMPLES / "figures"
 
 # 教材正文里的例题数，按章固定；ch08 没有例题
 EXPECTED = {
@@ -61,6 +62,17 @@ def page_range(stem: str) -> tuple[int, int]:
 
 def path_of(stem: str) -> Path:
     return EXAMPLES / f"{stem}.json"
+
+
+def figures_path(stem: str) -> Path:
+    return FIGDIR / f"{stem}.json"
+
+
+def load_figures(stem: str) -> dict:
+    path = figures_path(stem)
+    if not path.exists():
+        return {"schema": 1, "chapter": chapter_name(stem), "figures": {}}
+    return json.loads(path.read_text(encoding="utf-8"))
 
 
 def load(stem: str) -> dict:
@@ -154,6 +166,64 @@ def validate_all() -> list[str]:
             errs.append(f"{stem}: JSON 解析失败：{exc}")
             continue
         errs.extend(validate(stem, data))
+        errs.extend(validate_figures(stem, data))
+    return errs
+
+
+def validate_figures(stem: str, data: dict) -> list[str]:
+    """检查例题引用的插图是否都有索引、文件和尺寸。"""
+    errs: list[str] = []
+    items = data.get("examples") or []
+    refs = {
+        str(item.get("figure", "")).strip()
+        for item in items
+        if str(item.get("figure", "")).strip()
+    }
+    if not refs:
+        return errs
+    path = figures_path(stem)
+    if not path.exists():
+        return [f"{stem}: 缺图片索引 figures/{stem}.json（{len(refs)} 张图）"]
+    try:
+        index = load_figures(stem)
+    except json.JSONDecodeError as exc:
+        return [f"{stem}: 图片索引 JSON 解析失败：{exc}"]
+    if index.get("schema") != 1:
+        errs.append(f"{stem}: 图片索引 schema 应为 1")
+    if index.get("chapter") != chapter_name(stem):
+        errs.append(f"{stem}: 图片索引 chapter 应为「{chapter_name(stem)}」")
+    entries = index.get("figures")
+    if not isinstance(entries, dict):
+        return errs + [f"{stem}: 图片索引 figures 必须是对象"]
+    start, end = page_range(stem)
+    used: dict[str, str] = {}
+    for key in sorted(refs):
+        meta = entries.get(key)
+        if not isinstance(meta, dict):
+            errs.append(f"{stem}: 缺「{key}」的插图")
+            continue
+        name = str(meta.get("file", ""))
+        if not name.endswith(".webp"):
+            errs.append(f"{stem}「{key}」: file 应为 .webp 文件")
+            continue
+        if name in used:
+            errs.append(f"{stem}「{key}」: 与「{used[name]}」共用同一文件")
+        used[name] = key
+        image = FIGDIR / name
+        if not image.exists():
+            errs.append(f"{stem}「{key}」: 文件不存在 figures/{name}")
+        elif image.stat().st_size < 2000:
+            errs.append(f"{stem}「{key}」: 图片过小，可能裁错了")
+        page = str(meta.get("page", ""))
+        m = REF.match(page)
+        if not m:
+            errs.append(f"{stem}「{key}」: page 应写成 P123，实际 {page!r}")
+        elif not start <= int(m.group(1)) <= end:
+            errs.append(f"{stem}「{key}」: P{m.group(1)} 不在本章 {start}–{end} 页范围内")
+        for dim in ("width", "height"):
+            value = meta.get(dim)
+            if not isinstance(value, int) or not 100 <= value <= 2000:
+                errs.append(f"{stem}「{key}」: {dim} 应是 100–2000 的整数")
     return errs
 
 

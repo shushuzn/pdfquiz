@@ -100,6 +100,61 @@ class TestRender(unittest.TestCase):
         self.assertGreater(target.stat().st_size, 50_000)
 
 
+class TestFigures(unittest.TestCase):
+    def chapters(self):
+        return [(stem, examples.load(stem)) for stem in hgyl.ORDER if examples.EXPECTED[stem]]
+
+    @staticmethod
+    def refs(stem):
+        return {
+            str(item.get("figure", "")).strip()
+            for item in examples.load(stem)["examples"]
+            if str(item.get("figure", "")).strip()
+        }
+
+    def test_every_figure_is_indexed_and_stored(self):
+        total = 0
+        for stem in hgyl.ORDER:
+            if not examples.EXPECTED[stem]:
+                continue
+            refs = self.refs(stem)
+            if not refs:
+                continue
+            with self.subTest(stem=stem):
+                index = examples.load_figures(stem)
+                self.assertEqual(index.get("schema"), 1)
+                self.assertEqual(index.get("chapter"), examples.chapter_name(stem))
+                self.assertEqual(set(index.get("figures") or {}), refs)
+                used = set()
+                for key, meta in index["figures"].items():
+                    path = examples.FIGDIR / meta["file"]
+                    self.assertTrue(path.exists(), f"{stem} {key} 缺 {meta['file']}")
+                    self.assertGreaterEqual(path.stat().st_size, 2000, key)
+                    self.assertNotIn(meta["file"], used, f"{key} 与别图共用文件")
+                    used.add(meta["file"])
+                    self.assertRegex(meta["page"], r"^P\d+$")
+                    self.assertGreaterEqual(meta["width"], 100)
+                    self.assertLessEqual(meta["width"], 720)
+                    self.assertGreater(meta["height"], 100)
+                    total += 1
+        self.assertEqual(total, 36)
+
+    def test_render_embeds_every_figure(self):
+        html = build_examples.render(self.chapters())
+        self.assertEqual(html.count('<figure class="figbox">'), 36)
+        self.assertEqual(html.count('data:image/webp;base64,'), 36)
+        self.assertNotIn("附图 图", html)
+        self.assertIn('id="lightbox"', html)
+        self.assertIn('class="lb-close"', html)
+
+    def test_figure_markup_keeps_intrinsic_size(self):
+        html = build_examples.render(self.chapters())
+        for block in re.findall(r'<figure class="figbox">.*?</figure>', html):
+            self.assertRegex(block, r'<img src="data:image/webp;base64,[A-Za-z0-9+/=]+"')
+            self.assertRegex(block, r'width="\d{3,4}" height="\d{3,4}"')
+            self.assertIn("点击放大", block)
+
+
 class TestNoAsciiSuperscripts(unittest.TestCase):
     def test_raw_units_are_flagged(self):
         errs = examples.validate("ch00", {
