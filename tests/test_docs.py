@@ -47,7 +47,10 @@ class TestSiteLinks(unittest.TestCase):
                     continue
                 text = page.read_text(encoding="utf-8")
                 with self.subTest(course=course["id"], deck=deck_id):
-                    self.assertIn(f'<a class="hub-link" href="{href}"', text)
+                    self.assertRegex(
+                        text,
+                        rf'<a class="[^"]*\bhub-link\b[^"]*" href="{re.escape(href)}"',
+                    )
                     self.assertIn("返回课程", text)
                 checked += 1
         self.assertGreater(checked, 0, "没有检查到任何卷子页")

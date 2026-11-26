@@ -61,6 +61,7 @@ ROLE = {
     "notes": ("速览", "对照重点句"),
     "terms": ("默写", "刷术语"),
     "exam": ("模拟考", "限时自测"),
+    "examples": ("例题", "看例题"),
 }
 
 ARROW = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">'
@@ -256,6 +257,8 @@ def bank_total(course: dict, decks: list[dict], docs_dir: Path | None = None) ->
     docs = DOCS if docs_dir is None else Path(docs_dir)
     seen: set[str] = set()
     for deck in decks:
+        if not deck.get("quiz", True):
+            continue
         page = docs / deck_page(course, deck["id"])
         if not page.exists():
             return None
@@ -273,9 +276,10 @@ def bank_total(course: dict, decks: list[dict], docs_dir: Path | None = None) ->
 
 
 def course_card(course: dict, decks: list[dict], unique: int | None = None) -> str:
-    total = sum(d.get("count", 0) for d in decks)
+    quiz_decks = [d for d in decks if d.get("quiz", True)]
+    total = sum(d.get("count", 0) for d in quiz_decks)
     count = total if unique is None else unique
-    nums = f'<b>{len(decks)}</b> 套' + (f' · <b>{count}</b> 题' if count else "")
+    nums = f'<b>{len(quiz_decks)}</b> 套' + (f' · <b>{count}</b> 题' if count else "")
     chips = "".join(
         f'<span class="chip">{html.escape(d.get("short") or (course.get("labels") or {}).get(d["id"]) or deck_role(course, d["id"])[0])} <b>{d.get("count", 0)}</b></span>'
         for d in decks
@@ -293,13 +297,18 @@ def deck_card(course: dict, deck: dict) -> str:
     role, cta = deck_role(course, deck["id"])
     prefix = f'{course["name"]} · '
     title = deck["title"][len(prefix):] if deck["title"].startswith(prefix) else deck["title"]
+    unit = deck.get("unit") or "题"
     chips = "".join(
         f'<span class="chip">{TYPE_CN.get(t, t)} <b>{n}</b></span>'
         for t, n in sorted(deck["types"].items(), key=lambda kv: ORDER.index(kv[0]) if kv[0] in ORDER else 99)
     )
-    nums = f'<b>{deck["count"]}</b> 题' + (f' · <b>{deck["score"]}</b> 分' if deck.get("score") else "")
-    # data-* 供 load_decks 在 decks.json 缺失时反推课程页，避免重建首页丢课程
-    return f"""      <a class="card" href="{html.escape(deck_page(course, deck["id"]))}" data-deck="{html.escape(deck["id"])}" data-count="{deck.get("count", 0)}" data-score="{deck.get("score") or 0}" data-short="{html.escape(deck.get("short") or "")}">
+    nums = f'<b>{deck["count"]}</b> {unit}' + (f' · <b>{deck["score"]}</b> 分' if deck.get("score") else "")
+    # data-* 供 load_decks 在 decks.json 缺失时反推课程页，避免重建首页丢课程；
+    # 只有非默认的「例题册」才写 unit/quiz，普通题库页保持原样
+    extra = ""
+    if not deck.get("quiz", True) or unit != "题":
+        extra = f' data-unit="{html.escape(unit)}" data-quiz="{1 if deck.get("quiz", True) else 0}"'
+    return f"""      <a class="card" href="{html.escape(deck_page(course, deck["id"]))}" data-deck="{html.escape(deck["id"])}" data-count="{deck.get("count", 0)}" data-score="{deck.get("score") or 0}" data-short="{html.escape(deck.get("short") or "")}"{extra}>
         <div class="card-top"><span class="tag">{html.escape(role)}</span><span class="nums">{nums}</span></div>
         <h2>{html.escape(title)}</h2>
         <p>{html.escape(deck["desc"])}</p>
@@ -327,10 +336,18 @@ def render_home(
     banks: dict[str, int] | None = None,
 ) -> str:
     banks = banks or {}
-    total_decks = sum(len(v) for v in decks_by_course.values())
+    total_decks = sum(
+        len([d for d in v if d.get("quiz", True)]) for v in decks_by_course.values()
+    )
     total_q = sum(
-        banks.get(c["id"], sum(d.get("count", 0) for d in decks_by_course[c["id"]]))
+        banks.get(c["id"], sum(d.get("count", 0) for d in decks_by_course[c["id"]] if d.get("quiz", True)))
         for c in courses
+    )
+    total_ex = sum(
+        d.get("count", 0)
+        for v in decks_by_course.values()
+        for d in v
+        if d.get("unit") == "例"
     )
     cards = "\n".join(
         course_card(c, decks_by_course[c["id"]], banks.get(c["id"])) for c in courses
@@ -342,10 +359,11 @@ def render_home(
     <div class="meta-row">
       <span class="pill">共 {total_decks} 套题库</span>
       <span class="pill">共 {total_q} 题</span>
+      {f'<span class="pill">教材例题 {total_ex} 例</span>' if total_ex else ''}
       <span class="pill">离线可用 · 单文件</span>
       <span class="pill">答题记录存在本机</span>
     </div>
-    <p class="bank-note">题数按课程题库去重统计；同一课程的多套卷子互有重叠，不重复计数。</p>
+    <p class="bank-note">题数按课程题库去重统计；同一课程的多套卷子互有重叠，不重复计数。例题单独成册，不计入题数。</p>
   </header>
 
   <main class="grid">
@@ -361,12 +379,16 @@ def render_home(
 
 
 def render_course(course: dict, decks: list[dict], unique: int | None = None) -> str:
-    total = sum(d.get("count", 0) for d in decks)
+    quiz_decks = [d for d in decks if d.get("quiz", True)]
+    total = sum(d.get("count", 0) for d in quiz_decks)
+    ex_total = sum(d.get("count", 0) for d in decks if d.get("unit") == "例")
     bank = total if unique is None else unique
     cards = "\n".join(deck_card(course, d) for d in decks)
     pills = [f'<span class="pill">题库 {bank} 题</span>']
     if bank != total:
-        pills.append(f'<span class="pill">{len(decks)} 套合计 {total} 题</span>')
+        pills.append(f'<span class="pill">{len(quiz_decks)} 套合计 {total} 题</span>')
+    if ex_total:
+        pills.append(f'<span class="pill">教材例题 {ex_total} 例</span>')
     if course["tagline"]:
         pills.insert(0, f'<span class="pill">{html.escape(course["tagline"])}</span>')
     pills += [
@@ -377,16 +399,19 @@ def render_course(course: dict, decks: list[dict], unique: int | None = None) ->
     lede = html.escape(course["desc"])
     if course["coverage"]:
         lede += f'范围覆盖 {html.escape(course["coverage"])}。'
-    note = (
-        f'<p class="bank-note">{len(decks)} 套卷子从同一题库组卷、题目互有重叠，'
-        "所以「套内合计」大于去重后的题库总数；模拟卷的题都包含在题库内，不额外计数。</p>"
-        if bank != total
-        else ""
-    )
+    notes = []
+    if bank != total:
+        notes.append(
+            f"{len(quiz_decks)} 套卷子从同一题库组卷、题目互有重叠，"
+            "所以「套内合计」大于去重后的题库总数；模拟卷的题都包含在题库内，不额外计数。"
+        )
+    if ex_total:
+        notes.append("例题按教材原题单独成册，不参与组卷，也不计入题库题数。")
+    note = f'<p class="bank-note">{"".join(notes)}</p>' if notes else ""
     plan = plan_html(course["plan"]) if course.get("plan") else ""
     body = f"""  <a class="crumb" href="index.html">{BACK}全部课程</a>
   <header class="head">
-    <div class="kicker">课程题库 · 共 {len(decks)} 套</div>
+    <div class="kicker">课程题库 · 共 {len(quiz_decks)} 套{f' + 例题' if ex_total else ''}</div>
     <h1>{html.escape(course["name"])}<br>复习题库</h1>
     <p class="lede">{lede}</p>
     <div class="meta-row">
@@ -409,9 +434,9 @@ def render_course(course: dict, decks: list[dict], unique: int | None = None) ->
     return page(f'{course["name"]} · 复习题库', body)
 
 
-HUBLINK = re.compile(r'<a class="hub-link" href="[^"]*">(.*?)</a>', re.S)
+HUBLINK = re.compile(r'<a class="([^"]*\bhub-link\b[^"]*)" href="[^"]*">(.*?)</a>', re.S)
 CARD = re.compile(r'<a class="card" href="([^"]+)"([^>]*)>(.*?)</a>', re.S)
-DATA_ATTR = re.compile(r'data-(deck|short|count|score)="([^"]*)"')
+DATA_ATTR = re.compile(r'data-(deck|short|count|score|unit|quiz)="([^"]*)"')
 HEADING = re.compile(r"<h2>(.*?)</h2>", re.S)
 PARA = re.compile(r"<p>(.*?)</p>", re.S)
 NUMS = re.compile(r'<span class="nums">(.*?)</span>', re.S)
@@ -422,8 +447,9 @@ TYPE_KEY = {label: key for key, label in TYPE_CN.items()}
 def retarget_hublink(text: str, href: str, label: str = "返回课程") -> str:
     """把题库页面里的返回链接指向当前课程页。"""
     def sub(m: re.Match) -> str:
-        inner = m.group(1).replace("全部试卷", label).replace("返回课程", label)
-        return f'<a class="hub-link" href="{html.escape(href)}">{inner}</a>'
+        cls = m.group(1)
+        inner = m.group(2).replace("全部试卷", label).replace("返回课程", label)
+        return f'<a class="{cls}" href="{html.escape(href)}">{inner}</a>'
     return HUBLINK.sub(sub, text, count=1)
 
 
@@ -476,6 +502,8 @@ def parse_decks(text: str, course: dict) -> list[dict]:
             "score": score,
             "short": html.unescape(attrs.get("short", "")),
             "types": types,
+            "unit": attrs.get("unit") or "题",
+            "quiz": attrs.get("quiz", "1") != "0",
         })
 
     if order:
@@ -551,9 +579,12 @@ def main(argv: list[str]) -> int:
             banks[course["id"]] = unique
         out = DOCS / course_page(course)
         out.write_text(render_course(course, decks, unique), encoding="utf-8")
-        total = sum(d.get("count", 0) for d in decks)
-        print(f'{course["id"]}: {len(decks)} 套 · 题库 {unique if unique is not None else total} 题'
-              f"（套内合计 {total} 题）→ {out.name}"
+        quiz = [d for d in decks if d.get("quiz", True)]
+        total = sum(d.get("count", 0) for d in quiz)
+        ex_total = sum(d.get("count", 0) for d in decks if d.get("unit") == "例")
+        extra = f" + 例题 {ex_total} 例" if ex_total else ""
+        print(f'{course["id"]}: {len(quiz)} 套 · 题库 {unique if unique is not None else total} 题'
+              f"（套内合计 {total} 题）{extra} → {out.name}"
               + ("（按既有课程页反推）" if fallback else "")
               + (f'（同步 {len(copied)} 份题库）' if copied else ""))
         if missing:

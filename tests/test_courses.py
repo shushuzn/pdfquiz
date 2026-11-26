@@ -109,10 +109,11 @@ class TestPages(unittest.TestCase):
         self.assertNotIn("刷术语", html)
 
     def test_hublink_retargeted(self):
-        page = ('<a class="hub-link" href="index.html">'
+        page = ('<a class="crumb hub-link" href="index.html">'
                 '<svg viewBox="0 0 24 24"></svg>全部试卷</a>')
         out = build_hub.retarget_hublink(page, "demo-course.html")
         self.assertIn('href="demo-course.html"', out)
+        self.assertIn('class="crumb hub-link"', out)
         self.assertIn("返回课程", out)
         self.assertNotIn("全部试卷", out)
         self.assertIn("<svg", out)
@@ -211,6 +212,57 @@ class TestDeckFallback(unittest.TestCase):
         self.assertEqual(decks[0]["title"], "某课程 · 期末模拟卷 A")
 
 
+class TestExamplesDeck(unittest.TestCase):
+    EXAMPLES = {
+        "id": "examples", "title": "某课程 · 教材例题精解", "short": "例题",
+        "desc": "教材例题。", "count": 93, "score": 0, "types": {},
+        "quiz": False, "unit": "例",
+    }
+
+    def test_examples_are_shown_but_not_counted_as_questions(self):
+        decks = DECKS + [self.EXAMPLES]
+        html = build_hub.render_course(COURSE, decks)
+        self.assertIn("题库 30 题", html)
+        self.assertIn("教材例题 93 例", html)
+        self.assertIn("<b>93</b> 例", html)
+        self.assertIn("例题按教材原题单独成册", html)
+        self.assertNotIn("3 套合计", html)
+
+    def test_home_deck_count_excludes_examples(self):
+        html = build_hub.render_home(
+            [COURSE], {COURSE["id"]: DECKS + [self.EXAMPLES]})
+        self.assertIn("共 2 套题库", html)
+        self.assertIn("教材例题 93 例", html)
+
+    def test_card_roundtrip_keeps_unit_and_quiz_flag(self):
+        course = {**COURSE, "decks": ["exam_a", "terms", "examples"]}
+        html = build_hub.render_course(course, DECKS + [self.EXAMPLES])
+        parsed = build_hub.parse_decks(html, course)
+        self.assertEqual([d["id"] for d in parsed], ["exam_a", "terms", "examples"])
+        self.assertTrue(parsed[0]["quiz"])
+        self.assertFalse(parsed[-1]["quiz"])
+        self.assertEqual(parsed[-1]["unit"], "例")
+
+    def test_bank_total_skips_examples_page(self):
+        root = Path(tempfile.mkdtemp())
+        docs = root / "docs"
+        docs.mkdir()
+
+        def page(stem: str) -> str:
+            return ("<script>window.__QUIZ__ = "
+                    + json.dumps({"questions": [
+                        {"t": "single", "q": stem, "o": ["A", "B"], "a": ["A"]}
+                    ]}, ensure_ascii=False)
+                    + ";</script>")
+
+        (docs / "exam_a.html").write_text(page("q1"), encoding="utf-8")
+        (docs / "terms.html").write_text(page("q2"), encoding="utf-8")
+        # 例题页没有 __QUIZ__，不应把去重统计逼回旧口径
+        (docs / "examples.html").write_text("<html>例题</html>", encoding="utf-8")
+        self.assertEqual(
+            build_hub.bank_total(COURSE, DECKS + [self.EXAMPLES], docs), 2)
+
+
 class TestCommittedSite(unittest.TestCase):
     """回归：首页必须列出所有已有课程页的课程。"""
 
@@ -229,10 +281,11 @@ class TestCommittedSite(unittest.TestCase):
                     rf'<a class="card" href="{re.escape(page_name)}">(.*?)</a>',
                     index, re.S)
                 self.assertIsNotNone(card, f"{course['id']} 未出现在首页")
-                total = sum(d["count"] for d in decks)
+                quiz = [d for d in decks if d.get("quiz", True)]
+                total = sum(d["count"] for d in quiz)
                 unique = build_hub.bank_total(course, decks)
                 count = total if unique is None else unique
-                self.assertIn(f"<b>{len(decks)}</b> 套", card.group(1))
+                self.assertIn(f"<b>{len(quiz)}</b> 套", card.group(1))
                 self.assertIn(f"<b>{count}</b> 题", card.group(1))
 
     def test_course_page_reports_unique_bank(self):

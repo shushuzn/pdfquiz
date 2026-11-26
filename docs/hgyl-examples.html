@@ -1,0 +1,3088 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>化工原理 · 教材例题精解</title>
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{
+  --sans: system-ui,-apple-system,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  --serif: "Iowan Old Style","Source Han Serif SC","Noto Serif SC","Songti SC",Georgia,serif;
+  --paper:#f3f1ec; --surface:#fffefc; --surface2:#f7f4ee;
+  --ink:#1b201e; --ink2:#49524f; --muted:#8a938f;
+  --line:#e6e1d6; --line2:#d3ccbd;
+  --accent:#1f6b5a; --accent-ink:#175246; --accent-soft:#e7f1ed;
+  --shadow:0 1px 2px rgba(27,32,30,.04),0 14px 32px -22px rgba(27,32,30,.35);
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --paper:#121614; --surface:#1a201e; --surface2:#202724;
+    --ink:#e8ece9; --ink2:#b3bdb8; --muted:#7f8a85;
+    --line:#2a322f; --line2:#38423d;
+    --accent:#5fb79c; --accent-ink:#8fd3bd; --accent-soft:#1e2f2a;
+    --shadow:0 1px 2px rgba(0,0,0,.4),0 16px 36px -24px rgba(0,0,0,.8);
+  }
+}
+html,body{margin:0}
+body{
+  background:
+    radial-gradient(1200px 600px at 82% -8%, color-mix(in srgb, var(--accent) 7%, transparent), transparent 70%),
+    var(--paper);
+  color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:920px;margin:0 auto;padding:48px 24px 72px}
+.crumb{
+  display:inline-flex;align-items:center;gap:7px;margin-bottom:20px;
+  font-size:13px;color:var(--ink2);padding:5px 12px 5px 8px;border-radius:999px;
+  border:1px solid transparent;transition:border-color .18s,color .18s,background .18s;
+}
+.crumb svg{width:14px;height:14px;opacity:.7}
+.crumb:hover{color:var(--accent);border-color:var(--line);background:var(--surface)}
+.head{display:flex;flex-direction:column;gap:12px;margin-bottom:26px}
+.kicker{
+  font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);
+  font-weight:600;display:flex;align-items:center;gap:10px;
+}
+.kicker::after{content:"";flex:1;height:1px;background:var(--line)}
+h1{
+  font-family:var(--serif);font-size:clamp(27px,4.2vw,40px);line-height:1.25;
+  margin:0;font-weight:600;letter-spacing:-.01em;
+}
+.lede{margin:0;color:var(--ink2);max-width:62ch;font-size:15.5px}
+.meta-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.pill{font-size:12px;padding:4px 10px;border-radius:999px;background:var(--surface2);border:1px solid var(--line);color:var(--ink2)}
+.bank-note{margin:2px 0 0;color:var(--muted);font-size:13px}
+.toc{
+  display:flex;flex-wrap:wrap;gap:6px;margin:22px 0 14px;padding:12px;
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;
+  box-shadow:var(--shadow);
+}
+.toc a{
+  font-size:12.5px;padding:4px 9px;border-radius:7px;background:var(--surface2);
+  border:1px solid var(--line);color:var(--ink2);transition:color .16s,border-color .16s;
+}
+.toc a:hover{color:var(--accent);border-color:var(--line2)}
+.toc a b{color:var(--accent);font-weight:600;margin-left:3px;font-variant-numeric:tabular-nums}
+.tools{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:0 0 10px}
+#search{
+  flex:1 1 240px;min-width:0;font:inherit;font-size:14px;color:var(--ink);
+  background:var(--surface);border:1px solid var(--line);border-radius:9px;
+  padding:8px 12px;outline:none;transition:border-color .16s,box-shadow .16s;
+}
+#search:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+#expandAll{
+  font:inherit;font-size:13px;color:var(--accent-ink);background:var(--accent-soft);
+  border:1px solid transparent;border-radius:9px;padding:8px 12px;cursor:pointer;white-space:nowrap;
+}
+#expandAll:hover{border-color:var(--accent)}
+#shown{font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.chapter{margin-top:34px;scroll-margin-top:18px}
+.ch-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;border-bottom:2px solid var(--line);padding-bottom:8px;margin-bottom:14px}
+.ch-head h2{font-family:var(--serif);font-size:21px;line-height:1.35;margin:0;font-weight:600}
+.ch-head .count{font-size:12.5px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.ex{
+  background:var(--surface);border:1px solid var(--line);border-radius:14px;
+  padding:18px 20px 16px;margin-bottom:12px;box-shadow:var(--shadow);
+}
+.ex[hidden]{display:none}
+.chapter[hidden]{display:none}
+.ex-head{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin-bottom:7px}
+.label{
+  font-size:11.5px;font-weight:700;letter-spacing:.03em;color:var(--accent-ink);
+  background:var(--accent-soft);border-radius:6px;padding:2px 8px;white-space:nowrap;
+}
+.topic{font-size:15.5px;font-weight:600;line-height:1.5}
+.ref{margin-left:auto;font-size:12px;color:var(--muted);white-space:nowrap;font-variant-numeric:tabular-nums}
+.text{white-space:pre-wrap;overflow-wrap:break-word}
+.problem{font-size:15px;line-height:1.85;color:var(--ink)}
+.text sup,.text sub{font-size:.72em;line-height:0}
+.text sup{vertical-align:super}
+.text sub{vertical-align:sub}
+.ex-actions{display:flex;align-items:center;gap:12px;margin-top:12px}
+.toggle{
+  font:inherit;font-size:12.5px;font-weight:600;color:var(--accent-ink);
+  background:var(--accent-soft);border:1px solid transparent;border-radius:8px;
+  padding:5px 11px;cursor:pointer;transition:border-color .16s;
+}
+.toggle:hover{border-color:var(--accent)}
+.fig{font-size:12px;color:var(--muted)}
+.sol{margin-top:14px;border-top:1px dashed var(--line2);padding-top:14px}
+.sol[hidden]{display:none}
+.sol-k{
+  display:inline-block;font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--accent);
+  margin-bottom:6px;
+}
+.steps{font-size:14.5px;line-height:1.95;color:var(--ink2)}
+.steps b{color:var(--ink)}
+.answer{
+  margin-top:12px;padding:9px 12px;border-radius:9px;background:var(--accent-soft);
+  font-size:14px;line-height:1.8;color:var(--ink);
+}
+.answer .k{font-weight:700;color:var(--accent-ink);margin-right:8px;font-size:12.5px}
+.note{margin-top:10px;font-size:12.5px;color:var(--muted);line-height:1.7}
+.foot{
+  margin-top:40px;padding-top:18px;border-top:1px solid var(--line);
+  color:var(--muted);font-size:12.5px;line-height:1.8;
+}
+.foot code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:12px;background:var(--surface2);padding:1px 5px;border-radius:4px}
+.empty{display:none;padding:28px 0;text-align:center;color:var(--muted);font-size:14px}
+@media (max-width:600px){
+  .wrap{padding:30px 15px 52px}
+  .ex{padding:15px 15px 13px}
+  .problem{font-size:14.5px}
+  .ch-head h2{font-size:19px}
+  .topic{font-size:14.5px}
+  .ref{flex-basis:100%;margin-left:0;font-size:11.5px}
+  .steps{font-size:14px}
+}
+@media print{
+  body{background:#fff}
+  .wrap{max-width:none;padding:0}
+  .crumb,.toc,.tools,.ex-actions{display:none}
+  .ex{box-shadow:none;break-inside:avoid;border-color:#ccc}
+  .sol[hidden]{display:block!important}
+}
+</style>
+</head>
+<body>
+<noscript><style>.sol[hidden]{display:block}.toggle{display:none}</style></noscript>
+<div class="wrap">
+  <a class="crumb hub-link" href="hgyl.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>返回课程</a>
+  <header class="head">
+    <div class="kicker">教材例题 · 共 93 例</div>
+    <h1>化工原理<br>例题精解</h1>
+    <p class="lede">把教材正文里的例题按章收在一起：先自己做一遍，再展开解答对照思路。页码是印刷页码，可以翻回教材核对原题与原图。</p>
+    <div class="meta-row">
+      <span class="pill">93 例</span>
+      <span class="pill">8 章</span>
+      <span class="pill">P4–P351</span>
+      <span class="pill">离线可用 · 单文件</span>
+    </div>
+    <p class="bank-note">例题转写自教材，公式按网页排版做了线性化整理；个别数值如受扫描清晰度影响，以教材原页为准。例题不计入题库题数。</p>
+  </header>
+
+  <nav class="toc" aria-label="章节目录"><a href="#ch00">绪论<b>1</b></a><a href="#ch01">第1章<b>27</b></a><a href="#ch02">第2章<b>5</b></a><a href="#ch03">第3章<b>18</b></a><a href="#ch04">第4章<b>2</b></a><a href="#ch05">第5章<b>16</b></a><a href="#ch06">第6章<b>16</b></a><a href="#ch07">第7章<b>8</b></a></nav>
+  <div class="tools">
+    <input id="search" type="search" placeholder="搜索编号、主题或题干…" aria-label="搜索例题">
+    <button id="expandAll" type="button">全部展开</button>
+    <span id="shown">显示 93 / 93</span>
+  </div>
+
+  <main>
+    <section class="chapter" id="ch00">
+      <div class="ch-head"><h2>绪论</h2><span class="count">1 例</span></div>
+      <article class="ex" id="ch00-ex-001">
+        <div class="ex-head">
+          <span class="label">例0-1</span>
+          <span class="topic">蒸发器物料衡算</span>
+          <span class="ref">教材 P4</span>
+        </div>
+        <div class="problem text">某一连续操作的蒸发器将含 NaOH 为 x<sub>F</sub>（质量分数）的稀溶液蒸发浓缩到质量分数为 x<sub>W</sub>。该蒸发器每小时的进料量为 F 千克。试求每小时所得浓碱液量 W 及水分蒸发量 V 各为多少千克。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图0-2</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）画出过程示意图，圈出衡算范围，标出各物理量，如图 0-2 所示。
+（2）过程为定态，取 1 h 为衡算基准。
+总物料衡算：F = V + W
+溶质衡算：F x<sub>F</sub> = W x<sub>W</sub>
+两式联立解得：
+W = (x<sub>F</sub>/x<sub>W</sub>)F
+V = (1 − x<sub>F</sub>/x<sub>W</sub>)F</div>
+          <div class="answer"><span class="k">答案</span>W = (x<sub>F</sub>/x<sub>W</sub>)F；V = (1 − x<sub>F</sub>/x<sub>W</sub>)F</div>
+          
+        </div>
+      </article>
+    </section>
+    <section class="chapter" id="ch01">
+      <div class="ch-head"><h2>第1章 流体流动与输送机械</h2><span class="count">27 例</span></div>
+      <article class="ex" id="ch01-ex-001">
+        <div class="ex-head">
+          <span class="label">例1-1</span>
+          <span class="topic">离心泵进出口压力</span>
+          <span class="ref">教材 P9</span>
+        </div>
+        <div class="problem text">一台操作中的离心泵，进口真空表及出口压力表的读数分别为 0.02 MPa 和 0.11 MPa。试求：(1)泵进口与出口的绝对压力(kPa)；(2)二者之间的压力差。设当地的大气压力为 101.3 kPa。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）进口真空表读数即为真空度：
+p<sub>1</sub> = 101.3 − 0.02×10<sup>3</sup> = 81.3 kPa
+出口压力表读数即为表压：
+p<sub>2</sub> = 101.3 + 0.11×10<sup>3</sup> = 211.3 kPa
+（2）两截面压力差：
+p<sub>2</sub> − p<sub>1</sub> = 211.3 − 81.3 = 130 kPa
+或直接用表压及真空度计算：
+p<sub>2</sub> − p<sub>1</sub> = 0.11×10<sup>3</sup> − (−0.02×10<sup>3</sup>) = 130 kPa</div>
+          <div class="answer"><span class="k">答案</span>p<sub>1</sub> = 81.3 kPa，p<sub>2</sub> = 211.3 kPa，Δp = 130 kPa</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-002">
+        <div class="ex-head">
+          <span class="label">例1-2</span>
+          <span class="topic">U形压差计测压力</span>
+          <span class="ref">教材 P13</span>
+        </div>
+        <div class="problem text">如图1-8所示，水在水平管路内流动。为测量流体在某截面处的压力，直接在该处连接U形压差计，指示液为水银，读数 R = 250 mm，m = 900 mm。已知当地大气压为 101.3 kPa，水的密度 ρ = 1000 kg/m<sup>3</sup>，水银的密度 ρ<sub>0</sub> = 13600 kg/m<sup>3</sup>。试计算该截面处的压力。（图1-8）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图1-8</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">A—A′为等压面，p<sub>A</sub> = p<sub>A′</sub> = p<sub>a</sub>：
+p<sub>A</sub> = p + ρgm + ρ<sub>0</sub>gR
+故 p<sub>a</sub> = p + ρgm + ρ<sub>0</sub>gR
+该截面处绝对压力：
+p = p<sub>a</sub> − ρgm − ρ<sub>0</sub>gR = 101300 − 1000×9.81×0.9 − 13600×9.81×0.25 = 59117 Pa = 59.1 kPa
+或真空度：
+p<sub>a</sub> − p = ρgm + ρ<sub>0</sub>gR = 1000×9.81×0.9 + 13600×9.81×0.25 = 42183 Pa = 42.2 kPa</div>
+          <div class="answer"><span class="k">答案</span>绝对压力 p = 59.1 kPa（真空度 42.2 kPa）</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-003">
+        <div class="ex-head">
+          <span class="label">例1-3</span>
+          <span class="topic">倾斜管U形压差计</span>
+          <span class="ref">教材 P13</span>
+        </div>
+        <div class="problem text">如图1-9所示，密度为 ρ 的流体从倾斜管路中流过。用U形压差计测量管路中两截面1、2的压力差，试推导 Δp 的表达式。（图1-9）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图1-9</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">A—A′为等压面：
+p<sub>A</sub> = p<sub>1</sub> + ρgz<sub>1</sub>
+p<sub>A′</sub> = p<sub>2</sub> + ρg(z<sub>2</sub> − R) + ρ<sub>0</sub>gR
+故 p<sub>1</sub> + ρgz<sub>1</sub> = p<sub>2</sub> + ρg(z<sub>2</sub> − R) + ρ<sub>0</sub>gR
+得 (p<sub>1</sub> + ρgz<sub>1</sub>) − (p<sub>2</sub> + ρgz<sub>2</sub>) = (ρ<sub>0</sub> − ρ)gR
+即 p<sub>1</sub> − p<sub>2</sub> = ρg(z<sub>2</sub> − z<sub>1</sub>) + (ρ<sub>0</sub> − ρ)gR
+可见U形压差计直接反映的是两截面静压能与位能总和之差，仅当管水平放置时才直接测得两截面压力差</div>
+          <div class="answer"><span class="k">答案</span>p<sub>1</sub> − p<sub>2</sub> = ρg(z<sub>2</sub> − z<sub>1</sub>) + (ρ<sub>0</sub> − ρ)gR</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-004">
+        <div class="ex-head">
+          <span class="label">例1-4</span>
+          <span class="topic">复式U形压差计</span>
+          <span class="ref">教材 P14</span>
+        </div>
+        <div class="problem text">如图1-11所示，用一复式U形压差计测量某种流体流过管路A、B两点的压力差。已知流体的密度为 ρ，指示液的密度为 ρ<sub>0</sub>，且两U形管指示液之间的流体与管内流体相同。已知两个U形压差计的读数分别为 R<sub>1</sub>、R<sub>2</sub>，试推导A、B两点压力差的计算式，由此可得出什么结论？（图1-11）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图1-11</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">1—1′、2—2′、3—3′均为等压面：
+p<sub>1</sub> = p<sub>1′</sub> = p<sub>A</sub> + ρgz<sub>1</sub>
+p<sub>2</sub> = p<sub>2′</sub> = p<sub>1′</sub> − ρ<sub>0</sub>gR<sub>1</sub> = p<sub>A</sub> + ρgz<sub>1</sub> − ρ<sub>0</sub>gR<sub>1</sub>
+p<sub>3</sub> = p<sub>2′</sub> + ρg[z<sub>2</sub> − (z<sub>1</sub> − R<sub>1</sub>)] = p<sub>A</sub> + ρgz<sub>2</sub> − (ρ<sub>0</sub> − ρ)gR<sub>1</sub>
+p<sub>3′</sub> = p<sub>B</sub> + ρg(z<sub>2</sub> − R<sub>2</sub>) + ρ<sub>0</sub>gR<sub>2</sub> = p<sub>B</sub> + ρgz<sub>2</sub> + (ρ<sub>0</sub> − ρ)gR<sub>2</sub>
+联立整理得：
+p<sub>A</sub> − p<sub>B</sub> = (ρ<sub>0</sub> − ρ)g(R<sub>1</sub> + R<sub>2</sub>)
+结论：各指示液之间流体与管内流体相同时，复式U形压差计读数之和等于单个U形压差计的读数</div>
+          <div class="answer"><span class="k">答案</span>p<sub>A</sub> − p<sub>B</sub> = (ρ<sub>0</sub> − ρ)g(R<sub>1</sub> + R<sub>2</sub>)</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-005">
+        <div class="ex-head">
+          <span class="label">例1-5</span>
+          <span class="topic">液位测量</span>
+          <span class="ref">教材 P15</span>
+        </div>
+        <div class="problem text">为了确定容器中某溶剂的液位，采用图1-13所示的测量装置。在管内通入压缩氮气，用阀1调节其流量，使在观察器中有少许气泡逸出。已知该溶剂的密度为 1250 kg/m<sup>3</sup>，U形压差计的读数 R 为 130 mm，指示液为水银。试计算容器内溶剂的高度 h。（图1-13）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图1-13</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">观察器中有少许气泡，表明氮气流速极小，可近似静止；氮气密度小，可近似：
+p<sub>A</sub> ≈ p<sub>B</sub>
+p<sub>A</sub> = p<sub>a</sub> + ρgh，p<sub>B</sub> = p<sub>a</sub> + ρ<sub>0</sub>gR
+故 ρgh = ρ<sub>0</sub>gR
+h = (ρ<sub>0</sub>/ρ)R = (13600/1250)×0.13 = 1.41 m</div>
+          <div class="answer"><span class="k">答案</span>h = 1.41 m</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-006">
+        <div class="ex-head">
+          <span class="label">例1-6</span>
+          <span class="topic">管路流速分配</span>
+          <span class="ref">教材 P17</span>
+        </div>
+        <div class="problem text">如图1-17所示，管路中一段 φ89mm×4mm 的管1、一段 φ108mm×4mm 的管2和两段 φ57mm×3.5mm 的分支管3a及3b连接而成。若水以 9×10<sup>-3</sup> m<sup>3</sup>/s 的体积流量流动，且在两端分支管内的流量相等，试求水在各段管内的流速。（图1-17）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图1-17</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">d<sub>1</sub> = 89 − 2×4 = 81 mm
+u<sub>1</sub> = q<sub>V</sub>/((π/4)d<sub>1</sub><sup>2</sup>) = 9×10<sup>-3</sup>/(0.785×0.081<sup>2</sup>) = 1.75 m/s
+d<sub>2</sub> = 108 − 2×4 = 100 mm
+u<sub>2</sub> = u<sub>1</sub>(d<sub>1</sub>/d<sub>2</sub>)<sup>2</sup> = 1.75×(81/100)<sup>2</sup> = 1.15 m/s
+d<sub>3</sub> = 57 − 2×3.5 = 50 mm
+由连续性方程 u<sub>2</sub>A<sub>2</sub> = 2u<sub>3</sub>A<sub>3</sub>：
+u<sub>3</sub> = (u<sub>2</sub>/2)(d<sub>2</sub>/d<sub>3</sub>)<sup>2</sup> = (1.15/2)×(100/50)<sup>2</sup> = 2.30 m/s</div>
+          <div class="answer"><span class="k">答案</span>u<sub>1</sub> = 1.75 m/s，u<sub>2</sub> = 1.15 m/s，u<sub>3</sub> = 2.30 m/s</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-007">
+        <div class="ex-head">
+          <span class="label">例1-7</span>
+          <span class="topic">虹吸管压力计算</span>
+          <span class="ref">教材 P21</span>
+        </div>
+        <div class="problem text">如图1-21所示，水在 φ32mm×2.5mm 的虹吸管中做定态流动。设管路中的能量损失忽略不计，试计算：(1)水的体积流量，m<sup>3</sup>/h；(2)管内截面 2—2′、3—3′、4—4′及5—5′处水的压力。设大气压力为 101.3 kPa，水的密度取为 1000 kg/m<sup>3</sup>。（图1-21）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图1-21</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）取水槽液面1—1′、管出口内侧6—6′，以6—6′为基准面列伯努利方程：
+z<sub>1</sub>g + 1/2 u<sub>1</sub><sup>2</sup> + p<sub>1</sub>/ρ = z<sub>6</sub>g + 1/2 u<sub>6</sub><sup>2</sup> + p<sub>6</sub>/ρ + ΣW<sub>f</sub>
+z<sub>1</sub> = 0.6 m，u<sub>1</sub> ≈ 0，p<sub>1</sub> = 0（表压），z<sub>6</sub> = 0，p<sub>6</sub> = 0（表压），ΣW<sub>f</sub> = 0
+0.6×9.81 = 1/2 u<sub>6</sub><sup>2</sup>
+u<sub>6</sub> = 3.43 m/s
+q<sub>V</sub> = (π/4)d<sup>2</sup>u<sub>6</sub> = 0.785×0.027<sup>2</sup>×3.43 = 1.963×10<sup>-3</sup> m<sup>3</sup>/s = 7.07 m<sup>3</sup>/h
+（2）无外功输入且忽略损失，任一截面总机械能相等。以2—2′为基准面：
+E = 1.5×9.81 + 101.3×10<sup>3</sup>/1000 = 116.02 J/kg
+各截面流速均为 3.43 m/s
+p<sub>2</sub> = (116.02 − 3.43<sup>2</sup>/2)×1000 = 110.14 kPa（绝压）
+p<sub>3</sub> = (116.02 − 3.43<sup>2</sup>/2 − 1.5×9.81)×1000 = 95.42 kPa（绝压）
+p<sub>4</sub> = (116.02 − 3.43<sup>2</sup>/2 − 1.9×9.81)×1000 = 91.50 kPa（绝压）
+p<sub>5</sub> = 95.42 kPa（绝压）
+p<sub>2</sub> &gt; p<sub>3</sub> &gt; p<sub>4</sub>，p<sub>4</sub> &lt; p<sub>5</sub> &lt; p<sub>6</sub>，为位能与静压能相互转化</div>
+          <div class="answer"><span class="k">答案</span>q<sub>V</sub> = 7.07 m<sup>3</sup>/h；p<sub>2</sub> = 110.14 kPa，p<sub>3</sub> = 95.42 kPa，p<sub>4</sub> = 91.50 kPa，p<sub>5</sub> = 95.42 kPa（均为绝压）</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-008">
+        <div class="ex-head">
+          <span class="label">例1-8</span>
+          <span class="topic">高位槽液位计算</span>
+          <span class="ref">教材 P22</span>
+        </div>
+        <div class="problem text">如图1-22所示，从高位槽向塔内进料，高位槽中液位恒定，高位槽和塔内的压力均为大气压。送液管为 φ45mm×2.5mm 的钢管，要求送液量为 4.2 m<sup>3</sup>/h。设料液在管内的压头损失为 1.4 m（不包括出口压头损失），试问高位槽中液位要高出进料口多少米？（图1-22）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图1-22</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">取1—1′（槽液面）与2—2′（管出口内侧），基准面0—0′过2—2′中心线列伯努利方程：
+z<sub>1</sub> + u<sub>1</sub><sup>2</sup>/(2g) + p<sub>1</sub>/(ρg) = z<sub>2</sub> + u<sub>2</sub><sup>2</sup>/(2g) + p<sub>2</sub>/(ρg) + Σh<sub>f</sub>
+z<sub>1</sub> = h，u<sub>1</sub> ≈ 0，p<sub>1</sub> = 0（表压），z<sub>2</sub> = 0，p<sub>2</sub> = 0（表压），Σh<sub>f</sub> = 1.4 m
+u<sub>2</sub> = q<sub>V</sub>/((π/4)d<sup>2</sup>) = (4.2/3600)/(0.785×0.04<sup>2</sup>) = 0.929 m/s
+h = u<sub>2</sub><sup>2</sup>/(2g) + Σh<sub>f</sub> = 0.929<sup>2</sup>/(2×9.81) + 1.4 = 1.44 m</div>
+          <div class="answer"><span class="k">答案</span>h = 1.44 m</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-009">
+        <div class="ex-head">
+          <span class="label">例1-9</span>
+          <span class="topic">渐缩管流量测量</span>
+          <span class="ref">教材 P23</span>
+        </div>
+        <div class="problem text">如图1-23所示，甲烷在由粗管渐缩到细管的水平管路中流动，管子的规格分别为 φ219mm×6mm 和 φ159mm×4.5mm。为估算甲烷的流量，在粗细两管上连接一U形压差计，指示液为水，现测得其读数为 38mm。若忽略渐缩管的能量损失，试求甲烷的体积流量（在操作条件下甲烷的平均密度为 1.43 kg/m<sup>3</sup>，水的密度以 1000 kg/m<sup>3</sup> 计）。（图1-23）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图1-23</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">取粗管1—1′、细管2—2′，水平基准面：
+z<sub>1</sub> = z<sub>2</sub> = 0，ΣW<sub>f</sub> = 0
+1/2 u<sub>1</sub><sup>2</sup> + p<sub>1</sub>/ρ = 1/2 u<sub>2</sub><sup>2</sup> + p<sub>2</sub>/ρ
+p<sub>1</sub> − p<sub>2</sub> = (ρ<sub>0</sub> − ρ)Rg = (1000 − 1.43)×0.038×9.81 = 372.25 Pa
+1/2(u<sub>2</sub><sup>2</sup> − u<sub>1</sub><sup>2</sup>) = 372.25/1.43 = 260.3 (1)
+由连续性方程：
+u<sub>1</sub> = (d<sub>2</sub>/d<sub>1</sub>)<sup>2</sup>u<sub>2</sub> = (0.15/0.207)<sup>2</sup>u<sub>2</sub> = 0.525u<sub>2</sub> (2)
+将式(2)代入式(1)得：
+u<sub>2</sub> = 26.81 m/s
+q<sub>V</sub> = (π/4)d<sub>2</sub><sup>2</sup>u<sub>2</sub> = 0.785×0.15<sup>2</sup>×26.81 = 0.474 m<sup>3</sup>/s = 1706 m<sup>3</sup>/h</div>
+          <div class="answer"><span class="k">答案</span>q<sub>V</sub> = 0.474 m<sup>3</sup>/s = 1706 m<sup>3</sup>/h</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-010">
+        <div class="ex-head">
+          <span class="label">例1-10</span>
+          <span class="topic">流体输送机械功率</span>
+          <span class="ref">教材 P23</span>
+        </div>
+        <div class="problem text">用水吸收混合气中氨的常压逆流吸收流程如图1-24所示。用泵将敞口水池中的水输送至吸收塔塔顶，并经喷嘴喷出，水流量为 35m<sup>3</sup>/h。泵的入口管为 φ108mm×4mm 无缝钢管，出口管为 φ76mm×3mm 无缝钢管。池中水深为 1.5m，池底至塔顶喷嘴入口处的垂直距离为 20m。水流经所有管路的能量损失为 42 J/kg（不包括喷嘴），喷嘴入口处的表压为 34 kPa。设泵的效率为 60%，试求泵所需的轴功率（水密度以 1000 kg/m<sup>3</sup> 计）。（图1-24）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图1-24</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">取水池液面1—1′、喷嘴入口2—2′，以1—1′为基准面列伯努利方程：
+z<sub>1</sub>g + 1/2 u<sub>1</sub><sup>2</sup> + p<sub>1</sub>/ρ + W<sub>e</sub> = z<sub>2</sub>g + 1/2 u<sub>2</sub><sup>2</sup> + p<sub>2</sub>/ρ + ΣW<sub>f</sub>
+W<sub>e</sub> = (z<sub>2</sub> − z<sub>1</sub>)g + 1/2(u<sub>2</sub><sup>2</sup> − u<sub>1</sub><sup>2</sup>) + (p<sub>2</sub> − p<sub>1</sub>)/ρ + ΣW<sub>f</sub>
+z<sub>1</sub> = 0，p<sub>1</sub> = 0（表压），u<sub>1</sub> ≈ 0
+z<sub>2</sub> = 20 − 1.5 = 18.5 m，p<sub>2</sub> = 34×10<sup>3</sup> Pa（表压）
+u<sub>2</sub> = (35/3600)/(0.785×0.07<sup>2</sup>) = 2.53 m/s
+ρ = 1000 kg/m<sup>3</sup>，ΣW<sub>f</sub> = 42 J/kg
+W<sub>e</sub> = 18.5×9.81 + 1/2×2.53<sup>2</sup> + 34×10<sup>3</sup>/1000 + 42 = 260.7 J/kg
+q<sub>m</sub> = 35/3600×1000 = 9.72 kg/s
+N<sub>e</sub> = W<sub>e</sub>q<sub>m</sub> = 260.7×9.72 = 2534 W = 2.534 kW
+N = N<sub>e</sub>/η = 2.534/0.6 = 4.22 kW</div>
+          <div class="answer"><span class="k">答案</span>N = 4.22 kW</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-011">
+        <div class="ex-head">
+          <span class="label">例1-11</span>
+          <span class="topic">流动类型判断</span>
+          <span class="ref">教材 P25</span>
+        </div>
+        <div class="problem text">在内径为 50mm 的铅管中输送 20°C 硫酸，流量为 3m<sup>3</sup>/h，输送条件下硫酸的密度为 1830kg/m<sup>3</sup>，黏度为 23cP。试判断其流动类型。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">u = q<sub>V</sub>/((π/4)d<sup>2</sup>) = (3/3600)/(0.785×0.05<sup>2</sup>) = 0.425 m/s
+Re = dρu/μ = 0.05×1830×0.425/(23×10<sup>-3</sup>) = 1691
+Re = 1691 &lt; 2000，故为层流</div>
+          <div class="answer"><span class="k">答案</span>Re = 1691 &lt; 2000，层流</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-012">
+        <div class="ex-head">
+          <span class="label">例1-12</span>
+          <span class="topic">空气流动类型判断</span>
+          <span class="ref">教材 P26</span>
+        </div>
+        <div class="problem text">常压、100°C 的空气在 φ108mm×4mm 的钢管内流动。已知空气的质量流量为 330kg/h，试判断其流动类型。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">查附录4得 100°C 空气黏度 μ = 2.19×10<sup>-5</sup> Pa·s
+G = q<sub>m</sub>/((π/4)d<sup>2</sup>) = (330/3600)/(0.785×0.1<sup>2</sup>) = 11.68 kg/(m<sup>2</sup>·s)
+Re = dG/μ = 0.1×11.68/(2.19×10<sup>-5</sup>) = 5.33×10<sup>4</sup>
+Re = 5.33×10<sup>4</sup> &gt; 4000，故为湍流</div>
+          <div class="answer"><span class="k">答案</span>Re = 5.33×10<sup>4</sup> &gt; 4000，湍流</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-013">
+        <div class="ex-head">
+          <span class="label">例1-13</span>
+          <span class="topic">直管阻力损失计算</span>
+          <span class="ref">教材 P35</span>
+        </div>
+        <div class="problem text">分别计算下列情况下，流体流过 φ76mm×3mm、长10m 的水平钢管的能量损失、压头损失及压力损失。(1)密度为 910kg/m<sup>3</sup>、黏度为 72cP 的油品，流速为 1.1m/s；(2)20°C 的水，流速为 2.2m/s。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）油品：
+Re = dρu/μ = 0.07×910×1.1/(72×10<sup>-3</sup>) = 973 &lt; 2000，为层流
+λ = 64/Re = 64/973 = 0.0658
+W<sub>f</sub> = λ(l/d)(u<sup>2</sup>/2) = 0.0658×(10/0.07)×(1.1<sup>2</sup>/2) = 5.69 J/kg
+h<sub>f</sub> = W<sub>f</sub>/g = 5.69/9.81 = 0.58 m
+Δp<sub>f</sub> = ρW<sub>f</sub> = 910×5.69 = 5178 Pa
+（2）20°C 水：
+ρ = 998.2 kg/m<sup>3</sup>，μ = 1.005×10<sup>-3</sup> Pa·s
+Re = dρu/μ = 0.07×998.2×2.2/(1.005×10<sup>-3</sup>) = 1.53×10<sup>5</sup> &gt; 4000，为湍流
+取钢管壁面绝对粗糙度 ε = 0.2 mm，ε/d = 0.2/70 = 0.00286
+查图1-36得 λ = 0.027
+W<sub>f</sub> = λ(l/d)(u<sup>2</sup>/2) = 0.027×(10/0.07)×(2.2<sup>2</sup>/2) = 9.33 J/kg
+h<sub>f</sub> = W<sub>f</sub>/g = 9.33/9.81 = 0.95 m
+Δp<sub>f</sub> = ρW<sub>f</sub> = 998.2×9.33 = 9313 Pa</div>
+          <div class="answer"><span class="k">答案</span>（1）W<sub>f</sub> = 5.69 J/kg，h<sub>f</sub> = 0.58 m，Δp<sub>f</sub> = 5178 Pa；（2）W<sub>f</sub> = 9.33 J/kg，h<sub>f</sub> = 0.95 m，Δp<sub>f</sub> = 9313 Pa</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-014">
+        <div class="ex-head">
+          <span class="label">例1-14</span>
+          <span class="topic">倾斜管压差与流量</span>
+          <span class="ref">教材 P35</span>
+        </div>
+        <div class="problem text">水在如图1-38所示的倾斜管路中流动。已知管内径为 40mm，1—2截面间的管长为 2m，垂直距离为 0.3m，U形压差计的读数为 28mmHg，摩擦系数为 0.023。试计算：(1)1—2截面间的压力差；(2)水在管中的流量；(3)若保证水的流量及其他条件不变，而将管水平放置，则U形压差计的读数及1—2截面间的压力差又为多少？（图1-38）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图1-38</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）由U形压差计：
+(p<sub>1</sub> + ρgz<sub>1</sub>) − (p<sub>2</sub> + ρgz<sub>2</sub>) = (ρ<sub>0</sub> − ρ)gR (a)
+p<sub>1</sub> − p<sub>2</sub> = ρg(z<sub>2</sub> − z<sub>1</sub>) + (ρ<sub>0</sub> − ρ)gR = 1000×9.81×0.3 + (13600 − 1000)×9.81×0.028 = 6404 Pa
+（2）在1—2截面间列伯努利方程并变形：
+(p<sub>1</sub> + ρgz<sub>1</sub>) − (p<sub>2</sub> + ρgz<sub>2</sub>) = ρ/2(u<sub>2</sub><sup>2</sup> − u<sub>1</sub><sup>2</sup>) + ρW<sub>f</sub> (b)
+将式(a)与式(b)联立，等径直管 u<sub>1</sub> = u<sub>2</sub>，故：
+(ρ<sub>0</sub> − ρ)gR = ρW<sub>f</sub> (c)
+代入 W<sub>f</sub> = λ(l/d)(u<sup>2</sup>/2)：
+(13600 − 1000)×9.81×0.028 = 0.023×(2/0.04)×(1000u<sup>2</sup>/2)
+解得 u = 2.45 m/s
+q<sub>V</sub> = (π/4)d<sup>2</sup>u = 0.785×0.04<sup>2</sup>×2.45 = 3.08×10<sup>-3</sup> m<sup>3</sup>/s = 11.1 m<sup>3</sup>/h
+（3）水平放置时水的流动阻力未变，U形压差计仅反映流动阻力大小，故读数仍为 28 mmHg
+此时 z<sub>1</sub> = z<sub>2</sub>：
+p<sub>1</sub> − p<sub>2</sub> = (ρ<sub>0</sub> − ρ)gR = (13600 − 1000)×9.81×0.028 = 3461 Pa</div>
+          <div class="answer"><span class="k">答案</span>（1）p<sub>1</sub> − p<sub>2</sub> = 6404 Pa；（2）q<sub>V</sub> = 3.08×10<sup>-3</sup> m<sup>3</sup>/s = 11.1 m<sup>3</sup>/h；（3）R 仍为 28 mmHg，p<sub>1</sub> − p<sub>2</sub> = 3461 Pa</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-015">
+        <div class="ex-head">
+          <span class="label">例1-15</span>
+          <span class="topic">套管环隙阻力</span>
+          <span class="ref">教材 P37</span>
+        </div>
+        <div class="problem text">温度为 40°C 的水以 8m<sup>3</sup>/h 的流量在套管换热器的环隙中流过，该套管换热器由 φ32mm×2.5mm 和 φ57mm×3mm 的钢管同心组装而成。试计算水流过环隙时每米管长的压力损失（设钢管的绝对粗糙度为 0.1mm）。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">查得 40°C 水：ρ = 992.2 kg/m<sup>3</sup>，μ = 65.60×10<sup>-5</sup> Pa·s
+内管外径 d<sub>1</sub> = 32 mm，外管内径 d<sub>2</sub> = 57 − 2×3 = 51 mm
+环隙当量直径 d<sub>e</sub> = d<sub>2</sub> − d<sub>1</sub> = 51 − 32 = 19 mm
+环隙流通截面积：
+A = (π/4)(d<sub>2</sub><sup>2</sup> − d<sub>1</sub><sup>2</sup>) = 0.785×(0.051<sup>2</sup> − 0.032<sup>2</sup>) = 1.238×10<sup>-3</sup> m<sup>2</sup>
+u = q<sub>V</sub>/A = (8/3600)/(1.238×10<sup>-3</sup>) = 1.795 m/s
+Re = d<sub>e</sub>ρu/μ = 0.019×992.2×1.795/(65.60×10<sup>-5</sup>) = 5.16×10<sup>4</sup>
+ε/d<sub>e</sub> = 0.1/19 = 0.00526
+查图1-36得 λ = 0.032
+Δp<sub>f</sub>/l = λ(1/d<sub>e</sub>)(ρu<sup>2</sup>/2) = 0.032×(1/0.019)×(992.2×1.795<sup>2</sup>/2) = 2692 Pa/m</div>
+          <div class="answer"><span class="k">答案</span>Δp<sub>f</sub>/l = 2692 Pa/m</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-016">
+        <div class="ex-head">
+          <span class="label">例1-16</span>
+          <span class="topic">高位槽液位计算</span>
+          <span class="ref">教材 P41</span>
+        </div>
+        <div class="problem text">如图1-44所示，料液由敞口高位槽流入精馏塔中。操作条件下料液的物性 ρ = 890kg/m<sup>3</sup>，μ = 1.3×10<sup>-3</sup>Pa·s。塔内进料处的压力为 30kPa(表压)，输送管路为 φ45mm×2.5mm 的无缝钢管，直管长为 10m。管路中装有 180°回弯头一个，90°标准弯头一个，标准截止阀（全开）一个。若维持进料量为 5m<sup>3</sup>/h，问高位槽中的液面至少高出进料口多少米？（图1-44）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图1-44</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">取1—1′（槽液面）、2—2′（管出口内侧），基准面过2—2′中心线列伯努利方程：
+z<sub>1</sub> + u<sub>1</sub><sup>2</sup>/(2g) + p<sub>1</sub>/(ρg) = z<sub>2</sub> + u<sub>2</sub><sup>2</sup>/(2g) + p<sub>2</sub>/(ρg) + Σh<sub>f</sub>
+z<sub>1</sub> = H，u<sub>1</sub> ≈ 0，p<sub>1</sub> = 0（表压），z<sub>2</sub> = 0，p<sub>2</sub> = 30 kPa（表压）
+u<sub>2</sub> = (5/3600)/(0.785×0.04<sup>2</sup>) = 1.1 m/s
+ΣW<sub>f</sub> = (λl/d + Σζ)u<sup>2</sup>/2
+Re = dρu/μ = 0.04×890×1.1/(1.3×10<sup>-3</sup>) = 3.01×10<sup>4</sup>
+取钢管 ε = 0.3 mm，ε/d = 0.0075，查图1-36得 λ = 0.036
+查表1-3：进口突然缩小 ζ = 0.5，90°标准弯头 ζ = 0.75，180°回弯头 ζ = 1.5，标准截止阀（全开）ζ = 6.0
+Σζ = 0.5 + 0.75 + 1.5 + 6.0 = 8.75
+ΣW<sub>f</sub> = (0.036×10/0.04 + 8.75)×1.1<sup>2</sup>/2 = 10.74 J/kg
+H = (p<sub>2</sub>/ρ + u<sub>2</sub><sup>2</sup>/2 + ΣW<sub>f</sub>)/g = (30×10<sup>3</sup>/890 + 1.1<sup>2</sup>/2 + 10.74)/9.81 = 4.59 m</div>
+          <div class="answer"><span class="k">答案</span>H = 4.59 m</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-017">
+        <div class="ex-head">
+          <span class="label">例1-17</span>
+          <span class="topic">泵轴功率计算</span>
+          <span class="ref">教材 P44</span>
+        </div>
+        <div class="problem text">如图1-48所示，用泵将敞口贮罐中的溶液送至高位槽，要求流量为 25m<sup>3</sup>/h。高位槽液面比贮罐液面高出 10m，并维持恒定。已知泵吸入管为 φ89mm×4mm，管长为 10m，管路中装有一个止逆底阀（摇板式），一个90°弯头；泵压出管为 φ57mm×3.5mm，管长为 35m，其中装有闸阀（全开）一个，90°弯头6个。操作条件下溶液的密度为 880kg/m<sup>3</sup>，黏度为 0.74cP。设泵的效率为 65%，试求其轴功率。（图1-48）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图1-48</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">取1—1′（贮罐液面）、2—2′（高位槽液面），以1—1′为基准面列伯努利方程：
+z<sub>1</sub>g + 1/2 u<sub>1</sub><sup>2</sup> + p<sub>1</sub>/ρ + W<sub>e</sub> = z<sub>2</sub>g + 1/2 u<sub>2</sub><sup>2</sup> + p<sub>2</sub>/ρ + ΣW<sub>f</sub>
+z<sub>1</sub> = 0，z<sub>2</sub> = 10 m，u<sub>1</sub> = u<sub>2</sub> ≈ 0，p<sub>1</sub> = p<sub>2</sub> = 0（表压），故：
+W<sub>e</sub> = z<sub>2</sub>g + ΣW<sub>f</sub> (1)
+吸入管：
+u = (25/3600)/(0.785×0.081<sup>2</sup>) = 1.35 m/s
+Re<sub>1</sub> = d<sub>1</sub>ρu/μ = 0.081×880×1.35/(0.74×10<sup>-3</sup>) = 1.30×10<sup>5</sup>
+ε/d<sub>1</sub> = 0.2/81 = 0.0025，查图1-36得 λ<sub>1</sub> = 0.026
+查表1-3：止逆底阀（摇板式）ζ = 2.0，90°弯头 ζ = 0.75
+Σζ<sub>1</sub> = 2.0 + 0.75 = 2.75
+ΣW<sub>f1</sub> = (λ<sub>1</sub>l<sub>1</sub>/d<sub>1</sub> + Σζ<sub>1</sub>)u<sup>2</sup>/2 = (0.026×10/0.081 + 2.75)×1.35<sup>2</sup>/2 = 5.43 J/kg
+压出管：
+u = (25/3600)/(0.785×0.05<sup>2</sup>) = 3.54 m/s
+Re<sub>2</sub> = d<sub>2</sub>ρu/μ = 0.05×880×3.54/(0.74×10<sup>-3</sup>) = 2.1×10<sup>5</sup>
+ε/d<sub>2</sub> = 0.2/50 = 0.004，查图1-36得 λ<sub>2</sub> = 0.029
+查表1-3：闸阀（全开）ζ = 0.17，90°弯头 ζ = 0.75，出口 ζ = 1.0
+Σζ<sub>2</sub> = 1.0 + 6×0.75 + 0.17 = 5.67
+ΣW<sub>f2</sub> = (λ<sub>2</sub>l<sub>2</sub>/d<sub>2</sub> + Σζ<sub>2</sub>)u<sup>2</sup>/2 = (0.029×35/0.05 + 5.67)×3.54<sup>2</sup>/2 = 162.7 J/kg
+ΣW<sub>f</sub> = 5.43 + 162.7 = 168.1 J/kg
+W<sub>e</sub> = 10×9.81 + 168.1 = 266.2 J/kg
+q<sub>m</sub> = 25/3600×880 = 6.11 kg/s
+N<sub>e</sub> = q<sub>m</sub>W<sub>e</sub> = 6.11×266.2 = 1626 W
+N = N<sub>e</sub>/η = 1626/0.65 = 2501 W = 2.501 kW</div>
+          <div class="answer"><span class="k">答案</span>N = 2.501 kW</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-018">
+        <div class="ex-head">
+          <span class="label">例1-18</span>
+          <span class="topic">水塔供水试差计算</span>
+          <span class="ref">教材 P45</span>
+        </div>
+        <div class="problem text">如图1-49所示水塔供水系统，采用 φ114mm×4mm 的无缝钢管（绝对粗糙度为 0.2mm），管路总长（包括所有局部阻力的当量长度）为 600m，水塔内水面维持恒定，且高于出水口 12m。试求管路中的输水量（m<sup>3</sup>/h）。（图1-49）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图1-49</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">取水塔水面1—1′、出水口外侧2—2′，地面0—0′为基准面列伯努利方程：
+z<sub>1</sub>g + 1/2 u<sub>1</sub><sup>2</sup> + p<sub>1</sub>/ρ = z<sub>2</sub>g + 1/2 u<sub>2</sub><sup>2</sup> + p<sub>2</sub>/ρ + ΣW<sub>f</sub>
+z<sub>1</sub> − z<sub>2</sub> = 12 m，u<sub>1</sub> = u<sub>2</sub> ≈ 0，p<sub>1</sub> = p<sub>2</sub> = 0（表压），故：
+ΣW<sub>f</sub> = 12×9.81 = 117.7 J/kg
+ΣW<sub>f</sub> = λ(l/d)(u<sup>2</sup>/2) = λ×600/0.106×u<sup>2</sup>/2 = 2830.2λu<sup>2</sup>
+得 λu<sup>2</sup> = 0.0416 (a)
+试差：设流动进入阻力平方区，ε/d = 0.2/106 = 0.0019，查图1-36得 λ = 0.023
+由式(a)得 u = 1.34 m/s
+Re = dρu/μ = 0.106×1000×1.34/(1×10<sup>-3</sup>) = 1.42×10<sup>5</sup>
+查图1-36得 λ = 0.024，大于假设值，需重新试设
+再设 λ = 0.024，由式(a)得 u = 1.32 m/s
+Re = 0.106×1000×1.32/(1×10<sup>-3</sup>) = 1.40×10<sup>5</sup>
+查图1-36得 λ = 0.024，与假设相符，故 u = 1.32 m/s
+q<sub>V</sub> = (π/4)d<sup>2</sup>u = 0.785×0.106<sup>2</sup>×1.32 = 1.164×10<sup>-2</sup> m<sup>3</sup>/s = 41.9 m<sup>3</sup>/h</div>
+          <div class="answer"><span class="k">答案</span>q<sub>V</sub> = 41.9 m<sup>3</sup>/h</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-019">
+        <div class="ex-head">
+          <span class="label">例1-19</span>
+          <span class="topic">分支管路泵功率</span>
+          <span class="ref">教材 P47</span>
+        </div>
+        <div class="problem text">贮槽内存有 40°C 的粗汽油（密度为 710kg/m<sup>3</sup>），液面维持恒定。用泵将汽油抽出，经过三通后分为两路：一路送至分馏塔顶部，最大流量为 15m<sup>3</sup>/h；另一路送至吸收-解吸塔中部，最大流量为 9m<sup>3</sup>/h。相关部分的高度及压力见图1-53：分馏塔顶部2—2′高出0—0′截面 28m、压力 0.05MPa；吸收-解吸塔入口3—3′高出0—0′截面 18m、压力 0.2MPa；贮槽液面1—1′高出0—0′截面 2m、液面压力 0.05MPa。设管路中各阀门全开，以各管路的最大流量估算出汽油流经各段管路的压头损失：由1—1′截面至0—0′截面为 2.17m；由0—0′截面至2—2′截面为 8.51m；由0—0′截面至3—3′截面为 2.74m。油品在管内流动时的动压头较小，可以忽略。已知泵的效率为 55%，试计算泵的轴功率。（图1-53）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图1-53</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）在1—1′至2—2′间列伯努利方程：
+p<sub>1</sub>/(ρg) + z<sub>1</sub> + H<sub>e1</sub> = p<sub>2</sub>/(ρg) + z<sub>2</sub> + ΣH<sub>f(1-0)</sub> + ΣH<sub>f(0-2)</sub>
+p<sub>1</sub> = p<sub>2</sub>，故：
+H<sub>e1</sub> = (z<sub>2</sub> − z<sub>1</sub>) + ΣH<sub>f(1-0)</sub> + ΣH<sub>f(0-2)</sub> = (28 − 2) + 2.17 + 8.51 = 36.68 m
+（2）在1—1′至3—3′间列伯努利方程：
+H<sub>e2</sub> = (p<sub>3</sub> − p<sub>1</sub>)/(ρg) + (z<sub>3</sub> − z<sub>1</sub>) + ΣH<sub>f(1-0)</sub> + ΣH<sub>f(0-3)</sub>
+H<sub>e2</sub> = (0.2 − 0.05)×10<sup>6</sup>/(710×9.81) + (18 − 2) + 2.17 + 2.74 = 42.45 m
+所需压头取两路中的较大值，即 H<sub>e</sub> = 42.45 m
+q<sub>V</sub> = 15 + 9 = 24 m<sup>3</sup>/h
+q<sub>m</sub> = 24/3600×710 = 4.733 kg/s
+N<sub>e</sub> = q<sub>m</sub>H<sub>e</sub>g = 4.733×42.54×9.81 = 1975 W（原书此处将 42.45 写作 42.54）
+N = N<sub>e</sub>/η = 1975/0.55 = 3591 W = 3.591 kW</div>
+          <div class="answer"><span class="k">答案</span>H<sub>e</sub> = 42.45 m，N = 3.591 kW</div>
+          <div class="note text">注：教材 N<sub>e</sub> 计算式中将 H<sub>e</sub> = 42.45 m 误写作 42.54 m，此处按原页照录并在式中注明。</div>
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-020">
+        <div class="ex-head">
+          <span class="label">例1-20</span>
+          <span class="topic">孔板流量计计算</span>
+          <span class="ref">教材 P52</span>
+        </div>
+        <div class="problem text">20°C 苯在 φ133mm×4mm 的钢管中流过，为测量苯的流量，在管路中安装一孔径为 75mm 的标准孔板流量计。当孔板前后U形压差计的读数 R 为 80mmHg 时，试求管中苯的流量（m<sup>3</sup>/h）。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">查得 20°C 苯：ρ = 880 kg/m<sup>3</sup>，μ = 0.67×10<sup>-3</sup> Pa·s
+孔板孔径 d<sub>0</sub> = 75 mm，管内径 d<sub>1</sub> = 133 − 2×4 = 125 mm
+面积比 A<sub>0</sub>/A<sub>1</sub> = (75/125)<sup>2</sup> = 0.36
+设 Re &gt; Re<sub>c</sub>，由图1-57查得 C<sub>0</sub> = 0.648，Re<sub>c</sub> = 1.0×10<sup>5</sup>
+q<sub>V</sub> = C<sub>0</sub>A<sub>0</sub>sqrt(2Rg(ρ<sub>0</sub> − ρ)/ρ)
+q<sub>V</sub> = 0.648×0.785×0.075<sup>2</sup>×sqrt(2×0.08×9.81×(13600 − 880)/880) = 0.0136 m<sup>3</sup>/s = 48.96 m<sup>3</sup>/h
+校核：u = q<sub>V</sub>/((π/4)d<sub>1</sub><sup>2</sup>) = 0.0136/(0.785×0.125<sup>2</sup>) = 1.11 m/s
+Re = d<sub>1</sub>ρu/μ = 0.125×880×1.11/(0.67×10<sup>-3</sup>) = 1.82×10<sup>5</sup> &gt; Re<sub>c</sub>，假设正确</div>
+          <div class="answer"><span class="k">答案</span>q<sub>V</sub> = 48.96 m<sup>3</sup>/h</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-021">
+        <div class="ex-head">
+          <span class="label">例1-21</span>
+          <span class="topic">转子流量计换算</span>
+          <span class="ref">教材 P55</span>
+        </div>
+        <div class="problem text">某液体转子流量计，转子为硬铅，其密度为 11000kg/m<sup>3</sup>。现将转子改为形状、大小相同，而密度为 1150kg/m<sup>3</sup> 的胶质转子，用于测量空气（50°C、绝压 120kPa）的流量。试问在同一刻度下，空气流量为水流量的多少倍（设流量系数 C<sub>R</sub> 为常数）？</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">空气密度：
+ρ<sub>2</sub> = pM/(RT) = 120×10<sup>3</sup>×0.029/(8.31×(273 + 50)) = 1.30 kg/m<sup>3</sup>
+两种转子形状、大小相同，流量系数 C<sub>R</sub> 相同，同一刻度下：
+q<sub>V2</sub>/q<sub>V1</sub> = sqrt(ρ<sub>1</sub>(ρ<sub>f2</sub> − ρ<sub>2</sub>)/(ρ<sub>2</sub>(ρ<sub>f1</sub> − ρ<sub>1</sub>)))
+q<sub>V2</sub>/q<sub>V1</sub> = sqrt(1000×(1150 − 1.30)/(1.30×(11000 − 1000))) = 9.4</div>
+          <div class="answer"><span class="k">答案</span>空气流量为水流量的 9.4 倍</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-022">
+        <div class="ex-head">
+          <span class="label">例1-22</span>
+          <span class="topic">离心泵性能参数测定</span>
+          <span class="ref">教材 P59</span>
+        </div>
+        <div class="problem text">离心泵特性曲线测定实验装置如图1-67所示，现用 20°C 水在转速为 2900r/min 下进行实验。已知吸入管路内径为 80mm，压出管路内径为 60mm，两测压点的垂直距离 h<sub>0</sub> 为 0.12m，孔板流量计的孔径为 34mm，流量系数为 0.64。实验中测得一组数据：U形压差计的读数为 530mmHg，泵进口处真空表读数为 53kPa，出口处压力表读数为 124kPa，电动机输入功率为 2.38kW。电动机效率为 0.95，泵轴由电机直接带动，其传动效率可视为 1。试计算泵的性能参数。（图1-67）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图1-67</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）流量：
+q<sub>V</sub> = C<sub>0</sub>A<sub>0</sub>sqrt(2Rg(ρ<sub>0</sub> − ρ)/ρ)
+q<sub>V</sub> = 0.64×0.785×0.034<sup>2</sup>×sqrt(2×0.53×9.81×(13600 − 1000)/1000) = 6.65×10<sup>-3</sup> m<sup>3</sup>/s = 23.9 m<sup>3</sup>/h
+（2）压头：在截面1与2之间列伯努利方程，两截面间管路较短，忽略压头损失：
+H = (z<sub>2</sub> − z<sub>1</sub>) + (p<sub>2</sub> − p<sub>1</sub>)/(ρg) + (u<sub>2</sub><sup>2</sup> − u<sub>1</sub><sup>2</sup>)/(2g) (a)
+z<sub>2</sub> − z<sub>1</sub> = h<sub>0</sub> = 0.12 m
+u<sub>1</sub> = q<sub>V</sub>/((π/4)d<sub>1</sub><sup>2</sup>) = 6.65×10<sup>-3</sup>/(0.785×0.08<sup>2</sup>) = 1.32 m/s
+u<sub>2</sub> = u<sub>1</sub>(d<sub>1</sub>/d<sub>2</sub>)<sup>2</sup> = 1.32×(80/60)<sup>2</sup> = 2.35 m/s
+代入式(a)：
+H = 0.12 + (124 + 53)×10<sup>3</sup>/(1000×9.81) + (2.35<sup>2</sup> − 1.32<sup>2</sup>)/(2×9.81) = 18.36 m
+（3）轴功率：
+N = 0.95×2.38 = 2.26 kW
+（4）效率：
+N<sub>e</sub> = q<sub>V</sub>Hρg = 6.65×10<sup>-3</sup>×18.36×1000×9.81 = 1.2 kW
+η = N<sub>e</sub>/N×100% = 1.2/2.26×100% = 53.1%</div>
+          <div class="answer"><span class="k">答案</span>q<sub>V</sub> = 23.9 m<sup>3</sup>/h，H = 18.36 m，N = 2.26 kW，η = 53.1%</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-023">
+        <div class="ex-head">
+          <span class="label">例1-23</span>
+          <span class="topic">泵流量调节与转速</span>
+          <span class="ref">教材 P63</span>
+        </div>
+        <div class="problem text">如图1-72所示，用离心泵将水由贮槽a送往高位槽b，两槽均为敞口，且液位恒定。已知输送管路为 φ45mm×2.5mm，在泵出口阀门全开的情况下，整个输送系统的总长为 20m（包括所有局部阻力的当量长度），摩擦系数可取为 0.02。查该离心泵的样本，在转速 n = 2900r/min 时的特性方程为 H = 18 − 6×10<sup>5</sup>q<sub>V</sub><sup>2</sup>（q<sub>V</sub> 的单位为 m<sup>3</sup>/s，H 的单位为 m）。水的密度可取为 1000kg/m<sup>3</sup>，试求：(1)阀门全开时离心泵的流量与压头；(2)现关小阀门使流量减为原来的 90%，写出此时的管路特性方程，并计算多消耗在阀门上的功率（设此时泵的效率为 62%）；(3)若阀门全开，采用改变转速的方法将流量调至原来的 90%，则转速应为多少？（图1-72）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图1-72</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）管路特性方程：
+H<sub>e</sub> = A + Bq<sub>V</sub><sup>2</sup>
+A = Δz + Δp/(ρg) = 3 m
+B = λ(8/(π<sup>2</sup>g))(l + Σl<sub>e</sub>)/d<sup>5</sup> = 0.02×8/(3.14<sup>2</sup>×9.81)×20/0.04<sup>5</sup> = 3.23×10<sup>5</sup>
+故 H<sub>e</sub> = 3 + 3.23×10<sup>5</sup>q<sub>V</sub><sup>2</sup>
+与泵特性方程 H = 18 − 6×10<sup>5</sup>q<sub>V</sub><sup>2</sup> 联立：
+3 + 3.23×10<sup>5</sup>q<sub>V</sub><sup>2</sup> = 18 − 6×10<sup>5</sup>q<sub>V</sub><sup>2</sup>
+解得 q<sub>V</sub> = 4.03×10<sup>-3</sup> m<sup>3</sup>/s，H = 8.25 m
+（2）q<sub>V</sub>′ = 0.9q<sub>V</sub> = 3.63×10<sup>-3</sup> m<sup>3</sup>/s
+H′ = 18 − 6×10<sup>5</sup>q<sub>V</sub>′<sup>2</sup> = 18 − 6×10<sup>5</sup>×(3.63×10<sup>-3</sup>)<sup>2</sup> = 10.09 m
+关小阀门后管路特性方程 H<sub>e</sub> = A′ + B′q<sub>V</sub><sup>2</sup>，A′ = 3 m 不变
+由 10.09 = 3 + B′×(3.63×10<sup>-3</sup>)<sup>2</sup> 得 B′ = 5.38×10<sup>5</sup>
+故此时的管路特性方程为：
+H<sub>e</sub> = 3 + 5.38×10<sup>5</sup>q<sub>V</sub><sup>2</sup>
+当流量 q<sub>V</sub>′ = 3.63×10<sup>-3</sup> m<sup>3</sup>/s 时，原管路所需压头：
+H<sub>1</sub> = 3 + 3.23×10<sup>5</sup>×(3.63×10<sup>-3</sup>)<sup>2</sup> = 7.26 m
+泵提供的压头 H′ = 10.09 m，损失压头：
+ΔH = H′ − H<sub>1</sub> = 10.09 − 7.26 = 2.83 m
+多消耗在阀门上的功率：
+ΔN = q<sub>V</sub>′ΔHρg/η = 0.00363×2.83×1000×9.81/0.62 = 162.5 W
+（3）转速改变后工作点 M<sub>1</sub> 对应 q<sub>V</sub>′ = 3.63×10<sup>-3</sup> m<sup>3</sup>/s、H<sub>1</sub> = 7.26 m
+由比例定律 q<sub>V</sub>′/q<sub>V</sub> = n′/n，H′/H = (n′/n)<sup>2</sup>，即：
+q<sub>V</sub> = (n/n′)q<sub>V</sub>′，H = (n/n′)<sup>2</sup>H′
+代入原转速下的特性方程，得新转速下的特性方程：
+H′ = 18(n′/n)<sup>2</sup> − 6×10<sup>5</sup>q<sub>V</sub>′<sup>2</sup>
+将 q<sub>V</sub>′、H<sub>1</sub> 代入得 n′/n = 0.918
+n′ = 0.918×2900 = 2662 r/min
+Δn/n = 8.2% &lt; 20%，比例定律适用</div>
+          <div class="answer"><span class="k">答案</span>（1）q<sub>V</sub> = 4.03×10<sup>-3</sup> m<sup>3</sup>/s，H = 8.25 m；（2）H<sub>e</sub> = 3 + 5.38×10<sup>5</sup>q<sub>V</sub><sup>2</sup>，ΔN = 162.5 W；（3）n′ = 2662 r/min</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-024">
+        <div class="ex-head">
+          <span class="label">例1-24</span>
+          <span class="topic">泵安装高度确定</span>
+          <span class="ref">教材 P67</span>
+        </div>
+        <div class="problem text">用 IS 65-50-160型离心泵将敞口贮槽中 50°C 水送出，输水量为 25m<sup>3</sup>/h。在操作条件下，吸入管路的压头损失估计为 2.3m，当地大气压为 100kPa。试确定该泵的安装高度。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">由附录5查得 50°C 水的饱和蒸气压 p<sub>v</sub> = 12.34×10<sup>3</sup> Pa，密度 ρ = 988.1 kg/m<sup>3</sup>
+由附录12查得，当输水量为 25m<sup>3</sup>/h 时该泵的 (NPSH)<sub>r</sub> = 2 m
+最大允许安装高度：
+H<sub>g允</sub> = (p<sub>0</sub> − p<sub>v</sub>)/(ρg) − (NPSH)<sub>r</sub> − Σh<sub>f,0-1</sub>
+H<sub>g允</sub> = (100×10<sup>3</sup> − 12.34×10<sup>3</sup>)/(988.1×9.81) − 2 − 2.3 = 4.74 m
+为安全计再降低 0.5m，实际安装高度应低于：
+4.74 − 0.5 = 4.24 m</div>
+          <div class="answer"><span class="k">答案</span>实际安装高度应低于 4.24 m</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-025">
+        <div class="ex-head">
+          <span class="label">例1-25</span>
+          <span class="topic">泵汽蚀校核</span>
+          <span class="ref">教材 P67</span>
+        </div>
+        <div class="problem text">用离心油泵将密闭容器中 30°C 的丁烷送出，要求输送量为 9m<sup>3</sup>/h，容器液面上方的绝对压力为 340kPa。液面降到最低时，在泵入口处中心线以下 2.5m。已知 30°C 丁烷的密度为 580kg/m<sup>3</sup>，饱和蒸气压为 304kPa。吸入管路为 φ50mm×3mm，估计吸入管路的总长为 15m（包括所有局部阻力的当量长度），摩擦系数取为 0.03。所选油泵的必需汽蚀余量为 2.8m，问此泵能否正常工作？</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">判断泵能否正常操作，即比较实际安装高度与最大允许安装高度的相对大小
+流速：
+u = q<sub>V</sub>/((π/4)d<sup>2</sup>) = (9/3600)/(0.785×0.044<sup>2</sup>) = 1.64 m/s
+吸入管路阻力：
+Σh<sub>f,0-1</sub> = λ(l + Σl<sub>e</sub>)/d×u<sup>2</sup>/(2g) = 0.03×15/0.044×1.64<sup>2</sup>/(2×9.81) = 1.4 m
+最大允许安装高度：
+H<sub>g允</sub> = (p<sub>0</sub> − p<sub>v</sub>)/(ρg) − (NPSH)<sub>r</sub> − Σh<sub>f,0-1</sub>
+H<sub>g允</sub> = (340 − 304)×10<sup>3</sup>/(580×9.81) − 2.8 − 1.4 = 2.13 m
+容器内液面降到最低时的实际安装高度为 2.5m，大于最大允许安装高度，说明实际安装位置太高，不能保证整个输送过程中不发生汽蚀现象
+应将泵的位置至少下降：
+2.5 − 2.13 = 0.37 m
+或提升容器的位置</div>
+          <div class="answer"><span class="k">答案</span>泵不能正常工作，需将泵的位置至少下降 0.37 m（或提升容器位置）</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-026">
+        <div class="ex-head">
+          <span class="label">例1-26</span>
+          <span class="topic">泵选型与安装高度</span>
+          <span class="ref">教材 P69</span>
+        </div>
+        <div class="problem text">如图1-80所示，需用离心泵将水池中水送至密闭高位槽中，高位槽液面与水池液面高度差为 15m，高位槽中的气相表压为 49.1kPa。要求水的流量为 15～25m<sup>3</sup>/h，吸入管长 12m，压出管长 60m（均包括局部阻力的当量长度），管子均为 φ68mm×4mm，摩擦系数为 0.021。试选用一台离心泵，并确定其安装高度（设水温为 20°C，密度以 1000kg/m<sup>3</sup> 计，当地大气压为 101.3kPa）。（图1-80）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图1-80</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">以最大流量 q<sub>V</sub> = 25m<sup>3</sup>/h 计算
+在1—1′与2—2′间列伯努利方程：
+z<sub>1</sub> + u<sub>1</sub><sup>2</sup>/(2g) + p<sub>1</sub>/(ρg) + H<sub>e</sub> = z<sub>2</sub> + u<sub>2</sub><sup>2</sup>/(2g) + p<sub>2</sub>/(ρg) + Σh<sub>f</sub>
+z<sub>1</sub> = 0，u<sub>1</sub> ≈ 0，p<sub>1</sub> = 0（表压）；z<sub>2</sub> = 15 m，p<sub>2</sub> = 49.1 kPa（表压），u<sub>2</sub> ≈ 0
+管内流速：
+u = q<sub>V</sub>/((π/4)d<sup>2</sup>) = (25/3600)/(0.785×0.06<sup>2</sup>) = 2.46 m/s
+Σh<sub>f</sub> = λ(l + Σl<sub>e</sub>)/d×u<sup>2</sup>/(2g) = 0.021×(12 + 60)/0.06×2.46<sup>2</sup>/(2×9.81) = 7.77 m
+H<sub>e</sub> = z<sub>2</sub> + p<sub>2</sub>/(ρg) + Σh<sub>f</sub> = 15 + 49.1×10<sup>3</sup>/(1000×9.81) + 7.77 = 27.77 m
+根据 q<sub>V</sub> = 25m<sup>3</sup>/h、H<sub>e</sub> = 27.77m 查附录12，选用 IS 65-50-160 型离心泵
+其性能为 q<sub>V</sub> = 25m<sup>3</sup>/h，H = 32m，n = 2900r/min，(NPSH)<sub>r</sub> = 2.0m，η = 65%，轴功率 N = 3.35kW
+20°C 水的饱和蒸气压 p<sub>v</sub> = 2.335 kPa
+吸入管路阻力：
+Σh<sub>f吸入</sub> = λ(l + Σl<sub>e</sub>)/d×u<sup>2</sup>/(2g) = 0.021×12/0.06×2.46<sup>2</sup>/(2×9.81) = 1.30 m
+最大允许安装高度：
+H<sub>g允</sub> = (p<sub>0</sub> − p<sub>v</sub>)/(ρg) − (NPSH)<sub>r</sub> − Σh<sub>f吸入</sub>
+H<sub>g允</sub> = (101.3 − 2.335)×10<sup>3</sup>/(1000×9.81) − 2.0 − 1.30 = 6.8 m
+实际安装高度应低于 6.8m，可取 5.8～6.3m</div>
+          <div class="answer"><span class="k">答案</span>选用 IS 65-50-160 型离心泵，安装高度应低于 6.8 m（可取 5.8～6.3 m）</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch01-ex-027">
+        <div class="ex-head">
+          <span class="label">例1-27</span>
+          <span class="topic">离心通风机选型</span>
+          <span class="ref">教材 P76</span>
+        </div>
+        <div class="problem text">欲用一台离心式通风机向反应器输送 30°C 的空气，要求输送量为 20000m<sup>3</sup>/h。已知风机出口至反应器入口的压力损失为 0.38kPa（包括所有局部阻力），反应器的操作压力为 0.65kPa（表压），大气压力为 101.3kPa。试选择一台合适的通风机。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">在风机入口与反应器入口（外侧）之间列伯努利方程，风机所需全压：
+p<sub>T</sub> = (z<sub>2</sub> − z<sub>1</sub>)ρg + (p<sub>2</sub> − p<sub>1</sub>) + ρ/2(u<sub>2</sub><sup>2</sup> − u<sub>1</sub><sup>2</sup>) + Δp<sub>f</sub>
+其中 (z<sub>2</sub> − z<sub>1</sub>)ρg ≈ 0，u<sub>1</sub> = u<sub>2</sub> ≈ 0，Δp<sub>f</sub> = 0.38 kPa，则：
+p<sub>T</sub> = p<sub>2</sub> − p<sub>1</sub> + Δp<sub>f</sub> = 0.65×10<sup>3</sup> + 0.38×10<sup>3</sup> = 1.03×10<sup>3</sup> Pa
+操作条件下空气的密度：
+ρ = pM/(RT) = 101.3×10<sup>3</sup>×0.029/(8.31×(273 + 30)) = 1.17 kg/m<sup>3</sup>
+将使用条件下的风压换算为标定条件下的风压：
+p<sub>T0</sub> = p<sub>T</sub>×1.2/ρ = 1.03×10<sup>3</sup>×1.2/1.17 = 1.07×10<sup>3</sup> Pa
+根据 q<sub>V</sub> = 20000m<sup>3</sup>/h、p<sub>T0</sub> = 1.07×10<sup>3</sup> Pa 查离心式通风机样本，选用 4-72-11NO8C 型离心通风机
+其性能为 n = 1250r/min，q<sub>V</sub> = 21412m<sup>3</sup>/h，p<sub>T0</sub> = 1321 Pa，N = 9.51kW，η = 86.10%</div>
+          <div class="answer"><span class="k">答案</span>选用 4-72-11NO8C 型离心通风机</div>
+          
+        </div>
+      </article>
+    </section>
+    <section class="chapter" id="ch02">
+      <div class="ch-head"><h2>第2章 非均相物系分离</h2><span class="count">5 例</span></div>
+      <article class="ex" id="ch02-ex-001">
+        <div class="ex-head">
+          <span class="label">例2-1</span>
+          <span class="topic">自由沉降速度计算</span>
+          <span class="ref">教材 P94</span>
+        </div>
+        <div class="problem text">试计算直径为 50μm、密度为 2650kg/m<sup>3</sup> 的球形石英颗粒在 20°C 水中和 20°C 常压空气中的自由沉降速度。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）20°C 水中沉降：查得 20°C 水 μ = 1.01×10<sup>−3</sup>Pa·s，ρ = 998kg/m<sup>3</sup>。假设沉降属于层流区，由式(2-15)：
+u<sub>t</sub> = (50×10<sup>−6</sup>)<sup>2</sup>×(2650−998)×9.81/(18×1.01×10<sup>−3</sup>) = 2.23×10<sup>−3</sup>m/s
+校核流型：
+Re<sub>t</sub> = d u<sub>t</sub> ρ/μ = 50×10<sup>−6</sup>×2.23×10<sup>−3</sup>×998/(1.01×10<sup>−3</sup>) = 0.110（&lt;2）
+假设层流区正确，计算 u<sub>t</sub> = 2.23×10<sup>−3</sup>m/s 有效。
+（2）20°C 常压空气中沉降：查得 20°C 空气 μ = 1.81×10<sup>−5</sup>Pa·s，ρ = 1.21kg/m<sup>3</sup>。假设沉降属于层流区，则有：
+u<sub>t</sub> = (50×10<sup>−6</sup>)<sup>2</sup>×(2650−1.2)×9.81/(18×1.81×10<sup>−5</sup>) = 0.199m/s
+校核流型：
+Re<sub>t</sub> = 50×10<sup>−6</sup>×0.199×1.21/(1.81×10<sup>−5</sup>) = 0.667（&lt;2）
+假设正确，u<sub>t</sub> = 0.199m/s 有效。
+同一颗粒在不同介质中沉降时具有不同的沉降速度。</div>
+          <div class="answer"><span class="k">答案</span>水中 u<sub>t</sub> = 2.23×10<sup>−3</sup>m/s；空气中 u<sub>t</sub> = 0.199m/s</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch02-ex-002">
+        <div class="ex-head">
+          <span class="label">例2-2</span>
+          <span class="topic">降尘室粒径与回收率</span>
+          <span class="ref">教材 P96</span>
+        </div>
+        <div class="problem text">采用降尘室回收锅炉烟气中的固体颗粒。降尘室底面积 10m<sup>2</sup>，宽和高均为 2m。操作条件下，气体的密度为 0.75kg/m<sup>3</sup>，黏度为 2.6×10<sup>−5</sup>Pa·s；尘粒的密度为 3000kg/m<sup>3</sup>；降尘室的生产能力为 3m<sup>3</sup>/s。试求：（1）理论上能完全捕集下来的最小颗粒直径；（2）粒径为 40μm 的颗粒的回收率；（3）如欲完全回收直径为 10μm 的尘粒，在原降尘室内需设置多少层水平隔板？隔板间距是多少？</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）理论上能完全捕集下来的最小颗粒直径。根据式(2-23)：
+u<sub>t</sub> = q<sub>V</sub>/(b l) = 3/10 = 0.3m/s
+设沉降在层流区，根据式(2-15)有：
+d<sub>min</sub> = √[18μu<sub>t</sub>/((ρ<sub>s</sub>−ρ)g)] = √[18×2.6×10<sup>−5</sup>×0.3/(3000×9.81)] = 6.91×10<sup>−5</sup>m
+校核流型：
+Re<sub>t</sub> = d<sub>min</sub>u<sub>t</sub>ρ/μ = 6.91×10<sup>−5</sup>×0.3×0.75/(2.6×10<sup>−5</sup>) = 0.598（&lt;2）
+故 d<sub>min</sub> = 6.91×10<sup>−5</sup>m 为所求。
+（2）40μm 颗粒的回收率。设颗粒在炉气中分布均匀，则在气体停留时间内，颗粒的沉降高度与降尘室高度之比，即为 40μm 颗粒被分离下来的分率。由于各种尺寸的颗粒在降尘室内停留时间相同，故：
+回收率 = u&#x27;<sub>t</sub>/u<sub>t</sub> = (d&#x27;/d<sub>min</sub>)<sup>2</sup> = (40/69.1)<sup>2</sup> = 0.335
+（3）需设置的水平隔板层数。由式(2-15)，有：
+u<sub>t</sub> = d<sup>2</sup>(ρ<sub>s</sub>−ρ)g/(18μ) ≈ (10×10<sup>−6</sup>)<sup>2</sup>×3000×9.81/(18×2.6×10<sup>−5</sup>) = 6.29×10<sup>−3</sup>m/s
+代入式(2-23)：
+n = q<sub>V</sub>/(b l u<sub>t</sub>) − 1 = 3/(10×6.29×10<sup>−3</sup>) − 1 = 46.69 ≈ 47 层
+隔板间距为：
+h&#x27; = h/(n+1) = 2/(47+1) = 0.042m
+校核气体在多层降尘室内的流型（忽略隔板厚度所占空间）：
+u = q<sub>V</sub>/(b h) = 3/(2×2) = 0.75m/s
+多层降尘室的当量直径：
+d<sub>e</sub> = 4bh&#x27;/(2(b+h&#x27;)) = 4×2×0.042/(2×(2+0.042)) = 0.082m
+所以：
+Re = d<sub>e</sub>uρ/μ = 0.082×0.75×0.75/(2.6×10<sup>−5</sup>) = 1774（&lt;2000）
+即气体在降尘室的流动为层流，设计合理。</div>
+          <div class="answer"><span class="k">答案</span>d<sub>min</sub> = 6.91×10<sup>−5</sup>m；40μm 颗粒回收率 0.335；需 47 层水平隔板，间距 0.042m</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch02-ex-003">
+        <div class="ex-head">
+          <span class="label">例2-3</span>
+          <span class="topic">过滤常数与滤液量</span>
+          <span class="ref">教材 P105</span>
+        </div>
+        <div class="problem text">采用过滤面积为 0.2m<sup>2</sup> 的过滤机，对某悬浮液进行过滤常数的测定。操作压强差为 0.15MPa，温度为 20°C，过滤进行到 5min 时共得滤液 0.034m<sup>3</sup>；进行到 10min 时，共得滤液 0.050m<sup>3</sup>。试估算：（1）过滤常数 K 和 q<sub>e</sub>；（2）按这种操作条件，过滤进行到 1h 时的滤液总量。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）过滤时间 t<sub>1</sub> = 300s 时：
+q<sub>1</sub> = V<sub>1</sub>/A = 0.034/0.2 = 0.17m<sup>3</sup>/m<sup>2</sup>
+过滤时间 t<sub>2</sub> = 600s 时：
+q<sub>2</sub> = V<sub>2</sub>/A = 0.050/0.2 = 0.25m<sup>3</sup>/m<sup>2</sup>
+根据式(2-39a)有：
+0.17<sup>2</sup> + 2×0.17q<sub>e</sub> = 300K
+0.25<sup>2</sup> + 2×0.25q<sub>e</sub> = 600K
+联立解得：
+K = 1.26×10<sup>−4</sup>m<sup>2</sup>/s，q<sub>e</sub> = 2.61×10<sup>−2</sup>m<sup>3</sup>/m<sup>2</sup>
+（2）V<sub>e</sub> = Aq<sub>e</sub> = 0.2×2.61×10<sup>−2</sup> = 5.22×10<sup>−3</sup>m<sup>3</sup>
+由式(2-39)：
+V<sup>2</sup> + 2×5.22×10<sup>−3</sup>V = 1.26×10<sup>−4</sup>×0.2<sup>2</sup>×3600
+解得：
+V = 0.130m<sup>3</sup></div>
+          <div class="answer"><span class="k">答案</span>K = 1.26×10<sup>−4</sup>m<sup>2</sup>/s，q<sub>e</sub> = 2.61×10<sup>−2</sup>m<sup>3</sup>/m<sup>2</sup>；过滤 1h 的滤液总量 V = 0.130m<sup>3</sup></div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch02-ex-004">
+        <div class="ex-head">
+          <span class="label">例2-4</span>
+          <span class="topic">恒压过滤时间计算</span>
+          <span class="ref">教材 P106</span>
+        </div>
+        <div class="problem text">在恒定压强差 9.81×10<sup>3</sup>Pa 下过滤某水悬浮液，已知水的黏度为 1.0×10<sup>−3</sup>Pa·s，过滤介质可忽略。过滤时形成不可压缩滤饼，其空隙率为 60%，滤饼过滤通道的平均直径为 6.33×10<sup>−5</sup>m，若获得 1m<sup>3</sup> 滤液可得滤饼 0.333m<sup>3</sup>，试求：（1）1m<sup>2</sup> 过滤面积上获得 1.5m<sup>3</sup> 的滤液所需的过滤时间；（2）若将该时间延长一倍，可再得多少滤液？</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）由题意知，比阻：
+r = 32/(εd<sub>0</sub><sup>2</sup>) = 32/(0.6×(6.33×10<sup>−5</sup>)<sup>2</sup>) = 1.33×10<sup>10</sup>
+ν = 0.333m<sup>3</sup> 滤饼/m<sup>3</sup>
+所以过滤常数：
+K = 2Δp/(rμν) = 2×9.81×10<sup>3</sup>/(1.33×10<sup>10</sup>×1.0×10<sup>−3</sup>×0.333) = 4.42×10<sup>−3</sup>m<sup>2</sup>/s
+由式(2-40a)得：
+t = q<sup>2</sup>/K = 1.5<sup>2</sup>/(4.42×10<sup>−3</sup>) = 509s
+（2）因为 t&#x27; = 2t = 2×509 = 1018s，由式(2-40a)得：
+q&#x27; = √(Kt&#x27;) = √(4.42×10<sup>−3</sup>×1018) = 2.12m<sup>3</sup>/m<sup>2</sup>
+q&#x27; − q = 2.12 − 1.5 = 0.62m<sup>3</sup>/m<sup>2</sup>
+即将时间延长一倍后，1m<sup>2</sup> 过滤面积可再获得 0.62m<sup>3</sup> 的滤液。</div>
+          <div class="answer"><span class="k">答案</span>过滤时间 t = 509s；延长时间一倍后可再得 0.62m<sup>3</sup>/m<sup>2</sup> 的滤液</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch02-ex-005">
+        <div class="ex-head">
+          <span class="label">例2-5</span>
+          <span class="topic">板框压滤机框数与产能</span>
+          <span class="ref">教材 P108</span>
+        </div>
+        <div class="problem text">生产上要求在过滤时间 20min 内处理完 4m<sup>3</sup> 的料浆，操作条件同例 2-3，已知 1m<sup>3</sup> 滤液可形成 0.0342m<sup>3</sup> 滤饼。现使用的一台板框压滤机，滤框尺寸为 450mm×450mm×25mm，滤布同例 2-3，试求：（1）完成操作所需滤框数；（2）若洗涤时压强差与过滤时相同，滤液性质与水相近，洗涤水量为滤液体积的 1/6 时的洗涤时间（s）；（3）若每次辅助时间为 15min，该压滤机生产能力（m<sup>3</sup> 滤液/h）。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）已知悬浮液的处理量 V<sub>s</sub> = 4m<sup>3</sup>，滤饼与滤液体积比 ν = 0.0342，因此一次操作获得的总滤液量为：
+V = V<sub>s</sub>/(1+ν) = 4/(1+0.0342) = 3.87m<sup>3</sup>
+由例 2-3 知 K = 1.26×10<sup>−4</sup>m<sup>2</sup>/s，q<sub>e</sub> = 2.61×10<sup>−2</sup>m<sup>3</sup>/m<sup>2</sup>，由式(2-39)得：
+3.87<sup>2</sup> + 2×0.0261×A×3.87 = 1.26×10<sup>−4</sup>×A<sup>2</sup>×20×60
+解得：
+A = 10.6m<sup>2</sup>
+每框两侧均有滤布，故每框过滤面积为：
+0.45×0.45×2 = 0.405m<sup>2</sup>
+所需框数：
+10.6÷0.405 = 26.3，取 27 个滤框
+则滤框总容积为：
+0.45×0.45×0.025×27 = 0.137m<sup>3</sup>
+滤饼总体积：
+νV = 0.0342×3.87 = 0.132m<sup>3</sup> &lt; 0.137m<sup>3</sup>
+因此，27 个滤框可满足要求。实际过滤面积为：
+27×0.405 = 10.9m<sup>2</sup>
+（2）因为：
+V<sub>e</sub> = q<sub>e</sub>A = 2.61×10<sup>−2</sup>×10.9 = 0.284m<sup>3</sup>
+每次洗涤水用量：
+V<sub>w</sub> = (1/6)V = 3.87/6 = 0.645m<sup>3</sup>
+所以，由式(2-42)洗涤时间为：
+t<sub>w</sub> = 8V<sub>w</sub>(V+V<sub>e</sub>)/(KA<sup>2</sup>) = 8×0.645×(3.87+0.284)/(1.26×10<sup>−4</sup>×10.9<sup>2</sup>) = 1433s
+（3）由式(2-43)，该压滤机的生产能力：
+Q = 3.87×3600/(20×60+1433+15×60) = 3.94m<sup>3</sup>/h</div>
+          <div class="answer"><span class="k">答案</span>需 27 个滤框；洗涤时间 t<sub>w</sub> = 1433s；生产能力 Q = 3.94m<sup>3</sup>/h</div>
+          
+        </div>
+      </article>
+    </section>
+    <section class="chapter" id="ch03">
+      <div class="ch-head"><h2>第3章 传热</h2><span class="count">18 例</span></div>
+      <article class="ex" id="ch03-ex-001">
+        <div class="ex-head">
+          <span class="label">例3-1</span>
+          <span class="topic">平壁温度分布</span>
+          <span class="ref">教材 P122</span>
+        </div>
+        <div class="problem text">如图3-7所示，厚度为500mm的平壁，左侧表面温度 t<sub>1</sub>=900°C，右侧表面温度 t<sub>2</sub>=250°C，平壁材料的热导率 λ=1.0×(1+0.001t) W/(m·°C)。试确定平壁内的温度分布规律。（图3-7）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图3-7</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">取平壁平均温度 t<sub>m</sub>=(900+250)/2=575°C
+λ<sub>m</sub>=1.0×(1+0.001×575)=1.575 W/(m·°C)
+由傅里叶定律 q=Q/A=λ<sub>m</sub>(t<sub>1</sub>−t<sub>2</sub>)/b=1.575×(900−250)/0.5=2047.5 W/m<sup>2</sup>
+对距左侧表面 x 处的等温面，q=Q/A=λ<sub>m</sub>(t<sub>1</sub>−t)/x
+2047.5=1.575×(900−t)/x
+t=900−2047.5x/1.575=900−1300x
+按平均热导率为常数处理，温度分布为线性；若考虑 λ 随温度变化，则温度分布不再为直线。</div>
+          <div class="answer"><span class="k">答案</span>t=900−1300x（x 为距左侧表面的距离，m）</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch03-ex-002">
+        <div class="ex-head">
+          <span class="label">例3-2</span>
+          <span class="topic">多层平壁导热</span>
+          <span class="ref">教材 P125</span>
+        </div>
+        <div class="problem text">一台锅炉的炉墙由三种砖围成，最内层为耐火砖，中间为保温砖，最外层为建筑砖。耐火砖 b<sub>1</sub>=115mm、λ<sub>1</sub>=1.160 W/(m·°C)；保温砖 b<sub>2</sub>=125mm、λ<sub>2</sub>=0.116 W/(m·°C)；建筑砖 b<sub>3</sub>=70mm、λ<sub>3</sub>=0.350 W/(m·°C)。炉内壁和外壁表面温度分别为495°C和60°C。试计算：（1）通过炉墙单位面积的导热热损失；（2）耐火砖和保温砖之间界面的温度；（3）保温砖与建筑砖之间界面的温度。（图3-11）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图3-11</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）通过炉墙单位面积的导热热损失
+q=(t<sub>1</sub>−t<sub>4</sub>)/(b<sub>1</sub>/λ<sub>1</sub>+b<sub>2</sub>/λ<sub>2</sub>+b<sub>3</sub>/λ<sub>3</sub>)=(495−60)/(0.115/1.160+0.125/0.116+0.070/0.350)
+=435/(0.0991+1.0776+0.200)=316 W/m<sup>2</sup>
+（2）耐火砖与保温砖之间的界面温度
+t<sub>2</sub>=t<sub>1</sub>−q b<sub>1</sub>/λ<sub>1</sub>=495−316×0.115/1.160=495−31.3=463.7°C
+（3）保温砖与建筑砖之间的界面温度
+t<sub>3</sub>=t<sub>2</sub>−q b<sub>2</sub>/λ<sub>2</sub>=463.7−316×0.125/0.116=463.7−340.6=123.1°C
+保温砖层热导率最小、厚度最大、热阻最大，故温度降最大。</div>
+          <div class="answer"><span class="k">答案</span>q=316 W/m<sup>2</sup>；t<sub>2</sub>=463.7°C；t<sub>3</sub>=123.1°C</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch03-ex-003">
+        <div class="ex-head">
+          <span class="label">例3-3</span>
+          <span class="topic">圆筒壁保温层导热</span>
+          <span class="ref">教材 P125</span>
+        </div>
+        <div class="problem text">如图3-12所示，φ50mm×5mm 的不锈钢管，热导率 λ<sub>1</sub>=16 W/(m·K)，外面包裹厚度为30mm、热导率 λ<sub>2</sub>=0.2 W/(m·K) 的石棉保温层。钢管内表面温度为623K，保温层外表面温度为373K。试求每米管道的热损失及钢管外表面温度。（图3-12）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图3-12</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">r<sub>1</sub>=(50−2×5)/2=20mm，r<sub>2</sub>=50/2=25mm，r<sub>3</sub>=25+30=55mm
+Q/l=2π(t<sub>1</sub>−t<sub>3</sub>)/[(1/λ<sub>1</sub>)ln(r<sub>2</sub>/r<sub>1</sub>)+(1/λ<sub>2</sub>)ln(r<sub>3</sub>/r<sub>2</sub>)]
+=2×3.14×(623−373)/[(1/16)ln(25/20)+(1/0.2)ln(55/25)]
+=1571/(0.014+3.94)=397 W/m
+由 Q/l=(t<sub>1</sub>−t<sub>2</sub>)/[(1/2πλ<sub>1</sub>)ln(r<sub>2</sub>/r<sub>1</sub>)] 得
+t<sub>2</sub>=623−397/(2×3.14)×(1/16)×ln(25/20)=622K</div>
+          <div class="answer"><span class="k">答案</span>Q/l=397 W/m；t<sub>2</sub>=622K</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch03-ex-004">
+        <div class="ex-head">
+          <span class="label">例3-4</span>
+          <span class="topic">管内空气对流传热</span>
+          <span class="ref">教材 P131</span>
+        </div>
+        <div class="problem text">常压下，空气在内径为25.4mm、长为3m的换热管中流动，温度由180°C升高到220°C。若空气流速为15m/s，试求：（1）空气与管内壁之间的对流传热系数；（2）若空气流量提高一倍，则对流传热系数变为多少？（3）若空气流量不变而管径变为原来的1/2，对流传热系数变为多少？（忽略温度变化对物性的影响）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">定性温度 t<sub>m</sub>=(180+220)/2=200°C，查得空气物性：c<sub>p</sub>=1.026kJ/(kg·°C)，λ=0.03928 W/(m·°C)，μ=2.6×10<sup>-5</sup>Pa·s，ρ=0.746kg/m<sup>3</sup>
+Pr=c<sub>p</sub>μ/λ=1.026×10<sup>3</sup>×2.6×10<sup>-5</sup>/0.03928=0.679
+Re=duρ/μ=0.0254×15×0.746/(2.6×10<sup>-5</sup>)=10932
+l/d=3/0.0254=118&gt;60，属湍流
+Nu=0.023Re<sup>0.8</sup>Pr<sup>0.4</sup>=0.023×10932<sup>0.8</sup>×0.679<sup>0.4</sup>=0.023×1700×0.856=33.5
+α=(λ/d)Nu=0.03928/0.0254×33.5=51.8 W/(m<sup>2</sup>·°C)
+（2）流量提高一倍，α′/α=(q′<sub>m</sub>/q<sub>m</sub>)<sup>0.8</sup>=2<sup>0.8</sup>=1.74
+α′=1.74×51.8=90.1 W/(m<sup>2</sup>·°C)
+（3）流量不变、管径减半，u′/u=(d/d′)²=4，α′/α=(d/d′)<sup>1.8</sup>=2<sup>1.8</sup>=3.48
+α′=3.48×51.8=180.3 W/(m<sup>2</sup>·°C)</div>
+          <div class="answer"><span class="k">答案</span>(1) 51.8 W/(m<sup>2</sup>·°C)；(2) 90.1 W/(m<sup>2</sup>·°C)；(3) 180.3 W/(m<sup>2</sup>·°C)</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch03-ex-005">
+        <div class="ex-head">
+          <span class="label">例3-5</span>
+          <span class="topic">环隙对流传热系数</span>
+          <span class="ref">教材 P131</span>
+        </div>
+        <div class="problem text">套管换热器内管尺寸为 φ38mm×2.5mm，外管尺寸为 φ57mm×3mm。质量流量为2589.5kg/h的甲苯在环隙中流动，其进口温度为72°C，出口温度为38°C。试求管壁对甲苯的对流传热系数（忽略热损失）。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">定性温度 t<sub>m</sub>=(72+38)/2=55°C，查得甲苯物性：c<sub>p</sub>=1.84kJ/(kg·K)，μ=0.43×10<sup>-3</sup>Pa·s，λ=0.13W/(m·K)，ρ=830kg/m<sup>3</sup>
+环隙流通截面积 A=π/4(d<sub>1</sub><sup>2</sup>−d<sub>2</sub><sup>2</sup>)=0.785×(0.051<sup>2</sup>−0.038<sup>2</sup>)=0.00091m<sup>2</sup>
+u=q<sub>m</sub>/(3600Aρ)=2589.5/(3600×0.00091×830)=0.952m/s
+当量直径 d<sub>e</sub>=d<sub>1</sub>−d<sub>2</sub>=0.051−0.038=0.013m
+Re=d<sub>e</sub>uρ/μ=0.013×0.952×830/(0.43×10<sup>-3</sup>)=2.4×10<sup>4</sup>（湍流）
+Pr=c<sub>p</sub>μ/λ=1.84×10<sup>3</sup>×0.43×10<sup>-3</sup>/0.13=6.09
+甲苯被冷却，按式(3-30)（n=0.3）计算：
+α=0.023(λ/d<sub>e</sub>)Re<sup>0.8</sup>Pr<sup>0.3</sup>=0.023×(0.13/0.013)×(2.4×10<sup>4</sup>)<sup>0.8</sup>×6.09<sup>0.3</sup>=1262.6 W/(m<sup>2</sup>·K)
+若按式(3-34)计算：
+α=0.02(λ/d<sub>e</sub>)(d<sub>1</sub>/d<sub>2</sub>)<sup>0.53</sup>Re<sup>0.8</sup>Pr<sup>0.33</sup>=0.02×(0.13/0.013)×(0.051/0.038)<sup>0.53</sup>×(2.4×10<sup>4</sup>)<sup>0.8</sup>×6.09<sup>0.33</sup>=1362.9 W/(m<sup>2</sup>·K)
+两者结果差别不大。</div>
+          <div class="answer"><span class="k">答案</span>1262.6 W/(m<sup>2</sup>·K)（按式3-30）；1362.9 W/(m<sup>2</sup>·K)（按式3-34）</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch03-ex-006">
+        <div class="ex-head">
+          <span class="label">例3-6</span>
+          <span class="topic">层流自然对流影响</span>
+          <span class="ref">教材 P132</span>
+        </div>
+        <div class="problem text">原油在长度为6m、管径为 φ89mm×6mm 的管内以0.5m/s的流速流过时被加热。已知管内壁温度为150°C，原油的平均温度为40°C。在此温度下油的物性数据：比热容 c<sub>p</sub>=2.0kJ/(kg·°C)，热导率 λ=0.13W/(m·°C)，黏度 μ=2.6×10<sup>-2</sup>Pa·s，密度 ρ=850kg/m<sup>3</sup>，体积膨胀系数 β=0.0011°C<sup>-1</sup>。又知原油在150°C下的黏度为3×10<sup>-3</sup>Pa·s。求原油在管内的对流传热系数。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">管内径 d=89−2×6=77mm=0.077m
+Pr=c<sub>p</sub>μ/λ=2.0×10<sup>3</sup>×2.6×10<sup>-2</sup>/0.13=400
+Re=duρ/μ=0.077×0.5×850/(2.6×10<sup>-2</sup>)=1259&lt;2000，为层流
+l/d=6/0.077=78&gt;60，RePr(d/l)=1259×400×0.077/6=6462&gt;10
+Nu=1.86(RePr d/l)<sup>1/3</sup>(μ/μ<sub>w</sub>)<sup>0.14</sup>=1.86×6462<sup>1/3</sup>×(26/3)<sup>0.14</sup>=1.86×18.63×1.353=46.87
+Gr=βgΔt d<sup>3</sup>ρ<sup>2</sup>/μ<sup>2</sup>=0.0011×9.81×(150−40)×0.077<sup>3</sup>×850<sup>2</sup>/(2.6×10<sup>-2</sup>)<sup>2</sup>=5.792×10<sup>5</sup>&gt;2.5×10<sup>4</sup>
+需考虑自然对流的影响，f=0.8[1+0.015Gr<sup>1/3</sup>]=0.8×[1+0.015×(5.792×10<sup>5</sup>)<sup>1/3</sup>]=1.80
+α=fNuλ/d=1.80×46.87×0.13/0.077=142.4 W/(m<sup>2</sup>·°C)</div>
+          <div class="answer"><span class="k">答案</span>142.4 W/(m<sup>2</sup>·°C)</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch03-ex-007">
+        <div class="ex-head">
+          <span class="label">例3-7</span>
+          <span class="topic">水平圆管自然对流</span>
+          <span class="ref">教材 P136</span>
+        </div>
+        <div class="problem text">外径为0.25m的圆管水平放置于室内，管外表面温度为220°C，室内空气温度为20°C。试求管外壁与空气的自然对流给热系数。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">定性温度 t<sub>m</sub>=(220+20)/2=120°C，查得空气物性：ρ=0.898kg/m<sup>3</sup>，c<sub>p</sub>=1.009×10<sup>3</sup>J/(kg·°C)，λ=0.033W/(m·°C)，μ=2.29×10<sup>-5</sup>Pa·s
+β=1/T=1/(120+273.15)=2.54×10<sup>-3</sup>K<sup>-1</sup>
+Gr=βgΔt l<sup>3</sup>ρ<sup>2</sup>/μ<sup>2</sup>=2.54×10<sup>-3</sup>×9.81×(220−20)×0.25<sup>3</sup>×0.898<sup>2</sup>/(2.29×10<sup>-5</sup>)<sup>2</sup>=1.20×10<sup>8</sup>
+Pr=c<sub>p</sub>μ/λ=1.009×10<sup>3</sup>×2.29×10<sup>-5</sup>/0.033=0.700
+GrPr=1.20×10<sup>8</sup>×0.700=0.84×10<sup>8</sup>
+水平圆管自然对流查表3-5得 C=0.135，n=1/3
+Nu=0.135(GrPr)<sup>1/3</sup>=0.135×(0.84×10<sup>8</sup>)<sup>1/3</sup>=59.12
+α=Nuλ/d<sub>o</sub>=59.12×0.033/0.25=7.80 W/(m<sup>2</sup>·°C)</div>
+          <div class="answer"><span class="k">答案</span>7.80 W/(m<sup>2</sup>·°C)</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch03-ex-008">
+        <div class="ex-head">
+          <span class="label">例3-8</span>
+          <span class="topic">管外蒸汽膜状冷凝</span>
+          <span class="ref">教材 P138</span>
+        </div>
+        <div class="problem text">120°C的饱和水蒸气在一根 φ25mm×2.5mm、长1m 的管外冷凝，已知管外壁温度为80°C。分别求该管垂直放置和水平放置时的蒸汽冷凝传热系数。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">膜温 t<sub>m</sub>=(80+120)/2=100°C，查得水的物性：ρ=958.4kg/m<sup>3</sup>，μ=0.283×10<sup>-3</sup>Pa·s，λ=0.683W/(m·K)
+冷凝温度120°C下水的相变焓 r=2205.2kJ/kg
+（1）垂直放置
+α<sub>垂直</sub>=1.13[rρ<sup>2</sup>gλ<sup>3</sup>/(μlΔt)]<sup>1/4</sup>=1.13×[2205.2×10<sup>3</sup>×958.4<sup>2</sup>×9.81×0.683<sup>3</sup>/(0.283×10<sup>-3</sup>×1×(120−80))]<sup>1/4</sup>=5495.3 W/(m<sup>2</sup>·K)
+校核液膜雷诺数：Re=4α<sub>垂直</sub>lΔt/(rμ)=4×5495.3×1×(120−80)/(2205.2×10<sup>3</sup>×0.283×10<sup>-3</sup>)=1409&lt;1800，层流假定成立
+（2）水平放置
+α<sub>水平</sub>=0.725[rρ<sup>2</sup>gλ<sup>3</sup>/(μd<sub>o</sub>Δt)]<sup>1/4</sup>=0.725×[2205.2×10<sup>3</sup>×958.4<sup>2</sup>×9.81×0.683<sup>3</sup>/(0.283×10<sup>-3</sup>×0.025×(120−80))]<sup>1/4</sup>=8866.7 W/(m<sup>2</sup>·K)</div>
+          <div class="answer"><span class="k">答案</span>垂直放置5495.3 W/(m<sup>2</sup>·K)；水平放置8866.7 W/(m<sup>2</sup>·K)</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch03-ex-009">
+        <div class="ex-head">
+          <span class="label">例3-9</span>
+          <span class="topic">总传热系数计算</span>
+          <span class="ref">教材 P144</span>
+        </div>
+        <div class="problem text">某套管换热器内管为 φ25mm×2.5mm 的钢管。热空气在管内流动，冷却水在环隙流动。已知管内空气的对流传热系数为45W/(m<sup>2</sup>·°C)，环隙中水的对流传热系数为1200W/(m<sup>2</sup>·°C)，内管材料的热导率为45W/(m·°C)。试求：（1）基于换热管外表面积的总传热系数 K；（2）若其他条件都不变，空气的对流传热系数增加1倍，总传热系数变为多少？（3）若其他条件不变，冷却水的对流传热系数增加1倍，总传热系数变为多少？</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">取水侧污垢热阻 R<sub>s1</sub>=2.5×10<sup>-4</sup>m<sup>2</sup>·°C/W，空气侧污垢热阻 R<sub>s2</sub>=4.5×10<sup>-4</sup>m<sup>2</sup>·°C/W
+（1）1/K=1/α<sub>1</sub>+R<sub>s1</sub>+bd<sub>1</sub>/(λd<sub>m</sub>)+R<sub>s2</sub>d<sub>1</sub>/d<sub>2</sub>+d<sub>1</sub>/(α<sub>2</sub>d<sub>2</sub>)
+=1/1200+2.5×10<sup>-4</sup>+0.0025×0.025/(45×0.0225)+4.5×10<sup>-4</sup>×0.025/0.020+0.025/(45×0.020)
+=0.0295 m<sup>2</sup>·°C/W
+K=33.9 W/(m<sup>2</sup>·°C)
+（2）空气侧对流传热系数加倍（90W/(m<sup>2</sup>·°C)）
+1/K′=1/1200+2.5×10<sup>-4</sup>+0.0025×0.025/(45×0.0225)+4.5×10<sup>-4</sup>×0.025/0.020+0.025/(90×0.020)=0.0156 m<sup>2</sup>·°C/W
+K′=64.12 W/(m<sup>2</sup>·°C)
+（3）水侧对流传热系数加倍（2400W/(m<sup>2</sup>·°C)）
+1/K″=1/2400+2.5×10<sup>-4</sup>+0.0025×0.025/(45×0.0225)+4.5×10<sup>-4</sup>×0.025/0.020+0.025/(45×0.020)=0.0291 m<sup>2</sup>·°C/W
+K″=34.4 W/(m<sup>2</sup>·°C)
+空气侧热阻占总热阻的比例最大，提高空气侧 α 效果显著；水侧 α 已较大，再提高对 K 影响很小。</div>
+          <div class="answer"><span class="k">答案</span>(1) K=33.9 W/(m<sup>2</sup>·°C)；(2) K′=64.12 W/(m<sup>2</sup>·°C)；(3) K″=34.4 W/(m<sup>2</sup>·°C)</div>
+          <div class="note text">注：题干未给污垢热阻，教材解答中取水侧 R<sub>s1</sub>=2.5×10<sup>-4</sup>、空气侧 R<sub>s2</sub>=4.5×10<sup>-4</sup> m<sup>2</sup>·°C/W。</div>
+        </div>
+      </article>
+      <article class="ex" id="ch03-ex-010">
+        <div class="ex-head">
+          <span class="label">例3-10</span>
+          <span class="topic">平均温差计算</span>
+          <span class="ref">教材 P149</span>
+        </div>
+        <div class="problem text">在列管式换热器中用20°C的冷却水将有机溶液由120°C冷却至75°C，冷却水出口温度指定为35°C。试求以下三种情况下的平均传热温差：（1）两流体在换热器中逆流流动；（2）两流体在换热器中并流流动；（3）在1-2型换热器中，冷却水在管程作折流。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）逆流：Δt<sub>1</sub>=120−35=85°C，Δt<sub>2</sub>=75−20=55°C
+Δt<sub>m</sub>=(Δt<sub>1</sub>−Δt<sub>2</sub>)/ln(Δt<sub>1</sub>/Δt<sub>2</sub>)=(85−55)/ln(85/55)=68.92°C
+（2）并流：Δt<sub>1</sub>=120−20=100°C，Δt<sub>2</sub>=75−35=40°C
+Δt<sub>m</sub>=(100−40)/ln(100/40)=65.48°C
+（3）1-2型换热器：P=(t<sub>2</sub>−t<sub>1</sub>)/(T<sub>1</sub>−t<sub>1</sub>)=(35−20)/(120−20)=0.15
+R=(T<sub>1</sub>−T<sub>2</sub>)/(t<sub>2</sub>−t<sub>1</sub>)=(120−75)/(35−20)=3.0
+查图3-28(a)得 φ=0.98
+Δt<sub>m</sub>=φΔt<sub>m逆</sub>=0.98×68.92=67.54°C</div>
+          <div class="answer"><span class="k">答案</span>逆流68.92°C；并流65.48°C；1-2型折流67.54°C</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch03-ex-011">
+        <div class="ex-head">
+          <span class="label">例3-11</span>
+          <span class="topic">列管冷凝器计算</span>
+          <span class="ref">教材 P151</span>
+        </div>
+        <div class="problem text">一列管式冷凝器，换热管规格为 φ25mm×2.5mm，其有效长度为3.0m。冷却剂以0.7m/s的流速在管内流过，其温度由20°C升至50°C。流量为5000kg/h、温度为75°C的饱和有机蒸气在壳程冷凝为同温度的液体后排出，冷凝相变焓为310kJ/kg。已知蒸汽冷凝传热系数为800W/(m<sup>2</sup>·°C)，冷却剂的对流传热系数为2500W/(m<sup>2</sup>·°C)。冷却剂侧的污垢热阻为0.00055m<sup>2</sup>·K/W，蒸汽侧污垢热阻和管壁热阻忽略不计。试计算该换热器的传热面积，并确定该换热器中换热管的总根数及管程数。已知冷却剂的比热容为2.5kJ/(kg·K)，密度为860kg/m<sup>3</sup>。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">Q=q<sub>m1</sub>r=(5000/3600)×310×10<sup>3</sup>=4.31×10<sup>5</sup>W
+有机蒸气75°C冷凝，冷却剂20→50°C：Δt<sub>1</sub>=75−50=25°C，Δt<sub>2</sub>=75−20=55°C
+Δt<sub>m</sub>=(55−25)/ln(55/25)=38.0°C
+1/K=1/800+(1/2500)×(25/20)+0.00055×25/20=2.44×10<sup>-3</sup> m<sup>2</sup>·K/W
+K=410 W/(m<sup>2</sup>·K)
+A=Q/(KΔt<sub>m</sub>)=4.31×10<sup>5</sup>/(410×38.0)=27.7m<sup>2</sup>
+冷却剂流量 q<sub>m<sup>2</sup></sub>=Q/[c<sub>p2</sub>(t<sub>2</sub>−t<sub>1</sub>)]=4.31×10<sup>5</sup>/(2.5×10<sup>3</sup>×30)=5.75kg/s
+单程管数 n<sub>i</sub>=q<sub>m<sup>2</sup></sub>/(ρ(π/4)d<sub>i</sub><sup>2</sup>u)=5.75/(860×0.785×0.020<sup>2</sup>×0.7)≈30根
+单程换热面积 A<sub>i</sub>=n<sub>i</sub>πd<sub>1</sub>l=30×3.14×0.025×3.0=7.07m<sup>2</sup>
+管程数 N<sub>P</sub>=A/A<sub>i</sub>=27.7/7.07=3.92≈4
+总管数 n=4×30=120根</div>
+          <div class="answer"><span class="k">答案</span>传热面积A=27.7m<sup>2</sup>；管程数4；换热管总管数120根</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch03-ex-012">
+        <div class="ex-head">
+          <span class="label">例3-12</span>
+          <span class="topic">换热器出口温度</span>
+          <span class="ref">教材 P152</span>
+        </div>
+        <div class="problem text">在传热面积为4.2m<sup>2</sup>的换热器中用冷却水冷却某有机溶液。冷却水流量为5200kg/h，入口温度为25°C，比热容为4.17kJ/(kg·K)；有机溶液的流量为3800kg/h，入口温度为82°C，比热容为2.45kJ/(kg·K)。已知有机溶液与冷却水逆流接触，冷却水和有机溶液的对流传热系数分别为2000W/(m<sup>2</sup>·K)和1800W/(m<sup>2</sup>·K)，忽略管壁热阻和污垢热阻。试求两流体的出口温度。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">K=1/(1/2000+1/1800)=947.4 W/(m<sup>2</sup>·K)
+由式(3-86)：ln[(T<sub>1</sub>−t<sub>2</sub>)/(T<sub>2</sub>−t<sub>1</sub>)]=(KA/(q<sub>m1</sub>c<sub>p1</sub>))(1−q<sub>m1</sub>c<sub>p1</sub>/(q<sub>m<sup>2</sup></sub>c<sub>p2</sub>))
+=947.4×4.2/(3800×2.45×10<sup>3</sup>/3600)×(1−3800×2.45/(5200×4.17))=0.878
+热衡算：(t<sub>2</sub>−25)/(82−T<sub>2</sub>)=q<sub>m1</sub>c<sub>p1</sub>/(q<sub>m<sup>2</sup></sub>c<sub>p2</sub>)=3800×2.45/(5200×4.17)=0.429
+联立解得 T<sub>2</sub>=41.46°C，t<sub>2</sub>=42.39°C</div>
+          <div class="answer"><span class="k">答案</span>有机溶液出口温度T<sub>2</sub>=41.46°C；冷却水出口温度t<sub>2</sub>=42.39°C</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch03-ex-013">
+        <div class="ex-head">
+          <span class="label">例3-13</span>
+          <span class="topic">污垢热阻估算</span>
+          <span class="ref">教材 P153</span>
+        </div>
+        <div class="problem text">一换热管规格为 φ25mm×2.5mm、传热面积为18m<sup>2</sup>的列管式换热器，在其壳程用112°C的饱和水蒸气将在管程中流动的某溶液由20°C加热至80°C。溶液的处理量为2.5×10<sup>4</sup>kg/h，比热容为4.0kJ/(kg·K)。蒸汽侧污垢热阻忽略不计。（1）若该换热器使用一年后，由于溶液侧污垢热阻的增加，溶液的出口温度只能达到73°C，试求污垢热阻值；（2）若要使出口温度仍维持在80°C，拟采用提高加热蒸汽温度的办法，问加热蒸汽温度应升高至多少？</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）使用初期：Δt<sub>m</sub>=[(112−20)−(112−80)]/ln[(112−20)/(112−80)]=(92−32)/ln(92/32)=56.8°C
+Q=q<sub>m</sub>c<sub>p</sub>(t<sub>2</sub>−t<sub>1</sub>)=(2.5×10<sup>4</sup>/3600)×4.0×10<sup>3</sup>×(80−20)=1.667×10<sup>6</sup>W
+K=Q/(AΔt<sub>m</sub>)=1.667×10<sup>6</sup>/(18×56.8)=1630.2 W/(m<sup>2</sup>·°C)
+一年后 t<sub>2</sub>′=73°C：Δt′<sub>m</sub>=[(112−20)−(112−73)]/ln[(112−20)/(112−73)]=(92−39)/ln(92/39)=61.8°C
+Q′=q<sub>m</sub>c<sub>p</sub>(t<sub>2</sub>′−t<sub>1</sub>)=(2.5×10<sup>4</sup>/3600)×4.0×10<sup>3</sup>×(73−20)=1.472×10<sup>6</sup>W
+K′=Q′/(AΔt′<sub>m</sub>)=1.472×10<sup>6</sup>/(18×61.8)=1323.5 W/(m<sup>2</sup>·°C)
+R<sub>s</sub>=1/K′−1/K=1/1323.5−1/1630.2=1.42×10<sup>-4</sup>m<sup>2</sup>·K/W
+（2）仍维持出口80°C，热负荷不变，K 取 K′=1323.5 W/(m<sup>2</sup>·°C)
+由 Q=K′AΔt″<sub>m</sub> 得 ln[(T″−20)/(T″−80)]=K′A/(q<sub>m</sub>c<sub>p</sub>)=(1323.5×18)/(2.5×10<sup>4</sup>×4.0×10<sup>3</sup>/3600)=0.858
+解得 T″=124.2°C</div>
+          <div class="answer"><span class="k">答案</span>(1) R<sub>s</sub>=1.42×10<sup>-4</sup>m<sup>2</sup>·K/W；(2) 加热蒸汽温度应升高至124.2°C</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch03-ex-014">
+        <div class="ex-head">
+          <span class="label">例3-14</span>
+          <span class="topic">换热器壁温计算</span>
+          <span class="ref">教材 P154</span>
+        </div>
+        <div class="problem text">生产中用一换热管规格为 φ25mm×2.5mm（钢管）的列管换热器回收裂解气的余热。用于回收余热的介质水在管外达到沸腾，其传热系数为10000W/(m<sup>2</sup>·K)。该侧压力为2500kPa（表压）。管内走裂解气，其温度由580°C下降至472°C，该侧的对流传热系数为230W/(m<sup>2</sup>·K)。若忽略污垢热阻，试求换热管内、外表面的温度。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">1/K=1/α<sub>1</sub>+(b/λ)(d<sub>1</sub>/d<sub>m</sub>)+(1/α<sub>2</sub>)(d<sub>1</sub>/d<sub>2</sub>)=1/10000+(0.0025/45)×(25/22.5)+(1/230)×(25/20)=5.6×10<sup>-3</sup> m<sup>2</sup>·K/W
+K=178.7 W/(m<sup>2</sup>·K)
+由2500kPa（表压）查得水的饱和温度 t=226°C
+Δt<sub>m</sub>=[(580−226)−(472−226)]/ln[(580−226)/(472−226)]=(354−246)/ln(354/246)=297°C
+热流密度 q=KΔt<sub>m</sub>=178.7×297=53074 W/m<sup>2</sup>
+裂解气平均温度 T=(580+472)/2=526°C
+管内壁温度 T<sub>w</sub>=T−(q/α<sub>2</sub>)(d<sub>1</sub>/d<sub>2</sub>)=526−(53074/230)×(25/20)=237.6°C
+管外壁温度 t<sub>w</sub>=t+q/α<sub>1</sub>=226+53074/10000=231.3°C</div>
+          <div class="answer"><span class="k">答案</span>管内壁温度T<sub>w</sub>=237.6°C；管外壁温度t<sub>w</sub>=231.3°C</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch03-ex-015">
+        <div class="ex-head">
+          <span class="label">例3-15</span>
+          <span class="topic">黑体辐射能力</span>
+          <span class="ref">教材 P156</span>
+        </div>
+        <div class="problem text">试计算黑体表面温度分别为25°C及500°C时的辐射能力。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">E=C<sub>0</sub>(T/100)<sup>4</sup>，黑体辐射系数 C<sub>0</sub>=5.669 W/(m<sup>2</sup>·K<sup>4</sup>)
+25°C时：T=273.15+25=298.15K
+E<sub>25</sub>=5.669×(298.15/100)<sup>4</sup>=448 W/m<sup>2</sup>
+500°C时：T=273.15+500=773.15K
+E<sub>500</sub>=5.669×(773.15/100)<sup>4</sup>=20256 W/m<sup>2</sup>
+E<sub>500</sub>/E<sub>25</sub>=20256/448=45.2</div>
+          <div class="answer"><span class="k">答案</span>25°C时E=448 W/m<sup>2</sup>；500°C时E=20256 W/m<sup>2</sup>，为25°C时的45.2倍</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch03-ex-016">
+        <div class="ex-head">
+          <span class="label">例3-16</span>
+          <span class="topic">辐射遮热板</span>
+          <span class="ref">教材 P158</span>
+        </div>
+        <div class="problem text">考虑两无限大平行平面间的辐射传热。已知两平面材料的黑度分别为0.32和0.78。若在这两个平面间放置一个黑度为0.04的无限大抛光铝板以减少辐射传热量，试求在原两平面温度不变的情况下由于插入铝板而使辐射传热量减少的百分数。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">插入前：q<sub>1-2</sub>=C<sub>1-2</sub>(X<sub>1</sub>−X<sub>2</sub>)，其中 X=(T/100)<sup>4</sup>
+C<sub>1-2</sub>=C<sub>0</sub>/(1/ε<sub>1</sub>+1/ε<sub>2</sub>−1)=C<sub>0</sub>/(1/0.32+1/0.78−1)=0.294C<sub>0</sub>
+插入铝板后达稳定：q<sub>1-3</sub>=q<sub>3-2</sub>=q′
+C<sub>1-3</sub>(X<sub>1</sub>−X<sub>3</sub>)=C<sub>3-2</sub>(X<sub>3</sub>−X<sub>2</sub>)
+解得 X<sub>3</sub>=(C<sub>1-3</sub>X<sub>1</sub>+C<sub>3-2</sub>X<sub>2</sub>)/(C<sub>1-3</sub>+C<sub>3-2</sub>)
+q′=C<sub>1-3</sub>(X<sub>1</sub>−X<sub>3</sub>)=[C<sub>1-3</sub>C<sub>3-2</sub>/(C<sub>1-3</sub>+C<sub>3-2</sub>)](X<sub>1</sub>−X<sub>2</sub>)
+C<sub>1-3</sub>=C<sub>0</sub>/(1/0.32+1/0.04−1)=0.0369C<sub>0</sub>
+C<sub>3-2</sub>=C<sub>0</sub>/(1/0.04+1/0.78−1)=0.0396C<sub>0</sub>
+q′/q<sub>1-2</sub>=C<sub>1-3</sub>C<sub>3-2</sub>/[(C<sub>1-3</sub>+C<sub>3-2</sub>)C<sub>1-2</sub>]=(0.0369×0.0396)/[(0.0369+0.0396)×0.294]=0.065
+减少的百分数=(1−0.065)×100%=93.5%</div>
+          <div class="answer"><span class="k">答案</span>辐射传热量减少93.5%</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch03-ex-017">
+        <div class="ex-head">
+          <span class="label">例3-17</span>
+          <span class="topic">管道自然对流散热</span>
+          <span class="ref">教材 P160</span>
+        </div>
+        <div class="problem text">有 φ89mm×3.5mm 蒸汽管道，垂直放置，外包厚度为30mm的保温层，其外壁温度为90°C。若周围空气温度为20°C，试计算单位管长的热损失。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">保温层外径 d=0.089+2×0.03=0.149m
+垂直管道自然对流与辐射联合传热系数：α<sub>T</sub>=9.4+0.052(t<sub>w</sub>−t)=9.4+0.052×(90−20)=13.04 W/(m<sup>2</sup>·°C)
+Q/L=α<sub>T</sub>πd(t<sub>w</sub>−t)=13.04×3.14×0.149×70=427.1 W/m</div>
+          <div class="answer"><span class="k">答案</span>Q/L=427.1 W/m</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch03-ex-018">
+        <div class="ex-head">
+          <span class="label">例3-18</span>
+          <span class="topic">列管换热器选型</span>
+          <span class="ref">教材 P170</span>
+        </div>
+        <div class="problem text">欲用井水将13500kg/h的煤油从140°C冷却到40°C，冷水进、出口温度分别为30°C和40°C。试选择合适型号的列管式换热器。假设管壁热阻和热损失可以忽略。定性温度下流体物性见表3-12：煤油 ρ=810kg/m<sup>3</sup>、c<sub>p</sub>=2.3kJ/(kg·°C)、μ=0.91×10<sup>-3</sup>Pa·s、λ=0.13W/(m·°C)；水 ρ=994kg/m<sup>3</sup>、c<sub>p</sub>=4.187kJ/(kg·°C)、μ=0.727×10<sup>-3</sup>Pa·s、λ=0.626W/(m·°C)。（表3-12）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）计算热负荷及平均传热温差
+Q=q<sub>m1</sub>c<sub>p1</sub>(T<sub>1</sub>−T<sub>2</sub>)=13500×2.3×10<sup>3</sup>×(140−40)/3600=862500W
+冷却水用量 q<sub>m<sup>2</sup></sub>=Q/[c<sub>p2</sub>(t<sub>2</sub>−t<sub>1</sub>)]=862500×3600/(4.187×10<sup>3</sup>×10)=74158kg/h
+按逆流：Δt<sub>1</sub>=140−40=100°C，Δt<sub>2</sub>=40−30=10°C
+Δt<sub>m逆</sub>=(100−10)/ln(100/10)=39.1°C
+P=(t<sub>2</sub>−t<sub>1</sub>)/(T<sub>1</sub>−t<sub>1</sub>)=(40−30)/(140−30)=0.09，R=(T<sub>1</sub>−T<sub>2</sub>)/(t<sub>2</sub>−t<sub>1</sub>)=(140−40)/(40−30)=10
+查图3-28(a)并外推得 φ=0.85
+Δt<sub>m</sub>=φΔt<sub>m逆</sub>=0.85×39.1=33.24°C
+（2）初选换热器
+取 K<sub>估</sub>=300 W/(m<sup>2</sup>·°C)，A<sub>0</sub>=Q/(K<sub>估</sub>Δt<sub>m</sub>)=862500/(300×33.24)=86.5m<sup>2</sup>
+冷却水体积流量 q<sub>v2</sub>=74158/(994×3600)=0.0207m<sup>3</sup>/s
+选 φ25mm×2.5mm 换热管，管程流速取0.7m/s，单程管数 n<sub>i</sub>=q<sub>v2</sub>/(0.785d<sub>i</sub><sup>2</sup>u)=0.0207/(0.785×0.020<sup>2</sup>×0.7)≈94根
+所需管长 l=A<sub>0</sub>/(n<sub>i</sub>πd<sub>1</sub>)=86.5/(94×3.14×0.025)=11.72m
+取管长6m，则管程数 N<sub>P</sub>=11.72/6≈2，总管数 n=2×94=188根
+两流体平均温差55°C（&gt;50°C），需考虑热补偿，选用浮头式换热器
+查表选用 AES600-1.6-91-6/25-2：壳径600mm，公称压强1.6MPa，计算传热面积91.5m<sup>2</sup>，管程数2，管子总数198根，管程流通截面积0.0311m<sup>2</sup>
+（3）校核总传热系数
+管程水：u=0.0207/0.0311=0.667m/s
+Re=0.020×0.667×994/(0.727×10<sup>-3</sup>)=18239
+Pr=4.187×10<sup>3</sup>×0.727×10<sup>-3</sup>/0.626=4.86
+α<sub>2</sub>=0.023(λ/d<sub>i</sub>)Re<sup>0.8</sup>Pr<sup>0.4</sup>=0.023×(0.626/0.020)×18239<sup>0.8</sup>×4.86<sup>0.4</sup>=3469.2 W/(m<sup>2</sup>·°C)
+壳程煤油：取管间距 t=32mm，折流板间距 h=150mm
+S<sub>max</sub>=hD(1−d<sub>1</sub>/t)=0.15×0.6×(1−0.025/0.032)=0.0197m<sup>2</sup>
+u=q<sub>m1</sub>/(3600ρS<sub>max</sub>)=13500/(3600×810×0.0197)=0.234m/s
+当量直径 d<sub>e</sub>=4(t<sup>2</sup>−πd<sub>1</sub><sup>2</sup>/4)/(πd<sub>1</sub>)=4×(0.032<sup>2</sup>−0.785×0.025<sup>2</sup>)/(3.14×0.025)=0.027m
+Re=d<sub>e</sub>uρ/μ=0.027×0.234×810/(0.91×10<sup>-3</sup>)=5623.4
+Pr=c<sub>p</sub>μ/λ=2.3×10<sup>3</sup>×0.91×10<sup>-3</sup>/0.13=16.1
+取 (μ/μ<sub>w</sub>)<sup>0.14</sup>=0.95
+α<sub>1</sub>=0.36(λ/d<sub>e</sub>)Re<sup>0.55</sup>Pr<sup>1/3</sup>(μ/μ<sub>w</sub>)<sup>0.14</sup>=0.36×(0.13/0.027)×5623.4<sup>0.55</sup>×16.1<sup>1/3</sup>×0.95=481.3 W/(m<sup>2</sup>·°C)
+取壳程（煤油）污垢热阻 R<sub>s1</sub>=0.00017m<sup>2</sup>·°C/W，管程（水）污垢热阻 R<sub>s2</sub>=0.00034m<sup>2</sup>·°C/W
+K<sub>计</sub>=1/[1/α<sub>1</sub>+R<sub>s1</sub>+R<sub>s2</sub>(d<sub>1</sub>/d<sub>2</sub>)+d<sub>1</sub>/(α<sub>2</sub>d<sub>2</sub>)]=1/[1/481.3+0.00017+0.00034×25/20+25/(3469.2×20)]=329.7 W/(m<sup>2</sup>·°C)
+A<sub>计</sub>=Q/(K<sub>计</sub>Δt<sub>m</sub>)=862500/(329.7×33.24)=78.7m<sup>2</sup>
+A/A<sub>计</sub>=91.5/78.7=1.163&gt;1，所选换热器合适。</div>
+          <div class="answer"><span class="k">答案</span>选用AES600-1.6-91-6/25-2型浮头式换热器（计算传热面积91.5m<sup>2</sup>）；K<sub>计</sub>=329.7 W/(m<sup>2</sup>·°C)，A/A<sub>计</sub>=1.163</div>
+          
+        </div>
+      </article>
+    </section>
+    <section class="chapter" id="ch04">
+      <div class="ch-head"><h2>第4章 蒸发</h2><span class="count">2 例</span></div>
+      <article class="ex" id="ch04-ex-001">
+        <div class="ex-head">
+          <span class="label">例4-1</span>
+          <span class="topic">单效真空蒸发计算</span>
+          <span class="ref">教材 P185</span>
+        </div>
+        <div class="problem text">采用单效真空蒸发装置，连续蒸发 NaOH 水溶液。已知进料量为 2000kg/h，进料浓度为 10%（质量分数），沸点进料，完成液浓度为 48.3%（质量分数），其密度为 1500kg/m<sup>3</sup>，加热蒸汽压强（表压）为 0.3MPa，冷凝器的真空度为 51kPa，加热室管内液层高度为 3m。试求蒸发水量、加热蒸汽消耗量和蒸发器传热面积。已知总传热系数为 1500W/(m<sup>2</sup>·K)，蒸发器的热损失为加热蒸汽量的 5%，当地大气压为 101.3kPa。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）水分蒸发量：
+W = F(1 − x<sub>0</sub>/x<sub>1</sub>) = 2000×(1 − 0.1/0.483) = 1586kg/h
+（2）加热蒸汽消耗量。由：
+D = (Wr&#x27; + Q<sub>L</sub>)/r，Q<sub>L</sub> = 0.05Dr
+则有：
+D = Wr&#x27;/(0.95r)
+由本书附录 5 查得：当 p = 0.3MPa（表）时，T = 143.5°C，r = 2137.0kJ/kg；当 p<sub>c</sub> = 51kPa（真空度）时，T&#x27;<sub>c</sub> = 81.2°C，r&#x27; = 2304kJ/kg。故：
+D = 1586×2304/(0.95×2137) = 1800kg/h
+D/W = 1800/1586 = 1.13
+（3）传热面积 A。
+① 确定溶液沸点。
+a. 计算 Δ&#x27;。已查知 p<sub>c</sub> = 51kPa（真空度）下，冷凝器中二次蒸汽的饱和温度 T&#x27;<sub>c</sub> = 81.2°C。查附录 10，常压下 48.3% NaOH 溶液的沸点近似为 t<sub>A</sub> = 140°C，则有：
+Δ&#x27;<sub>常</sub> = 140 − 100 = 40°C
+因二次蒸汽的真空度为 51kPa，故 Δ&#x27; 需用式(4-10)校正，即：
+f = 0.0162(T&#x27;+273)<sup>2</sup>/r&#x27; = 0.0162×(81.2+273)<sup>2</sup>/2304 = 0.88
+Δ&#x27; = 0.88×40 = 35.3°C
+b. 计算 Δ&#x27;&#x27;。由于二次蒸汽流动的压降较少，故分离室压力可视为冷凝器的压力，则：
+p<sub>av</sub> = p&#x27; + ρ<sub>av</sub>gh/2 = 50 + 1500×9.81×3×10<sup>−3</sup>/2 = 50+22 = 72kPa
+查附录 5 得 72kPa 下对应水的沸点为 90.4°C，则：
+Δ&#x27;&#x27; = 90.4 − 81.2 = 9.2°C
+c. Δ&#x27;&#x27;&#x27; = 1°C，则溶液的沸点：
+t = T&#x27;<sub>c</sub> + Δ&#x27; + Δ&#x27;&#x27; + Δ&#x27;&#x27;&#x27; = 81.2+34.8+9.2+1 = 126.2°C
+② 传热面积。已知总传热系数 K = 1500W/(m<sup>2</sup>·K)，由式(4-6a)、式(4-7)和式(4-8)得蒸发器加热面积为：
+A = Q/(KΔt<sub>m</sub>) = Dr/(K(T−t<sub>1</sub>)) = 1586×2137×10<sup>3</sup>/(3600×1500×(143.5−126.2)) = 1586×2137×10<sup>3</sup>/(1500×17.3×3600) = 36.3m<sup>2</sup></div>
+          <div class="answer"><span class="k">答案</span>蒸发水量 W = 1586kg/h；加热蒸汽消耗量 D = 1800kg/h（D/W = 1.13）；传热面积 A = 36.3m<sup>2</sup></div>
+          <div class="note text">注：教材 P186 中 Δ&#x27; = 0.88×40 = 35.3°C，但计算溶液沸点时写作 81.2+34.8+9.2+1 = 126.2°C，两处相差 0.5°C；此处按教材原文照录，最终取 t = 126.2°C、A = 36.3m<sup>2</sup>。</div>
+        </div>
+      </article>
+      <article class="ex" id="ch04-ex-002">
+        <div class="ex-head">
+          <span class="label">例4-2</span>
+          <span class="topic">双效并流蒸发设计</span>
+          <span class="ref">教材 P191</span>
+        </div>
+        <div class="problem text">设计连续操作、并流加料的双效蒸发装置，将原料为 10% 的 NaOH 水溶液浓缩到 50%（均为质量分数）。已知原料液量为 10000kg/h，沸点加料，加热蒸汽采用 500kPa（绝压）的饱和水蒸气，冷凝器的操作压力为 15kPa（绝压）。第 1 效、第 2 效的传热系数分别为 1170W/(m<sup>2</sup>·°C) 和 700W/(m<sup>2</sup>·°C)。原料液的比热容为 3.77kJ/(kg·°C)。两效中溶液的平均密度分别为 1120kg/m<sup>3</sup> 和 1460kg/m<sup>3</sup>，估计蒸发器中溶液的液层高度为 1.2m，各效冷凝液均在饱和温度下排出。试求：（1）总蒸发量和各效蒸发量；（2）加热蒸汽量；（3）各效蒸发器所需传热面积（要求各效传热面积相等）。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）总蒸发量。由式(4-24)：
+W = F(1 − x<sub>0</sub>/x<sub>n</sub>) = 10000×(1 − 0.1/0.5) = 8000kg/h
+（2）设各效蒸发量的初值。两效并流操作时，W<sub>1</sub>:W<sub>2</sub> = 1:1.1，W = W<sub>1</sub>+W<sub>2</sub>，故：
+W<sub>1</sub> = 8000/2.1 = 3810kg/h，W<sub>2</sub> = 4190kg/h
+再由式(4-25)：
+x<sub>1</sub> = Fx<sub>0</sub>/(F−W<sub>1</sub>) = 10000×0.1/(10000−3810) = 0.162，x<sub>2</sub> = 0.50
+（3）设定各效压力，求各效溶液沸点。按各效等压降原则：
+Δp = (500−15)/2 = 242.5kPa
+p<sub>1</sub> = 500−242.5 = 257.5kPa，p<sub>2</sub> = 15kPa
+对第 1 效：
+① 查附录 10 得常压下浓度为 16.2% 的 NaOH 溶液的沸点为 t<sub>A</sub> = 105.9°C，Δ&#x27;<sub>常</sub> = 105.9−100 = 5.9°C。查二次蒸汽为 257.5kPa 下的饱和温度为 T&#x27;<sub>1</sub> = 127.9°C，r&#x27;<sub>1</sub> = 2183kJ/kg。Δ&#x27;<sub>常</sub> 需校正，由式(4-9)：
+Δ&#x27;<sub>1</sub> = 0.0162×(127.9+273)<sup>2</sup>/2183×5.9 = 7.0°C
+② 液层的平均压力：
+p<sub>av,1</sub> = 257.5 + 1120×9.81×1.2/(2×10<sup>3</sup>) = 264kPa
+在此压力下水的沸点为 128.9°C，故：
+Δ&#x27;&#x27;<sub>1</sub> = 128.9−127.9 = 1.0°C
+③ 取 Δ&#x27;&#x27;&#x27; 为 1°C，第 1 效中溶液的沸点：
+t<sub>1</sub> = T&#x27;<sub>1</sub> + Δ&#x27;<sub>1</sub> + Δ&#x27;&#x27;<sub>1</sub> + Δ&#x27;&#x27;&#x27; = 127.9+7+1.0+1 = 136.9°C
+对第 2 效：
+① 查取常压下 50% NaOH 溶液的沸点为 t<sub>B</sub> = 142.8°C，又查取 p&#x27;<sub>2</sub> = 15kPa 下水的沸点为 T&#x27;<sub>2</sub> = 53.5°C，r&#x27;<sub>2</sub> = 2370kJ/kg，Δ&#x27;<sub>2常</sub> = 142.8−100 = 42.8°C，则：
+Δ&#x27;<sub>2</sub> = 0.0162×(53.5+273)<sup>2</sup>/2370×42.8 = 31.2°C
+② 液层的平均压力：
+p<sub>av,2</sub> = 15 + 1460×9.81×1.2/(2×10<sup>3</sup>) = 23.6kPa
+在此压力下水的沸点为 63.6°C，故：
+Δ&#x27;&#x27;<sub>2</sub> = 63.6−53.5 = 10.1°C
+③ 取 Δ&#x27;&#x27;&#x27; 为 1°C，第 2 效中溶液的沸点：
+t<sub>2</sub> = T&#x27;<sub>2</sub> + Δ&#x27;<sub>2</sub> + Δ&#x27;&#x27;<sub>2</sub> + Δ&#x27;&#x27;&#x27; = 53.5+31.2+10.1+1 = 95.8°C
+（4）求加热蒸汽量及各效蒸发量。第 1 效为沸点加料，有 T<sub>0</sub> = t<sub>1</sub> = 136.9°C，故热利用系数：
+η<sub>1</sub> = 0.98−0.7×(0.162−0.1) = 0.937
+查饱和水蒸气表可知，压力为 500kPa 时加热蒸汽的饱和温度 T<sub>1</sub> = 151.7°C，相变焓 r<sub>1</sub> = 2113kJ/kg；压力为 257.5kPa 下相变焓 r&#x27;<sub>1</sub> = 2183kJ/kg。因沸点进料，t<sub>0</sub> = t<sub>1</sub>，由式(4-32)：
+W<sub>1</sub> = η<sub>1</sub>D<sub>1</sub>r<sub>1</sub>/r&#x27;<sub>1</sub> = 0.937×2113/2183×D<sub>1</sub> = 0.907D<sub>1</sub>　(1)
+第 2 效的热利用系数：
+η<sub>2</sub> = 0.98−0.7×(0.5−0.162) = 0.743
+r<sub>2</sub> ≈ r&#x27;<sub>1</sub> = 2183kJ/kg
+第 2 效中溶液的沸点为 95.8°C，查相应二次蒸汽的相变焓 r&#x27;<sub>2</sub> = 2269kJ/kg，由式(4-32)：
+W<sub>2</sub> = η<sub>2</sub>[W<sub>1</sub>r<sub>2</sub>/r&#x27;<sub>2</sub> + (Fc<sub>p0</sub>−W<sub>1</sub>c<sub>pw</sub>)(t<sub>1</sub>−t<sub>2</sub>)/r&#x27;<sub>2</sub>]
+= 0.743[W<sub>1</sub>×2183/2269 + (10000×3.77−4.187W<sub>1</sub>)×(136.9−95.8)/2269]
+= 0.743(0.96W<sub>1</sub>+682.9−0.076W<sub>1</sub>) = 0.657W<sub>1</sub>+507.4　(2)
+又：
+W<sub>1</sub>+W<sub>2</sub> = 8000kg/h　(3)
+由式(1)、式(2)、式(3)解得：
+W<sub>1</sub> = 4522kg/h，W<sub>2</sub> = 3478kg/h，D<sub>1</sub> = 4988kg/h
+（5）求各效的传热面积。由式(4-33)：
+A<sub>1</sub> = Q<sub>1</sub>/(K<sub>1</sub>Δt<sub>1</sub>) = D<sub>1</sub>r<sub>1</sub>/(K<sub>1</sub>(T<sub>1</sub>−t<sub>1</sub>)) = 4988×2113×10<sup>3</sup>/(1170×(151.7−136.9)×3600) = 169.1m<sup>2</sup>
+A<sub>2</sub> = Q<sub>2</sub>/(K<sub>2</sub>Δt<sub>2</sub>) = W<sub>1</sub>r&#x27;<sub>1</sub>/(K<sub>2</sub>(T&#x27;<sub>1</sub>−t<sub>2</sub>)) = 4522×2183×10<sup>3</sup>/(700×(127.9−95.8)×3600) = 122.0m<sup>2</sup>
+（6）校核第一次计算结果。由于 A<sub>1</sub> ≠ A<sub>2</sub>，且 W<sub>1</sub>、W<sub>2</sub> 与初值相差较大，需重新分配各效温差，再次设定蒸发量，重新计算。
+① 重新分配各效温度差，取重新调整后的传热面积 A<sub>1</sub> = A<sub>2</sub> = A，并设调整后的各效推动力为：
+Δt&#x27;<sub>1</sub> = Q<sub>1</sub>/(K<sub>1</sub>A)，Δt&#x27;<sub>2</sub> = Q<sub>2</sub>/(K<sub>2</sub>A)
+由式(4-34)可得：
+Δt&#x27;<sub>1</sub> = A<sub>1</sub>Δt<sub>1</sub>/A，Δt&#x27;<sub>2</sub> = A<sub>2</sub>Δt<sub>2</sub>/A
+两式相加：
+Δt&#x27;<sub>1</sub>+Δt&#x27;<sub>2</sub> = (A<sub>1</sub>Δt<sub>1</sub>+A<sub>2</sub>Δt<sub>2</sub>)/A
+则：
+A = (A<sub>1</sub>Δt<sub>1</sub>+A<sub>2</sub>Δt<sub>2</sub>)/(Δt&#x27;<sub>1</sub>+Δt&#x27;<sub>2</sub>) = [169.1×(151.7−136.9)+122.0×(127.9−95.8)]/[(151.7−136.9)+(127.9−95.8)] = 136.9m<sup>2</sup>
+② 取各效蒸发量为上一次计算值，即 W<sub>1</sub> = 4522kg/h，W<sub>2</sub> = 3478kg/h。
+③ 重复上述步骤(3)~(6)。重算后各效温度：第 1 效加热蒸汽温度 151.7°C、溶液沸点 133.4°C、二次蒸汽温度 127.9°C、加热蒸汽潜热 2113kJ/kg；第 2 效加热蒸汽温度 127.9°C、溶液沸点 100.1°C、二次蒸汽温度 53.5°C、加热蒸汽潜热 2183kJ/kg。
+并计算出：
+W<sub>1</sub> = 4512kg/h，W<sub>2</sub> = 3488kg/h，D<sub>1</sub> = 5053kg/h
+A<sub>1</sub> = D<sub>1</sub>r<sub>1</sub>/(K<sub>1</sub>Δt&#x27;<sub>1</sub>) = 5053×2113×10<sup>3</sup>/(1170×18.3×3600) = 138.5m<sup>2</sup>
+A<sub>2</sub> = W<sub>1</sub>r&#x27;<sub>1</sub>/(K<sub>2</sub>Δt&#x27;<sub>2</sub>) = 4512×2183×10<sup>3</sup>/(700×27.8×3600) = 140.6m<sup>2</sup>
+重算后的结果与初设值基本一致，可认为结果合适，并取有效传热面积为 140m<sup>2</sup>。</div>
+          <div class="answer"><span class="k">答案</span>总蒸发量 W = 8000kg/h；W<sub>1</sub> = 4512kg/h，W<sub>2</sub> = 3488kg/h；加热蒸汽量 D<sub>1</sub> = 5053kg/h；有效传热面积 A = 140m<sup>2</sup></div>
+          
+        </div>
+      </article>
+    </section>
+    <section class="chapter" id="ch05">
+      <div class="ch-head"><h2>第5章 气体吸收</h2><span class="count">16 例</span></div>
+      <article class="ex" id="ch05-ex-001">
+        <div class="ex-head">
+          <span class="label">例5-1</span>
+          <span class="topic">氨的组成表示换算</span>
+          <span class="ref">教材 P206</span>
+        </div>
+        <div class="problem text">在压力为常压、温度为 298K 的吸收塔内，用水吸收混合气中的 NH<sub>3</sub>。已知混合气体中含 NH<sub>3</sub> 的体积分数为 20%，其余组分可看作惰性气体，出塔气体中含 NH<sub>3</sub> 体积分数为 0.2%，试分别用摩尔分数、摩尔比和物质的量浓度表示出塔气体中 NH<sub>3</sub> 的组成。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">混合气可视为理想气体，以下标 2 表示出塔气体的状态。
+y<sub>2</sub> = 0.002
+Y<sub>2</sub> = y<sub>2</sub>/(1 − y<sub>2</sub>) = 0.002/(1 − 0.002) ≈ 0.002
+p<sub>A2</sub> = p y<sub>2</sub> = 101.3×0.002 = 0.2026 kPa
+c<sub>A2</sub> = n<sub>A2</sub>/V = p<sub>A2</sub>/(RT) = 0.2026/(8.314×298) = 8.177×10<sup>-5</sup> kmol/m<sup>3</sup></div>
+          <div class="answer"><span class="k">答案</span>y<sub>2</sub> = 0.002，Y<sub>2</sub> ≈ 0.002，c<sub>A2</sub> = 8.177×10<sup>-5</sup> kmol/m<sup>3</sup>（p<sub>A2</sub> = 0.2026kPa）</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch05-ex-002">
+        <div class="ex-head">
+          <span class="label">例5-2</span>
+          <span class="topic">水中氧溶解度</span>
+          <span class="ref">教材 P213</span>
+        </div>
+        <div class="problem text">某系统温度为 10°C，总压 101.3kPa，试求此条件下在与空气充分接触后的水中，每立方米水溶解了多少克氧气？（空气中氧的摩尔分数为 0.21）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">空气按理想气体处理，由道尔顿分压定律可知，氧气在气相中的分压为
+p<sub>A</sub><sup>*</sup> = p y = 101.3×0.21 = 21.27 kPa
+氧气为难溶气体，故氧气在水中的液相组成 x 很低，气液相平衡关系服从亨利定律，由表 5-2 查得 10°C 时氧气在水中的亨利系数 E 为 3.31×10<sup>6</sup> kPa。
+由 H = ρ<sub>S</sub>/(E M<sub>S</sub>)，c<sub>A</sub><sup>*</sup> = H p<sub>A</sub> = ρ<sub>S</sub> p<sub>A</sub>/(E M<sub>S</sub>)，故
+c<sub>A</sub><sup>*</sup> = (1000×21.27)/(3.31×10<sup>6</sup>×18) = 3.57×10<sup>-4</sup> kmol/m<sup>3</sup>
+m<sub>A</sub> = 3.57×10<sup>-4</sup>×32×1000 = 11.42 g/m<sup>3</sup></div>
+          <div class="answer"><span class="k">答案</span>每立方米水溶解氧气 11.42g（c<sub>A</sub><sup>*</sup> = 3.57×10<sup>-4</sup>kmol/m<sup>3</sup>）</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch05-ex-003">
+        <div class="ex-head">
+          <span class="label">例5-3</span>
+          <span class="topic">氨水最大浓度</span>
+          <span class="ref">教材 P214</span>
+        </div>
+        <div class="problem text">在压力为 101.3kPa 的吸收器内用水吸收混合气中的氨，设混合气中氨的摩尔分数为 0.02，试求所得氨水的最大浓度。已知操作温度 20°C 下的相平衡关系为 p<sub>A</sub><sup>*</sup> = 2000x。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">混合气中氨的分压为
+p<sub>A</sub> = y p = 0.02×101.3 = 2.03 kPa
+与混合气体中氨相平衡的液相浓度即为所得氨水的最大浓度：
+x<sup>*</sup> = p<sub>A</sub>/2000 = 2.03/2000 = 1.02×10<sup>-3</sup>
+c<sub>A</sub><sup>*</sup> = x<sup>*</sup> c = 1.02×10<sup>-3</sup>×1000/18 = 0.0564 kmol/m<sup>3</sup></div>
+          <div class="answer"><span class="k">答案</span>x<sup>*</sup> = 1.02×10<sup>-3</sup>，c<sub>A</sub><sup>*</sup> = 0.0564kmol/m<sup>3</sup></div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch05-ex-004">
+        <div class="ex-head">
+          <span class="label">例5-4</span>
+          <span class="topic">传质方向与推动力</span>
+          <span class="ref">教材 P215</span>
+        </div>
+        <div class="problem text">在操作条件 25°C、101.3kPa 下，用 CO<sub>2</sub> 含量为 0.0001（摩尔分数）的水溶液与含 CO<sub>2</sub> 10%（体积分数）的 CO<sub>2</sub>-空气混合气在一容器充分接触。（1）判断 CO<sub>2</sub> 的传质方向，且用气相摩尔分数表示过程的推动力；（2）设压力增加到 506.5kPa，则 CO<sub>2</sub> 的传质方向如何？并用液相分数表示过程的推动力。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）查得 25°C、101.3kPa 下 CO<sub>2</sub>-水系统的 E = 166MPa，则
+m = E/p = 166/0.1013 = 1639
+y<sup>*</sup> = m x = 1639×0.0001 = 0.164
+因 y = 0.10，比较得 y &lt; y<sup>*</sup>，所以 CO<sub>2</sub> 的传质方向是由液相向气相传递，为解吸过程。
+解吸过程的推动力为
+Δy = y<sup>*</sup> − y = 0.164 − 0.10 = 0.064
+（2）压力增加到 506.5kPa 时，m′ = E/p′ = 166/0.5065 = 327.7，x<sup>*</sup> = y/m′ = 0.10/327.7 = 3.05×10<sup>-4</sup>
+因 x = 1×10<sup>-4</sup>，比较得 x<sup>*</sup> &gt; x，所以 CO<sub>2</sub> 的传质方向是由气相向液相传递，为吸收过程。
+吸收过程的推动力为
+Δx = x<sup>*</sup> − x = 3.05×10<sup>-4</sup> − 1×10<sup>-4</sup> = 2.05×10<sup>-4</sup></div>
+          <div class="answer"><span class="k">答案</span>（1）解吸过程，Δy = 0.064；（2）吸收过程，Δx = 2.05×10<sup>-4</sup></div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch05-ex-005">
+        <div class="ex-head">
+          <span class="label">例5-5</span>
+          <span class="topic">四氯化碳蒸干时间</span>
+          <span class="ref">教材 P219</span>
+        </div>
+        <div class="problem text">某容器内装有高 2mm 的四氯化碳，在 20°C 的恒定温度下逐渐蒸发，通过近似不变的 2mm 静止空气层扩散到大气中，设静止的空气层以外的四氯化碳蒸气分压为零，已知 20°C、大气压为 101.3kPa 下，四氯化碳通过空气层的扩散系数为 1.0×10<sup>-5</sup> m<sup>2</sup>/s。求容器内四氯化碳蒸干所需时间为多少小时？</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">查得 20°C 下四氯化碳饱和蒸气压为 32.1kPa；密度为 1540kg/m<sup>3</sup>；四氯化碳的摩尔质量 M<sub>A</sub> = 154kg/kmol。
+气液界面上的空气（惰性组分）的分压
+p<sub>B1</sub> = p − p<sub>A1</sub> = 101.3 − 32.1 = 69.2 kPa
+气相主体中空气（惰性组分）的分压
+p<sub>B2</sub> = p − p<sub>A2</sub> = 101.3 kPa
+四氯化碳的汽化速率为 (ρ<sub>A</sub>/M<sub>A</sub>)(h/τ)，扩散速率为
+N<sub>A</sub> = (Dp/(RTz)) ln(p<sub>B2</sub>/p<sub>B1</sub>)
+定态传质时，四氯化碳的汽化速率等于其在空气中的扩散速率，即
+(Dp/(RTz)) ln(p<sub>B2</sub>/p<sub>B1</sub>) = (ρ<sub>A</sub>/M<sub>A</sub>)(h/τ)
+τ = RT z ρ<sub>A</sub> h/[M<sub>A</sub> D p ln(p<sub>B2</sub>/p<sub>B1</sub>)] = (8.314×293×0.002×0.002×1540)/(154×1×10<sup>-5</sup>×101.3×ln(101.3/69.2)) = 252.4s = 0.07h</div>
+          <div class="answer"><span class="k">答案</span>τ = 252.4s ≈ 0.07h</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch05-ex-006">
+        <div class="ex-head">
+          <span class="label">例5-6</span>
+          <span class="topic">蒸发管测扩散系数</span>
+          <span class="ref">教材 P221</span>
+        </div>
+        <div class="problem text">有一直立的玻璃管，底端封死，内充丙酮，液面距上端管口 11mm，上端有一股空气通过，5h 后，管内液面降到距管口 20.5mm，管内液体温度保持 293K，大气压为 100kPa，此条件下，丙酮的饱和蒸气压为 24kPa。求丙酮在空气中的扩散系数。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">查得 ρ<sub>A</sub> = 790kg/m<sup>3</sup>，M<sub>A</sub> = 58kg/kmol，p = 100kPa。已知 z<sub>0</sub> = 0.011m，z = 0.0205m，τ = 5×3600 = 18000s。
+p<sub>B1</sub> = p − p<sub>A1</sub> = 100 − 24 = 76 kPa，p<sub>B2</sub> = p − p<sub>A2</sub> = 100 − 0 = 100 kPa
+D = (ρ<sub>A</sub>/M<sub>A</sub>) × RT/[p ln(p<sub>B2</sub>/p<sub>B1</sub>)] × (z<sup>2</sup> − z<sub>0</sub><sup>2</sup>)/(2τ)
+= (790/58) × 8.314×293/(100×ln(100/76)) × (0.0205<sup>2</sup> − 0.011<sup>2</sup>)/(2×18000) = 1×10<sup>-5</sup> m<sup>2</sup>/s</div>
+          <div class="answer"><span class="k">答案</span>D = 1×10<sup>-5</sup>m<sup>2</sup>/s</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch05-ex-007">
+        <div class="ex-head">
+          <span class="label">例5-7</span>
+          <span class="topic">气膜液膜阻力分配</span>
+          <span class="ref">教材 P230</span>
+        </div>
+        <div class="problem text">在填料吸收塔内用水吸收混合于空气中的甲醇，已知某截面上的气液两相组成为 p<sub>A</sub> = 5kPa，c<sub>A</sub> = 2kmol/m<sup>3</sup>，设在一定的操作温度、压力下，甲醇在水中的溶解度系数 H 为 0.5kmol/(m<sup>3</sup>·kPa)，液相传质系数为 k<sub>L</sub> = 2×10<sup>-5</sup>m/s，气相传质系数为 k<sub>G</sub> = 1.55×10<sup>-5</sup>kmol/(m<sup>2</sup>·s·kPa)。（1）试求以分压表示吸收总推动力、总阻力、总传质速率及液相阻力的分配。（2）若吸收温度降低，甲醇在水中的溶解度系数 H 变为 5.8kmol/(m<sup>3</sup>·kPa)，设气液相传质系数与两相浓度近似不变，试求液相阻力分配为多少？并分析其结果。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）以分压表示吸收总推动力
+p<sub>A</sub><sup>*</sup> = c<sub>A</sub>/H = 2/0.5 = 4 kPa，Δp<sub>A</sub> = p<sub>A</sub> − p<sub>A</sub><sup>*</sup> = 5 − 4 = 1 kPa
+总阻力
+1/K<sub>G</sub> = 1/(H k<sub>L</sub>) + 1/k<sub>G</sub> = 1/(0.5×2×10<sup>-5</sup>) + 1/(1.55×10<sup>-5</sup>) = 1×10<sup>5</sup> + 6.45×10<sup>4</sup> = 1.645×10<sup>5</sup> (m<sup>2</sup>·s·kPa)/kmol
+总传质速率
+N<sub>A</sub> = K<sub>G</sub>(p<sub>A</sub> − p<sub>A</sub><sup>*</sup>) = (1/(1.645×10<sup>5</sup>))×1 = 6.08×10<sup>-6</sup> kmol/(m<sup>2</sup>·s)
+液相阻力的分配
+[1/(H k<sub>L</sub>)]/(1/K<sub>G</sub>) = 1×10<sup>5</sup>/(1.645×10<sup>5</sup>) = 0.608 = 60.8%
+由计算结果可以看出此吸收过程为液相传质阻力控制过程。
+（2）吸收温度降低时总传质阻力
+1/K<sub>G</sub> = 1/(H k<sub>L</sub>) + 1/k<sub>G</sub> = 1/(5.8×2×10<sup>-5</sup>) + 1/(1.55×10<sup>-5</sup>) = 8.6×10<sup>3</sup> + 6.45×10<sup>4</sup> = 7.31×10<sup>4</sup> (m<sup>2</sup>·s·kPa)/kmol
+液相阻力的分配
+[1/(H k<sub>L</sub>)]/(1/K<sub>G</sub>) = 8.6×10<sup>3</sup>/(7.31×10<sup>4</sup>) = 0.1176 = 11.76%
+由液相阻力占吸收过程总阻力的 11.76%，可知此吸收过程为气相传质阻力控制过程。
+当低温吸收时，溶解度系数增大，液相阻力 1/(Hk<sub>L</sub>) 减少，由液相传质阻力控制转化为气相传质阻力控制，相平衡对传质阻力的分配起着很重要的作用。</div>
+          <div class="answer"><span class="k">答案</span>（1）Δp<sub>A</sub> = 1kPa，1/K<sub>G</sub> = 1.645×10<sup>5</sup>(m<sup>2</sup>·s·kPa)/kmol，N<sub>A</sub> = 6.08×10<sup>-6</sup>kmol/(m<sup>2</sup>·s)，液相阻力占 60.8%；（2）液相阻力占 11.76%，转为气相传质阻力控制</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch05-ex-008">
+        <div class="ex-head">
+          <span class="label">例5-8</span>
+          <span class="topic">吸收剂用量与液组成</span>
+          <span class="ref">教材 P233</span>
+        </div>
+        <div class="problem text">某矿石焙烧炉排出含 SO<sub>2</sub> 的混合气体，除 SO<sub>2</sub> 外其余组分可看作惰性气体。冷却后送入填料吸收塔中，用清水洗涤以除去其中的 SO<sub>2</sub>。吸收塔的操作温度为 20°C，压力为 101.3kPa。混合气的流量为 1000m<sup>3</sup>/h，其中含 SO<sub>2</sub> 体积分数为 9%，要求 SO<sub>2</sub> 的回收率为 90%。若吸收剂用量为理论最小用量的 1.2 倍，试计算：（1）吸收剂用量及塔底吸收液的组成 X<sub>1</sub>；（2）当用含 SO<sub>2</sub> 0.0003（摩尔比）的水溶液作吸收剂时，保持二氧化硫回收率不变，吸收剂用量比原来增加还是减少？塔底吸收液组成变为多少？已知 101.3kPa、20°C 条件下 SO<sub>2</sub> 在水中的汽-液平衡数据见表 5-9：X = 0.0000562 时 Y = 0.00066；X = 0.00014 时 Y = 0.00158；X = 0.00028 时 Y = 0.0042；X = 0.00042 时 Y = 0.0077；X = 0.00056 时 Y = 0.0113；X = 0.00084 时 Y = 0.019；X = 0.0014 时 Y = 0.035；X = 0.00197 时 Y = 0.054；X = 0.0028 时 Y = 0.084；X = 0.0042 时 Y = 0.138（表5-9）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">按题意进行组成换算：
+进塔气体中 SO<sub>2</sub> 的组成为 Y<sub>1</sub> = y<sub>1</sub>/(1 − y<sub>1</sub>) = 0.09/(1 − 0.09) = 0.099
+出塔气体中 SO<sub>2</sub> 的组成为 Y<sub>2</sub> = Y<sub>1</sub>(1 − η) = 0.099×(1 − 0.9) = 0.0099
+进吸收塔惰性气体的摩尔流量为 V = (1000/22.4)×(273/(273+20))×(1 − 0.09) = 37.85 kmol/h
+由表 5-9 中 X-Y 数据，采用内差法得到与气相进口组成 Y<sub>1</sub> 相平衡的液相组成 X<sub>1</sub><sup>*</sup> = 0.0032。
+（1）L<sub>min</sub> = V (Y<sub>1</sub> − Y<sub>2</sub>)/(X<sub>1</sub><sup>*</sup> − X<sub>2</sub>) = 37.85×(0.099 − 0.0099)/0.0032 = 1054 kmol/h
+实际吸收剂用量 L = 1.2L<sub>min</sub> = 1.2×1054 = 1265 kmol/h
+塔底吸收液的组成 X<sub>1</sub> 由全塔物料衡算求得
+X<sub>1</sub> = X<sub>2</sub> + V(Y<sub>1</sub> − Y<sub>2</sub>)/L = 0 + 37.85×(0.099 − 0.0099)/1265 = 0.00267
+（2）吸收率不变，即出塔气体中 SO<sub>2</sub> 的组成 Y<sub>2</sub> 不变，Y<sub>2</sub> = 0.0099，而 X<sub>2</sub> = 0.0003，所以
+L<sub>min</sub> = V (Y<sub>1</sub> − Y<sub>2</sub>)/(X<sub>1</sub><sup>*</sup> − X<sub>2</sub>) = 37.85×(0.099 − 0.0099)/(0.0032 − 0.0003) = 1163 kmol/h
+实际吸收剂用量 L = 1.2L<sub>min</sub> = 1.2×1163 = 1395 kmol/h
+塔底吸收液的组成 X<sub>1</sub> 由全塔物料衡算求得
+X<sub>1</sub> = X<sub>2</sub> + V(Y<sub>1</sub> − Y<sub>2</sub>)/L = 0.0003 + 37.85×(0.099 − 0.0099)/1395 = 0.0027
+由该题计算结果可见，当保持溶质回收率不变时，吸收剂所含溶质量越低，所需吸收剂量越小，塔底吸收液浓度越低。</div>
+          <div class="answer"><span class="k">答案</span>（1）L = 1265kmol/h，X<sub>1</sub> = 0.00267；（2）吸收剂用量增大，L = 1395kmol/h，X<sub>1</sub> = 0.0027</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch05-ex-009">
+        <div class="ex-head">
+          <span class="label">例5-9</span>
+          <span class="topic">填料层高度计算</span>
+          <span class="ref">教材 P239</span>
+        </div>
+        <div class="problem text">在一塔径为 0.8m 的填料塔内，用清水逆流吸收空气中的氨，要求氨的吸收率为 99.5%。已知空气和氨的混合气质量流量为 1400kg/h，气体总压为 101.3kPa，其中氨的分压为 1.333kPa。若实际吸收剂用量为最小用量的 1.4 倍，操作温度（293K）下的汽-液平衡关系为 Y<sup>*</sup> = 0.75X，气相总体积吸收系数为 0.088kmol/(m<sup>3</sup>·s)，试求：（1）每小时用水量；（2）用平均推动力法求出所需填料层高度。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）y<sub>1</sub> = 1.333/101.3 = 0.0132，Y<sub>1</sub> = y<sub>1</sub>/(1 − y<sub>1</sub>) = 0.0132/(1 − 0.0132) = 0.0134，Y<sub>2</sub> = Y<sub>1</sub>(1 − η) = 0.0134×(1 − 0.995) = 0.0000669，X<sub>2</sub> = 0。因混合气中氨含量很少，故混合气平均摩尔质量 M ≈ 29kg/kmol
+V = (1400/29)×(1 − 0.0132) = 47.7 kmol/h，Ω = 0.785×0.8<sup>2</sup> = 0.5 m<sup>2</sup>
+由式(5-82)得 L<sub>min</sub> = V (Y<sub>1</sub> − Y<sub>2</sub>)/(X<sub>1</sub><sup>*</sup> − X<sub>2</sub>) = 47.7×(0.0134 − 0.0000669)/(0.0134/0.75 − 0) = 35.6 kmol/h
+实际吸收剂用量 L = 1.4L<sub>min</sub> = 1.4×35.6 = 49.8 kmol/h
+（2）X<sub>1</sub> = X<sub>2</sub> + V(Y<sub>1</sub> − Y<sub>2</sub>)/L = 0 + 47.7×(0.0134 − 0.0000669)/49.8 = 0.0128
+Y<sub>1</sub><sup>*</sup> = 0.75X<sub>1</sub> = 0.75×0.0128 = 0.00958，Y<sub>2</sub><sup>*</sup> = 0
+ΔY<sub>1</sub> = Y<sub>1</sub> − Y<sub>1</sub><sup>*</sup> = 0.0134 − 0.00958 = 0.00382，ΔY<sub>2</sub> = Y<sub>2</sub> − Y<sub>2</sub><sup>*</sup> = 0.0000669 − 0 = 0.0000669
+ΔY<sub>m</sub> = (ΔY<sub>1</sub> − ΔY<sub>2</sub>)/ln(ΔY<sub>1</sub>/ΔY<sub>2</sub>) = (0.00382 − 0.0000669)/ln(0.00382/0.0000669) = 0.000928
+N<sub>OG</sub> = (Y<sub>1</sub> − Y<sub>2</sub>)/ΔY<sub>m</sub> = (0.0134 − 0.0000669)/0.000928 = 14.36
+H<sub>OG</sub> = V/(K<sub>y</sub>aΩ) = 47.7/3600/(0.088×0.5) = 0.30 m
+Z = N<sub>OG</sub>H<sub>OG</sub> = 14.36×0.30 = 4.32 m</div>
+          <div class="answer"><span class="k">答案</span>（1）用水量 L = 49.8kmol/h；（2）Z = 4.32m</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch05-ex-010">
+        <div class="ex-head">
+          <span class="label">例5-10</span>
+          <span class="topic">吸收剂用量与塔高</span>
+          <span class="ref">教材 P240</span>
+        </div>
+        <div class="problem text">用清水逆流吸收混合气体中的 CO<sub>2</sub>，已知混合气体的流量（标准状态下）为 300m<sup>3</sup>/h，进塔气体中 CO<sub>2</sub> 含量为 0.06（摩尔分数），操作液-气比为最小液-气比的 1.6 倍，传质单元高度为 0.8m。操作条件下物系的平衡关系为 Y<sup>*</sup> = 1200X。要求 CO<sub>2</sub> 吸收率为 95%，试求：（1）吸收液组成及吸收剂流量；（2）写出操作线方程；（3）填料层高度。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）由已知可知惰性气体流量 V = (300/22.4)×(1 − 0.06) = 12.59 kmol/h，X<sub>2</sub> = 0，η = (Y<sub>1</sub> − Y<sub>2</sub>)/Y<sub>1</sub>
+最小液-气比
+(L/V)<sub>min</sub> = (Y<sub>1</sub> − Y<sub>2</sub>)/(X<sub>1</sub><sup>*</sup> − X<sub>2</sub>) = (Y<sub>1</sub> − Y<sub>2</sub>)/(Y<sub>1</sub>/m) = mη
+操作液-气比
+L/V = 1.6(L/V)<sub>min</sub> = 1.6mη = 1.6×0.95×1200 = 1824
+吸收剂流量
+L = (L/V)×V = 1824×12.59 = 22964 kmol/h
+Y<sub>1</sub> = y<sub>1</sub>/(1 − y<sub>1</sub>) = 0.06/(1 − 0.06) = 0.064
+吸收液组成 X<sub>1</sub> = X<sub>2</sub> + (V/L)(Y<sub>1</sub> − Y<sub>2</sub>) = X<sub>2</sub> + (V/L)Y<sub>1</sub>η = 0.064×0.95/1824 = 3.33×10<sup>-5</sup>
+（2）操作线方程
+Y = (L/V)X + (Y<sub>1</sub> − (L/V)X<sub>1</sub>) = 1824X + (0.064 − 1824×3.33×10<sup>-5</sup>)
+整理得 Y = 1824X + 3.26×10<sup>-3</sup>
+（3）脱吸因数 S = mV/L = 1200/1824 = 0.658
+N<sub>OG</sub> = (1/(1 − S)) ln[(1 − S)(Y<sub>1</sub> − mX<sub>2</sub>)/(Y<sub>2</sub> − mX<sub>2</sub>) + S] = (1/(1 − 0.658))×ln[(1 − 0.658)×(1/(1 − 0.95)) + 0.658] = 5.89
+Z = N<sub>OG</sub>H<sub>OG</sub> = 5.89×0.8 = 4.71 m</div>
+          <div class="answer"><span class="k">答案</span>（1）X<sub>1</sub> = 3.33×10<sup>-5</sup>，L = 22964kmol/h；（2）Y = 1824X + 3.26×10<sup>-3</sup>；（3）Z = 4.71m</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch05-ex-011">
+        <div class="ex-head">
+          <span class="label">例5-11</span>
+          <span class="topic">清水量加大的影响</span>
+          <span class="ref">教材 P242</span>
+        </div>
+        <div class="problem text">在一填料塔中用水吸收氨-空气中的低浓氨气，若清水量适量加大，其余操作条件不变，则 Y<sub>2</sub>、X<sub>1</sub> 如何变化？（已知体积传质系数随气量变化关系为 k<sub>y</sub>a ∝ V<sup>0.8</sup>）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图5-24</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">用水吸收混合气中的氨为气膜控制过程，故 K<sub>y</sub>a ≈ k<sub>y</sub>a ∝ V<sup>0.8</sup>。因气体流量 V 不变，所以 k<sub>y</sub>a、K<sub>y</sub>a 近似不变，H<sub>OG</sub> 不变。因塔高不变，故根据 Z = N<sub>OG</sub>H<sub>OG</sub> 可知 N<sub>OG</sub> 不变。
+当清水量加大时，因 S = m/(L/V)，故 S 降低，由图 5-24 可以看出 (Y<sub>1</sub> − mX<sub>2</sub>)/(Y<sub>2</sub> − mX<sub>2</sub>) 会增大，故 Y<sub>2</sub> 将下降。
+根据物料衡算 L(X<sub>1</sub> − X<sub>2</sub>) = V(Y<sub>1</sub> − Y<sub>2</sub>) ≈ VY<sub>1</sub>，可近似推出 X<sub>1</sub> 将下降。</div>
+          <div class="answer"><span class="k">答案</span>Y<sub>2</sub> 下降，X<sub>1</sub> 下降</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch05-ex-012">
+        <div class="ex-head">
+          <span class="label">例5-12</span>
+          <span class="topic">校核填料塔是否合用</span>
+          <span class="ref">教材 P242</span>
+        </div>
+        <div class="problem text">用清水在一塔高为 13m 的填料塔内吸收空气中的丙酮蒸气，已知混合气体质量流速为 0.668kg/(m<sup>2</sup>·s)，混合气中含丙酮 0.02（摩尔分数），水的摩尔流速为 0.065kmol/(m<sup>2</sup>·s)，在操作条件下，相平衡常数为 1.77，气相总体积吸收系数为 K<sub>y</sub>a = 0.0231kmol/(m<sup>3</sup>·s)。试求：丙酮的吸收率为 98.8% 时该塔是否合用？</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">已知 Y<sub>1</sub> = y<sub>1</sub>/(1 − y<sub>1</sub>) = 0.02/(1 − 0.02) = 0.02，则
+Y<sub>2</sub> = Y<sub>1</sub>(1 − η) = 0.02×(1 − 0.988) = 0.00024
+混合气平均摩尔质量 M = y<sub>1</sub>M<sub>A</sub> + (1 − y<sub>1</sub>)M<sub>B</sub> = 0.02×58 + (1 − 0.02)×29 = 29.58 kg/kmol
+V = 0.668×(1 − 0.02)/29.58 = 0.02213 kmol/(m<sup>2</sup>·s)
+S = mV/L = 1.77×0.02213/0.065 = 0.603
+N<sub>OG</sub> = (1/(1 − S)) ln[(1 − S)/(1 − η) + S] = (1/(1 − 0.603))×ln[(1 − 0.603)×(1/(1 − 0.988)) + 0.603] = 8.86
+H<sub>OG</sub> = V/(K<sub>y</sub>aΩ) = 0.02213/0.0231 = 0.9776 m
+Z = N<sub>OG</sub>H<sub>OG</sub> = 8.86×0.9776 = 8.662 m
+因为实际吸收塔 Z′ = 13m &gt; Z = 8.662m，所以该吸收塔合用，能够完成分离任务。</div>
+          <div class="answer"><span class="k">答案</span>Z = 8.662m &lt; 13m，该塔合用</div>
+          <div class="note text">注：V 与 K<sub>y</sub>a 均以单位塔截面积为基准，故 H<sub>OG</sub> = V/(K<sub>y</sub>aΩ) 中取 Ω = 1m<sup>2</sup>。</div>
+        </div>
+      </article>
+      <article class="ex" id="ch05-ex-013">
+        <div class="ex-head">
+          <span class="label">例5-13</span>
+          <span class="topic">液气比变化的影响</span>
+          <span class="ref">教材 P243</span>
+        </div>
+        <div class="problem text">某逆流吸收塔，入塔混合气体中含溶质组成为 0.05（摩尔比，下同），吸收剂进口组成为 0.001，实际液-气比为 4，此时出口气体中溶质为 0.005，操作条件下汽-液平衡关系为 Y<sup>*</sup> = 2.0X。若实际液-气比下降为 2.5，其他条件不变，计算时忽略传质单元高度的变化，试求此时出塔气体溶质的浓度及出塔液体溶质的组成各为多少？</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">原工况 S = mV/L = 2/4 = 0.5
+N<sub>OG</sub> = (1/(1 − S)) ln[(1 − S)(Y<sub>1</sub> − mX<sub>2</sub>)/(Y<sub>2</sub> − mX<sub>2</sub>) + S] = (1/(1 − 0.5))×ln[(1 − 0.5)×(0.05 − 2×0.001)/(0.005 − 2×0.001) + 0.5] = 4.280
+新工况 S′ = mV′/L′ = 2/2.5 = 0.8
+N′<sub>OG</sub> = (1/(1 − S′)) ln[(1 − S′)(Y<sub>1</sub> − mX<sub>2</sub>)/(Y′<sub>2</sub> − mX<sub>2</sub>) + S′]
+因传质单元高度不变，即 H′<sub>OG</sub> = H<sub>OG</sub>，又因 Z′ = Z，所以传质单元数不变，即
+N′<sub>OG</sub> = N<sub>OG</sub> = (1/(1 − 0.8))×ln[(1 − 0.8)×(0.05 − 2×0.001)/(Y′<sub>2</sub> − 2×0.001) + 0.8] = 4.280
+解得 Y′<sub>2</sub> = 8.179×10<sup>-3</sup>
+X′<sub>1</sub> = X<sub>2</sub> + (V/L)′(Y<sub>1</sub> − Y′<sub>2</sub>) = 0.001 + (1/2.5)×(0.05 − 8.179×10<sup>-3</sup>) = 0.01773</div>
+          <div class="answer"><span class="k">答案</span>Y′<sub>2</sub> = 8.179×10<sup>-3</sup>，X′<sub>1</sub> = 0.01773</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch05-ex-014">
+        <div class="ex-head">
+          <span class="label">例5-14</span>
+          <span class="topic">带再循环的吸收塔高</span>
+          <span class="ref">教材 P243</span>
+        </div>
+        <div class="problem text">在常压逆流连续吸收塔中，用清水吸收混合气体中的某溶质，由于吸收过程伴随升温，使得吸收效果偏离按等温设计结果，所以工业上通常采用如图 5-26 所示的流程。部分吸收液经过换热器降温，再用泵从吸收塔某中部再循环进入吸收塔，吸收塔分成上部和下部。两部分均可按等温处理，在塔上部和下部操作条件下的物系平衡关系为 Y<sup>*</sup> = 0.9X，全塔气相总体积传质系数为 0.025kmol/(m<sup>3</sup>·s)。已知入塔混合气体中惰性气体的流量为 0.02kmol/(m<sup>2</sup>·s)，其中含溶质 0.03（摩尔比，下同），要求吸收率不低于 90%，操作液气比为 1，部分吸收液再循环量为吸收剂用量的 20%，并在塔内液相组成为 0.008 处加入，求所需填料层高度为多少米？（设吸收过程为气膜控制）（图5-26）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图5-26</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">Y<sub>2</sub> = Y<sub>1</sub>(1 − η) = 0.03×(1 − 0.90) = 0.003
+对全塔作物料衡算 L/V = (Y<sub>1</sub> − Y<sub>2</sub>)/(X<sub>1</sub> − X<sub>2</sub>) = (0.03 − 0.003)/(X<sub>1</sub> − 0) = 1
+则 L<sub>下</sub>/V = 1.2，解得 X<sub>1</sub> = 0.027。
+对吸收塔中部作物料衡算，进出中部气相组成相等
+L X<sub>中,上</sub> + 0.20L X<sub>1</sub> = 1.2L X<sub>中,下</sub>
+X<sub>中,下</sub> = (0.008 + 0.2×0.027)/1.2 = 0.0112
+对吸收塔下部作物料衡算
+L<sub>下</sub>/V = (Y<sub>1</sub> − Y<sub>中</sub>)/(X<sub>1</sub> − X<sub>中,下</sub>) = 1.2
+Y<sub>中</sub> = Y<sub>1</sub> − 1.2(X<sub>1</sub> − X<sub>中,下</sub>) = 0.03 − 1.2×(0.027 − 0.0112) = 0.011
+由于气膜控制，故 H<sub>OG</sub> = V/(K<sub>y</sub>aΩ) = 0.02/0.025 = 0.8 m
+塔上部 S<sub>1</sub> = m/(L/V) = 0.9/1 = 0.9
+N<sub>OG1</sub> = (1/(1 − S<sub>1</sub>)) ln[(1 − S<sub>1</sub>)(Y<sub>中</sub> − mX<sub>2</sub>)/(Y<sub>2</sub> − mX<sub>2</sub>) + S<sub>1</sub>] = (1/(1 − 0.9))×ln[(1 − 0.9)×0.011/0.003 + 0.9] = 2.364
+Z<sub>1</sub> = H<sub>OG</sub>N<sub>OG1</sub> = 0.8×2.364 = 1.891 m
+塔下部 S<sub>2</sub> = m/(L<sub>下</sub>/V) = 0.9/1.2 = 0.75
+N<sub>OG2</sub> = (1/(1 − S<sub>2</sub>)) ln[(1 − S<sub>2</sub>)(Y<sub>1</sub> − mX<sub>中,下</sub>)/(Y<sub>中</sub> − mX<sub>中,下</sub>) + S<sub>2</sub>] = (1/(1 − 0.75))×ln[(1 − 0.75)×(0.03 − 0.9×0.0112)/(0.011 − 0.9×0.0112) + 0.75] = 7.274
+Z<sub>2</sub> = H<sub>OG</sub>N<sub>OG2</sub> = 0.8×7.274 = 5.819 m
+Z = Z<sub>1</sub> + Z<sub>2</sub> = 1.891 + 5.819 = 7.71 m
+吸收操作线如图 5-27 所示。</div>
+          <div class="answer"><span class="k">答案</span>Z = 7.71m（上部 1.891m，下部 5.819m）</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch05-ex-015">
+        <div class="ex-head">
+          <span class="label">例5-15</span>
+          <span class="topic">吸收-解吸联合流程</span>
+          <span class="ref">教材 P247</span>
+        </div>
+        <div class="problem text">在一吸收-解吸联合流程中，吸收塔内用洗油逆流吸收煤气中含苯蒸气。入塔气体中苯的组成为 0.03（摩尔分数，下同），吸收操作条件下，平衡关系为 Y<sup>*</sup> = 0.125X，吸收操作液-气比为 0.2444，进塔洗油中苯的组成为 0.007，出塔煤气中苯的组成降至 0.0015，气相总传质单元高度为 0.6m。从吸收塔排出的液体升温后在解吸塔内用过热蒸汽逆流解吸，解吸塔内操作气-液比为 0.4，解吸条件下的相平衡关系为 Y<sup>*</sup> = 3.16X，气相总传质单元高度为 1.3m。试求：（1）吸收塔填料层高度；（2）解吸塔填料层高度。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）吸收塔 已知
+Y<sub>1</sub> = y<sub>1</sub>/(1 − y<sub>1</sub>) = 0.03/(1 − 0.03) = 0.031，Y<sub>2</sub> = y<sub>2</sub>/(1 − y<sub>2</sub>) = 0.0015/(1 − 0.0015) = 0.0015
+S = mV/L = 0.125/0.2444 = 0.5115
+N<sub>OG</sub> = (1/(1 − S)) ln[(1 − S)(Y<sub>1</sub> − mX<sub>2</sub>)/(Y<sub>2</sub> − mX<sub>2</sub>) + S] = (1/(1 − 0.5115))×ln[(1 − 0.5115)×(0.031 − 0.125×0.007)/(0.0015 − 0.125×0.007) + 0.5115] = 6.51
+吸收塔填料层高 Z = N<sub>OG</sub>H<sub>OG</sub> = 6.51×0.60 = 3.9 m
+（2）对于吸收塔
+吸收液组成 X<sub>1</sub> = X<sub>2</sub> + (V/L)(Y<sub>1</sub> − Y<sub>2</sub>) = 0.007 + (1/0.2444)×(0.031 − 0.0015) = 0.1277
+对于解吸塔，溶液进口组成 X′<sub>2</sub> = X<sub>1</sub> = 0.1277，溶液出口组成 X′<sub>1</sub> = X<sub>2</sub> = 0.007，Y′<sub>1</sub> = 0，则
+A = L/(V′m′) = 1/(0.4×3.16) = 0.791
+(X′<sub>2</sub> − (X<sub>1</sub><sup>*</sup>)′)/(X′<sub>1</sub> − (X<sub>1</sub><sup>*</sup>)′) = (0.1277 − 0)/(0.007 − 0) = 18.24
+N<sub>OL</sub> = (1/(1 − A)) ln[(1 − A)(X′<sub>2</sub> − (X<sub>1</sub><sup>*</sup>)′)/(X′<sub>1</sub> − (X<sub>1</sub><sup>*</sup>)′) + A] = (1/(1 − 0.791))×ln[(1 − 0.791)×18.24 + 0.791] = 7.30
+H<sub>OL</sub> = A H<sub>OG</sub> = 0.791×1.3 = 1.028 m
+解吸塔填料层高 Z = N<sub>OL</sub>H<sub>OL</sub> = 7.30×1.028 = 7.504 m</div>
+          <div class="answer"><span class="k">答案</span>（1）吸收塔 Z = 3.9m；（2）解吸塔 Z = 7.504m</div>
+          <div class="note text">注：教材（2）处小标题印作「对于吸收塔」，实为求得吸收液组成 X<sub>1</sub> 后转入解吸塔计算。</div>
+        </div>
+      </article>
+      <article class="ex" id="ch05-ex-016">
+        <div class="ex-head">
+          <span class="label">例5-16</span>
+          <span class="topic">填料塔塔径与压降</span>
+          <span class="ref">教材 P253</span>
+        </div>
+        <div class="problem text">设计一用水分离混合气体中 SO<sub>2</sub> 的填料吸收塔，已知混合气体处理量为 1000m<sup>3</sup>/h，用水量为 27.2m<sup>3</sup>/h，平均气体密度为 1.34kg/m<sup>3</sup>，清水密度为 1000kg/m<sup>3</sup>，粘度为 1mPa·s，填料为 25mm×25mm×2.5mm 的乱堆陶瓷鲍尔环，试求：（1）吸收塔的塔径；（2）每米填料压降为多少帕？（3）若改用相同尺寸的乱堆拉西环填料，所需填料塔的直径是多少？每米填料压降为多少帕？（图5-34）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图5-34</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）首先计算泛点气速，气体流量 W<sub>V</sub> = ρ<sub>V</sub>V<sub>V</sub> = 1.34×1000 = 1340 kg/h，液体流量 W<sub>L</sub> = ρ<sub>L</sub>V<sub>L</sub> = 1000×27.2 = 27200 kg/h，则
+(W<sub>L</sub>/W<sub>V</sub>)(ρ<sub>V</sub>/ρ<sub>L</sub>)<sup>0.5</sup> = (27200/1340)×(1.34/1000)<sup>0.5</sup> = 0.743
+查图 5-34，得到 (u<sub>f</sub><sup>2</sup>φΨ/g)(ρ<sub>V</sub>/ρ<sub>L</sub>)μ<sub>L</sub><sup>0.2</sup> = 0.027。
+对于 25mm×25mm×2.5mm 的乱堆陶瓷鲍尔环，填料因子 φ = 300，Ψ = ρ<sub>水</sub>/ρ<sub>L</sub> = 1
+u<sub>f</sub> = [0.027gρ<sub>L</sub>/(φΨρ<sub>V</sub>μ<sub>L</sub><sup>0.2</sup>)]<sup>0.5</sup> = [0.027×9.81×1000/(300×1×1.34×1<sup>0.2</sup>)]<sup>0.5</sup> = 0.81 m/s
+计算塔径 取空塔气速为 80%u<sub>f</sub>，则 u = 0.8u<sub>f</sub> = 0.8×0.81 = 0.648 m/s
+D = (4q<sub>V</sub>/(πu))<sup>0.5</sup> = [4×1000/3600/(3.14×0.648)]<sup>0.5</sup> = 0.738 m
+根据标准吸收塔径圆整为 0.8m。
+实际空塔气速为 u = q<sub>V</sub>/[(π/4)D<sup>2</sup>] = (1000/3600)/(0.785×0.8<sup>2</sup>) = 0.553 m/s
+（2）每米填料压降 在实际空塔气速下
+(u<sup>2</sup>φΨ/g)(ρ<sub>V</sub>/ρ<sub>L</sub>)μ<sub>L</sub><sup>0.2</sup> = (0.553<sup>2</sup>×300×1)/9.81×(1.34/1000)×1<sup>0.2</sup> = 0.0125
+从图 5-34 中查得，纵坐标为 0.0125，横坐标为 0.743，确定交点，对应的压降为 300Pa。
+（3）若改用相同尺寸的乱堆拉西环填料，填料因子 φ = 450，Ψ = ρ<sub>水</sub>/ρ<sub>L</sub> = 1
+u<sub>f</sub> = [0.027×9.81×1000/(450×1×1.34×1<sup>0.2</sup>)]<sup>0.5</sup> = 0.66 m/s
+取空塔气速为 80%u<sub>f</sub>，则 u = 0.8u<sub>f</sub> = 0.8×0.66 = 0.528 m/s
+D = [4×1000/3600/(3.14×0.528)]<sup>0.5</sup> = 0.818 m
+根据标准吸收塔径圆整为 0.8m。
+实际空塔气速为 u = (1000/3600)/(0.785×0.8<sup>2</sup>) = 0.553 m/s
+在实际空塔气速下 (u<sup>2</sup>φΨ/g)(ρ<sub>V</sub>/ρ<sub>L</sub>)μ<sub>L</sub><sup>0.2</sup> = (0.553<sup>2</sup>×450×1)/9.81×(1.34/1000)×1<sup>0.2</sup> = 0.0188
+从图 5-34 中查得，纵坐标为 0.0188，横坐标为 0.743，确定交点，对应的压降为 500Pa。
+从计算结果看，采用相同尺寸的填料，鲍尔环填料塔每米填料层压降低于拉西环填料。</div>
+          <div class="answer"><span class="k">答案</span>（1）D = 0.738m，圆整为 0.8m，实际空塔气速 0.553m/s；（2）每米填料压降 300Pa；（3）改用拉西环时 D = 0.818m（圆整 0.8m），每米填料压降 500Pa</div>
+          
+        </div>
+      </article>
+    </section>
+    <section class="chapter" id="ch06">
+      <div class="ch-head"><h2>第6章 蒸馏</h2><span class="count">16 例</span></div>
+      <article class="ex" id="ch06-ex-001">
+        <div class="ex-head">
+          <span class="label">例6-1</span>
+          <span class="topic">汽液平衡组成计算</span>
+          <span class="ref">教材 P266</span>
+        </div>
+        <div class="problem text">在总压 101.3kPa、温度 100°C 下，苯（A）-甲苯（B）混合液可视为理想溶液。已知 100°C 时苯和甲苯的饱和蒸气压分别为 p<sup>°</sup><sub>A</sub> = 179.2kPa、p<sup>°</sup><sub>B</sub> = 74.3kPa，试求该条件下气、液两相的组成。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">设溶液服从拉乌尔定律，气相服从道尔顿分压定律，则
+p = p<sup>°</sup><sub>A</sub>x<sub>A</sub> + p<sup>°</sup><sub>B</sub>(1 − x<sub>A</sub>)
+x<sub>A</sub> = (p − p<sup>°</sup><sub>B</sub>)/(p<sup>°</sup><sub>A</sub> − p<sup>°</sup><sub>B</sub>) = (101.3 − 74.3)/(179.2 − 74.3) = 0.257
+y<sub>A</sub> = p<sup>°</sup><sub>A</sub>x<sub>A</sub>/p = (179.2/101.3) × 0.258 = 0.456
+x<sub>B</sub> = 1 − x<sub>A</sub> = 1 − 0.257 = 0.743
+y<sub>B</sub> = 1 − y<sub>A</sub> = 1 − 0.456 = 0.544</div>
+          <div class="answer"><span class="k">答案</span>x<sub>A</sub> = 0.257，y<sub>A</sub> = 0.456；x<sub>B</sub> = 0.743，y<sub>B</sub> = 0.544。</div>
+          <div class="note text">注：教材 y<sub>A</sub> 计算式中代入 x<sub>A</sub> = 0.258，与前面求得的 0.257 略有出入（取整所致），此处按原文转写。</div>
+        </div>
+      </article>
+      <article class="ex" id="ch06-ex-002">
+        <div class="ex-head">
+          <span class="label">例6-2</span>
+          <span class="topic">汽液平衡相图绘制</span>
+          <span class="ref">教材 P267</span>
+        </div>
+        <div class="problem text">正庚烷（A）-正辛烷（B）物系在总压 101.3kPa 下的饱和蒸气压与温度关系如表 6-1 所示。试作出该物系的 t-x-y 图及 x-y 图，并确定 x<sub>A</sub> = 0.4 时的泡点温度及平衡气相组成。
+表 6-1 正庚烷-正辛烷的饱和蒸气压：
+t/°C：98.4，105，110，115，120，126.6
+p<sup>°</sup><sub>A</sub>/kPa：101.3，125.3，140.0，160.0，180.0，205.0
+p<sup>°</sup><sub>B</sub>/kPa：44.4，55.6，64.5，74.8，86.6，101.3</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图6-3</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）作泡点线
+对表 6-1 中每一温度 t，由式（6-4）
+x<sub>A</sub> = (p − p<sup>°</sup><sub>B</sub>)/(p<sup>°</sup><sub>A</sub> − p<sup>°</sup><sub>B</sub>)
+算出平衡液相组成，结果列于表 6-2，在 t-x 图上描点即得泡点线。
+（2）作露点线
+由式（6-5）
+y<sub>A</sub> = p<sup>°</sup><sub>A</sub>x<sub>A</sub>/p
+算出平衡气相组成，结果列于表 6-2，在 t-y 图上描点即得露点线。
+表 6-2 正庚烷-正辛烷物系的 t-x-y 关系：
+t/°C：98.4，105，110，115，120，126.6
+x<sub>A</sub>：1.0，0.656，0.487，0.311，0.157，0
+y<sub>A</sub>：1.0，0.811，0.674，0.491，0.280，0
+（3）确定 x<sub>A</sub> = 0.4 时的泡点温度和气相组成
+在 t-x-y 图上由 x<sub>A</sub> = 0.4 作垂线交泡点线于 H 点，过 H 点作水平线，读得泡点温度 t = 112°C；该水平线与露点线交于 D 点，读得 y<sub>A</sub> = 0.56。
+在 x-y 图上取点 E（0.4，0.56）；按表 6-2 的多组（x<sub>A</sub>，y<sub>A</sub>）数据描点并连接，即得平衡曲线。</div>
+          <div class="answer"><span class="k">答案</span>泡点温度 t = 112°C，平衡气相组成 y<sub>A</sub> = 0.56。</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch06-ex-003">
+        <div class="ex-head">
+          <span class="label">例6-3</span>
+          <span class="topic">连续精馏物料衡算</span>
+          <span class="ref">教材 P277</span>
+        </div>
+        <div class="problem text">在连续精馏塔中分离乙醇-水混合液。原料液中乙醇的摩尔分数为 0.4，原料液流量为 5000kg/h；要求馏出液中乙醇的摩尔分数不低于 0.85，釜液中乙醇的摩尔分数不高于 0.02。试求：（1）塔顶、塔底产品的摩尔流量；（2）乙醇的回收率。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）求塔顶、塔底产品量
+原料液平均摩尔质量
+M<sub>F</sub> = 0.4 × 46 + 0.6 × 18 = 29.2kg/kmol
+原料液摩尔流量
+F = 5000/29.2 = 171.23kmol/h
+全塔总物料衡算
+F = D + W
+乙醇物料衡算
+F x<sub>F</sub> = D x<sub>D</sub> + W x<sub>W</sub>
+两式联立解得
+D = F(x<sub>F</sub> − x<sub>W</sub>)/(x<sub>D</sub> − x<sub>W</sub>) = 171.23 × (0.4 − 0.02)/(0.85 − 0.02) = 78.39kmol/h
+W = F − D = 171.23 − 78.39 = 92.84kmol/h
+（2）求乙醇回收率
+η = (D x<sub>D</sub>)/(F x<sub>F</sub>) × 100% = (78.39 × 0.85)/(171.23 × 0.4) × 100% = 97.3%
+又
+D/F = (x<sub>F</sub> − x<sub>W</sub>)/(x<sub>D</sub> − x<sub>W</sub>) = 0.458
+W/F = (x<sub>D</sub> − x<sub>F</sub>)/(x<sub>D</sub> − x<sub>W</sub>) = 0.542</div>
+          <div class="answer"><span class="k">答案</span>D = 78.39kmol/h，W = 92.84kmol/h，乙醇回收率 η = 97.3%。</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch06-ex-004">
+        <div class="ex-head">
+          <span class="label">例6-4</span>
+          <span class="topic">精馏段操作线方程</span>
+          <span class="ref">教材 P279</span>
+        </div>
+        <div class="problem text">将含易挥发组分 0.24（摩尔分数）的液体混合物送入连续精馏塔中，要求馏出液组成 x<sub>D</sub> = 0.95、釜液组成 x<sub>W</sub> = 0.03（均为易挥发组分的摩尔分数）。送入冷凝器的蒸气量为 850kmol/h，回流液量为 670kmol/h。试求：（1）馏出液量 D 与釜液量 W；（2）回流比 R；（3）精馏段操作线方程。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）求 D、W
+D = V − L = 850 − 670 = 180kmol/h
+全塔物料衡算
+F = D + W，F x<sub>F</sub> = D x<sub>D</sub> + W x<sub>W</sub>
+代入数据
+0.24F = 180 × 0.95 + (F − 180) × 0.03
+解得 F = 788.6kmol/h
+W = F − D = 788.6 − 180 = 608.6kmol/h
+（2）求回流比
+R = L/D = 670/180 = 3.72
+（3）精馏段操作线方程
+y<sub>n+1</sub> = (R/(R + 1))x<sub>n</sub> + x<sub>D</sub>/(R + 1) = (3.72/4.72)x<sub>n</sub> + 0.95/4.72 = 0.788x<sub>n</sub> + 0.201</div>
+          <div class="answer"><span class="k">答案</span>D = 180kmol/h，W = 608.6kmol/h，R = 3.72，精馏段操作线 y = 0.788x + 0.201。</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch06-ex-005">
+        <div class="ex-head">
+          <span class="label">例6-5</span>
+          <span class="topic">逐板法求理论板数</span>
+          <span class="ref">教材 P285</span>
+        </div>
+        <div class="problem text">在常压连续精馏塔中分离苯-甲苯混合液。原料液流量 F = 80kmol/h，原料液中苯的摩尔分数 x<sub>F</sub> = 0.40，泡点进料；要求馏出液组成 x<sub>D</sub> = 0.90，苯的回收率不低于 90%；塔顶采用全凝器，操作回流比 R = 2；物系平均相对挥发度 α = 2.47。试分别用逐板计算法和图解法求所需理论板数。
+（图6-31）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图6-31</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）物料衡算
+取苯的回收率为 90%，则
+D = ηF x<sub>F</sub>/x<sub>D</sub> = 0.9 × 80 × 0.4/0.9 = 32kmol/h
+W = F − D = 80 − 32 = 48kmol/h
+x<sub>W</sub> = (F x<sub>F</sub> − D x<sub>D</sub>)/W = (80 × 0.4 − 32 × 0.9)/48 = 0.0667
+（2）操作线方程
+精馏段
+y<sub>n+1</sub> = (R/(R + 1))x<sub>n</sub> + x<sub>D</sub>/(R + 1) = (2/3)x<sub>n</sub> + 0.9/3 = 0.667x<sub>n</sub> + 0.3（a）
+V = (R + 1)D = 3 × 32 = 96kmol/h
+L&#x27; = L + qF = RD + F = 2 × 32 + 80 = 144kmol/h
+提馏段
+y<sub>m+1</sub> = (L&#x27;/V)x<sub>m</sub> − (W x<sub>W</sub>)/V = (144/96)x<sub>m</sub> − (48 × 0.0667)/96 = 1.5x<sub>m</sub> − 0.033（b）
+（3）相平衡方程
+x = y/(α − (α − 1)y) = y/(2.47 − 1.47y)（c）
+（4）逐板计算
+y<sub>1</sub> = x<sub>D</sub> = 0.90
+x<sub>1</sub> = 0.90/(2.47 − 1.47 × 0.90) = 0.785
+y<sub>2</sub> = 0.667 × 0.785 + 0.3 = 0.824
+依次交替使用式（a）、（c）计算，结果列于表 6-5。
+表 6-5 逐板计算结果：
+板号：1，2，3，4，5，6，7，8，9，10
+y：0.900，0.824，0.737，0.652，0.587，0.515，0.419，0.306，0.194，0.101
+x：0.785，0.655，0.528，0.431，0.365，0.301，0.226，0.151，0.089，0.044
+因 x<sub>5</sub> = 0.365 &lt; x<sub>F</sub> = 0.40，故第 5 块板为进料板，此后改用提馏段操作线式（b）与式（c）交替计算；x<sub>10</sub> = 0.044 &lt; x<sub>W</sub> = 0.0667，所需理论板数为 10 − 1 = 9 块（不包括再沸器），其中精馏段 4 块。
+（5）图解法
+在 x-y 图上作精馏段操作线：由 a（0.9，0.9）与截距 c（0，0.3）连直线 ac；作 x = x<sub>F</sub> = 0.4 的垂线交 ac 于 q 点；连接 b（0.0667，0.0667）与 q 点得提馏段操作线；自 a 点起在平衡曲线与操作线之间画梯级，得理论板 10 块（包括再沸器），即塔内 9 块，精馏段 4 块，第 5 块板进料，与逐板计算法结果一致。</div>
+          <div class="answer"><span class="k">答案</span>理论板 9 块（不含再沸器），其中精馏段 4 块，第 5 块板为进料板。</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch06-ex-006">
+        <div class="ex-head">
+          <span class="label">例6-6</span>
+          <span class="topic">进料热状况的影响</span>
+          <span class="ref">教材 P287</span>
+        </div>
+        <div class="problem text">在连续常压精馏塔中分离苯-甲苯混合液（平衡关系见图6-32）。原料液中苯的摩尔分数 x<sub>F</sub> = 0.4，馏出液流量 D = 40kmol/h、组成 x<sub>D</sub> = 0.9，釜液组成 x<sub>W</sub> = 0.0667，操作回流比 R = 1.875。试求下列两种进料情况下的理论板数及精馏段、提馏段的气、液流量：（1）20°C 冷液进料；（2）气液混合进料，其中液、气摩尔比为 3:1。
+已知进料泡点 t<sub>b</sub> = 95°C，原料液平均摩尔比热容 c<sub>p</sub> = 158.9kJ/(kmol·K)，平均相变焓 r = 3.26 × 10<sup>4</sup>kJ/kmol。
+（图6-32）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图6-32(a)(b)</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）物料衡算
+F = D + W，F x<sub>F</sub> = D x<sub>D</sub> + W x<sub>W</sub>
+0.4F = 40 × 0.9 + 0.0667(F − 40)
+解得 F = 100kmol/h，W = 60kmol/h
+（2）20°C 冷液进料
+进料热状况参数
+q = (r + c<sub>p</sub>(t<sub>b</sub> − t))/r = (3.26 × 10<sup>4</sup> + 158.9 × (95 − 20))/(3.26 × 10<sup>4</sup>) = 1.366
+精馏段气、液流量
+L = RD = 1.875 × 40 = 75kmol/h
+V = (R + 1)D = 2.875 × 40 = 115kmol/h
+提馏段气、液流量
+L&#x27; = L + qF = 75 + 1.366 × 100 = 211.6kmol/h
+V&#x27; = V − (1 − q)F = 115 − (1 − 1.366) × 100 = 151.6kmol/h
+操作线方程
+精馏段：y = (1.875/2.875)x + 0.9/2.875 = 0.652x + 0.313
+提馏段：y = (L&#x27;/V&#x27;)x − (W x<sub>W</sub>)/V&#x27; = (211.6/151.6)x − (60 × 0.0667)/151.6 = 1.396x − 0.0264
+在 x-y 图上作梯级，得理论板 9 块（包括再沸器），第 4 块板加料，如图 6-32(a) 所示。
+（3）气液混合进料（液、气摩尔比 3:1）
+q = 3/(3 + 1) = 0.75
+精馏段气、液流量不变：L = 75kmol/h，V = 115kmol/h，操作线仍为 y = 0.652x + 0.313
+提馏段
+L&#x27; = L + qF = 75 + 0.75 × 100 = 150kmol/h
+V&#x27; = V − (1 − q)F = 115 − (1 − 0.75) × 100 = 90kmol/h
+提馏段操作线
+y = (150/90)x − (60 × 0.0667)/90 = 1.667x − 0.0444
+图解得理论板 12 块（包括再沸器），第 6 块板加料，如图 6-32(b) 所示。
+（4）两种情况的比较见表 6-6。q 值越大，提馏段两相流量越大，所需理论板数越少。
+表 6-6 两种进料情况的比较：
+q = 1.366：L = 75，V = 115，L&#x27; = 211.6，V&#x27; = 151.6kmol/h，N<sub>T</sub> = 9 块，加料板 4
+q = 0.75：L = 75，V = 115，L&#x27; = 150，V&#x27; = 90kmol/h，N<sub>T</sub> = 12 块，加料板 6</div>
+          <div class="answer"><span class="k">答案</span>20°C 冷液进料：理论板 9 块（含再沸器，第 4 块板加料）；气液混合进料：理论板 12 块（含再沸器，第 6 块板加料）。</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch06-ex-007">
+        <div class="ex-head">
+          <span class="label">例6-7</span>
+          <span class="topic">多股进料操作线</span>
+          <span class="ref">教材 P288</span>
+        </div>
+        <div class="problem text">某连续精馏塔有两股原料进料：F<sub>1</sub> = 10kmol/h，x<sub>F1</sub> = 0.5（摩尔分数），q<sub>1</sub> = 1（饱和液体）；F<sub>2</sub> = 5kmol/h，x<sub>F2</sub> = 0.4（摩尔分数），q<sub>2</sub> = 0（饱和蒸气）。要求馏出液组成 x<sub>D</sub> = 0.9、釜液组成 x<sub>W</sub> = 0.05（均为摩尔分数）。塔顶采用全凝器，泡点回流，塔釜间接蒸汽加热，两股原料分别由最佳加料板进入塔内。试求：（1）D、W；（2）回流比 R = 1 时各段操作线方程。
+（图6-33）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图6-33</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）物料衡算
+F<sub>1</sub> + F<sub>2</sub> = D + W，即 10 + 5 = D + W
+F<sub>1</sub>x<sub>F1</sub> + F<sub>2</sub>x<sub>F2</sub> = D x<sub>D</sub> + W x<sub>W</sub>，即 10 × 0.5 + 5 × 0.4 = 0.9D + 0.05W
+解得 D = 7.35kmol/h，W = 7.65kmol/h
+（2）各段操作线（R = 1）
+精馏段（第一段）
+L = RD = 7.35kmol/h，V = (R + 1)D = 14.7kmol/h
+y = (L/V)x + (D x<sub>D</sub>)/V = (7.35/14.7)x + (7.35 × 0.9)/14.7 = 0.5x + 0.45
+第一股进料至第二股进料之间（第二段，q<sub>1</sub> = 1）
+L&#x27; = L + F<sub>1</sub> = 7.35 + 10 = 17.35kmol/h
+V&#x27; = V = 14.7kmol/h
+y = (L&#x27;/V&#x27;)x + (D x<sub>D</sub> − F<sub>1</sub>x<sub>F1</sub>)/V&#x27; = (17.35/14.7)x + (7.35 × 0.9 − 10 × 0.5)/14.7 = 1.18x + 0.11
+第二股进料以下（第三段，q<sub>2</sub> = 0）
+L&#x27;&#x27; = L&#x27; = 17.35kmol/h
+V&#x27;&#x27; = V&#x27; − F<sub>2</sub> = 14.7 − 5 = 9.7kmol/h
+y = (L&#x27;&#x27;/V&#x27;&#x27;)x − (W x<sub>W</sub>)/V&#x27;&#x27; = (17.35/9.7)x − (7.65 × 0.05)/9.7 = 1.789x − 0.039</div>
+          <div class="answer"><span class="k">答案</span>D = 7.35kmol/h，W = 7.65kmol/h；三段操作线依次为 y = 0.5x + 0.45、y = 1.18x + 0.11、y = 1.789x − 0.039。</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch06-ex-008">
+        <div class="ex-head">
+          <span class="label">例6-8</span>
+          <span class="topic">直接蒸汽加热精馏</span>
+          <span class="ref">教材 P289</span>
+        </div>
+        <div class="problem text">在常压连续精馏塔中分离含甲醇 0.45（摩尔分数）的甲醇-水溶液，原料液流量 F = 100kmol/h，泡点进料，要求馏出液中甲醇含量 x<sub>D</sub> = 0.95、釜液中甲醇含量 x<sub>W</sub> = 0.05（均为摩尔分数）。塔釜采用直接蒸汽加热，操作回流比 R = 1.8。甲醇-水溶液的平衡数据见表 6-7（总压 103.3kPa）。试求所需理论板数。
+表 6-7 甲醇-水溶液平衡数据：
+t/°C：100，96.4，93.5，91.2，89.3，87.7，84.4，81.7，78.0，75.3，73.1，71.2，69.3，67.6，66.0，65.0，64.5
+x：0，0.02，0.04，0.06，0.08，0.10，0.15，0.20，0.30，0.40，0.50，0.60，0.70，0.80，0.90，0.95，1.00
+y：0，0.134，0.234，0.304，0.365，0.418，0.517，0.579，0.665，0.729，0.779，0.825，0.870，0.915，0.958，0.979，1.00
+（图6-34）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图6-34</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）提馏段操作线方程
+对图中虚线所示范围作物料衡算
+L&#x27; + V<sub>0</sub> = V&#x27; + W
+甲醇衡算
+L&#x27;x<sub>m</sub> + V<sub>0</sub>y<sub>0</sub> = V&#x27;y<sub>m+1</sub> + W x<sub>W</sub>
+恒摩尔流假定下 V<sub>0</sub> = V&#x27;、L&#x27; = W；直接蒸汽中不含甲醇，y<sub>0</sub> = 0，则
+y<sub>m+1</sub> = (W/V<sub>0</sub>)(x<sub>m</sub> − x<sub>W</sub>)
+即提馏段操作线通过 x 轴上的 b′（x<sub>W</sub>，0）点，而不是对角线上的 b 点。
+（2）精馏段操作线方程
+y = (R/(R + 1))x + x<sub>D</sub>/(R + 1) = (1.8/2.8)x + 0.95/2.8 = 0.643x + 0.34
+（3）图解求理论板数
+在 x-y 图上作平衡曲线；由截距 0.34 及点 a（0.95，0.95）作精馏段操作线 ac；过 e（0.45，0.45）作 q = 1 的进料线交 ac 于 d 点；连接 d 与 b′（0.05，0）得提馏段操作线；自 a 点起在平衡线与操作线之间画梯级，梯级数为 6.5 块。</div>
+          <div class="answer"><span class="k">答案</span>理论板数 6.5 块。</div>
+          <div class="note text">注：教材精馏段操作线印为 y<sub>n+1</sub> = (R/(R + 1))x<sub>D</sub> + x<sub>D</sub>/(R + 1)，首项应为 x<sub>n</sub>，此处按 x<sub>n</sub> 转写。</div>
+        </div>
+      </article>
+      <article class="ex" id="ch06-ex-009">
+        <div class="ex-head">
+          <span class="label">例6-9</span>
+          <span class="topic">最小回流比与最少板数</span>
+          <span class="ref">教材 P295</span>
+        </div>
+        <div class="problem text">在常压连续精馏塔中分离某理想混合液。原料液组成 x<sub>F</sub> = 0.4，馏出液组成 x<sub>D</sub> = 0.97，釜液组成 x<sub>W</sub> = 0.04（均为摩尔分数），物系平均相对挥发度 α = 2.47。试分别计算下列三种进料方式下的最小回流比 R<sub>min</sub> 及全回流时的最少理论板数 N<sub>min</sub>：（1）冷液进料，q = 1.387；（2）泡点进料；（3）饱和蒸汽进料。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）冷液进料（q = 1.387）
+q 线方程
+y = (q/(q − 1))x − x<sub>F</sub>/(q − 1) = (1.387/0.387)x − 0.4/0.387 = 3.584x − 1.034
+与平衡线 y = 2.47x/(1 + 1.47x) 联立，解得 q 线与平衡线的交点坐标
+x<sub>q</sub> = 0.483，y<sub>q</sub> = 0.698
+R<sub>min</sub> = (x<sub>D</sub> − y<sub>q</sub>)/(y<sub>q</sub> − x<sub>q</sub>) = (0.97 − 0.698)/(0.698 − 0.483) = 1.265
+（2）泡点进料（q = 1）
+x<sub>q</sub> = x<sub>F</sub> = 0.4
+y<sub>q</sub> = 2.47 × 0.4/(1 + 1.47 × 0.4) = 0.622
+R<sub>min</sub> = (0.97 − 0.622)/(0.622 − 0.4) = 1.568
+（3）饱和蒸汽进料（q = 0）
+y<sub>q</sub> = x<sub>F</sub> = 0.4
+x<sub>q</sub> = y<sub>q</sub>/(α − (α − 1)y<sub>q</sub>) = 0.4/(2.47 − 1.47 × 0.4) = 0.213
+R<sub>min</sub> = (0.97 − 0.4)/(0.4 − 0.213) = 3.048
+（4）全回流最少理论板数
+N<sub>min</sub> = lg[(x<sub>D</sub>/(1 − x<sub>D</sub>))((1 − x<sub>W</sub>)/x<sub>W</sub>)]/lgα − 1 = lg[(0.97/0.03) × (0.96/0.04)]/lg2.47 − 1 = 6.36
+上述 N<sub>min</sub> 不包括再沸器。
+由计算可见，进料热状况参数 q 越大，最小回流比越小。</div>
+          <div class="answer"><span class="k">答案</span>R<sub>min</sub> 分别为 1.265、1.568、3.048；全回流最少理论板数 N<sub>min</sub> = 6.36 块（不含再沸器）。</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch06-ex-010">
+        <div class="ex-head">
+          <span class="label">例6-10</span>
+          <span class="topic">最小回流比与理论板</span>
+          <span class="ref">教材 P296</span>
+        </div>
+        <div class="problem text">在常压连续精馏塔中分离乙醇-水混合液。原料液中乙醇的摩尔分数 x<sub>F</sub> = 0.15，馏出液组成 x<sub>D</sub> = 0.82，釜液组成 x<sub>W</sub> = 0.04，泡点进料。乙醇-水溶液的平衡数据见表 6-8。试求：（1）最小回流比 R<sub>min</sub>；（2）操作回流比为最小回流比的 2.46 倍时所需的理论板数。
+表 6-8 乙醇-水溶液平衡数据：
+x：0.0，0.01，0.02，0.04，0.06，0.08，0.10，0.14，0.18，0.20，0.25，0.30，0.40，0.50，0.60，0.70，0.80，0.894，0.95，1.0
+y：0.0，0.11，0.175，0.273，0.34，0.392，0.43，0.482，0.513，0.525，0.551，0.575，0.614，0.657，0.698，0.755，0.82，0.894，0.942，1.0
+（图6-40）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图6-40(a)(b)</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）求最小回流比
+由点 a（0.82，0.82）向平衡曲线作切线，切线与 q 线（x = x<sub>F</sub> = 0.15）交于 d 点，读得
+x<sub>q</sub> = 0.15，y<sub>q</sub> = 0.45
+R<sub>min</sub> = (x<sub>D</sub> − y<sub>q</sub>)/(y<sub>q</sub> − x<sub>q</sub>) = (0.82 − 0.45)/(0.45 − 0.15) = 1.23
+用截距法校核：x<sub>D</sub>/(R<sub>min</sub> + 1) = 0.37，得 R<sub>min</sub> = 1.22。
+（2）求理论板数
+R = 2.46R<sub>min</sub> = 2.46 × 1.22 = 3
+精馏段操作线截距
+x<sub>D</sub>/(R + 1) = 0.82/(3 + 1) = 0.205
+在 x-y 图上，过 a（0.82，0.82）以 0.205 为截距作精馏段操作线 ac；作 x = x<sub>F</sub> = 0.15 的垂线交 ac 于 d 点；连接 b（0.04，0.04）与 d 得提馏段操作线；在平衡曲线与操作线之间画梯级，得理论板 10 块（不包括再沸器），如图 6-40(a)、(b) 所示。</div>
+          <div class="answer"><span class="k">答案</span>R<sub>min</sub> = 1.23（截距法校核为 1.22）；理论板数 10 块（不含再沸器）。</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch06-ex-011">
+        <div class="ex-head">
+          <span class="label">例6-11</span>
+          <span class="topic">多股进料最小回流比</span>
+          <span class="ref">教材 P297</span>
+        </div>
+        <div class="problem text">在例6-7 的多股进料精馏塔中，若物系平均相对挥发度 α = 3，其他条件不变（F<sub>1</sub> = 10kmol/h，x<sub>F1</sub> = 0.5，q<sub>1</sub> = 1；F<sub>2</sub> = 5kmol/h，x<sub>F2</sub> = 0.4，q<sub>2</sub> = 0；x<sub>D</sub> = 0.9，x<sub>W</sub> = 0.05）。试求该塔的最小回流比 R<sub>min</sub>。
+（图6-41）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图6-41</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">夹紧点可能在 d<sub>1</sub> 或 d<sub>2</sub> 处，分别按两处计算最小回流比，取较大者。
+（1）按 d<sub>1</sub> 计算
+q<sub>1</sub> = 1，x<sub>q1</sub> = x<sub>F1</sub> = 0.5
+y<sub>q1</sub> = αx<sub>q1</sub>/(1 + (α − 1)x<sub>q1</sub>) = 3 × 0.5/(1 + 2 × 0.5) = 0.75
+R<sub>min1</sub> = (x<sub>D</sub> − y<sub>q1</sub>)/(y<sub>q1</sub> − x<sub>q1</sub>) = (0.9 − 0.75)/(0.75 − 0.5) = 0.6
+（2）按 d<sub>2</sub> 计算
+q<sub>2</sub> = 0，y<sub>q2</sub> = x<sub>F2</sub> = 0.4
+x<sub>q2</sub> = y<sub>q2</sub>/(α − (α − 1)y<sub>q2</sub>) = 0.4/(3 − 2 × 0.4) = 0.182
+第三段操作线（提馏段）液气比
+L&#x27;&#x27;/V&#x27;&#x27; = (y<sub>q2</sub> − x<sub>W</sub>)/(x<sub>q2</sub> − x<sub>W</sub>) = (0.4 − 0.05)/(0.182 − 0.05) = 2.65
+其中
+L&#x27;&#x27; = R&#x27;<sub>min2</sub>D + F<sub>1</sub> = 7.35R&#x27;<sub>min2</sub> + 10
+V&#x27;&#x27; = (R&#x27;<sub>min2</sub> + 1)D + F<sub>1</sub> − F<sub>2</sub> = 7.35R&#x27;<sub>min2</sub> + 2.35
+代入液气比式
+(7.35R&#x27;<sub>min2</sub> + 10)/(7.35R&#x27;<sub>min2</sub> + 2.35) = 2.65
+解得 R&#x27;<sub>min2</sub> = 0.311
+（3）取较大值
+R<sub>min</sub> = 0.6</div>
+          <div class="answer"><span class="k">答案</span>R<sub>min</sub> = 0.6。</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch06-ex-012">
+        <div class="ex-head">
+          <span class="label">例6-12</span>
+          <span class="topic">简捷法估算理论板</span>
+          <span class="ref">教材 P298</span>
+        </div>
+        <div class="problem text">试用简捷算法重算例6-5 中苯-甲苯连续精馏塔的理论板数和加料板位置。已知原料液组成 x<sub>F</sub> = 0.4，馏出液组成 x<sub>D</sub> = 0.9，釜液组成 x<sub>W</sub> = 0.0667（均为苯的摩尔分数），泡点进料，操作回流比 R = 2，物系平均相对挥发度 α = 2.47。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）求最小回流比
+泡点进料，x<sub>q</sub> = x<sub>F</sub> = 0.4
+y<sub>q</sub> = αx<sub>q</sub>/(1 + (α − 1)x<sub>q</sub>) = 2.47 × 0.4/(1 + 1.47 × 0.4) = 0.622
+R<sub>min</sub> = (x<sub>D</sub> − y<sub>q</sub>)/(y<sub>q</sub> − x<sub>q</sub>) = (0.9 − 0.622)/(0.622 − 0.4) = 1.252
+（2）求全塔最少理论板数
+N<sub>min</sub> = lg[(x<sub>D</sub>/(1 − x<sub>D</sub>))((1 − x<sub>W</sub>)/x<sub>W</sub>)]/lgα − 1 = lg[(0.9/0.1) × ((1 − 0.0667)/0.0667)]/lg2.47 − 1 = 4.35
+（3）用 Gilliland 关联求理论板数
+(R − R<sub>min</sub>)/(R + 1) = (2 − 1.252)/(2 + 1) = 0.249
+由 Gilliland 图查得
+(N − N<sub>min</sub>)/(N + 2) = 0.42
+解得 N = 9 块（不包括再沸器），与例6-5 的图解结果相同。
+（4）求精馏段理论板数
+N<sub>min</sub> = lg[(x<sub>D</sub>/(1 − x<sub>D</sub>))((1 − x<sub>F</sub>)/x<sub>F</sub>)]/lgα − 1 = lg[(0.9/0.1) × ((1 − 0.4)/0.4)]/lg2.47 − 1 = 1.88
+已查得 (N − N<sub>min</sub>)/(N + 2) = 0.42，解得精馏段塔板数 N = 4.7。
+故加料板为从塔顶往下的第五层塔板，全塔理论板数为 9 块。此法简便，能快速粗略地估算结果。</div>
+          <div class="answer"><span class="k">答案</span>理论板数 9 块（不含再沸器），加料板为从塔顶往下第 5 层塔板。</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch06-ex-013">
+        <div class="ex-head">
+          <span class="label">例6-13</span>
+          <span class="topic">精馏装置热量衡算</span>
+          <span class="ref">教材 P300</span>
+        </div>
+        <div class="problem text">在一常压操作的连续精馏塔中分离苯-甲苯混合液，原料中苯的含量为 0.4（摩尔分数，下同），原料液量为 100kmol/h，泡点进料，要求塔顶产品中苯的含量不低于 0.98，塔釜残液中苯的含量不高于 0.02，操作回流比为 2，泡点回流，忽略热损失。试求塔釜加热蒸汽用量和冷凝器中冷却水用量。
+已知：（1）加热蒸汽为 101.3kPa（表压）的饱和蒸汽；（2）冷却水进口温度为 15°C，出口温度为 30°C，比热容为 4.187kJ/(kg·K)；（3）苯的摩尔质量为 78.11kg/kmol，甲苯的摩尔质量为 92.13kg/kmol；（4）80.2°C 时苯的相变焓 r<sub>苯</sub> = 31024.2kJ/kmol；（5）忽略热损失。由图6-1 查得进料泡点 t<sub>b</sub> = 95°C。
+表 6-9 苯和甲苯的摩尔比热容：
+温度：80.2°C，95°C，110.6°C
+苯的摩尔比热容/kJ·kmol<sup>-1</sup>·°C<sup>-1</sup>：153.5，157，—
+甲苯的摩尔比热容/kJ·kmol<sup>-1</sup>·°C<sup>-1</sup>：—，185.2，188.9
+（图6-1）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图6-1</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">近似认为塔顶馏出液为纯苯、塔釜残液为纯甲苯，则塔顶温度为 80.2°C，塔釜温度为 110.6°C。
+（1）物料衡算
+F = D + W，F x<sub>F</sub> = D x<sub>D</sub> + W x<sub>W</sub>
+将 F = 100kmol/h、x<sub>F</sub> = 0.4、x<sub>D</sub> = 0.98、x<sub>W</sub> = 0.02 代入，得
+D = 39.6kmol/h，W = 60.4kmol/h
+（2）加热蒸汽用量的计算
+由 t-x-y 图查得泡点 t<sub>b</sub> = 95°C，原料液平均摩尔比热容
+c<sub>p</sub> = 157 × 0.4 + 185.2 × 0.6 = 173.92kJ/(kmol·°C)
+原料液的焓
+h<sub>F</sub> = c<sub>p</sub>t = 173.92 × 95 = 1.652 × 10<sup>4</sup>kJ/kmol
+原料液带入的热量
+Q<sub>F</sub> = Fh<sub>F</sub> = 100 × 1.652 × 10<sup>4</sup> = 1.652 × 10<sup>6</sup>kJ/h
+回流液的焓近似取纯苯的焓
+h<sub>L</sub> = c<sub>p</sub>t = 153.5 × 80.2 = 1.23 × 10<sup>4</sup>kJ/kmol
+回流液带入的热量
+Q<sub>L</sub> = Lh<sub>L</sub> = RDh<sub>L</sub> = 2 × 39.6 × 1.23 × 10<sup>4</sup> = 9.75 × 10<sup>5</sup>kJ/h
+塔顶蒸气的热焓近似取纯苯蒸气的焓
+H<sub>V</sub> = r + c<sub>p</sub>t = 31024.2 + 153.5 × 80.2 = 4.33 × 10<sup>4</sup>kJ/kmol
+塔顶蒸气带出的热量
+Q<sub>V</sub> = VH<sub>V</sub> = (R + 1)DH<sub>V</sub> = (2 + 1) × 39.6 × 4.33 × 10<sup>4</sup> = 5.14 × 10<sup>6</sup>kJ/h
+塔底产品的焓近似取纯甲苯的焓
+h<sub>W</sub> = c<sub>p</sub>t = 188.9 × 110.6 = 2.09 × 10<sup>4</sup>kJ/kmol
+塔底产品带出去的热量
+Q<sub>W</sub> = Wh<sub>W</sub> = 60.4 × 2.09 × 10<sup>4</sup> = 1.26 × 10<sup>6</sup>kJ/h
+由全塔能量衡算
+Q<sub>B</sub> + Q<sub>F</sub> + Q<sub>L</sub> = Q<sub>V</sub> + Q<sub>W</sub>
+Q<sub>B</sub> = Q<sub>V</sub> + Q<sub>W</sub> − Q<sub>F</sub> − Q<sub>L</sub> = 5.14 × 10<sup>6</sup> + 1.26 × 10<sup>6</sup> − 1.652 × 10<sup>6</sup> − 9.74 × 10<sup>5</sup> = 3.773 × 10<sup>6</sup>kJ/h
+101.3kPa（表压）水蒸气的相变焓 r = 3.97 × 10<sup>4</sup>kJ/kmol，水蒸气用量
+q<sub>mB</sub> = Q<sub>B</sub>/r = 3.773 × 10<sup>6</sup>/(3.97 × 10<sup>4</sup>) = 95.04kmol/h = 1711kg/h
+（3）冷却水用量的计算
+对塔顶全凝器作能量衡算
+Q<sub>C</sub> = Q<sub>V</sub> − Q<sub>L</sub> − Q<sub>D</sub>
+塔顶馏出液的焓等于回流液的焓
+h<sub>D</sub> = 1.23 × 10<sup>4</sup>kJ/kmol
+塔顶产品带出去的热量
+Q<sub>D</sub> = Dh<sub>D</sub> = 39.6 × 1.23 × 10<sup>4</sup> = 4.871 × 10<sup>5</sup>kJ/h
+Q<sub>C</sub> = 5.14 × 10<sup>6</sup> − 9.75 × 10<sup>5</sup> − 4.871 × 10<sup>5</sup> = 3.678 × 10<sup>6</sup>kJ/h
+水的比热容 c<sub>p</sub> = 4.187kJ/(kg·°C)，冷却水用量
+q<sub>mC</sub> = Q<sub>C</sub>/(c<sub>p</sub>(t<sub>2</sub> − t<sub>1</sub>)) = 3.678 × 10<sup>6</sup>/(4.187 × (30 − 15)) = 5.86 × 10<sup>4</sup>kg/h
+冷却器中排出的热与再沸器中加入的热之比
+Q<sub>C</sub>/Q<sub>B</sub> = 3.678 × 10<sup>6</sup>/(3.773 × 10<sup>6</sup>) = 97.5%</div>
+          <div class="answer"><span class="k">答案</span>加热蒸汽用量 95.04kmol/h（1711kg/h）；冷却水用量 5.86 × 10<sup>4</sup>kg/h。</div>
+          <div class="note text">注：教材 Q<sub>B</sub> 计算式中 Q<sub>L</sub> 代入了 9.74 × 10<sup>5</sup>kJ/h，与前文算得的 9.75 × 10<sup>5</sup>kJ/h 略有差异，此处按原文转写。</div>
+        </div>
+      </article>
+      <article class="ex" id="ch06-ex-014">
+        <div class="ex-head">
+          <span class="label">例6-14</span>
+          <span class="topic">回流比对组成的影响</span>
+          <span class="ref">教材 P302</span>
+        </div>
+        <div class="problem text">若某精馏塔有 N 块理论板，其中精馏段有 m 块理论板，提馏段有（N − m）块板。进料量为 F，进料组成为 x<sub>F</sub>，进料热状况为 q，当回流比为 R 时，塔顶、塔釜组成分别为 x<sub>D</sub>、x<sub>W</sub>。其他条件及塔顶采出率 D/F 都不变，当 R 增加时，问塔顶、塔釜组成将如何变化？</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图6-45</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）定性分析
+当回流比 R 增大时，精馏段液-气比增加，精馏段操作线斜率变大；提馏段液-气比减小，操作线斜率变小。当操作达到稳定时，馏出液组成 x<sub>D</sub> 增大，x<sub>W</sub> 减小，如图 6-45 所示。
+（2）定量计算方法
+先设定某一 x<sub>W</sub> 值，按物料衡算求出
+x<sub>D</sub> = (F x<sub>F</sub> − W x<sub>W</sub>)/D
+然后自组成 x<sub>D</sub> 起交替使用精馏段操作线方程
+y<sub>n+1</sub> = (R/(R + 1))x<sub>n</sub> + x<sub>D</sub>/(R + 1)
+和相平衡方程
+x<sub>n</sub> = y<sub>n</sub>/(α − (α − 1)y<sub>n</sub>)
+进行 m 次逐板计算，直至算出离开加料板液体的组成 x<sub>m</sub>。跨过加料板后，改用提馏段操作线方程
+y<sub>m+1</sub> = (L&#x27;/V&#x27;)x<sub>m</sub> − (W/V&#x27;)x<sub>W</sub>
+及相平衡方程再进行（N − m）次逐板计算，算出最后一块理论板的液体组成 x<sub>N</sub>。将此 x<sub>N</sub> 值与所假设的 x<sub>W</sub> 比较，两者基本接近则假设合理，否则重新试差。
+（3）说明
+在馏出液采出率 D/F 确定的条件下，增大回流比 R 来提高 x<sub>D</sub> 并非总是有效：
+① 受精馏段塔板数及精馏塔分离能力的限制。对一定塔板数，即使回流比增至无穷大（全回流），x<sub>D</sub> 也有确定的最高极限值，在实际回流比下不可能超过此极限值。
+② 受全塔物料衡算的限制。加大回流比 R 可提高 x<sub>D</sub>，但其极限值为 x<sub>D</sub> = F x<sub>F</sub>/D。对一定的塔板数，即使采用全回流，x<sub>D</sub> 也只能趋近此值；如该值大于 1，则应取 x<sub>D</sub> 的极限值为 1。
+此外，操作回流比的增加意味着塔釜加热量和塔顶冷凝量都增加，因此还将受到塔釜及冷凝器换热面积的限制。</div>
+          <div class="answer"><span class="k">答案</span>R 增加时，x<sub>D</sub> 增大、x<sub>W</sub> 减小。</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch06-ex-015">
+        <div class="ex-head">
+          <span class="label">例6-15</span>
+          <span class="topic">默弗里单板效率</span>
+          <span class="ref">教材 P312</span>
+        </div>
+        <div class="problem text">为测定板式精馏塔内某塔板的板效率，在常压下对苯-甲苯物系进行全回流操作。待操作稳定后，测得相邻两层塔板上的液相组成分别为 x<sub>n−1</sub> = 0.430、x<sub>n</sub> = 0.305（均为苯的摩尔分数）。已知操作条件下物系的平均相对挥发度为 2.46，试计算第 n 板的液相及气相默弗里板效率。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）液相默弗里板效率
+全回流操作，所以 y<sub>n</sub> = x<sub>n−1</sub> = 0.430
+第 n 板的液相平衡组成
+x<sup>*</sup><sub>n</sub> = y<sub>n</sub>/(α − (α − 1)y<sub>n</sub>) = 0.43/(2.46 − (2.46 − 1) × 0.43) = 0.235
+第 n 板的液相默弗里板效率
+(E<sub>ML</sub>)<sub>n</sub> = (x<sub>n−1</sub> − x<sub>n</sub>)/(x<sub>n−1</sub> − x<sup>*</sup><sub>n</sub>) = (0.43 − 0.305)/(0.43 − 0.235) = 0.641
+（2）气相默弗里板效率
+由全回流操作得 y<sub>n+1</sub> = x<sub>n</sub> = 0.305，y<sub>n</sub> = x<sub>n−1</sub> = 0.430
+第 n 板的气相平衡组成
+y<sup>*</sup><sub>n</sub> = αx<sub>n</sub>/(1 + (α − 1)x<sub>n</sub>) = 2.46 × 0.305/(1 + (2.46 − 1) × 0.305) = 0.519
+第 n 板的气相默弗里板效率
+(E<sub>MV</sub>)<sub>n</sub> = (y<sub>n</sub> − y<sub>n+1</sub>)/(y<sup>*</sup><sub>n</sub> − y<sub>n+1</sub>) = (0.43 − 0.305)/(0.519 − 0.305) = 0.584
+由计算可知，同一塔板的气相单板效率与液相单板效率数值不同。</div>
+          <div class="answer"><span class="k">答案</span>液相默弗里板效率 (E<sub>ML</sub>)<sub>n</sub> = 0.641，气相默弗里板效率 (E<sub>MV</sub>)<sub>n</sub> = 0.584。</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch06-ex-016">
+        <div class="ex-head">
+          <span class="label">例6-16</span>
+          <span class="topic">精馏塔塔径估算</span>
+          <span class="ref">教材 P314</span>
+        </div>
+        <div class="problem text">在常压连续精馏塔中分离苯-甲苯混合液。原料液流量 F = 80kmol/h，原料液组成 x<sub>F</sub> = 0.35，馏出液组成 x<sub>D</sub> = 0.95，釜液组成 x<sub>W</sub> = 0.04（均为苯的摩尔分数），操作回流比 R = 2，泡点进料，塔釜间接蒸汽加热。试以精馏段为例估算塔径。
+已知塔顶温度 80°C，塔釜温度 110°C；80°C 下纯苯的液相密度 ρ<sub>L</sub> = 879kg/m<sup>3</sup>，表面张力 σ = 0.0286N/m。取板间距 H<sub>T</sub> = 0.4m，板上液层高度 h<sub>L</sub> = 0.06m。
+（图6-65）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图6-65</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）精馏段气、液流量
+D = (x<sub>F</sub> − x<sub>W</sub>)/(x<sub>D</sub> − x<sub>W</sub>) × F = (0.35 − 0.04)/(0.95 − 0.04) × 80 = 27.25kmol/h
+L = RD = 2 × 27.25 = 54.5kmol/h
+V = (R + 1)D = 3 × 27.25 = 81.75kmol/h
+（2）塔顶蒸气密度与体积流量
+M<sub>D</sub> = 78 × 0.95 + 92 × 0.05 = 78.7kg/kmol
+ρ<sub>V</sub> = pM<sub>D</sub>/(RT) = 101.3 × 78.7/(8.314 × (273 + 80)) = 2.72kg/m<sup>3</sup>
+q<sub>V</sub> = VM<sub>D</sub>/ρ<sub>V</sub> = 81.75 × 78.7/2.72 = 2365.5m<sup>3</sup>/h = 0.657m<sup>3</sup>/s
+q<sub>L</sub> = LM<sub>D</sub>/ρ<sub>L</sub> = 54.5 × 78.7/879 = 4.88m<sup>3</sup>/h = 1.36 × 10<sup>-3</sup>m<sup>3</sup>/s
+（3）泛点气速
+H<sub>T</sub> − h<sub>L</sub> = 0.4 − 0.06 = 0.34m
+(q<sub>L</sub>/q<sub>V</sub>)√(ρ<sub>L</sub>/ρ<sub>V</sub>) = (4.88/2365.6) × √(879/2.72) = 0.037
+由图6-65 查得 C<sub>20</sub> = 0.074
+C = C<sub>20</sub>(σ/0.02)<sup>0.2</sup> = 0.074 × (0.0286/0.02)<sup>0.2</sup> = 0.079m/s
+u<sub>max</sub> = C√((ρ<sub>L</sub> − ρ<sub>V</sub>)/ρ<sub>V</sub>) = 0.079 × √((879 − 2.72)/2.72) = 1.42m/s
+（4）塔径
+取空塔气速 u = 0.70u<sub>max</sub> = 0.70 × 1.42 = 0.994m/s
+D<sub>T</sub> = √(q<sub>V</sub>/((π/4)u)) = √(0.657/(0.785 × 0.994)) = 0.92m
+按压力容器公称直径标准（小于 1m 按 100mm 间隔，大于 1m 按 200mm 间隔）圆整，取 D<sub>T</sub> = 1.0m。</div>
+          <div class="answer"><span class="k">答案</span>精馏段塔径 D<sub>T</sub> = 1.0m。</div>
+          <div class="note text">注：教材中塔径与馏出液量均用符号 D，为避免混淆，此处塔径记为 D<sub>T</sub>。</div>
+        </div>
+      </article>
+    </section>
+    <section class="chapter" id="ch07">
+      <div class="ch-head"><h2>第7章 固体干燥</h2><span class="count">8 例</span></div>
+      <article class="ex" id="ch07-ex-001">
+        <div class="ex-head">
+          <span class="label">例7-1</span>
+          <span class="topic">湿空气的湿度与相对湿度</span>
+          <span class="ref">教材 P330</span>
+        </div>
+        <div class="problem text">总压为 101.3kPa、温度为 20°C 的湿空气，其水汽分压为 2.33kPa。试求：（1）该湿空气的湿度 H 及相对湿度 φ；（2）若将此湿空气加热至 60°C，其湿度 H 及相对湿度 φ 又为多少？</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）20°C 时，由式（7-1a）计算湿度：
+H = 0.622 p<sub>v</sub>/(p − p<sub>v</sub>) = 0.622 × 2.33/(101.3 − 2.33) = 0.0146 kg 水汽/kg 干气
+查附录 5，20°C 时水的饱和蒸气压 p<sub>s</sub> = 2.33kPa，则相对湿度：
+φ = p<sub>v</sub>/p<sub>s</sub> × 100% = 2.33/2.33 × 100% = 100%
+说明该湿空气已达饱和，不能作为干燥介质。
+（2）60°C 时，加热后湿空气中的水汽分压未变，故湿度不变，仍为 H = 0.0146 kg 水汽/kg 干气。
+60°C 时水的饱和蒸气压 p<sub>s</sub> = 19.92kPa，故相对湿度：
+φ = p<sub>v</sub>/p<sub>s</sub> × 100% = 2.33/19.92 × 100% = 11.7%
+可见温度提高后湿度不变，但相对湿度减小，该空气又可作为干燥介质。</div>
+          <div class="answer"><span class="k">答案</span>H = 0.0146 kg 水汽/kg 干气；20°C 时 φ = 100%，60°C 时 φ = 11.7%</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch07-ex-002">
+        <div class="ex-head">
+          <span class="label">例7-2</span>
+          <span class="topic">湿空气性质参数计算</span>
+          <span class="ref">教材 P334</span>
+        </div>
+        <div class="problem text">已知湿空气的总压为 101.3kPa，温度为 30°C，湿度为 0.016kg 水汽/kg 干气。试计算：（1）水汽的分压；（2）相对湿度；（3）露点温度；（4）绝热饱和温度；（5）焓；（6）将 100kg/h 干空气预热至 100°C 时所需的热量；（7）每小时送入预热器湿空气的体积。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）水汽分压 p<sub>v</sub>：由式（7-1a）H = 0.622 p<sub>v</sub>/(p − p<sub>v</sub>)，即
+0.016 = 0.622 p<sub>v</sub>/(101.3 − p<sub>v</sub>)
+解得 p<sub>v</sub> = 2.55kPa
+（2）相对湿度 φ：由附录 5 查得 30°C 时水的饱和蒸气压 p<sub>s</sub> = 4.25kPa，故
+φ = p<sub>v</sub>/p<sub>s</sub> × 100% = 2.55/4.25 × 100% = 60%
+（3）露点温度 t<sub>d</sub>：由 p<sub>s</sub> = 2.55kPa，查附录 5(4) 饱和水蒸气表得 t<sub>d</sub> = 21.4°C
+（4）绝热饱和温度 t<sub>as</sub>：根据式（7-15）用试差法计算。设 t<sub>as</sub> = 23.7°C，查得 p<sub>s</sub> = 2.95kPa、相变焓 r<sub>as</sub> = 2437.86kJ/kg，则
+H<sub>as</sub> = 0.622 p<sub>s</sub>/(p − p<sub>s</sub>) = 0.622 × 2.95/(101.3 − 2.95) = 0.0187 kg 水汽/kg 干气
+湿空气的比热容：
+c<sub>H</sub> = 1.01 + 1.88H = 1.01 + 1.88 × 0.016 = 1.04 kJ·kg<sup>-1</sup>·°C<sup>-1</sup>
+绝热饱和温度：
+t<sub>as</sub> = t − (r<sub>as</sub>/c<sub>H</sub>)(H<sub>as</sub> − H) = 30 − (2437.86/1.04) × (0.0187 − 0.016) = 23.67°C
+与所设值接近，故 t<sub>as</sub> = 23.7°C
+（5）焓 I：由式（7-5a）
+I = (1.01 + 1.88H)t + 2492H = (1.01 + 1.88 × 0.016) × 30 + 2492 × 0.016 = 71.07 kJ/kg 干气
+（6）加热量 Q：
+Q = 100c<sub>H</sub>(t<sub>1</sub> − t) = 100 × 1.04 × (100 − 30) = 7280kJ/h = 2.02kW
+（7）湿空气体积流量 V<sub>h</sub>：湿空气比体积
+v<sub>H</sub> = (0.773 + 1.244H) × (273 + t)/273 × (1.013 × 10<sup>5</sup>/p) = (0.773 + 1.244 × 0.016) × (273 + 30)/273 = 0.88 m<sup>3</sup>/kg 干气
+V<sub>h</sub> = 100v<sub>H</sub> = 100 × 0.88 = 88 m<sup>3</sup>/h</div>
+          <div class="answer"><span class="k">答案</span>p<sub>v</sub> = 2.55kPa；φ = 60%；t<sub>d</sub> = 21.4°C；t<sub>as</sub> = 23.7°C；I = 71.07kJ/kg 干气；Q = 7280kJ/h（2.02kW）；V<sub>h</sub> = 88m<sup>3</sup>/h</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch07-ex-003">
+        <div class="ex-head">
+          <span class="label">例7-3</span>
+          <span class="topic">湿度图查取空气状态</span>
+          <span class="ref">教材 P337</span>
+        </div>
+        <div class="problem text">在总压 101.3kPa 时，用干、湿球温度计测得湿空气的干球温度为 20°C，湿球温度为 14°C。试在 I-H 图中查取此湿空气的其他性质：（1）湿度 H；（2）水汽分压 p<sub>v</sub>；（3）相对湿度 φ；（4）焓 I；（5）露点温度 t<sub>d</sub>。（图7-8）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图7-8</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">如图 7-8 所示，作 t<sub>w</sub> = 14°C 的等温线与 φ = 100% 线相交于 D 点，再过 D 点作等焓线与 t = 20°C 的等温线相交于 A 点，A 点即为该湿空气的状态点，由此读取其他参数。
+（1）湿度 H：由 A 点沿等 H 线向下与辅助水平轴相交，读得
+H = 0.0075 kg 水汽/kg 干气
+（2）水汽分压 p<sub>v</sub>：由 A 点沿等 H 线向下与水汽分压线相交于 C 点，在右纵坐标上读得
+p<sub>v</sub> = 1.2kPa
+（3）相对湿度 φ：由 A 点所在的等 φ 线读得
+φ = 50%
+（4）焓 I：通过 A 点沿等焓线与纵轴相交，读得
+I = 39kJ/kg 干气
+（5）露点温度 t<sub>d</sub>：由 A 点沿等湿线向下与 φ = 100% 线相交于 B 点，由通过 B 点的等 t 线读得
+t<sub>d</sub> = 10°C
+由图可见不饱和湿空气的干球温度 &gt; 湿球温度 &gt; 露点温度。</div>
+          <div class="answer"><span class="k">答案</span>H = 0.0075kg 水汽/kg 干气；p<sub>v</sub> = 1.2kPa；φ = 50%；I = 39kJ/kg 干气；t<sub>d</sub> = 10°C</div>
+          <div class="note text">注：各参数由教材 I-H 图（图7-8）读得，读数精度受图面限制。</div>
+        </div>
+      </article>
+      <article class="ex" id="ch07-ex-004">
+        <div class="ex-head">
+          <span class="label">例7-4</span>
+          <span class="topic">连续干燥器物料衡算</span>
+          <span class="ref">教材 P341</span>
+        </div>
+        <div class="problem text">在一连续干燥器中，每小时处理湿物料 2000kg，要求将含水量由 10% 减至 2%（均为湿基）。以空气为干燥介质，进入预热器前新鲜湿空气的温度与湿度分别为 15°C 和 0.01kg 水汽/kg 干气（压力为 101.3kPa），离开干燥器时废气的湿度为 0.08kg 水汽/kg 干气。假设干燥过程中无物料损失，试求：（1）水分汽化量；（2）新鲜湿空气用量（分别以质量及体积表示）；（3）干燥产品量。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）水分汽化量 W
+物料的干基含水量：
+X<sub>1</sub> = w<sub>1</sub>/(1 − w<sub>1</sub>) = 0.1/(1 − 0.1) = 0.1111 kg 水/kg 干料
+X<sub>2</sub> = w<sub>2</sub>/(1 − w<sub>2</sub>) = 0.02/(1 − 0.02) = 0.0204 kg 水/kg 干料
+绝干物料量：
+G<sub>C</sub> = G<sub>1</sub>(1 − w<sub>1</sub>) = 2000 × (1 − 0.1) = 1800kg/h
+所以水分汽化量：
+W = G<sub>C</sub>(X<sub>1</sub> − X<sub>2</sub>) = 1800 × (0.1111 − 0.0204) = 163.26kg/h
+（2）新鲜湿空气用量
+绝干空气用量：
+L = W/(H<sub>2</sub> − H<sub>1</sub>) = 163.26/(0.08 − 0.01) = 2332.3 kg 干气/h
+新鲜湿空气质量用量：
+L′ = L(1 + H<sub>0</sub>) = 2332.3 × (1 + 0.01) = 2355.6kg/h
+湿空气的比体积：
+v<sub>H</sub> = (0.773 + 1.244H<sub>0</sub>) × (273 + t<sub>0</sub>)/273 × (1.013 × 10<sup>5</sup>/p) = (0.773 + 1.244 × 0.01) × (273 + 15)/273 = 0.829 m<sup>3</sup>/kg 干气
+新鲜湿空气体积用量：
+V = Lv<sub>H</sub> = 2332.3 × 0.829 = 1933m<sup>3</sup>/h
+（3）干燥产品量 G<sub>2</sub>
+干燥过程中无物料损失，则
+G<sub>2</sub> = G<sub>1</sub> − W = 2000 − 163.26 = 1836.74kg/h
+或
+G<sub>2</sub> = G<sub>1</sub>(1 − w<sub>1</sub>)/(1 − w<sub>2</sub>) = 2000 × (1 − 0.1)/(1 − 0.02) = 1836.74kg/h</div>
+          <div class="answer"><span class="k">答案</span>W = 163.26kg/h；L′ = 2355.6kg/h，V = 1933m<sup>3</sup>/h；G<sub>2</sub> = 1836.74kg/h</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch07-ex-005">
+        <div class="ex-head">
+          <span class="label">例7-5</span>
+          <span class="topic">干燥系统热量衡算与热效率</span>
+          <span class="ref">教材 P343</span>
+        </div>
+        <div class="problem text">常压下以温度 20°C、相对湿度 60% 的新鲜空气为干燥介质干燥某种湿物料。空气在预热器中被加热到 90°C 后送入干燥器，离开干燥器时的温度为 45°C、湿度为 0.022kg 水汽/kg 干气。每小时有 1000kg 温度为 20°C、湿基含水量为 3% 的湿物料送入干燥器，物料离开干燥器时温度升至 50°C，湿基含水量降至 0.2%。干燥产品的比热容为 3.28kJ·kg<sup>-1</sup>·°C<sup>-1</sup>（以干料计）。忽略预热器向周围的热损失，干燥器的热损失速率为 1.2kW。试求：（1）新鲜空气用量；（2）若预热器中用压力为 196kPa（绝压）的饱和水蒸气加热，计算水蒸气用量；（3）干燥系统消耗的总热量；（4）干燥系统的热效率。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）新鲜空气用量
+物料的干基含水量：
+X<sub>1</sub> = w<sub>1</sub>/(1 − w<sub>1</sub>) = 0.03/(1 − 0.03) = 0.0309 kg 水/kg 干料
+X<sub>2</sub> = w<sub>2</sub>/(1 − w<sub>2</sub>) = 0.002/(1 − 0.002) ≈ 0.002 kg 水/kg 干料
+绝干物料量：
+G<sub>C</sub> = G<sub>1</sub>(1 − w<sub>1</sub>) = 1000 × (1 − 0.03) = 970kg/h
+汽化水分量：
+W = G<sub>C</sub>(X<sub>1</sub> − X<sub>2</sub>) = 970 × (0.0309 − 0.002) = 28.03kg/h
+当 t<sub>0</sub> = 20°C、φ<sub>0</sub> = 60% 时，由 I-H 图查得 H<sub>1</sub> = H<sub>0</sub> = 0.009kg 水汽/kg 干气，则
+绝干空气用量：
+L = W/(H<sub>2</sub> − H<sub>1</sub>) = 28.03/(0.022 − 0.009) = 2156 kg 干气/h
+新鲜空气用量：
+L′ = L(1 + H<sub>0</sub>) = 2156 × (1 + 0.009) = 2175kg/h
+（2）预热器内水蒸气用量
+湿空气比热容：
+c<sub>H0</sub> = 1.01 + 1.88H<sub>0</sub> = 1.01 + 1.88 × 0.009 = 1.027 kJ·kg<sup>-1</sup>·°C<sup>-1</sup>
+预热器中加热量：
+Q<sub>p</sub> = L(I<sub>1</sub> − I<sub>0</sub>) = Lc<sub>H0</sub>(t<sub>1</sub> − t<sub>0</sub>) = 2156 × 1.027 × (90 − 20) = 154995kJ/h = 43.1kW
+查水蒸气表，压力为 196kPa 饱和水蒸气的相变焓 r = 2206kJ/kg，则水蒸气用量：
+q<sub>m</sub> = Q<sub>p</sub>/r = 154995/2206 = 70.3kg/h
+（3）干燥系统消耗的总热量，由式（7-33）
+Q = Lc<sub>H0</sub>(t<sub>2</sub> − t<sub>0</sub>) + W(r<sub>0</sub> + c<sub>v</sub>t<sub>2</sub> − c<sub>w</sub>θ<sub>1</sub>) + G<sub>C</sub>c<sub>M2</sub>(θ<sub>2</sub> − θ<sub>1</sub>) + Q<sub>L</sub>
+= 2156 × 1.027 × (45 − 20) + 28.03 × (2492 + 1.88 × 45 − 4.187 × 20) + 970 × 3.28 × (50 − 20) + 1.2 × 3600
+= 224998kJ/h = 62.5kW
+（4）干燥系统的热效率，由式（7-35）
+η = W(2492 + 1.88t<sub>2</sub> − 4.187θ<sub>1</sub>)/Q × 100% = 28.03 × (2492 + 1.88 × 45 − 4.187 × 20)/224998 × 100% = 31.1%</div>
+          <div class="answer"><span class="k">答案</span>L′ = 2175kg/h；q<sub>m</sub> = 70.3kg/h；Q = 224998kJ/h（62.5kW）；η = 31.1%</div>
+          <div class="note text">注：H<sub>0</sub> 由 I-H 图按 t<sub>0</sub> = 20°C、φ<sub>0</sub> = 60% 查得。</div>
+        </div>
+      </article>
+      <article class="ex" id="ch07-ex-006">
+        <div class="ex-head">
+          <span class="label">例7-6</span>
+          <span class="topic">理想干燥器空气用量</span>
+          <span class="ref">教材 P345</span>
+        </div>
+        <div class="problem text">用气流干燥器干燥某物料，生产能力为 1000kg/h，物料的含水量由 12% 降至 3%。操作压力为 101.3kPa，新鲜空气温度为 20°C、湿度为 0.008kg 水汽/kg 干气，经预热器后温度为 130°C。已知干燥器为理想干燥器，试求：（1）当干燥器空气出口温度为 40°C 时，绝干空气用量及预热器中的加热量；（2）若空气离开干燥器后，因在管道及旋风分离器中散热而使温度下降了 10°C，判断是否会发生产品返潮现象。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）绝干物料量：
+G<sub>C</sub> = G<sub>2</sub>(1 − w<sub>2</sub>) = 1000 × (1 − 0.03) = 970kg/h
+物料的干基含水量：
+X<sub>1</sub> = w<sub>1</sub>/(1 − w<sub>1</sub>) = 0.12/(1 − 0.12) = 0.136 kg 水/kg 干料
+X<sub>2</sub> = w<sub>2</sub>/(1 − w<sub>2</sub>) = 0.03/(1 − 0.03) = 0.0309 kg 水/kg 干料
+水分汽化量：
+W = G<sub>C</sub>(X<sub>1</sub> − X<sub>2</sub>) = 970 × (0.136 − 0.0309) = 101.95kg/h
+因是理想干燥器，空气经历等焓变化过程，即 I<sub>1</sub> = I<sub>2</sub>：
+(1.01 + 1.88H<sub>1</sub>)t<sub>1</sub> + 2492H<sub>1</sub> = (1.01 + 1.88H<sub>2</sub>)t<sub>2</sub> + 2492H<sub>2</sub>
+(1.01 + 1.88 × 0.008) × 130 + 2492 × 0.008 = (1.01 + 1.88H<sub>2</sub>) × 40 + 2492H<sub>2</sub>
+解得空气出口湿度 H<sub>2</sub> = 0.0439 kg 水汽/kg 干气
+故绝干空气用量：
+L = W/(H<sub>2</sub> − H<sub>1</sub>) = 101.95/(0.0439 − 0.008) = 2839.8 kg 干气/h
+预热器中加热量：
+Q<sub>P</sub> = Lc<sub>H0</sub>(t<sub>1</sub> − t<sub>0</sub>) = (2839.8/3600) × (1.01 + 1.88 × 0.008) × (130 − 20) = 88.94kW
+（2）当干燥器空气出口温度为 40°C 时，假设没有水析出，则其中的水汽分压：
+p<sub>v</sub> = pH<sub>2</sub>/(0.622 + H<sub>2</sub>) = 101.3 × 0.0439/(0.622 + 0.0439) = 6.68kPa
+空气经管道及旋风分离器后温度降至 30°C，该温度下水的饱和蒸气压 p<sub>s</sub> = 4.25kPa，p<sub>s</sub> &lt; p<sub>v</sub>，即空气温度已低于露点温度，必有水分析出，干燥产品将返潮，故干燥器空气出口温度不能过低。</div>
+          <div class="answer"><span class="k">答案</span>L = 2839.8kg 干气/h；Q<sub>P</sub> = 88.94kW；温度降至 30°C 时 p<sub>s</sub> = 4.25kPa &lt; p<sub>v</sub> = 6.68kPa，会发生产品返潮</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch07-ex-007">
+        <div class="ex-head">
+          <span class="label">例7-7</span>
+          <span class="topic">恒速干燥速率与干燥时间</span>
+          <span class="ref">教材 P350</span>
+        </div>
+        <div class="problem text">现将某固体颗粒物料平铺于盘中干燥。常压下将温度为 20°C、湿度为 0.01kg 水汽/kg 干气的空气预热至 70°C 后送入干燥器，空气以 6m/s 的流速平行流过物料表面。已知单位干燥面积的绝干物料量 G<sub>C</sub>/A = 23.5kg/m<sup>2</sup>，物料的临界含水量 X<sub>C</sub> = 0.21kg 水/kg 干料。试求：（1）恒速干燥阶段的干燥速率；（2）物料含水量从 X<sub>1</sub> = 0.45kg 水/kg 干料下降到 X<sub>2</sub> = 0.24kg 水/kg 干料所需的干燥时间。</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">（1）湿空气 t = 70°C、H = 0.01kg 水汽/kg 干气，由湿度图查得湿球温度 t<sub>w</sub> = 30°C；由附录 5 查得 30°C 时水的汽化相变焓 r<sub>W</sub> = 2424kJ/kg。
+干燥器内湿空气的比体积，由式（7-6）：
+v<sub>H</sub> = (0.773 + 1.244H) × (273 + t)/273 = (0.773 + 1.244 × 0.01) × (273 + 70)/273 = 0.987 m<sup>3</sup>/kg 干气
+则湿空气的密度：
+ρ = (1 + H)/v<sub>H</sub> = (1 + 0.01)/0.987 = 1.023kg/m<sup>3</sup>
+湿空气的质量流速：
+G = uρ = 6 × 1.023 = 6.14 kg/(m<sup>2</sup>·s)
+空气平行流过物料表面，由式（7-42）计算对流传热系数：
+α = 14.3G<sup>0.8</sup> = 14.3 × 6.14<sup>0.8</sup> = 61.1 W/(m<sup>2</sup>·°C)
+则恒速干燥阶段的干燥速率：
+U<sub>C</sub> = (α/r<sub>W</sub>)(t − t<sub>w</sub>) = 61.1/(2424 × 1000) × (70 − 30) = 1.008 × 10<sup>-3</sup> kg/(m<sup>2</sup>·s)
+（2）因 X<sub>2</sub> &gt; X<sub>C</sub>，故由 X<sub>1</sub> = 0.45kg 水/kg 干料降至 X<sub>2</sub> = 0.24kg 水/kg 干料仅为恒速干燥阶段，干燥时间：
+τ<sub>1</sub> = G<sub>C</sub>/(AU<sub>C</sub>)(X<sub>1</sub> − X<sub>2</sub>) = 23.5/(1.008 × 10<sup>-3</sup>) × (0.45 − 0.24) = 4896s = 1.36h</div>
+          <div class="answer"><span class="k">答案</span>U<sub>C</sub> = 1.008 × 10<sup>-3</sup> kg/(m<sup>2</sup>·s)；τ = 4896s（1.36h）</div>
+          
+        </div>
+      </article>
+      <article class="ex" id="ch07-ex-008">
+        <div class="ex-head">
+          <span class="label">例7-8</span>
+          <span class="topic">降速干燥时间计算</span>
+          <span class="ref">教材 P351</span>
+        </div>
+        <div class="problem text">某物料的干燥速率曲线如图 7-15 所示。已知单位干燥面积的绝干物料量 G<sub>C</sub>/A = 23.5kg/m<sup>2</sup>，试计算物料含水量自 X<sub>1</sub> = 0.3kg 水/kg 干料下降到 X<sub>2</sub> = 0.1kg 水/kg 干料所需的干燥时间（降速阶段的干燥速率近似按直线处理）。（图7-15）</div>
+        <div class="ex-actions">
+          <button class="toggle" type="button" aria-expanded="false">展开解答</button>
+          <span class="fig">附图 图7-15</span>
+        </div>
+        <div class="sol" hidden>
+          <div class="sol-k">解</div>
+          <div class="steps text">由图 7-15 中读得 U<sub>C</sub> = 1.5kg/(m<sup>2</sup>·h)，X<sub>C</sub> = 0.2kg 水/kg 干料，X<sup>*</sup> = 0.05kg 水/kg 干料。
+因 X<sub>2</sub> &lt; X<sub>C</sub>，含水量自 X<sub>1</sub> = 0.3kg 水/kg 干料降至 X<sub>2</sub> = 0.1kg 水/kg 干料包括恒速和降速两个阶段，总干燥时间：
+τ = τ<sub>1</sub> + τ<sub>2</sub> = G<sub>C</sub>/(AU<sub>C</sub>)(X<sub>1</sub> − X<sub>C</sub>) + G<sub>C</sub>(X<sub>C</sub> − X<sup>*</sup>)/(AU<sub>C</sub>) · ln[(X<sub>C</sub> − X<sup>*</sup>)/(X<sub>2</sub> − X<sup>*</sup>)]
+= 23.5/1.5 × [(0.3 − 0.2) + (0.2 − 0.05)ln((0.2 − 0.05)/(0.1 − 0.05))] = 4.15h</div>
+          <div class="answer"><span class="k">答案</span>τ = 4.15h</div>
+          <div class="note text">注：U<sub>C</sub>、X<sub>C</sub>、X<sup>*</sup> 由教材图 7-15 干燥速率曲线读得。</div>
+        </div>
+      </article>
+    </section>
+    <div class="empty" id="empty">没有匹配的例题，换个关键词试试。</div>
+  </main>
+
+  <footer class="foot">
+    <span>来源：《化工原理》（第四版），杨祖荣主编，化学工业出版社。例题文字与解题思路转写自教材，仅供课程复习。</span><br>
+    <span>页码为印刷页码；PDF 页码 = 印刷页码 + 9。数据在 <code>papers_hgyl/examples/</code>，校验用 <code>tools/check_examples.py</code>。</span>
+  </footer>
+</div>
+<script>
+(function () {
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.ex'));
+  var all = document.getElementById('expandAll');
+  var search = document.getElementById('search');
+  var shown = document.getElementById('shown');
+  var empty = document.getElementById('empty');
+  var openAll = false;
+
+  cards.forEach(function (card) {
+    var btn = card.querySelector('.toggle');
+    var sol = card.querySelector('.sol');
+    btn.addEventListener('click', function () {
+      var open = sol.hidden;
+      sol.hidden = !open;
+      btn.textContent = open ? '收起解答' : '展开解答';
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      card.classList.toggle('open', open);
+    });
+  });
+
+  all.addEventListener('click', function () {
+    openAll = !openAll;
+    cards.forEach(function (card) {
+      var btn = card.querySelector('.toggle');
+      var sol = card.querySelector('.sol');
+      sol.hidden = !openAll;
+      btn.textContent = openAll ? '收起解答' : '展开解答';
+      btn.setAttribute('aria-expanded', openAll ? 'true' : 'false');
+      card.classList.toggle('open', openAll);
+    });
+    all.textContent = openAll ? '全部收起' : '全部展开';
+  });
+
+  function filter() {
+    var q = search.value.trim().toLowerCase();
+    var n = 0;
+    cards.forEach(function (card) {
+      var text = card.getAttribute('data-text');
+      var hit = !q || text.indexOf(q) >= 0;
+      card.hidden = !hit;
+      if (hit) n++;
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.chapter'), function (sec) {
+      var any = Array.prototype.some.call(sec.querySelectorAll('.ex'), function (c) { return !c.hidden; });
+      sec.hidden = !any;
+    });
+    shown.textContent = '显示 ' + n + ' / ' + cards.length;
+    empty.style.display = n ? 'none' : 'block';
+  }
+
+  cards.forEach(function (card) {
+    var head = card.querySelector('.ex-head').textContent;
+    var problem = card.querySelector('.problem').textContent;
+    var sol = card.querySelector('.sol').textContent;
+    card.setAttribute('data-text', (head + ' ' + problem + ' ' + sol).toLowerCase());
+  });
+  search.addEventListener('input', filter);
+  filter();
+})();
+</script>
+</body>
+</html>

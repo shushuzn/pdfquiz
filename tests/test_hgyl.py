@@ -48,7 +48,15 @@ class TestConfig(unittest.TestCase):
     def test_course_registered(self):
         course = find_course(load_courses(ROOT), "hgyl")
         self.assertEqual(course["out"], "out_hgyl")
-        self.assertEqual(course["decks"], ["exam", "objective", "practice", "terms"])
+        self.assertEqual(
+            course["decks"],
+            ["exam", "objective", "practice", "terms", "examples"],
+        )
+
+    def test_examples_are_a_separate_deck(self):
+        ids = [d["id"] for d in build_hgyl.DECKS]
+        self.assertNotIn("examples", ids)
+        self.assertEqual(len(ids), 4)
 
     def test_exam_totals_100(self):
         exam = next(d for d in build_hgyl.DECKS if d["id"] == "exam")

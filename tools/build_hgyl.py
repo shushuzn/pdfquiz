@@ -22,6 +22,7 @@ from pdfquiz import amcbank  # noqa: E402
 from pdfquiz.render_html import render_html  # noqa: E402
 from pdfquiz.verify import Report, verify  # noqa: E402
 
+import examples  # noqa: E402
 import hgyl  # noqa: E402
 
 PAPERS = ROOT / "papers_hgyl"
@@ -242,8 +243,23 @@ def main(argv: list[str]) -> int:
         print(f"总题池 {len(pool)} 题")
         return 0
 
+    ex_total = examples.total()
+    if ex_total:
+        meta.append({
+            "id": "examples",
+            "title": "化工原理 · 教材例题精解",
+            "short": "例题",
+            "desc": f"教材正文 {ex_total} 道例题按章收在一起：先自己做一遍，再展开解答对照步骤；每题标印刷页码，可翻回原书核对。",
+            "count": ex_total,
+            "score": 0,
+            "types": {},
+            "quiz": False,
+            "unit": "例",
+        })
+        print(f"examples   {ex_total:3d} 例         → out_hgyl/examples.quiz.html")
+
     (OUT / "decks.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"题池 {len(pool)} 题，四套共 {sum(m['count'] for m in meta)} 题")
+    print(f"题池 {len(pool)} 题，四套共 {sum(m['count'] for m in meta if m.get('quiz', True))} 题")
     return 0
 
 

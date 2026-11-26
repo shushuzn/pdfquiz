@@ -61,11 +61,18 @@ jobs:
         run: python tools/check_amc.py
       - name: 化工原理题库自检（无语料时跳过）
         run: python tools/check_hgyl.py
+      - name: 教材例题数据自检
+        run: |
+          python tools/normalize_examples.py --check
+          python tools/check_examples.py
       - name: 隐私检查
         run: python tools/check_privacy.py
 
       - name: 题库可重建
         run: python tools/build_amc.py
+
+      - name: 教材例题页可重建
+        run: python tools/build_examples.py
 
       - name: 化工原理题库可重建（无语料时跳过）
         run: python tools/build_hgyl.py
