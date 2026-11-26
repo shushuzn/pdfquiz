@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import contextlib
+import io
 import json
 import re
 import sys
@@ -90,7 +92,8 @@ class TestRender(unittest.TestCase):
         self.assertEqual(html, build_examples.render(self.chapters()))
 
     def test_build_main_writes_file(self):
-        code = build_examples.main([])
+        with contextlib.redirect_stdout(io.StringIO()):
+            code = build_examples.main([])
         self.assertEqual(code, 0)
         target = build_examples.OUT / "examples.quiz.html"
         self.assertTrue(target.exists())
