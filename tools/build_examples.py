@@ -21,8 +21,10 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 import examples  # noqa: E402
 import hgyl  # noqa: E402
+import texmath  # noqa: E402
 
 OUT = ROOT / "out_hgyl"
+KATEX = ROOT / "vendor" / "katex"
 
 CSS = """
 *,*::before,*::after{box-sizing:border-box}
@@ -145,6 +147,13 @@ body.lock{overflow:hidden}
 .text sup,.text sub{font-size:.72em;line-height:0}
 .text sup{vertical-align:super}
 .text sub{vertical-align:sub}
+.tex{display:inline-block;vertical-align:baseline;white-space:nowrap}
+/* KaTeX 的下标塔（.vlist）会比 .base 的 min-content 宽出 1~2px，
+   不留这点余量就会在公式下面冒出一条没有用的细滚动条。
+   独立成行的公式用 block：inline-block + overflow 会把盒底当基线，
+   每行下面都多出一截空隙，行距就散开了 */
+.tex-block{display:block;max-width:100%;overflow-x:auto;overflow-y:hidden;scrollbar-width:thin;padding-right:3px}
+.tex .katex{font-size:1.05em}
 .ex-actions{display:flex;align-items:center;gap:12px;margin-top:12px}
 .toggle{
   font:inherit;font-size:12.5px;font-weight:600;color:var(--accent-ink);
@@ -200,13 +209,41 @@ ARROW = ('<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-widt
          '<path d="M19 12H5M12 19l-7-7 7-7"/></svg>')
 
 
-def rich(text: str) -> str:
+def _plain(text: str) -> str:
     """转义后只放行 **强调**、^{上标}、_{下标}，不执行任何标签。"""
     s = html.escape(str(text))
     s = re.sub(r"\*\*(.+?)\*\*", r"<b>\1</b>", s, flags=re.S)
     s = re.sub(r"\^\{([^{}]*)\}", r"<sup>\1</sup>", s)
     s = re.sub(r"_\{([^{}]*)\}", r"<sub>\1</sub>", s)
     return s
+
+
+def _tex(tex: str, linear: str, block: bool) -> str:
+    """公式片段：data-tex 给 KaTeX，里面先放线性写法，脚本不跑也照样能读。"""
+    cls = "tex tex-block" if block else "tex"
+    return f'<span class="{cls}" data-tex="{html.escape(tex, quote=True)}">{_plain(linear)}</span>'
+
+
+def rich(text: str) -> str:
+    """逐行转 HTML：认得出的公式交给 KaTeX，其余按网页排版处理。"""
+    out = []
+    for line in str(text).split("\n"):
+        segs = []
+        for kind, payload, fallback in texmath.convert_line(line):
+            if kind == "break":
+                # .tex-block 是块级元素，本身就会断行；再插 \n 会多出一行空白
+                continue
+            if kind == "text":
+                segs.append(_plain(payload))
+            else:
+                segs.append(_tex(payload, fallback, kind == "math-block"))
+        out.append("".join(segs))
+    return "\n".join(out)
+
+
+@lru_cache(maxsize=4)
+def katex_asset(name: str) -> str:
+    return (KATEX / name).read_text(encoding="utf-8")
 
 
 @lru_cache(maxsize=128)
@@ -220,6 +257,8 @@ def short_name(stem: str) -> str:
 
 
 def render(chapters: list[tuple[str, dict]]) -> str:
+    kcss = katex_asset("katex.inline.css")
+    kjs = katex_asset("katex.min.js")
     total = sum(len(data.get("examples") or []) for _, data in chapters)
     pages = [int(item["ref"][1:]) for _, data in chapters for item in data["examples"]]
     span = f"P{min(pages)}–P{max(pages)}" if pages else "—"
@@ -284,6 +323,7 @@ def render(chapters: list[tuple[str, dict]]) -> str:
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
 <title>化工原理 · 教材例题精解</title>
+<style>{kcss}</style>
 <style>{CSS}</style>
 </head>
 <body>
@@ -300,7 +340,7 @@ def render(chapters: list[tuple[str, dict]]) -> str:
       <span class="pill">{span}</span>
       <span class="pill">离线可用 · 单文件</span>
     </div>
-    <p class="bank-note">例题转写自教材，公式按网页排版做了线性化整理；有附图的例题直接给出教材原图，点击可放大。个别数值如受扫描清晰度影响，以教材原页为准。例题不计入题库题数。</p>
+    <p class="bank-note">例题转写自教材，公式由 KaTeX 排版（字体已内嵌，离线可用；关掉脚本则退回线性写法）；有附图的例题直接给出教材原图，点击可放大。个别数值如受扫描清晰度影响，以教材原页为准。例题不计入题库题数。</p>
   </header>
 
   <nav class="toc" aria-label="章节目录">{toc}</nav>
@@ -324,6 +364,7 @@ def render(chapters: list[tuple[str, dict]]) -> str:
   <button class="lb-close" type="button" aria-label="关闭">×</button>
   <img alt="">
 </div>
+<script>{kjs}</script>
 <script>
 (function () {{
   var cards = Array.prototype.slice.call(document.querySelectorAll('.ex'));
@@ -411,6 +452,24 @@ def render(chapters: list[tuple[str, dict]]) -> str:
   document.addEventListener('keydown', function (e) {{
     if (e.key === 'Escape') closeLb();
   }});
+
+  // 公式渲染：把 data-tex 里的 LaTeX 换成 KaTeX 排版；某条转坏了就保留线性写法
+  if (window.katex) {{
+    var nodes = document.querySelectorAll('span.tex[data-tex]');
+    var failed = 0;
+    for (var i = 0; i < nodes.length; i++) {{
+      var el = nodes[i];
+      try {{
+        el.innerHTML = katex.renderToString(el.getAttribute('data-tex'), {{
+          throwOnError: true, displayMode: false, strict: false
+        }});
+        el.classList.add('tex-done');
+      }} catch (err) {{
+        failed++;
+      }}
+    }}
+    window.__tex = {{ total: nodes.length, failed: failed }};
+  }}
 }})();
 </script>
 </body>

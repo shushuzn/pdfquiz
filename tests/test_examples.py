@@ -78,14 +78,22 @@ class TestRender(unittest.TestCase):
     def test_page_is_self_contained(self):
         html = build_examples.render(self.chapters())
         self.assertNotIn("<link", html)
-        self.assertNotIn("http://", html)
-        self.assertNotIn("https://", html)
+        self.assertNotIn('src="http', html)
+        self.assertNotIn('href="http', html)
+        self.assertNotIn("url(http", html)
+        self.assertNotIn("@import", html)
+        # KaTeX 必须整包内嵌，字体也不能留外部引用
+        self.assertIn("katex.renderToString", html)
+        self.assertIn("KaTeX_Main", html)
+        self.assertNotIn("url(fonts/", html)
 
     def test_rich_escapes_and_formats(self):
-        self.assertEqual(build_examples.rich("x_{F}"), "x<sub>F</sub>")
-        self.assertEqual(build_examples.rich("m^{3}"), "m<sup>3</sup>")
         self.assertEqual(build_examples.rich("**粗**"), "<b>粗</b>")
         self.assertIn("&lt;script&gt;", build_examples.rich("<script>"))
+        # 公式行交给 KaTeX，但标签里仍留线性写法，禁用脚本也能读
+        out = build_examples.rich("x_{F} = 0.4")
+        self.assertIn('data-tex="x_{F} = 0.4"', out)
+        self.assertIn("x<sub>F</sub> = 0.4", out)
 
     def test_output_is_deterministic(self):
         html = build_examples.render(self.chapters())
